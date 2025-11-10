@@ -10,11 +10,23 @@ out/
 build/
 dist/
 
-# Environnement local
+# Environnement local et credentials
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.key
+*.pem
+credentials/
+secrets/
+
+# Documentation et scripts potentiellement sensibles
+docs/
+documentation/
+scripts/
+notes/
+.notes/
 
 # Logs
 npm-debug.log*

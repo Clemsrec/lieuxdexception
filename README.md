@@ -54,15 +54,31 @@ src/
 - **Hosting** : Déploiement de production
 
 ### Variables d'Environnement
-Créer un fichier `.env.local` :
+
+⚠️ **IMPORTANT** : Ne jamais commiter les clés API dans le repository !
+
+Créer un fichier `.env.local` à la racine du projet (ce fichier est dans .gitignore) :
+
 ```env
-NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyB8UuDft8_zPKkYQp9Bqr7WAcyAETJ81RA
+# Configuration Firebase (NE PAS COMMITER CES VALEURS)
+NEXT_PUBLIC_FIREBASE_API_KEY=votre_clé_api_ici
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=lieux-d-exceptions.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=lieux-d-exceptions
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=lieux-d-exceptions.firebasestorage.app
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=886228169873
-NEXT_PUBLIC_FIREBASE_APP_ID=1:886228169873:web:YOUR_WEB_APP_ID
+NEXT_PUBLIC_FIREBASE_APP_ID=votre_app_id_ici
 ```
+
+**Pour obtenir vos clés Firebase :**
+1. Connectez-vous à la [Console Firebase](https://console.firebase.google.com/)
+2. Sélectionnez le projet `lieux-d-exceptions`
+3. Allez dans Paramètres du projet > Applications Web
+4. Copiez les valeurs de configuration dans votre `.env.local`
+
+**Restrictions de sécurité recommandées :**
+- Limitez l'utilisation de la clé API aux domaines autorisés uniquement
+- Activez les restrictions d'API dans Google Cloud Console
+- Configurez les règles de sécurité Firestore en mode production
 
 ## 📋 Fonctionnalités Implémentées
 
