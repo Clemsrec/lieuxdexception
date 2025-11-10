@@ -1,126 +1,208 @@
-# Lieux d'Exception
+# Lieux d'Exception - Groupe Riou
 
-Un site vitrine moderne développé avec Next.js 15, TypeScript et Tailwind CSS v4, intégrant Firebase pour l'authentification et Firestore pour la base de données.
+Site vitrine B2B pour la collection "Lieux d'Exception" du Groupe Riou, présentant 5 domaines prestigieux pour événements professionnels et mariages.
 
-## 🚀 Technologies Utilisées
+## 🏛️ Présentation du Projet
 
-- **Next.js 15** avec App Router
-- **TypeScript** pour un code type-safe
-- **Tailwind CSS v4** pour le styling
-- **Turbopack** pour un développement ultra-rapide
-- **Firebase** pour l'authentification et la base de données
-- **ESLint** pour la qualité du code
+**Lieux d'Exception** est la plateforme B2B du Groupe Riou proposant des lieux d'exception pour :
+- **Événements professionnels** : séminaires, conférences, lancements produit, team building
+- **Mariages et réceptions** : célébrations dans des cadres prestigieux
+- **Services sur-mesure** : accompagnement complet de A à Z
 
-## 📁 Structure du Projet
+## 🚀 Stack Technique
 
+### Framework & Technologies
+- **Next.js 15** avec App Router et Turbopack
+- **TypeScript** en mode strict
+- **Tailwind CSS v4** (approche CSS-first, sans fichier de configuration JS)
+- **Firebase** pour l'authentification et Firestore
+- **React 19** avec Server/Client Components
+
+### Architecture
 ```
-lieuxdexception/
-├── app/                    # Pages et layouts (App Router)
-│   ├── globals.css        # Styles globaux avec Tailwind
-│   ├── layout.tsx         # Layout racine
-│   └── page.tsx           # Page d'accueil
-├── components/            # Composants réutilisables
-├── lib/                   # Utilitaires et configuration
-│   ├── firebase.ts       # Configuration Firebase
-│   └── auth.ts           # Hooks d'authentification
-├── types/                 # Définitions TypeScript
-│   └── firebase.ts       # Types Firebase/Firestore
-├── public/               # Assets statiques
-└── .github/              # Configuration GitHub
-    └── copilot-instructions.md
+src/
+├── app/                 # Pages avec App Router
+│   ├── globals.css     # Styles globaux Tailwind CSS v4
+│   ├── layout.tsx      # Layout principal avec navigation
+│   ├── page.tsx        # Page d'accueil
+│   ├── catalogue/      # Catalogue des lieux
+│   ├── evenements-b2b/ # Page événements B2B
+│   ├── mariages/       # Page mariages
+│   ├── contact/        # Formulaires de contact adaptatifs
+│   └── admin/          # Dashboard d'administration
+├── components/         # Composants réutilisables
+│   ├── Navigation.tsx  # Navigation principale avec states actifs
+│   └── ContactFormSwitcher.tsx # Formulaires adaptatifs (B2B/Mariage/Rapide)
+├── lib/               # Services et configurations
+│   ├── firebase.ts    # Configuration Firebase
+│   └── firestore.ts   # Services CRUD Firestore
+└── types/             # Définitions TypeScript
+    └── firebase.ts    # Types pour Firebase/Firestore
 ```
 
-## 🛠 Installation et Configuration
+## 🔥 Configuration Firebase
 
-### 1. Cloner et installer
+### Projet Firebase
+- **Nom du projet** : `lieux-d-exceptions`
+- **ID du projet** : `886228169873`
+- **Base de données** : `lieuxdexception`
+- **Région** : Europe (europe-west1)
+
+### Services Activés
+- **Firestore** : Base de données NoSQL pour les lieux, leads et analytics
+- **Authentication** : Authentification utilisateur (admin)
+- **Hosting** : Déploiement de production
+
+### Variables d'Environnement
+Créer un fichier `.env.local` :
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyB8UuDft8_zPKkYQp9Bqr7WAcyAETJ81RA
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=lieux-d-exceptions.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=lieux-d-exceptions
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=lieux-d-exceptions.firebasestorage.app
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=886228169873
+NEXT_PUBLIC_FIREBASE_APP_ID=1:886228169873:web:YOUR_WEB_APP_ID
+```
+
+## 📋 Fonctionnalités Implémentées
+
+### ✅ Pages Principales
+- [x] **Page d'accueil** : Présentation générale et héros
+- [x] **Catalogue** : Liste des 5 lieux d'exception avec filtres
+- [x] **Événements B2B** : Page dédiée aux événements professionnels
+- [x] **Mariages** : Page spécialisée mariages et réceptions
+- [x] **Contact** : Formulaires adaptatifs selon le type d'événement
+- [x] **Admin** : Dashboard de gestion (leads, lieux, analytics)
+
+### ✅ Composants & UX
+- [x] **Navigation responsive** avec states actifs
+- [x] **Formulaires adaptatifs** : B2B, Mariage, Contact rapide
+- [x] **Design system** cohérent avec Tailwind CSS v4
+- [x] **Optimisation mobile** : Design mobile-first
+- [x] **Accessibilité** : ARIA labels et navigation clavier
+
+### ✅ Backend & Services
+- [x] **Services Firestore** : CRUD pour lieux, leads, analytics
+- [x] **Types TypeScript** : Interfaces complètes pour tous les models
+- [x] **Validation des données** : Prêt pour intégration Zod
+- [x] **Architecture modulaire** : Services séparés et réutilisables
+
+## 🎯 Structure des Données
+
+### Venues (Lieux)
+```typescript
+interface Venue {
+  id: string;
+  name: string;
+  location: string;
+  capacity: number;
+  images: string[];
+  description: string;
+  features: string[];
+  pricing: {
+    b2b_half_day: number;
+    b2b_full_day: number;
+    wedding_weekend: number;
+  };
+  translations: Record<string, VenueTranslation>;
+  isActive: boolean;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+### Leads (Prospects)
+```typescript
+interface Lead {
+  id: string;
+  type: 'b2b' | 'wedding';
+  contactInfo: ContactInfo;
+  eventDetails: EventDetails;
+  status: 'new' | 'contacted' | 'qualified' | 'converted' | 'lost';
+  source: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+## �️ Commandes de Développement
 
 ```bash
-git clone https://github.com/Clemsrec/lieuxdexception.git
-cd lieuxdexception
+# Installation des dépendances
 npm install
-```
 
-### 2. Configuration Firebase
-
-1. Créez un projet Firebase sur [Firebase Console](https://console.firebase.google.com/)
-2. Activez Authentication et Firestore
-3. Copiez `.env.local.example` vers `.env.local`
-4. Remplacez les valeurs par vos clés Firebase
-
-### 3. Lancement du développement
-
-```bash
-# Démarrer le serveur de développement avec Turbopack
+# Développement avec Turbopack (ultra rapide)
 npm run dev
 
-# Autres commandes disponibles
-npm run build     # Build de production
-npm run start     # Serveur de production
-npm run lint      # Vérification ESLint
-```
-
-## 🔧 Commandes de Développement
-
-```bash
-# Développement avec Turbopack (ultra-rapide)
-npm run dev
-
-# Build optimisé pour la production
+# Build de production
 npm run build
 
-# Serveur de production
-npm run start
+# Démarrer en production
+npm start
 
-# Linting et formatage
+# Linting et vérifications
 npm run lint
+
+# Tests (à configurer)
+npm run test
 ```
 
-## 🏗 Architecture
+## � Déploiement
 
-### Composants
-- **Server Components** par défaut pour les performances
-- **Client Components** seulement pour l'interactivité (avec "use client")
-- Types TypeScript stricts pour tous les composants
+### Développement
+- **URL locale** : http://localhost:3000
+- **Hot reload** : Activé avec Turbopack
+- **TypeScript** : Compilation en temps réel
 
-### Authentification Firebase
-- Hook `useAuth()` pour l'état utilisateur
-- Actions d'authentification centralisées dans `lib/auth.ts`
-- Types stricts pour les données utilisateur
+### Production
+```bash
+# Build optimisé
+npm run build
 
-### Styling
-- Tailwind CSS v4 avec configuration personnalisée
-- Variables CSS custom pour la cohérence
-- Design responsive mobile-first
+# Déploiement Firebase
+firebase deploy
 
-## 🔐 Variables d'Environnement
-
-Créez un fichier `.env.local` avec vos clés Firebase :
-
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-domain
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-bucket
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
+# Déploiement Vercel (alternative)
+vercel --prod
 ```
 
-## 📝 Conventions de Code
+## 🔄 Prochaines Étapes
 
-- Utilisez TypeScript strict
-- Préférez les Server Components
-- Classes Tailwind en priorité
-- Validation avec Zod pour les données
-- Nommage en français pour le contenu
+### 🚧 À Implémenter
+- [ ] **Multilingual** : Support 6 langues (FR, EN, ES, DE, IT, PT) avec next-intl
+- [ ] **Intégration Odoo** : Synchronisation automatique des leads
+- [ ] **Système de réservation** : Calendrier et gestion des disponibilités
+- [ ] **Galerie photos** : Integration avec un CDN pour les images
+- [ ] **Système de paiement** : Acomptes et paiements en ligne
+- [ ] **Analytics avancés** : Tracking des conversions et comportements
 
-## 🚀 Déploiement
+### 🎨 Améliorations UX
+- [ ] **Animations** : Transitions fluides et micro-interactions
+- [ ] **Progressive Web App** : Support PWA pour mobile
+- [ ] **SEO avancé** : Schema.org et métadonnées enrichies
+- [ ] **Performance** : Optimisation des images et lazy loading
 
-Le projet est optimisé pour le déploiement sur Vercel avec Next.js 15.
+### � Fonctionnalités Admin
+- [ ] **CMS intégré** : Édition des contenus sans redéploiement
+- [ ] **Gestion des utilisateurs** : Rôles et permissions
+- [ ] **Exports de données** : CSV, PDF pour les rapports
+- [ ] **Notifications** : Alertes email pour nouveaux leads
 
-## 📞 Contact
+## � Support & Contact
 
-Pour toute question sur ce projet, contactez [votre email].
+### Équipe Technique
+- **Développement** : Architecture Next.js 15 + TypeScript
+- **Design** : Tailwind CSS v4 avec design system cohérent
+- **Backend** : Firebase/Firestore avec services modulaires
+- **SEO** : Optimisation française et multilingue
+
+### Documentation
+- **Copilot Instructions** : `.github/copilot-instructions.md`
+- **Types TypeScript** : `src/types/firebase.ts`
+- **Services API** : `src/lib/firestore.ts`
+- **Composants** : Documentation JSDoc inline
 
 ---
 
-Développé avec ❤️ pour Lieux d'Exception
+**Lieux d'Exception** - Une expérience B2B premium pour des événements inoubliables.
+*Développé avec ❤️ et Next.js 15 par l'équipe Groupe Riou*

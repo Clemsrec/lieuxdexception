@@ -1,6 +1,8 @@
 {
-  "name": "lieuxdexception",
-  "version": "0.1.0",
+  "name": "lieux-d-exception",
+  "version": "1.0.0",
+  "description": "Site catalogue B2B du Groupe Riou présentant 5 lieux événementiels d'exception en France",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -11,22 +13,24 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "firebase": "^10.7.1",
+    "lucide-react": "^0.552.0",
     "next": "^15.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "firebase": "^10.7.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.16",
+    "@types/jest": "^29.5.11",
     "@types/node": "^20.10.5",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
     "eslint-config-next": "^15.0.3",
-    "typescript": "^5.3.3",
-    "tailwindcss": "^4.0.0-alpha.26",
-    "@types/jest": "^29.5.11",
     "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0"
+    "jest-environment-jsdom": "^29.7.0",
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.3.3"
   }
 }
