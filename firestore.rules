@@ -1,0 +1,169 @@
+/**
+ * Firestore Security Rules - Lieux d'Exception
+ * 
+ * Ces règles définissent qui peut lire/écrire dans Firestore.
+ * Déployer avec: firebase deploy --only firestore:rules
+ */
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===========================================
+    // FONCTIONS HELPER
+    // ===========================================
+    
+    /**
+     * Vérifie si l'utilisateur est authentifié
+     */
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    /**
+     * Vérifie si l'utilisateur est admin
+     * TODO: Ajouter un système de rôles dans Firestore
+     */
+    function isAdmin() {
+      return isAuthenticated() && 
+             request.auth.token.email in [
+               'admin@grouperiou.com',
+               'contact@grouperiou.com'
+             ];
+    }
+    
+    /**
+     * Vérifie que les données requises sont présentes
+     */
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+    
+    /**
+     * Vérifie que la taille d'un champ texte est valide
+     */
+    function isValidTextLength(field, minLen, maxLen) {
+      return request.resource.data[field].size() >= minLen && 
+             request.resource.data[field].size() <= maxLen;
+    }
+    
+    // ===========================================
+    // COLLECTION: VENUES (Lieux)
+    // ===========================================
+    
+    match /venues/{venueId} {
+      // Lecture: Public (site vitrine)
+      allow read: if true;
+      
+      // Création: Admin uniquement
+      allow create: if isAdmin() &&
+                       hasRequiredFields(['name', 'location', 'capacity', 'description']) &&
+                       isValidTextLength('name', 3, 100) &&
+                       isValidTextLength('description', 50, 2000);
+      
+      // Mise à jour: Admin uniquement
+      allow update: if isAdmin();
+      
+      // Suppression: Admin uniquement (soft delete préféré)
+      allow delete: if isAdmin();
+    }
+    
+    // ===========================================
+    // COLLECTION: LEADS (Prospects)
+    // ===========================================
+    
+    match /leads/{leadId} {
+      // Lecture: Admin uniquement
+      allow read: if isAdmin();
+      
+      // Création: Tout le monde (formulaires publics)
+      allow create: if hasRequiredFields(['type', 'contactInfo', 'eventDetails', 'createdAt']) &&
+                       request.resource.data.type in ['b2b', 'wedding'] &&
+                       request.resource.data.contactInfo.keys().hasAll(['email', 'firstName', 'lastName']) &&
+                       isValidTextLength('contactInfo.email', 5, 100) &&
+                       request.resource.data.contactInfo.email.matches('.*@.*\\..*') &&
+                       request.resource.data.createdAt == request.time;
+      
+      // Mise à jour: Admin uniquement (changement de statut, notes)
+      allow update: if isAdmin();
+      
+      // Suppression: Admin uniquement (RGPD)
+      allow delete: if isAdmin();
+    }
+    
+    // ===========================================
+    // COLLECTION: ANALYTICS (Statistiques)
+    // ===========================================
+    
+    match /analytics/{analyticId} {
+      // Lecture: Admin uniquement
+      allow read: if isAdmin();
+      
+      // Écriture: Serveur uniquement via Admin SDK
+      allow write: if false;
+    }
+    
+    // ===========================================
+    // COLLECTION: USERS (Utilisateurs Admin)
+    // ===========================================
+    
+    match /users/{userId} {
+      // Lecture: L'utilisateur peut lire ses propres données
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      
+      // Création: Lors de l'inscription uniquement
+      allow create: if isAuthenticated() && 
+                       request.auth.uid == userId &&
+                       hasRequiredFields(['email', 'role', 'createdAt']);
+      
+      // Mise à jour: L'utilisateur peut modifier ses propres données (sauf le rôle)
+      allow update: if isAuthenticated() && 
+                       request.auth.uid == userId &&
+                       !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role']);
+      
+      // Suppression: Admin uniquement
+      allow delete: if isAdmin();
+    }
+    
+    // ===========================================
+    // COLLECTION: SETTINGS (Paramètres du site)
+    // ===========================================
+    
+    match /settings/{settingId} {
+      // Lecture: Public pour certains paramètres (ex: horaires, contact)
+      allow read: if true;
+      
+      // Écriture: Admin uniquement
+      allow write: if isAdmin();
+    }
+    
+    // ===========================================
+    // COLLECTION: MESSAGES (Messages de contact)
+    // ===========================================
+    
+    match /messages/{messageId} {
+      // Lecture: Admin uniquement
+      allow read: if isAdmin();
+      
+      // Création: Tout le monde (formulaire de contact)
+      allow create: if hasRequiredFields(['name', 'email', 'message', 'createdAt']) &&
+                       isValidTextLength('name', 2, 100) &&
+                       isValidTextLength('email', 5, 100) &&
+                       isValidTextLength('message', 10, 2000) &&
+                       request.resource.data.email.matches('.*@.*\\..*') &&
+                       request.resource.data.createdAt == request.time;
+      
+      // Mise à jour/Suppression: Admin uniquement
+      allow update, delete: if isAdmin();
+    }
+    
+    // ===========================================
+    // BLOCAGE PAR DÉFAUT
+    // ===========================================
+    
+    // Bloquer tout accès non explicitement autorisé
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,159 @@
+/**
+ * Firebase Storage Security Rules - Lieux d'Exception
+ * 
+ * Ces règles définissent qui peut lire/écrire dans Firebase Storage.
+ * Déployer avec: firebase deploy --only storage
+ */
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // ===========================================
+    // FONCTIONS HELPER
+    // ===========================================
+    
+    /**
+     * Vérifie si l'utilisateur est authentifié
+     */
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    /**
+     * Vérifie si l'utilisateur est admin
+     */
+    function isAdmin() {
+      return isAuthenticated() && 
+             request.auth.token.email in [
+               'admin@grouperiou.com',
+               'contact@grouperiou.com'
+             ];
+    }
+    
+    /**
+     * Vérifie que le fichier est une image valide
+     */
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+    
+    /**
+     * Vérifie que le fichier est un PDF valide
+     */
+    function isPDF() {
+      return request.resource.contentType == 'application/pdf';
+    }
+    
+    /**
+     * Vérifie la taille maximale du fichier (en MB)
+     */
+    function isValidSize(maxSizeMB) {
+      return request.resource.size < maxSizeMB * 1024 * 1024;
+    }
+    
+    /**
+     * Vérifie que le nom de fichier est sécurisé (pas de ../../../etc)
+     */
+    function isValidFileName() {
+      return !request.resource.name.matches('.*\\.\\..*');
+    }
+    
+    // ===========================================
+    // DOSSIER: venues/ (Images des lieux)
+    // ===========================================
+    
+    match /venues/{venueId}/{allPaths=**} {
+      // Lecture: Public (site vitrine)
+      allow read: if true;
+      
+      // Écriture: Admin uniquement
+      allow write: if isAdmin() &&
+                      isImage() &&
+                      isValidSize(10) && // Max 10MB par image
+                      isValidFileName();
+    }
+    
+    // ===========================================
+    // DOSSIER: leads/ (Documents des prospects)
+    // ===========================================
+    
+    match /leads/{leadId}/{allPaths=**} {
+      // Lecture: Admin uniquement
+      allow read: if isAdmin();
+      
+      // Écriture: Authentifié uniquement (upload de devis signé, etc.)
+      allow write: if isAuthenticated() &&
+                      (isImage() || isPDF()) &&
+                      isValidSize(5) && // Max 5MB
+                      isValidFileName();
+    }
+    
+    // ===========================================
+    // DOSSIER: documents/ (Documents publics)
+    // ===========================================
+    
+    match /documents/{documentType}/{fileName} {
+      // Lecture: Public (CGV, mentions légales PDF, etc.)
+      allow read: if true;
+      
+      // Écriture: Admin uniquement
+      allow write: if isAdmin() &&
+                      isPDF() &&
+                      isValidSize(5) && // Max 5MB
+                      isValidFileName();
+    }
+    
+    // ===========================================
+    // DOSSIER: temp/ (Uploads temporaires)
+    // ===========================================
+    
+    match /temp/{userId}/{fileName} {
+      // Lecture: Propriétaire uniquement
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      
+      // Écriture: Propriétaire uniquement
+      allow write: if isAuthenticated() && 
+                      request.auth.uid == userId &&
+                      (isImage() || isPDF()) &&
+                      isValidSize(10) && // Max 10MB
+                      isValidFileName();
+      
+      // Auto-suppression après 24h via Cloud Function
+    }
+    
+    // ===========================================
+    // DOSSIER: gallery/ (Galerie photos)
+    // ===========================================
+    
+    match /gallery/{category}/{imageId} {
+      // Lecture: Public
+      allow read: if true;
+      
+      // Écriture: Admin uniquement
+      allow write: if isAdmin() &&
+                      isImage() &&
+                      isValidSize(15) && // Max 15MB pour haute qualité
+                      isValidFileName();
+    }
+    
+    // ===========================================
+    // DOSSIER: private/ (Documents privés admin)
+    // ===========================================
+    
+    match /private/{allPaths=**} {
+      // Lecture ET Écriture: Admin uniquement
+      allow read, write: if isAdmin() &&
+                            isValidFileName();
+    }
+    
+    // ===========================================
+    // BLOCAGE PAR DÉFAUT
+    // ===========================================
+    
+    // Bloquer tout accès non explicitement autorisé
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
