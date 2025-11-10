@@ -19,7 +19,9 @@ dist/
 *.key
 *.pem
 credentials/
+credentials/*.json
 secrets/
+secrets/*.json
 
 # Documentation et scripts potentiellement sensibles
 docs/
