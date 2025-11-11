@@ -1,0 +1,170 @@
+# Workflow GitHub Actions - Déploiement Firebase App Hosting
+# Déploiement automatique sur push sur main avec secrets sécurisés
+
+name: Deploy to Firebase App Hosting
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  NODE_VERSION: '20'
+  PROJECT_ID: 'lieux-d-exceptions'
+
+jobs:
+  # Job 1: Tests et Validation
+  test:
+    name: Tests et Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+      
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: 📥 Installation des dépendances
+        run: npm ci
+      
+      - name: 🔍 Linting
+        run: npm run lint
+      
+      - name: 🏗️ Build de test
+        run: npm run build
+        env:
+          # Variables publiques pour le build
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: lieux-d-exceptions.firebaseapp.com
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: lieux-d-exceptions
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: lieux-d-exceptions.appspot.com
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "886228169873"
+          NEXT_PUBLIC_FIREBASE_APP_ID: 1:886228169873:web:154416b7ee0e74b70cfb30
+          NEXT_PUBLIC_FIREBASE_DATABASE_ID: lieuxdexception
+          # Secrets depuis GitHub Secrets
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+      
+      - name: ✅ Tests (si configurés)
+        run: npm run test --if-present
+        continue-on-error: true
+
+  # Job 2: Déploiement sur Firebase (uniquement sur main)
+  deploy:
+    name: Déploiement Firebase
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    permissions:
+      contents: read
+      id-token: write  # Nécessaire pour l'authentification Workload Identity
+    
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+      
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: 📥 Installation des dépendances
+        run: npm ci
+      
+      - name: 🔐 Authentification Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      
+      - name: ☁️ Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+      
+      - name: 🏗️ Build de production
+        run: npm run build
+        env:
+          # Variables publiques
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: lieux-d-exceptions.firebaseapp.com
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: lieux-d-exceptions
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: lieux-d-exceptions.appspot.com
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "886228169873"
+          NEXT_PUBLIC_FIREBASE_APP_ID: 1:886228169873:web:154416b7ee0e74b70cfb30
+          NEXT_PUBLIC_FIREBASE_DATABASE_ID: lieuxdexception
+          NEXT_PUBLIC_APP_URL: https://lieux-d-exceptions.web.app
+          NODE_ENV: production
+          # Secrets depuis GitHub Secrets
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+      
+      - name: 🚀 Déploiement Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: ${{ env.PROJECT_ID }}
+      
+      - name: 📊 Notification de succès
+        if: success()
+        run: |
+          echo "✅ Déploiement réussi !"
+          echo "🌐 URL: https://lieux-d-exceptions.web.app"
+      
+      - name: ❌ Notification d'échec
+        if: failure()
+        run: |
+          echo "❌ Le déploiement a échoué"
+          echo "📋 Vérifiez les logs ci-dessus pour plus de détails"
+
+  # Job 3: Preview Deployment (pour les PRs)
+  preview:
+    name: Preview Deployment
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+      
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: 📥 Installation des dépendances
+        run: npm ci
+      
+      - name: 🏗️ Build preview
+        run: npm run build
+        env:
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: lieux-d-exceptions.firebaseapp.com
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: lieux-d-exceptions
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: lieux-d-exceptions.appspot.com
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "886228169873"
+          NEXT_PUBLIC_FIREBASE_APP_ID: 1:886228169873:web:154416b7ee0e74b70cfb30
+          NEXT_PUBLIC_FIREBASE_DATABASE_ID: lieuxdexception
+          NODE_ENV: production
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+      
+      - name: 🔍 Déploiement Preview
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: ${{ env.PROJECT_ID }}
+          # Pas de channelId = preview automatique
