@@ -7,7 +7,7 @@
 
 // Configuration de base
 const config = {
-  // Output standalone pour Firebase App Hosting
+  // ✅ CRITIQUE : Output standalone pour Firebase App Hosting
   output: 'standalone',
   
   // Turbopack est activé via la commande `next dev --turbopack`
@@ -19,6 +19,10 @@ const config = {
       {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lieux-d-exceptions.firebasestorage.app',
       },
     ],
     formats: ['image/avif', 'image/webp'],
@@ -40,6 +44,14 @@ const config = {
           {
             key: 'X-Frame-Options',
             value: 'DENY'
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
           },
         ],
       },

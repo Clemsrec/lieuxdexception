@@ -25,7 +25,6 @@ secrets/*.json
 
 # Documentation et scripts potentiellement sensibles
 docs/
-documentation/
 scripts/
 notes/
 .notes/
