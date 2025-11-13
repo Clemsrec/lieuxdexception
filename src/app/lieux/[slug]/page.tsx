@@ -10,6 +10,9 @@ import Image from 'next/image';
 import Icon from '@/components/ui/Icon';
 import { getVenues } from '@/lib/firestore';
 
+// Forcer le rendu dynamique pour éviter les erreurs Firebase au build
+export const dynamic = 'force-dynamic';
+
 interface VenuePageProps {
   params: Promise<{
     slug: string;

@@ -5,6 +5,10 @@ import Icon from '@/components/ui/Icon';
 import { getVenues } from '@/lib/firestore';
 import VenueCatalog from '@/components/VenueCatalog';
 
+// Forcer le rendu dynamique pour éviter les erreurs Firebase au build
+// Firebase App Hosting injecte FIREBASE_CONFIG seulement au runtime
+export const dynamic = 'force-dynamic';
+
 /**
  * Métadonnées pour la page Catalogue
  * Présentation des lieux d'exception avec filtres interactifs
