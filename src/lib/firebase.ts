@@ -9,15 +9,27 @@ import { getFirestore } from 'firebase/firestore';
  * Organisation: nucom.fr
  * Application: Lieux d'Exception (B2B)
  * Database Firestore: lieuxdexception
+ * 
+ * Note: Firebase App Hosting injecte automatiquement FIREBASE_CONFIG
+ * qui contient la configuration complète. On l'utilise en priorité.
  */
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-};
+
+// Récupérer la config depuis FIREBASE_CONFIG (App Hosting) ou variables d'env
+let firebaseConfig;
+if (process.env.FIREBASE_CONFIG) {
+  // Environnement Firebase App Hosting - config auto-injectée
+  firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
+} else {
+  // Environnement local - utiliser les variables d'environnement
+  firebaseConfig = {
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  };
+}
 
 /**
  * Initialiser Firebase seulement s'il n'est pas déjà initialisé
