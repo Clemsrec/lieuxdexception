@@ -23,7 +23,12 @@ credentials/*.json
 secrets/
 secrets/*.json
 
-# Documentation et scripts potentiellement sensibles
+# Documentation et scripts (ne jamais déployer en production)
+# Tous les fichiers .md de documentation
+*.md
+!public/**/*.md
+
+# Dossiers de documentation
 docs/
 scripts/
 notes/
