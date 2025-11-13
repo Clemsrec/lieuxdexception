@@ -10,15 +10,15 @@ import { getFirestore } from 'firebase/firestore';
  * Application: Lieux d'Exception (B2B)
  * Database Firestore: lieuxdexception
  * 
- * Note: Firebase App Hosting injecte automatiquement FIREBASE_CONFIG
- * qui contient la configuration complète. On l'utilise en priorité.
+ * Note: Firebase App Hosting injecte automatiquement FIREBASE_WEBAPP_CONFIG
+ * qui contient la configuration complète client (apiKey, authDomain, etc).
  */
 
-// Récupérer la config depuis FIREBASE_CONFIG (App Hosting) ou variables d'env
+// Récupérer la config depuis FIREBASE_WEBAPP_CONFIG (App Hosting) ou variables d'env
 let firebaseConfig;
-if (process.env.FIREBASE_CONFIG) {
-  // Environnement Firebase App Hosting - config auto-injectée
-  firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
+if (process.env.FIREBASE_WEBAPP_CONFIG) {
+  // Environnement Firebase App Hosting - config auto-injectée COMPLÈTE
+  firebaseConfig = JSON.parse(process.env.FIREBASE_WEBAPP_CONFIG);
 } else {
   // Environnement local - utiliser les variables d'environnement
   firebaseConfig = {
