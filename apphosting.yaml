@@ -33,3 +33,9 @@ env:
     availability:
       - BUILD
       - RUNTIME
+  
+  # Désactiver l'override de next.config.js par Firebase
+  - variable: SKIP_NEXT_CONFIG_OVERRIDE
+    value: "true"
+    availability:
+      - BUILD
