@@ -5,9 +5,8 @@ import Icon from '@/components/ui/Icon';
 import { getVenues } from '@/lib/firestore';
 import VenueCatalog from '@/components/VenueCatalog';
 
-// Forcer le rendu dynamique pour éviter les erreurs Firebase au build
-// Firebase App Hosting injecte FIREBASE_CONFIG seulement au runtime
-export const dynamic = 'force-dynamic';
+// ISR : Cache avec revalidation toutes les 30 minutes
+export const revalidate = 1800;
 
 /**
  * Métadonnées pour la page Catalogue

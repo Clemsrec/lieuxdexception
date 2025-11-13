@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Icon from '@/components/ui/Icon';
 import { getVenues } from '@/lib/firestore';
 
-// Forcer le rendu dynamique pour éviter les erreurs Firebase au build
-export const dynamic = 'force-dynamic';
+// ISR : Cache avec revalidation toutes les heures
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Lieux d\'Exception | La clé de vos moments uniques',

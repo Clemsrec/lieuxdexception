@@ -33,8 +33,8 @@ export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
       query = query.where('region', '==', filters.region);
     }
     
-    if (filters?.featured) {
-      query = query.where('featured', '==', true);
+    if (filters?.featured !== undefined) {
+      query = query.where('featured', '==', filters.featured);
     }
     
     // Tri par ordre alphabétique
@@ -43,8 +43,9 @@ export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
     const snapshot = await query.get();
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Venue));
   } catch (error) {
-    console.error('Erreur lors de la récupération des lieux:', error);
-    throw new Error('Impossible de récupérer les lieux d\'exception');
+    console.error('[Firestore] Erreur lors de la récupération des lieux:', error);
+    // Retourner tableau vide en cas d'erreur (évite le crash de la page)
+    return [];
   }
 }
 
@@ -63,8 +64,8 @@ export async function getVenueById(id: string): Promise<Venue | null> {
     }
     return null;
   } catch (error) {
-    console.error('Erreur lors de la récupération du lieu:', error);
-    throw new Error('Impossible de récupérer le lieu');
+    console.error('[Firestore] Erreur lors de la récupération du lieu:', error);
+    return null;
   }
 }
 
@@ -88,8 +89,8 @@ export async function getVenueBySlug(slug: string): Promise<Venue | null> {
     }
     return null;
   } catch (error) {
-    console.error('Erreur lors de la récupération du lieu par slug:', error);
-    throw new Error('Impossible de récupérer le lieu');
+    console.error('[Firestore] Erreur lors de la récupération du lieu par slug:', error);
+    return null;
   }
 }
 
@@ -111,8 +112,8 @@ export async function getFeaturedVenues(maxResults: number = 3): Promise<Venue[]
     
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Venue));
   } catch (error) {
-    console.error('Erreur lors de la récupération des lieux mis en avant:', error);
-    throw new Error('Impossible de récupérer les lieux mis en avant');
+    console.error('[Firestore] Erreur lors de la récupération des lieux mis en avant:', error);
+    return [];
   }
 }
 

@@ -10,8 +10,8 @@ import Image from 'next/image';
 import Icon from '@/components/ui/Icon';
 import { getVenues } from '@/lib/firestore';
 
-// Forcer le rendu dynamique pour éviter les erreurs Firebase au build
-export const dynamic = 'force-dynamic';
+// ISR : Cache avec revalidation toutes les 2 heures
+export const revalidate = 7200;
 
 interface VenuePageProps {
   params: Promise<{
@@ -36,6 +36,19 @@ export async function generateMetadata({ params }: VenuePageProps): Promise<Meta
     description: venue.description,
     keywords: [venue.name, venue.location, 'mariage', 'événement', 'réception', 'château', 'domaine'],
   };
+}
+
+// Générer les routes statiques au build (SSG + ISR)
+export async function generateStaticParams() {
+  try {
+    const venues = await getVenues({ featured: false }); // Tous les lieux
+    return venues.map((venue) => ({
+      slug: venue.slug,
+    }));
+  } catch (error) {
+    console.error('[generateStaticParams] Erreur:', error);
+    return []; // Retour vide en cas d'erreur, Next.js générera à la demande
+  }
 }
 
 export default async function VenuePage({ params }: VenuePageProps) {
