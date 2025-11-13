@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { User, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth } from './firebase';
+import { auth } from './firebase-client';
 
 export interface AuthState {
   user: User | null;
@@ -14,6 +14,11 @@ export function useAuth(): AuthState {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!auth) {
+      setLoading(false);
+      return;
+    }
+    
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
@@ -27,14 +32,17 @@ export function useAuth(): AuthState {
 
 export const authActions = {
   async signIn(email: string, password: string) {
+    if (!auth) throw new Error('Auth non disponible');
     return signInWithEmailAndPassword(auth, email, password);
   },
 
   async signUp(email: string, password: string) {
+    if (!auth) throw new Error('Auth non disponible');
     return createUserWithEmailAndPassword(auth, email, password);
   },
 
   async signOut() {
+    if (!auth) throw new Error('Auth non disponible');
     return signOut(auth);
   },
 };

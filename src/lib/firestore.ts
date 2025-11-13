@@ -2,35 +2,11 @@
  * Services Firestore pour Lieux d'Exception
  * 
  * Ce fichier contient tous les services pour interagir avec la base de données
- * Firestore 'lieuxdexception'. Chaque fonction est documentée et type-safe.
+ * Firestore. Utilise l'Admin SDK côté serveur pour bypass les règles de sécurité.
  */
 
-import { 
-  collection, 
-  doc, 
-  getDocs, 
-  getDoc, 
-  addDoc, 
-  updateDoc, 
-  deleteDoc, 
-  query, 
-  where, 
-  orderBy, 
-  limit,
-  startAfter,
-  Timestamp,
-  type DocumentSnapshot,
-  type QuerySnapshot
-} from 'firebase/firestore';
-import { db } from './firebase';
+import { adminDb, ensureAdminInitialized } from './firebase-admin';
 import type { Venue, Lead, VenueFilters, Analytics } from '@/types/firebase';
-
-/**
- * Collection des lieux d'exception
- */
-const venuesCollection = collection(db, 'venues');
-const leadsCollection = collection(db, 'leads');
-const analyticsCollection = collection(db, 'analytics');
 
 // =====================================
 // SERVICES VENUES (Lieux d'Exception)
@@ -43,22 +19,28 @@ const analyticsCollection = collection(db, 'analytics');
  */
 export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
   try {
-    let venueQuery = query(venuesCollection, where('status', '==', 'active'));
+    ensureAdminInitialized();
+    
+    let query = adminDb!.collection('venues').where('active', '==', true);
     
     // Appliquer les filtres
     if (filters?.eventType && filters.eventType !== 'all') {
-      venueQuery = query(venueQuery, where('eventTypes', 'array-contains', 
-        filters.eventType === 'b2b' ? 'conference' : 'wedding'));
+      query = query.where('eventTypes', 'array-contains', 
+        filters.eventType === 'b2b' ? 'b2b' : 'mariage');
     }
     
     if (filters?.region) {
-      venueQuery = query(venueQuery, where('address.region', '==', filters.region));
+      query = query.where('region', '==', filters.region);
     }
     
-    // Tri par ordre alphabétique puis par featured
-    venueQuery = query(venueQuery, orderBy('featured', 'desc'), orderBy('name', 'asc'));
+    if (filters?.featured) {
+      query = query.where('featured', '==', true);
+    }
     
-    const snapshot = await getDocs(venueQuery);
+    // Tri par ordre alphabétique
+    query = query.orderBy('name', 'asc');
+    
+    const snapshot = await query.get();
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Venue));
   } catch (error) {
     console.error('Erreur lors de la récupération des lieux:', error);
@@ -73,9 +55,11 @@ export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
  */
 export async function getVenueById(id: string): Promise<Venue | null> {
   try {
-    const venueDoc = await getDoc(doc(venuesCollection, id));
-    if (venueDoc.exists()) {
-      return { id: venueDoc.id, ...venueDoc.data() } as Venue;
+    ensureAdminInitialized();
+    
+    const doc = await adminDb!.collection('venues').doc(id).get();
+    if (doc.exists) {
+      return { id: doc.id, ...doc.data() } as Venue;
     }
     return null;
   } catch (error) {
@@ -91,8 +75,12 @@ export async function getVenueById(id: string): Promise<Venue | null> {
  */
 export async function getVenueBySlug(slug: string): Promise<Venue | null> {
   try {
-    const venueQuery = query(venuesCollection, where('slug', '==', slug), limit(1));
-    const snapshot = await getDocs(venueQuery);
+    ensureAdminInitialized();
+    
+    const snapshot = await adminDb!.collection('venues')
+      .where('slug', '==', slug)
+      .limit(1)
+      .get();
     
     if (!snapshot.empty) {
       const doc = snapshot.docs[0];
@@ -112,15 +100,15 @@ export async function getVenueBySlug(slug: string): Promise<Venue | null> {
  */
 export async function getFeaturedVenues(maxResults: number = 3): Promise<Venue[]> {
   try {
-    const featuredQuery = query(
-      venuesCollection, 
-      where('featured', '==', true),
-      where('status', '==', 'active'),
-      orderBy('name', 'asc'),
-      limit(maxResults)
-    );
+    ensureAdminInitialized();
     
-    const snapshot = await getDocs(featuredQuery);
+    const snapshot = await adminDb!.collection('venues')
+      .where('featured', '==', true)
+      .where('active', '==', true)
+      .orderBy('name', 'asc')
+      .limit(maxResults)
+      .get();
+    
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Venue));
   } catch (error) {
     console.error('Erreur lors de la récupération des lieux mis en avant:', error);
@@ -135,14 +123,16 @@ export async function getFeaturedVenues(maxResults: number = 3): Promise<Venue[]
  */
 export async function createVenue(venueData: Omit<Venue, 'id' | 'createdAt' | 'updatedAt'>): Promise<string> {
   try {
-    const now = Timestamp.now();
+    ensureAdminInitialized();
+    
+    const now = new Date().toISOString();
     const venue = {
       ...venueData,
       createdAt: now,
       updatedAt: now,
     };
     
-    const docRef = await addDoc(venuesCollection, venue);
+    const docRef = await adminDb!.collection('venues').add(venue);
     return docRef.id;
   } catch (error) {
     console.error('Erreur lors de la création du lieu:', error);
@@ -161,7 +151,9 @@ export async function createVenue(venueData: Omit<Venue, 'id' | 'createdAt' | 'u
  */
 export async function createLead(leadData: Omit<Lead, 'id' | 'createdAt' | 'updatedAt'>): Promise<string> {
   try {
-    const now = Timestamp.now();
+    ensureAdminInitialized();
+    
+    const now = new Date().toISOString();
     const lead = {
       ...leadData,
       status: 'new' as const,
@@ -170,7 +162,7 @@ export async function createLead(leadData: Omit<Lead, 'id' | 'createdAt' | 'upda
       updatedAt: now,
     };
     
-    const docRef = await addDoc(leadsCollection, lead);
+    const docRef = await adminDb!.collection('leads').add(lead);
     
     // TODO: Déclencher l'intégration Odoo ici
     // await syncLeadToOdoo(docRef.id, lead);
@@ -190,11 +182,11 @@ export async function createLead(leadData: Omit<Lead, 'id' | 'createdAt' | 'upda
  */
 export async function getLeads(page: number = 0, pageSize: number = 20): Promise<{leads: Lead[], hasMore: boolean}> {
   try {
-    let leadsQuery = query(
-      leadsCollection,
-      orderBy('createdAt', 'desc'),
-      limit(pageSize + 1) // +1 pour savoir s'il y a plus de résultats
-    );
+    ensureAdminInitialized();
+    
+    let query = adminDb!.collection('leads')
+      .orderBy('createdAt', 'desc')
+      .limit(pageSize + 1); // +1 pour savoir s'il y a plus de résultats
     
     // Pagination avec startAfter si ce n'est pas la première page
     if (page > 0) {
@@ -202,7 +194,7 @@ export async function getLeads(page: number = 0, pageSize: number = 20): Promise
       // Nécessite de stocker le dernier document de la page précédente
     }
     
-    const snapshot = await getDocs(leadsQuery);
+    const snapshot = await query.get();
     const leads = snapshot.docs.slice(0, pageSize).map(doc => ({ id: doc.id, ...doc.data() } as Lead));
     const hasMore = snapshot.docs.length > pageSize;
     
@@ -221,10 +213,11 @@ export async function getLeads(page: number = 0, pageSize: number = 20): Promise
  */
 export async function updateLeadStatus(leadId: string, status: Lead['status']): Promise<void> {
   try {
-    const leadRef = doc(leadsCollection, leadId);
-    await updateDoc(leadRef, {
+    ensureAdminInitialized();
+    
+    await adminDb!.collection('leads').doc(leadId).update({
       status,
-      updatedAt: Timestamp.now(),
+      updatedAt: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Erreur lors de la mise à jour du lead:', error);
@@ -244,10 +237,11 @@ export async function updateLeadStatus(leadId: string, status: Lead['status']): 
  */
 export async function saveAnalytics(date: string, metrics: Analytics['metrics']): Promise<void> {
   try {
-    const analyticsRef = doc(analyticsCollection, date);
-    await updateDoc(analyticsRef, {
+    ensureAdminInitialized();
+    
+    await adminDb!.collection('analytics').doc(date).set({
       metrics,
-      createdAt: Timestamp.now(),
+      createdAt: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Erreur lors de la sauvegarde des analytics:', error);
@@ -265,9 +259,10 @@ export async function saveAnalytics(date: string, metrics: Analytics['metrics'])
  */
 export async function testFirestoreConnection(): Promise<boolean> {
   try {
+    ensureAdminInitialized();
+    
     // Tenter de lire une collection
-    const testQuery = query(venuesCollection, limit(1));
-    await getDocs(testQuery);
+    await adminDb!.collection('venues').limit(1).get();
     return true;
   } catch (error) {
     console.error('Erreur de connexion Firestore:', error);
@@ -276,13 +271,14 @@ export async function testFirestoreConnection(): Promise<boolean> {
 }
 
 /**
- * Formater un timestamp Firestore en date lisible
- * @param timestamp Timestamp Firestore
+ * Formater une date ISO en date lisible
+ * @param isoString Date au format ISO
  * @param locale Locale pour le formatage (défaut: 'fr-FR')
  * @returns string Date formatée
  */
-export function formatFirestoreDate(timestamp: Timestamp, locale: string = 'fr-FR'): string {
-  return timestamp.toDate().toLocaleDateString(locale, {
+export function formatDate(isoString: string, locale: string = 'fr-FR'): string {
+  const date = new Date(isoString);
+  return date.toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

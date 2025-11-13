@@ -7,6 +7,9 @@
 
 // Configuration de base
 const config = {
+  // Output standalone pour Firebase App Hosting
+  output: 'standalone',
+  
   // Turbopack est activé via la commande `next dev --turbopack`
   // Pas de configuration spécifique nécessaire pour le build
   

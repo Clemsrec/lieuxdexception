@@ -41,7 +41,7 @@ export function middleware(request: NextRequest) {
       "default-src 'self'",
       "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src 'self' https://fonts.gstatic.com",
+      "font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai",
       "img-src 'self' data: https: blob:",
       "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com wss://*.firebaseio.com",
       "frame-src 'self' https://*.firebaseapp.com",

@@ -10,6 +10,9 @@ import VenueComparator from '@/components/VenueComparator';
 import { getVenues } from '@/lib/firestore';
 import Icon from '@/components/ui/Icon';
 
+// Forcer le rendu dynamique pour éviter les erreurs Firebase au build
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Comparer nos domaines | Lieux d\'Exception',
   description: 'Comparez jusqu\'à 3 de nos domaines d\'exception pour trouver le lieu idéal pour votre événement professionnel ou votre mariage.',

@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   title: "Lieux d'Exception - Groupe Riou | Catalogue B2B",
   description: "Découvrez notre collection de 5 lieux événementiels d'exception en France. Séminaires, conférences, mariages et réceptions privées. Groupe Riou - Excellence événementielle.",
   keywords: "lieux événementiels, séminaires, mariages, groupe riou, événements professionnels, réceptions",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' }
+    ],
+  },
   authors: [{ name: "Groupe Riou" }],
   creator: "Groupe Riou",
   publisher: "Groupe Riou",

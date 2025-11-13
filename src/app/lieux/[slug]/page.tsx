@@ -38,14 +38,6 @@ export async function generateMetadata({ params }: VenuePageProps): Promise<Meta
   };
 }
 
-// Générer les routes statiques au build
-export async function generateStaticParams() {
-  const venues = await getVenues();
-  return venues.map((venue) => ({
-    slug: venue.slug,
-  }));
-}
-
 export default async function VenuePage({ params }: VenuePageProps) {
   const { slug } = await params;
   const venues = await getVenues();
