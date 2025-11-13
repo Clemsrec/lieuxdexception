@@ -1,0 +1,326 @@
+{
+  "venues": {
+    "chateau-loire": {
+      "id": "chateau-loire",
+      "name": "Château de Loire",
+      "slug": "chateau-de-loire",
+      "description": "Magnifique château du 18ème siècle au cœur de la vallée de la Loire",
+      "shortDescription": "Château historique avec vue sur la Loire",
+      
+      "address": {
+        "street": "12 Route du Château",
+        "city": "Saumur",
+        "postalCode": "49400",
+        "region": "Pays de la Loire",
+        "country": "France",
+        "coordinates": {
+          "lat": 47.2601,
+          "lng": -0.0773
+        }
+      },
+      
+      "lat": 47.2601,
+      "lng": -0.0773,
+      "location": "Saumur, Pays de la Loire",
+      
+      "capacity": {
+        "min": 50,
+        "max": 250,
+        "cocktail": 300,
+        "seated": 200,
+        "theater": 250,
+        "classroom": 150
+      },
+      
+      "capacitySeated": 200,
+      "capacityStanding": 300,
+      
+      "eventTypes": ["wedding", "conference", "seminar", "reception", "corporate", "gala"],
+      
+      "pricing": {
+        "b2b": {
+          "halfDay": 3500,
+          "fullDay": 6000,
+          "evening": 4500
+        },
+        "wedding": {
+          "reception": 8000,
+          "ceremony": 2000,
+          "weekend": 15000
+        },
+        "currency": "EUR"
+      },
+      
+      "priceRange": {
+        "min": 3500,
+        "max": 15000,
+        "currency": "EUR"
+      },
+      
+      "images": {
+        "hero": "/venues/chateau-loire/hero.jpg",
+        "gallery": [
+          "/venues/chateau-loire/gallery-1.jpg",
+          "/venues/chateau-loire/gallery-2.jpg",
+          "/venues/chateau-loire/gallery-3.jpg"
+        ],
+        "virtual360": "https://example.com/360/chateau-loire"
+      },
+      
+      "image": "/venues/chateau-loire/hero.jpg",
+      "gallery": [
+        "/venues/chateau-loire/gallery-1.jpg",
+        "/venues/chateau-loire/gallery-2.jpg"
+      ],
+      
+      "amenities": {
+        "audioVisual": true,
+        "wifi": true,
+        "parking": true,
+        "catering": true,
+        "accommodation": true,
+        "accessibility": true
+      },
+      
+      "accommodation": true,
+      "accommodationRooms": 15,
+      "catering": true,
+      "parking": 80,
+      "audioVisual": true,
+      "wifi": true,
+      "accessibility": true,
+      
+      "contact": {
+        "phone": "+33 2 41 50 00 00",
+        "email": "contact@chateau-loire.fr",
+        "website": "https://chateau-loire.grouperiou.com",
+        "manager": "Marie Dupont"
+      },
+      
+      "email": "contact@chateau-loire.fr",
+      "phone": "+33 2 41 50 00 00",
+      "url": "https://chateau-loire.grouperiou.com",
+      "websiteUrl": "https://chateau-loire.grouperiou.com",
+      
+      "featured": true,
+      "status": "active",
+      
+      "seo": {
+        "title": "Château de Loire - Lieu d'exception pour événements",
+        "description": "Château historique dans la vallée de la Loire pour mariages et séminaires",
+        "keywords": ["château", "loire", "mariage", "séminaire", "événement professionnel"]
+      },
+      
+      "rating": 4.8,
+      "reviewsCount": 124,
+      
+      "createdAt": "2025-01-01T00:00:00Z",
+      "updatedAt": "2025-11-11T00:00:00Z"
+    },
+    
+    "domaine-provence": {
+      "id": "domaine-provence",
+      "name": "Domaine de Provence",
+      "slug": "domaine-de-provence",
+      "description": "Bastide provençale entourée de vignes et de lavandes",
+      "shortDescription": "Bastide authentique en Provence",
+      
+      "address": {
+        "street": "Route des Vignobles",
+        "city": "Aix-en-Provence",
+        "postalCode": "13100",
+        "region": "Provence-Alpes-Côte d'Azur",
+        "country": "France",
+        "coordinates": {
+          "lat": 43.5297,
+          "lng": 5.4474
+        }
+      },
+      
+      "lat": 43.5297,
+      "lng": 5.4474,
+      "location": "Aix-en-Provence, Provence",
+      
+      "capacity": {
+        "min": 30,
+        "max": 180,
+        "cocktail": 200,
+        "seated": 150,
+        "theater": 180
+      },
+      
+      "capacitySeated": 150,
+      "capacityStanding": 200,
+      
+      "eventTypes": ["wedding", "corporate", "reception", "seminar"],
+      
+      "pricing": {
+        "b2b": {
+          "halfDay": 4000,
+          "fullDay": 7000,
+          "evening": 5000
+        },
+        "wedding": {
+          "reception": 10000,
+          "ceremony": 2500,
+          "weekend": 18000
+        },
+        "currency": "EUR"
+      },
+      
+      "priceRange": {
+        "min": 4000,
+        "max": 18000,
+        "currency": "EUR"
+      },
+      
+      "images": {
+        "hero": "/venues/domaine-provence/hero.jpg",
+        "gallery": [
+          "/venues/domaine-provence/gallery-1.jpg",
+          "/venues/domaine-provence/gallery-2.jpg"
+        ]
+      },
+      
+      "image": "/venues/domaine-provence/hero.jpg",
+      
+      "amenities": {
+        "audioVisual": true,
+        "wifi": true,
+        "parking": true,
+        "catering": true,
+        "accommodation": true,
+        "accessibility": false
+      },
+      
+      "accommodation": true,
+      "accommodationRooms": 12,
+      "catering": true,
+      "parking": 60,
+      "audioVisual": true,
+      "wifi": true,
+      "accessibility": false,
+      
+      "contact": {
+        "phone": "+33 4 42 00 00 00",
+        "email": "contact@domaine-provence.fr",
+        "website": "https://domaine-provence.grouperiou.com",
+        "manager": "Pierre Martin"
+      },
+      
+      "email": "contact@domaine-provence.fr",
+      "phone": "+33 4 42 00 00 00",
+      "url": "https://domaine-provence.grouperiou.com",
+      
+      "featured": true,
+      "status": "active",
+      
+      "seo": {
+        "title": "Domaine de Provence - Bastide pour événements",
+        "description": "Bastide provençale authentique pour mariages et séminaires",
+        "keywords": ["provence", "bastide", "mariage", "vignoble", "lavande"]
+      },
+      
+      "rating": 4.6,
+      "reviewsCount": 89,
+      
+      "createdAt": "2025-01-01T00:00:00Z",
+      "updatedAt": "2025-11-11T00:00:00Z"
+    },
+    
+    "manoir-normandie": {
+      "id": "manoir-normandie",
+      "name": "Manoir de Normandie",
+      "slug": "manoir-de-normandie",
+      "description": "Manoir historique au cœur de la campagne normande",
+      "shortDescription": "Manoir authentique en Normandie",
+      
+      "address": {
+        "street": "Chemin du Manoir",
+        "city": "Honfleur",
+        "postalCode": "14600",
+        "region": "Normandie",
+        "country": "France",
+        "coordinates": {
+          "lat": 49.4184,
+          "lng": 0.2332
+        }
+      },
+      
+      "lat": 49.4184,
+      "lng": 0.2332,
+      "location": "Honfleur, Normandie",
+      
+      "capacity": {
+        "min": 40,
+        "max": 150,
+        "cocktail": 180,
+        "seated": 120,
+        "theater": 150
+      },
+      
+      "eventTypes": ["wedding", "seminar", "reception"],
+      
+      "pricing": {
+        "b2b": {
+          "halfDay": 3000,
+          "fullDay": 5500,
+          "evening": 4000
+        },
+        "wedding": {
+          "reception": 7500,
+          "ceremony": 1800,
+          "weekend": 13000
+        },
+        "currency": "EUR"
+      },
+      
+      "priceRange": {
+        "min": 3000,
+        "max": 13000,
+        "currency": "EUR"
+      },
+      
+      "images": {
+        "hero": "/venues/manoir-normandie/hero.jpg",
+        "gallery": []
+      },
+      
+      "amenities": {
+        "audioVisual": true,
+        "wifi": true,
+        "parking": true,
+        "catering": false,
+        "accommodation": true,
+        "accessibility": true
+      },
+      
+      "accommodation": true,
+      "accommodationRooms": 10,
+      "catering": false,
+      "parking": 45,
+      
+      "contact": {
+        "phone": "+33 2 31 00 00 00",
+        "email": "contact@manoir-normandie.fr",
+        "website": "https://manoir-normandie.grouperiou.com",
+        "manager": "Sophie Bernard"
+      },
+      
+      "featured": false,
+      "status": "active",
+      
+      "seo": {
+        "title": "Manoir de Normandie - Lieu d'exception",
+        "description": "Manoir historique en Normandie pour événements prestigieux",
+        "keywords": ["normandie", "manoir", "honfleur", "mariage", "séminaire"]
+      },
+      
+      "rating": 4.7,
+      "reviewsCount": 67,
+      
+      "createdAt": "2025-01-01T00:00:00Z",
+      "updatedAt": "2025-11-11T00:00:00Z"
+    }
+  }
+}

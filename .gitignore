@@ -18,19 +18,21 @@ dist/
 .env.production.local
 *.key
 *.pem
-credentials/
+
+# Credentials Firebase (JAMAIS committer)
 credentials/*.json
 secrets/
 secrets/*.json
 
 # Documentation et scripts (ne jamais déployer en production)
-# Tous les fichiers .md de documentation
-*.md
-!public/**/*.md
+# Note: Les fichiers .md dans docs/ ne doivent pas être trackés
+# MAIS le dossier docs/ doit exister dans Git pour la structure
 
-# Dossiers de documentation
-docs/
-scripts/
+# Fichiers Markdown à la racine uniquement
+/*.md
+!README.md
+
+# Dossiers de notes privées
 notes/
 .notes/
 
