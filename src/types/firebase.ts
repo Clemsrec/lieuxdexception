@@ -31,6 +31,8 @@ export interface Venue {
   slug: string; // URL-friendly name
   description: string;
   shortDescription: string;
+  tagline?: string; // Phrase d'accroche
+  experienceText?: string; // Texte d'expérience client
   
   // Localisation
   address: {
@@ -39,11 +41,17 @@ export interface Venue {
     postalCode: string;
     region: string;
     country: string;
-    coordinates?: {
+    coordinates: {
       lat: number;
       lng: number;
     };
   };
+  
+  // Coordonnées simplifiées pour compatibilité (raccourci)
+  lat: number;
+  lng: number;
+  location: string; // Format: "Loire-Atlantique (44)"
+  region?: string; // Région simplifiée
   
   // Capacités
   capacity: {
@@ -54,6 +62,11 @@ export interface Venue {
     theater?: number;
     classroom?: number;
   };
+  
+  // Capacité simplifiée pour compatibilité (valeur maximale)
+  capacitySeated?: number;
+  capacityStanding?: number;
+  capacityMin?: number;
   
   // Types d'événements supportés
   eventTypes: Array<'conference' | 'seminar' | 'wedding' | 'reception' | 'corporate' | 'gala'>;
@@ -73,12 +86,23 @@ export interface Venue {
     currency: 'EUR';
   };
   
+  // Structure alternative pour compatibilité avec fonctionnalites.md
+  priceRange?: {
+    min: number;
+    max: number;
+    currency: 'EUR';
+  };
+  
   // Médias
   images: {
     hero: string; // Image principale
     gallery: string[]; // Galerie d'images
     virtual360?: string; // Visite virtuelle
   };
+  
+  // Format simplifié pour compatibilité
+  image?: string; // Image principale (raccourci pour images.hero)
+  gallery?: string[]; // Raccourci pour images.gallery
   
   // Services et équipements
   amenities: {
@@ -90,13 +114,34 @@ export interface Venue {
     accessibility: boolean;
   };
   
+  // Informations additionnelles
+  spaces?: string[]; // Liste des espaces disponibles
+  amenitiesList?: string[]; // Liste textuelle des équipements pour affichage
+  
+  // Équipements détaillés pour compatibilité
+  accommodation?: boolean;
+  accommodationRooms?: number;
+  catering?: boolean;
+  parking?: number; // Nombre de places
+  audioVisual?: boolean;
+  wifi?: boolean;
+  accessibility?: boolean;
+  
   // Informations de contact
   contact: {
     phone: string;
     email: string;
     website?: string;
     manager: string;
+    instagram?: string;
+    mariagesNet?: string;
   };
+  
+  // Champs de contact simplifiés pour compatibilité
+  email?: string;
+  phone?: string;
+  url?: string; // URL du site dédié du lieu
+  websiteUrl?: string;
   
   // Métadonnées
   featured: boolean;
@@ -110,6 +155,10 @@ export interface Venue {
     description: string;
     keywords: string[];
   };
+  
+  // Métriques SEO
+  rating?: number; // Note moyenne (0-5)
+  reviewsCount?: number; // Nombre d'avis
   
   // Traductions pour les 6 langues
   translations?: {
@@ -145,6 +194,7 @@ export interface VenueFilters {
     startDate?: Date;
     endDate?: Date;
   };
+  featured?: boolean; // Filtrer par domaines mis en avant
 }
 
 /**

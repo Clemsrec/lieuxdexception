@@ -1,6 +1,6 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 /**
  * Configuration Firebase pour Lieux d'Exception
@@ -32,21 +32,5 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
  */
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-
-/**
- * Configuration pour l'environnement de développement
- * Connexion à l'émulateur Firestore si disponible en développement
- */
-if (process.env.NODE_ENV === 'development') {
-  try {
-    // Vérifier si l'émulateur n'est pas déjà connecté
-    if (!('_delegate' in db) || !(db as any)._delegate._databaseId.database.includes('localhost')) {
-      connectFirestoreEmulator(db, 'localhost', 8080);
-    }
-  } catch (error) {
-    // L'émulateur n'est pas disponible, utiliser Firebase en ligne
-    console.log('Émulateur Firestore non disponible, utilisation de Firebase en ligne');
-  }
-}
 
 export default app;

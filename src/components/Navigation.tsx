@@ -17,6 +17,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export default function Navigation() {
@@ -63,9 +64,16 @@ export default function Navigation() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
-            Lieux d&apos;Exception
+            <Image
+              src="/logo/Logo_CLE_avec Texte.png"
+              alt="Lieux d'Exception"
+              width={180}
+              height={50}
+              priority
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Menu desktop */}
@@ -87,6 +95,12 @@ export default function Navigation() {
               className={getLinkClasses('/mariages')}
             >
               Mariages
+            </Link>
+            <Link 
+              href="/comparer" 
+              className={getLinkClasses('/comparer')}
+            >
+              Comparer
             </Link>
             <Link 
               href="/contact" 
@@ -138,6 +152,13 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Mariages
+              </Link>
+              <Link 
+                href="/comparer" 
+                className={getLinkClasses('/comparer')}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Comparer les domaines
               </Link>
               <Link 
                 href="/contact" 

@@ -166,7 +166,7 @@ npm run test
 ## � Déploiement
 
 ### Développement
-- **URL locale** : http://localhost:3000
+- **URL locale** : http://localhost:3002
 - **Hot reload** : Activé avec Turbopack
 - **TypeScript** : Compilation en temps réel
 

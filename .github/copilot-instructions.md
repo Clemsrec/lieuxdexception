@@ -3,123 +3,262 @@
 ## Règles Fondamentales ⚠️
 
 ### Langue et Documentation
-- **Site entièrement en français** - Tous les textes, commentaires et documentation
-- **Documentation obligatoire** - Chaque fichier doit contenir des commentaires explicatifs détaillés
-- **Commentaires explicites** - Expliquer le pourquoi, pas seulement le quoi
-- **Vérification lors des mises à jour** - Toujours s'assurer que la documentation reste à jour
+- **Tout en français** : Code, commentaires, documentation, messages d'erreur
+- **JSDoc obligatoire** : Chaque fonction/composant doit avoir sa documentation
+- **Expliquer le "pourquoi"** : Les commentaires expliquent les décisions, pas juste ce que fait le code
+- **Maintenir la doc à jour** : Mettre à jour les commentaires lors des modifications
 
-### Design et Interface 🎨
-- **RÈGLE D'OR : ZÉRO EMOJI SUR LE SITE** - Bannir complètement les emojis de TOUT le site (public + admin)
-- **Icônes professionnelles uniquement** - SVG optimisés, cohérents et accessibles (Lucide React)
-- **Éviter absolument** - Tous les emojis dans le code React/JSX (🚫 ❌ 💡 💒 🏰 etc.)
-- **Exception très limitée** - Emojis autorisés uniquement dans les commentaires de code et documentation Markdown
+### Interface Utilisateur 🎨
+- **ZÉRO EMOJI dans l'interface** : Bannir complètement les emojis du site (JSX, templates, textes UI)
+- **Icônes Lucide React uniquement** : Utiliser `<Icon type="..." />` de `@/components/ui/Icon`
+- **Accessibilité obligatoire** : Tous les icônes doivent avoir un `aria-label`
+- **Voir `docs/migration-emojis-to-icons.md`** pour le mapping emoji → icône
 
-### Données et Implémentation
-- **Données réelles uniquement** - Jamais de données mockées ou factices
-- **Pas de solutions temporaires** - Toujours implémenter la version définitive
-- **TODO explicites** - Utiliser des commentaires TODO pour les fonctionnalités à implémenter plus tard
-- **Validation systématique** - Vérifier que chaque mise à jour préserve la cohérence
+### Qualité du Code
+- **Données réelles uniquement** : Pas de mocks, utiliser Firebase/Firestore
+- **Pas de solutions temporaires** : Implémenter directement la version définitive
+- **Validation Zod stricte** : Tous les inputs utilisateur passent par `lib/validation.ts`
+- **TypeScript strict** : Pas de `any`, typage complet avec types de `types/firebase.ts`
 
-## Architecture du Projet
+## Architecture et Stack
 
-Ce projet est un site vitrine moderne développé avec Next.js 15, TypeScript et Tailwind CSS v4. Il intègre Firebase pour l'authentification et la base de données Firestore.
+**Next.js 15** (App Router + Turbopack) + **TypeScript** + **Tailwind CSS v4** + **Firebase** (Firestore + Auth)
 
-### Structure Technique
-- **Framework**: Next.js 15 avec App Router
-- **Styles**: Tailwind CSS v4 avec configuration personnalisée
-- **Bundler**: Turbopack pour un développement rapide
-- **Backend**: Firebase (Auth + Firestore)
-- **Langage**: TypeScript strict
+### Structure Critique
 
-### Conventions du Projet
-
-#### Organisation des Fichiers
-- `app/` - Pages et layouts avec App Router
-- `components/` - Composants réutilisables
-- `lib/` - Utilitaires et configuration (Firebase, etc.)
-- `types/` - Définitions TypeScript
-- `public/` - Assets statiques
-
-#### Composants
-- Utilisez les Server Components par défaut
-- Client Components seulement pour l'interactivité
-- Préfixe "use client" nécessaire pour les hooks React
-- **Documentation obligatoire** : JSDoc pour chaque composant avec description et exemples
-
-#### Styles
-- Classes Tailwind CSS v4 en priorité
-- CSS modules pour les styles spécifiques
-- Variables CSS custom pour la cohérence
-- **Commentaires CSS** : Expliquer les choix de design complexes
-
-#### Icônes et Interface
-- **Zéro emoji sur le site** : Bannir complètement les emojis de tout le site (public + admin)
-- **Icônes modernes uniquement** : Utiliser exclusivement Lucide React, Heroicons ou similaires
-- **Guide de migration** : Voir `docs/migration-emojis-to-icons.md` pour les conversions
-- **Cohérence visuelle** : Même famille d'icônes dans tout le site
-- **Accessibilité** : Aria-labels et alternatives textuelles pour toutes les icônes
-- **Performance** : SVG optimisés et tree-shaking des icônes inutilisées
-
-#### Firebase Integration
-- Configuration centralisée dans `lib/firebase.ts`
-- Hooks personnalisés pour Auth dans `lib/auth.ts`
-- Types Firestore dans `types/firebase.ts`
-- **Données réelles** : Pas de configuration en dur, utiliser les variables d'environnement
-
-#### Code Quality Standards
-- **Documentation systématique** : Chaque fonction doit avoir des commentaires explicatifs
-- **Types stricts** : Pas de `any`, utiliser des types précis
-- **Validation des données** : Toujours valider les entrées utilisateur avec Zod
-- **TODO explicites** : Format `// TODO: [Description précise de ce qui reste à faire]`
-- **Pas de solutions temporaires** : Implémenter directement la version finale
-
-### Commandes de Développement
-
-```bash
-# Développement avec Turbopack
-npm run dev
-
-# Build de production
-npm run build
-
-# Tests
-npm run test
-
-# Linting
-npm run lint
+```
+src/
+├── app/                      # Pages Next.js avec App Router
+│   ├── globals.css          # Tailwind v4 @theme config + variables CSS
+│   └── [route]/page.tsx     # Server Components par défaut
+├── components/
+│   └── ui/Icon.tsx          # Composant icônes (remplace emojis)
+├── lib/
+│   ├── firebase.ts          # Config Firebase (1 instance partagée)
+│   ├── firestore.ts         # Services CRUD Firestore (tous typés)
+│   ├── validation.ts        # Schémas Zod + helpers sanitization
+│   └── security.ts          # Hash, tokens, rate limiting
+├── types/
+│   └── firebase.ts          # Interfaces Venue, Lead, Analytics
+└── middleware.ts            # Headers sécurité + protection admin
 ```
 
-### Patterns Spécifiques
+### Données Firebase (Firestore)
+- **Collections** : `venues`, `leads`, `analytics`, `i18n`
+- **Base de données** : `lieuxdexception` (région: europe-west1)
+- **Accès** : Uniquement via `lib/firestore.ts` (pas d'accès direct depuis composants)
 
-#### Authentification
-- Utiliser `useAuth()` hook pour l'état utilisateur
-- Middleware pour les routes protégées
-- Types stricts pour les données utilisateur
+## Patterns Essentiels
 
-#### Navigation
-- Composants de navigation responsive
-- États actifs automatiques
-- Transitions fluides
+### 1. Composants Next.js
 
-#### Données
-- Validation avec Zod
-- Gestion d'état locale avec useState/useReducer
-- Cache optimiste pour Firestore
+```typescript
+// Server Component par défaut (pas de "use client")
+export default async function VenuePage({ params }: { params: { id: string } }) {
+  const venue = await getVenueById(params.id);
+  return <VenueDetails venue={venue} />;
+}
 
-### Points d'Attention
-- **SEO optimisé** avec métadonnées dynamiques en français
-- **Performance** : lazy loading des images, optimisation des bundles
-- **Accessibilité** : ARIA labels et navigation clavier en français
-- **Responsive design** mobile-first avec breakpoints cohérents
-- **Interface professionnelle** : Pas d'emojis - uniquement des icônes modernes (Lucide, Heroicons)
-- **Documentation** : Maintenir les commentaires à jour lors des modifications
-- **Données** : Utiliser uniquement des données de production réelles
-- **Cohérence** : Vérifier l'impact des modifications sur l'ensemble du projet
+// Client Component seulement si hooks/interactivité
+'use client';
+export default function ContactForm() {
+  const [data, setData] = useState<B2BForm>({});
+  // ...
+}
+```
 
-### Workflow de Développement
-1. **Avant modification** : Lire et comprendre la documentation existante
-2. **Pendant développement** : Documenter chaque fonction/composant créé
-3. **Interface utilisateur** : Utiliser UNIQUEMENT des icônes modernes (Lucide React) - PAS D'EMOJIS
-4. **Après modification** : Mettre à jour la documentation impactée
-5. **Validation** : Tester avec des données réelles uniquement
-6. **Review icônes** : Vérifier qu'aucun emoji n'a été introduit dans l'interface
+### 2. Accès Firestore (TOUJOURS via lib/firestore.ts)
+
+```typescript
+// ❌ JAMAIS d'accès direct dans composants
+import { collection, getDocs } from 'firebase/firestore';
+
+// ✅ Utiliser les services typés
+import { getVenues, createLead } from '@/lib/firestore';
+
+const venues = await getVenues({ eventType: 'b2b', region: 'pays-de-loire' });
+const leadId = await createLead({ type: 'b2b', contactInfo: {...}, eventDetails: {...} });
+```
+
+### 3. Validation Zod (OBLIGATOIRE pour formulaires)
+
+```typescript
+import { b2bFormSchema, validateData } from '@/lib/validation';
+
+// Dans un API route
+const result = validateData(b2bFormSchema, await request.json());
+if (!result.success) {
+  return Response.json({ errors: result.errors }, { status: 400 });
+}
+const { data } = result; // data est typé automatiquement
+```
+
+### 4. Icônes (remplacement emojis)
+
+```tsx
+// ❌ Pas d'emoji dans JSX
+<div>💒 Mariage</div>
+
+// ✅ Icône Lucide avec accessibilité
+import Icon from '@/components/ui/Icon';
+<div><Icon type="church" size={24} aria-label="Mariage" /> Mariage</div>
+```
+
+### 5. Styles Tailwind v4
+
+```tsx
+// Variables CSS définies dans app/globals.css @theme
+<div className="bg-primary text-white">  {/* var(--color-primary) */}
+  <div className="section-container">   {/* classe custom définie */}
+    <button className="btn-primary">    {/* classe custom définie */}
+```
+
+## Workflows Critiques
+
+### Développement Local
+
+```bash
+# Démarrage avec Turbopack (ultra rapide)
+npm run dev
+
+# Tests Firestore avec émulateur (optionnel)
+firebase emulators:start --only firestore
+# → App détecte automatiquement l'émulateur sur localhost:8080
+```
+
+### Déploiement Production
+
+```bash
+# 1. Build local (vérifier que ça compile)
+npm run build
+
+# 2. Déployer Firestore Rules AVANT l'app
+firebase deploy --only firestore:rules
+
+# 3. Déployer l'application
+firebase deploy --only hosting
+# OU via GitHub push → CI/CD automatique
+
+# 4. Vérifier les secrets Google Cloud
+./scripts/setup-secrets.sh  # Configure les secrets automatiquement
+```
+
+**Secrets Management** : Utilise Google Cloud Secret Manager (voir `docs/DEPLOYMENT.md`)
+- API keys, service account keys stockés dans Secret Manager
+- `apphosting.yaml` référence les secrets de manière sécurisée
+- **Jamais** de secrets dans `.env.local` committé (fichier dans `.gitignore`)
+
+### Ajouter une Nouvelle Collection Firestore
+
+1. **Définir l'interface** dans `types/firebase.ts` :
+```typescript
+export interface NewCollection {
+  id: string;
+  field: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+```
+
+2. **Créer services** dans `lib/firestore.ts` :
+```typescript
+const newCollection = collection(db, 'newCollection');
+
+export async function getNewItems(): Promise<NewCollection[]> {
+  const snapshot = await getDocs(query(newCollection));
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as NewCollection));
+}
+```
+
+3. **Mettre à jour** `firestore.rules` :
+```javascript
+match /newCollection/{docId} {
+  allow read: if true;
+  allow write: if request.auth.token.admin == true;
+}
+```
+
+4. **Déployer** : `firebase deploy --only firestore:rules`
+
+## Sécurité et Validation
+
+### Headers HTTP (middleware.ts)
+Le middleware applique automatiquement des headers de sécurité :
+- **CSP** : Bloque scripts inline, limite les sources de contenu
+- **HSTS** : Force HTTPS en production (max-age 1 an)
+- **X-Frame-Options** : DENY (anti-clickjacking)
+- **Permissions-Policy** : Désactive caméra/micro/géolocation
+
+### Routes Protégées
+```typescript
+// Middleware protège automatiquement :
+PROTECTED_ROUTES = ['/admin']
+PROTECTED_API_ROUTES = ['/api/admin', '/api/venues/create', '/api/venues/update']
+
+// Vérifier auth :
+const authToken = request.cookies.get('auth-token');
+// TODO: Implémenter vérification JWT quand auth est ready
+```
+
+### Validation Stricte
+```typescript
+// Tous les formulaires DOIVENT utiliser Zod
+import { validateData, sanitizeString } from '@/lib/validation';
+
+// API route pattern :
+const body = await request.json();
+const result = validateData(b2bFormSchema, body);
+if (!result.success) {
+  return Response.json({ errors: result.errors }, { status: 400 });
+}
+// result.data est typé et validé ✅
+```
+
+### Rate Limiting
+```typescript
+// Production : Utiliser Upstash Redis (voir docs/SECURITY.md)
+// Dev : Rate limiting en mémoire (lib/security.ts)
+const ip = request.headers.get('x-forwarded-for') || 'unknown';
+if (isRateLimited(ip, { maxRequests: 5, windowSeconds: 60 })) {
+  return Response.json({ error: 'Trop de requêtes' }, { status: 429 });
+}
+```
+
+## Points Critiques à Retenir
+
+### Performance
+- **Turbopack** : Dev ultra-rapide, pas besoin de webpack config
+- **Server Components** : Par défaut, ajouter 'use client' seulement si nécessaire
+- **Lazy loading** : Images optimisées automatiquement par Next.js
+- **Bundle size** : Tree-shaking automatique pour Lucide icons
+
+### Firebase Spécifique
+- **Une seule instance** : `getApps().length === 0` évite double init (voir `lib/firebase.ts`)
+- **Émulateur auto-detect** : En dev, connecte automatiquement à localhost:8080 si disponible
+- **Timestamps** : Toujours utiliser `Timestamp.now()` de Firestore, jamais `new Date()`
+- **Transactions** : Utiliser transactions Firestore pour opérations critiques (éviter race conditions)
+
+### Tailwind CSS v4
+- **Pas de tailwind.config.js** : Configuration via `@theme` dans `globals.css`
+- **Variables CSS** : `var(--primary)`, `var(--background)` définies dans `:root`
+- **Classes custom** : `.btn-primary`, `.venue-card`, `.section-container` déjà définies
+- **Dark mode** : Auto via `@media (prefers-color-scheme: dark)`
+
+### Debugging
+```bash
+# Voir les logs Firebase en temps réel
+firebase functions:log --only hosting
+
+# Tester les règles Firestore localement
+firebase emulators:start --only firestore
+# Puis tester avec UI : http://localhost:4000
+
+# Vérifier les headers de sécurité
+curl -I http://localhost:3002 | grep -i "content-security\|x-frame"
+```
+
+### Documentation Essentielle
+- `docs/DEPLOYMENT.md` : Déploiement + secrets Google Cloud
+- `docs/SECURITY.md` : Sécurité + Firestore Rules + Rate limiting
+- `docs/migration-emojis-to-icons.md` : Mapping emojis → icônes Lucide
+- `types/firebase.ts` : Toutes les interfaces de données Firestore

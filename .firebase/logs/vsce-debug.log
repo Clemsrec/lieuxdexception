@@ -1,0 +1,37 @@
+[debug] [2025-11-13T08:01:53.388Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2025-11-13T08:01:58.336Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2025-11-13T08:01:58.337Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-11-13T08:01:58.337Z] > authorizing via signed-in user (clement@nucom.fr)
+[debug] [2025-11-13T08:01:58.340Z] Checked if tokens are valid: false, expires at: 1762960559581
+[debug] [2025-11-13T08:01:58.340Z] Checked if tokens are valid: false, expires at: 1762960559581
+[debug] [2025-11-13T08:01:58.341Z] > refreshing access token with scopes: []
+[debug] [2025-11-13T08:01:58.342Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-13T08:01:58.342Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-13T08:01:58.347Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting Data Connect toolkit (version 2.15.0) on port 50001
+[debug] [2025-11-13T08:02:00.124Z] 'fdc build' failed with error: Unable to build your Data Connect schema and connectors (exit code 1): E1113 09:02:00.118238   56667 cmd.go:43] Error loading data connect config: could not find dataconnect.yaml in `/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect`
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"'fdc build' failed with error: Unable to build your Data Connect schema and connectors (exit code 1): E1113 09:02:00.118238   56667 cmd.go:43] Error loading data connect config: could not find dataconnect.yaml in `/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect`\n"}}
+[debug] [2025-11-13T08:02:00.125Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2025-11-13T08:02:00.125Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2025-11-13T08:02:00.125Z] Starting Data Connect Emulator with command {"binary":"/Users/clem/.cache/firebase/emulators/dataconnect-emulator-2.15.0","args":["--logtostderr","-v=2","dev","--listen=localhost:50001","--config_dir=/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting Data Connect Emulator with command {\"binary\":\"/Users/clem/.cache/firebase/emulators/dataconnect-emulator-2.15.0\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50001\",\"--config_dir=/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: Data Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"Data Connect Emulator logging to dataconnect-debug.log"}}
+[debug] [2025-11-13T08:02:01.131Z] E1113 09:02:01.099733   56672 dev.go:79] Failed to load initial config from "/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect": could not find dataconnect.yaml in `/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect`
+E1113 09:02:01.112670   56672 watch.go:102] watchAllDir unable to walk dir `/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect`: lstat /Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect: no such file or directory
+F1113 09:02:01.121117   56672 dev.go:100] Could not listen on address localhost:50001: listen tcp 127.0.0.1:50001: bind: address already in use
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E1113 09:02:01.099733   56672 dev.go:79] Failed to load initial config from \"/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect\": could not find dataconnect.yaml in `/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect`\nE1113 09:02:01.112670   56672 watch.go:102] watchAllDir unable to walk dir `/Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect`: lstat /Users/clem/Nucom/Groupe Riou/groupe_riou/lieuxdexception/dataconnect: no such file or directory\nF1113 09:02:01.121117   56672 dev.go:100] Could not listen on address localhost:50001: listen tcp 127.0.0.1:50001: bind: address already in use\n"}}
+[error] ⬢  dataconnect: Data Connect Emulator has exited because its configured port 9399 is already in use. Are you running another copy of the emulator suite? {"metadata":{"emulator":{"name":"dataconnect"},"message":"Data Connect Emulator has exited because its configured port 9399 is already in use. Are you running another copy of the emulator suite?"}}
+[warn] ⚠  dataconnect: Fatal error occurred: 
+   Data Connect Emulator has exited with code: 1, 
+   stopping all running emulators {"metadata":{"emulator":{"name":"dataconnect"},"message":"Fatal error occurred: \n   Data Connect Emulator has exited with code: 1, \n   stopping all running emulators"}}
+[debug] [2025-11-13T08:02:01.212Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2025-11-13T08:02:01.212Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[error] [Firebase Plugin] requireAuth error: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[error] [Firebase Plugin] error:  {}

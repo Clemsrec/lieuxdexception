@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import Icon from '@/components/ui/Icon';
 
 /**
@@ -24,9 +25,15 @@ export default function Footer() {
           
           {/* Informations principales sur Lieux d'Exception */}
           <div className="lg:col-span-1">
-            <h3 className="font-semibold text-lg mb-4 text-foreground">
-              Lieux d&apos;Exception
-            </h3>
+            <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
+              <Image
+                src="/logo/Logo_CLE_avec Texte.png"
+                alt="Lieux d'Exception"
+                width={180}
+                height={50}
+                className="h-10 w-auto"
+              />
+            </Link>
             <p className="text-secondary text-sm mb-4 leading-relaxed">
               Le catalogue B2B du Groupe Riou présentant 5 lieux événementiels 
               d&apos;exception en France pour vos séminaires, mariages et événements corporate.

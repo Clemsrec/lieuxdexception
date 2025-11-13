@@ -1,0 +1,18 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ombre -->
+  <ellipse cx="20" cy="37" rx="8" ry="2" fill="rgba(0,0,0,0.2)"/>
+  
+  <!-- Pin principal -->
+  <path d="M20 5 C14 5 9 10 9 16 C9 24 20 35 20 35 C20 35 31 24 31 16 C31 10 26 5 20 5 Z" 
+        fill="#3b82f6" 
+        stroke="white" 
+        stroke-width="2"/>
+  
+  <!-- Icône château au centre -->
+  <path d="M15 18 L15 22 L17 22 L17 18 M23 18 L23 22 L25 22 L25 18 M17 18 L17 16 L19 16 L19 18 M21 18 L21 16 L23 16 L23 18" 
+        fill="white"/>
+  <rect x="17" y="18" width="6" height="4" fill="white"/>
+  
+  <!-- Point central -->
+  <circle cx="20" cy="19" r="2" fill="white"/>
+</svg>
