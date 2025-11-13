@@ -2,6 +2,7 @@
  * Configuration Next.js pour Lieux d'Exception
  * Compatible avec Firebase App Hosting et Turbopack
  * 
+ * Dernière mise à jour : 13 novembre 2025
  * @type {import('next').NextConfig}
  */
 
