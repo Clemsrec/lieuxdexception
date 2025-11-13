@@ -4,10 +4,9 @@
  * 
  * @type {import('next').NextConfig}
  */
-const nextConfig = {
-  // Output standalone pour Firebase App Hosting
-  output: 'standalone',
-  
+
+// Configuration de base
+const config = {
   // Turbopack est activé via la commande `next dev --turbopack`
   // Pas de configuration spécifique nécessaire pour le build
   
@@ -45,4 +44,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default config;
