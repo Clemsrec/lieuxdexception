@@ -680,3 +680,19 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* ========== LOGO SIZING - STRICT RULES ========== */
+/* Empêche le logo de se redimensionner automatiquement */
+img[alt="Lieux d'Exception"] {
+  max-width: 140px !important;
+  max-height: 40px !important;
+  height: auto !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+/* Logo navigation header - plus petit */
+nav img[alt="Lieux d'Exception"] {
+  max-width: 120px !important;
+  max-height: 35px !important;
+}

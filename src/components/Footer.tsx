@@ -31,6 +31,7 @@ export default function Footer() {
                 width={140}
                 height={40}
                 className="h-8 w-auto max-w-[140px]"
+                style={{ maxWidth: '140px', maxHeight: '40px', width: 'auto', height: 'auto', objectFit: 'contain' }}
               />
             </Link>
             <p className="text-secondary text-sm mb-4 leading-relaxed">

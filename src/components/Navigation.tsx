@@ -73,6 +73,7 @@ export default function Navigation() {
               height={35}
               priority
               className="h-7 w-auto max-w-[120px]"
+              style={{ maxWidth: '120px', maxHeight: '35px', width: 'auto', height: 'auto', objectFit: 'contain' }}
             />
           </Link>
 
