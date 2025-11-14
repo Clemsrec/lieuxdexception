@@ -15,7 +15,6 @@
 import { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import type { Venue } from '@/types/firebase';
-import Icon from '@/components/ui/Icon';
 
 interface InteractiveMapProps {
   venues: Venue[];
@@ -74,11 +73,11 @@ export default function InteractiveMap({ venues }: InteractiveMapProps) {
             <div className="flex-1">
               <h3 className="font-bold text-lg">{venue.name}</h3>
               <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
-                <Icon type="mapPin" size={14} aria-label="Localisation" />
+                <span>📍</span>
                 <span>{venue.location || venue.address.city}</span>
               </div>
               <div className="flex items-center gap-1 text-sm text-gray-600 mb-2">
-                <Icon type="users" size={14} aria-label="Capacité" />
+                <span className="font-medium">Capacité:</span>
                 <span>Capacité: {venue.capacity.max} pers.</span>
               </div>
               <a
@@ -87,8 +86,7 @@ export default function InteractiveMap({ venues }: InteractiveMapProps) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Découvrir
-                <Icon type="externalLink" size={12} aria-label="Lien externe" />
+                Découvrir →
               </a>
             </div>
           </div>
@@ -103,7 +101,7 @@ export default function InteractiveMap({ venues }: InteractiveMapProps) {
   if (!apiKey) {
     return (
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center">
-        <Icon type="alertTriangle" size={32} className="text-yellow-600 mx-auto mb-2" />
+        <div className="text-4xl text-yellow-600 mx-auto mb-2">⚠</div>
         <p className="text-yellow-800 font-medium mb-2">
           Clé API Google Maps non configurée
         </p>
@@ -158,11 +156,11 @@ export default function InteractiveMap({ venues }: InteractiveMapProps) {
               />
               <h3 className="font-bold text-lg mb-1">{selected.name}</h3>
               <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
-                <Icon type="mapPin" size={14} aria-label="Localisation" />
+                <span>📍</span>
                 <span>{selected.location || selected.address.city}</span>
               </div>
               <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
-                <Icon type="users" size={14} aria-label="Capacité" />
+                <span className="font-medium">Capacité:</span>
                 <span>Capacité: {selected.capacity.max} personnes</span>
               </div>
               <a
@@ -171,8 +169,7 @@ export default function InteractiveMap({ venues }: InteractiveMapProps) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Découvrir ce lieu
-                <Icon type="externalLink" size={12} aria-label="Lien externe" />
+                Découvrir ce lieu →
               </a>
             </div>
           </InfoWindow>

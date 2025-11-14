@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Icon from '@/components/ui/Icon';
 
 /**
  * Types pour les différents formulaires de contact
@@ -27,7 +26,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
   const [activeForm, setActiveForm] = useState<FormType>(defaultForm);
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div>
       
       {/* Sélecteur de formulaire */}
       <div className="flex bg-muted rounded-lg p-1 mb-8">
@@ -380,7 +379,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
             type="submit"
             className="w-full btn-primary py-4 text-lg flex items-center justify-center"
           >
-            <Icon type="heart" size={20} className="mr-2" aria-label="Mariage" />
+            
             Demander un devis mariage
           </button>
         </form>
@@ -470,7 +469,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
                 href="tel:+33123456789" 
                 className="btn-primary text-center sm:flex-1 flex items-center justify-center"
               >
-                <Icon type="phone" size={16} className="mr-2" aria-label="Téléphone" />
+                
                 01 23 45 67 89
               </a>
               <a 

@@ -41,7 +41,16 @@ export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
     query = query.orderBy('name', 'asc');
     
     const snapshot = await query.get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Venue));
+    return snapshot.docs.map(doc => {
+      const data = doc.data();
+      // Convertir les Timestamps Firestore en strings ISO pour la sérialisation
+      return {
+        id: doc.id,
+        ...data,
+        createdAt: data.createdAt?.toDate?.() ? data.createdAt.toDate().toISOString() : data.createdAt,
+        updatedAt: data.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data.updatedAt,
+      } as Venue;
+    });
   } catch (error) {
     console.error('[Firestore] Erreur lors de la récupération des lieux:', error);
     // Retourner tableau vide en cas d'erreur (évite le crash de la page)
@@ -60,7 +69,13 @@ export async function getVenueById(id: string): Promise<Venue | null> {
     
     const doc = await adminDb!.collection('venues').doc(id).get();
     if (doc.exists) {
-      return { id: doc.id, ...doc.data() } as Venue;
+      const data = doc.data()!;
+      return {
+        id: doc.id,
+        ...data,
+        createdAt: data.createdAt?.toDate?.() ? data.createdAt.toDate().toISOString() : data.createdAt,
+        updatedAt: data.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data.updatedAt,
+      } as Venue;
     }
     return null;
   } catch (error) {
@@ -85,7 +100,13 @@ export async function getVenueBySlug(slug: string): Promise<Venue | null> {
     
     if (!snapshot.empty) {
       const doc = snapshot.docs[0];
-      return { id: doc.id, ...doc.data() } as Venue;
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        createdAt: data.createdAt?.toDate?.() ? data.createdAt.toDate().toISOString() : data.createdAt,
+        updatedAt: data.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data.updatedAt,
+      } as Venue;
     }
     return null;
   } catch (error) {
@@ -110,7 +131,15 @@ export async function getFeaturedVenues(maxResults: number = 3): Promise<Venue[]
       .limit(maxResults)
       .get();
     
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Venue));
+    return snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        createdAt: data.createdAt?.toDate?.() ? data.createdAt.toDate().toISOString() : data.createdAt,
+        updatedAt: data.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data.updatedAt,
+      } as Venue;
+    });
   } catch (error) {
     console.error('[Firestore] Erreur lors de la récupération des lieux mis en avant:', error);
     return [];

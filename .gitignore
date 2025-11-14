@@ -20,6 +20,7 @@ dist/
 *.pem
 
 # Credentials Firebase (JAMAIS committer)
+firebase-service-account.json
 credentials/*.json
 secrets/
 secrets/*.json

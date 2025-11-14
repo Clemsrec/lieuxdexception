@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Icon from '@/components/ui/Icon';
 
 /**
  * Métadonnées pour la page Politique des Cookies
@@ -25,7 +24,7 @@ export default function CookiesPage() {
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Politique des Cookies</h1>
-        <p className="text-secondary max-w-2xl mx-auto">
+        <p className="text-secondary">
           Information sur l&apos;utilisation des cookies et gestion de vos préférences
         </p>
       </div>
@@ -37,7 +36,7 @@ export default function CookiesPage() {
         <section className="mb-8">
           <div className="bg-primary/5 p-6 rounded-lg border border-primary/10">
             <h2 className="text-xl font-semibold mb-3 text-primary flex items-center">
-              <Icon type="cookie" size={24} className="mr-2" aria-label="Cookie" />
+              
               Qu&apos;est-ce qu&apos;un cookie ?
             </h2>
             <p className="text-sm">
@@ -56,7 +55,7 @@ export default function CookiesPage() {
             {/* Cookies essentiels */}
             <div className="bg-green-50 border border-green-200 p-6 rounded-lg">
               <h3 className="text-lg font-medium mb-3 text-green-800 flex items-center">
-                <Icon type="shield" size={20} className="mr-2" aria-label="Sécurité" />
+                
                 Cookies Essentiels (Obligatoires)
               </h3>
               <p className="text-sm text-green-700 mb-3">
@@ -81,7 +80,7 @@ export default function CookiesPage() {
             {/* Cookies analytiques */}
             <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg">
               <h3 className="text-lg font-medium mb-3 text-blue-800 flex items-center">
-                <Icon type="barChart" size={20} className="mr-2" aria-label="Analytics" />
+                
                 Cookies Analytiques (Optionnels)
               </h3>
               <p className="text-sm text-blue-700 mb-3">
@@ -106,7 +105,7 @@ export default function CookiesPage() {
             {/* Cookies marketing */}
             <div className="bg-purple-50 border border-purple-200 p-6 rounded-lg">
               <h3 className="text-lg font-medium mb-3 text-purple-800 flex items-center">
-                <Icon type="target" size={20} className="mr-2" aria-label="Marketing" />
+                
                 Cookies Marketing (Optionnels)
               </h3>
               <p className="text-sm text-purple-700 mb-3">
@@ -131,7 +130,7 @@ export default function CookiesPage() {
             {/* Cookies fonctionnels */}
             <div className="bg-orange-50 border border-orange-200 p-6 rounded-lg">
               <h3 className="text-lg font-medium mb-3 text-orange-800 flex items-center">
-                <Icon type="settings" size={20} className="mr-2" aria-label="Fonctionnalités" />
+                
                 Cookies Fonctionnels (Optionnels)
               </h3>
               <p className="text-sm text-orange-700 mb-3">
@@ -162,7 +161,7 @@ export default function CookiesPage() {
           {/* Bandeau de gestion */}
           <div className="bg-muted p-6 rounded-lg mb-6">
             <h3 className="font-medium mb-4 flex items-center">
-              <Icon type="settings" size={20} className="mr-2" aria-label="Configuration" />
+              
               Centre de préférences des cookies
             </h3>
             <p className="text-sm mb-4">
@@ -179,7 +178,7 @@ export default function CookiesPage() {
             </div>
             
             <p className="text-xs text-secondary mt-2 flex items-center">
-              <Icon type="info" size={12} className="mr-1" aria-label="Information" />
+              
               Les cookies essentiels restent actifs pour le bon fonctionnement du site
             </p>
           </div>
@@ -194,7 +193,7 @@ export default function CookiesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="bg-muted p-4 rounded-lg text-center">
                 <div className="mb-2 flex justify-center">
-                  <Icon type="globe" size={32} className="text-orange-500" aria-label="Firefox" />
+                  
                 </div>
                 <h4 className="font-medium text-sm">Firefox</h4>
                 <p className="text-xs text-secondary">Paramètres → Vie privée</p>
@@ -202,7 +201,7 @@ export default function CookiesPage() {
               
               <div className="bg-muted p-4 rounded-lg text-center">
                 <div className="mb-2 flex justify-center">
-                  <Icon type="chrome" size={32} className="text-blue-500" aria-label="Chrome" />
+                  
                 </div>
                 <h4 className="font-medium text-sm">Chrome</h4>
                 <p className="text-xs text-secondary">Paramètres → Confidentialité</p>
@@ -210,7 +209,7 @@ export default function CookiesPage() {
               
               <div className="bg-muted p-4 rounded-lg text-center">
                 <div className="mb-2 flex justify-center">
-                  <Icon type="globe" size={32} className="text-blue-600" aria-label="Safari" />
+                  
                 </div>
                 <h4 className="font-medium text-sm">Safari</h4>
                 <p className="text-xs text-secondary">Préférences → Confidentialité</p>
@@ -218,7 +217,7 @@ export default function CookiesPage() {
               
               <div className="bg-muted p-4 rounded-lg text-center">
                 <div className="mb-2 flex justify-center">
-                  <Icon type="square" size={32} className="text-blue-700" aria-label="Edge" />
+                  
                 </div>
                 <h4 className="font-medium text-sm">Edge</h4>
                 <p className="text-xs text-secondary">Paramètres → Cookies</p>
@@ -314,34 +313,34 @@ export default function CookiesPage() {
           
           <div className="bg-yellow-50 border border-yellow-200 p-6 rounded-lg">
             <h3 className="font-medium mb-3 text-yellow-800 flex items-center">
-              <Icon type="alertTriangle" size={20} className="mr-2" aria-label="Attention" />
+              
               Que se passe-t-il si vous refusez les cookies ?
             </h3>
             
             <div className="space-y-3 text-sm">
               <div className="flex items-start space-x-3">
-                <Icon type="check" size={16} className="text-green-600 mt-1 shrink-0" aria-label="Autorisé" />
+                
                 <div>
                   <strong>Fonctionnalité de base :</strong> Le site reste utilisable pour la navigation et les demandes de contact
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
-                <Icon type="alertTriangle" size={16} className="text-orange-600 mt-1 shrink-0" aria-label="Attention" />
+                
                 <div>
                   <strong>Expérience limitée :</strong> Certaines fonctionnalités avancées peuvent ne pas fonctionner optimalement
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
-                <Icon type="alertTriangle" size={16} className="text-orange-600 mt-1 shrink-0" aria-label="Attention" />
+                
                 <div>
                   <strong>Personnalisation réduite :</strong> Le contenu ne sera pas adapté à vos préférences
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
-                <Icon type="ban" size={16} className="text-red-600 mt-1 shrink-0" aria-label="Interdit" />
+                
                 <div>
                   <strong>Analytics désactivés :</strong> Nous ne pourrons pas améliorer le site basé sur votre usage
                 </div>
@@ -372,15 +371,15 @@ export default function CookiesPage() {
             </p>
             <div className="space-y-1 text-sm">
               <p className="flex items-center">
-                <Icon type="mail" size={16} className="mr-2" aria-label="Email" />
+                
                 Email : <a href="mailto:dpo@lieuxdexception.fr" className="text-primary hover:underline">dpo@lieuxdexception.fr</a>
               </p>
               <p className="flex items-center">
-                <Icon type="phone" size={16} className="mr-2" aria-label="Téléphone" />
+                
                 Téléphone : +33 1 23 45 67 89
               </p>
               <p className="flex items-center">
-                <Icon type="mail" size={16} className="mr-2" aria-label="Courrier" />
+                
                 Courrier : DPO - Groupe Riou, 123 Avenue des Champs, 75008 Paris
               </p>
             </div>

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Icon from '@/components/ui/Icon';
 
 /**
  * Métadonnées pour la page Politique de Confidentialité
@@ -25,7 +24,7 @@ export default function ConfidentialitePage() {
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Politique de Confidentialité</h1>
-        <p className="text-secondary max-w-2xl mx-auto">
+        <p className="text-secondary">
           Protection et traitement de vos données personnelles - Conforme RGPD
         </p>
       </div>
@@ -37,7 +36,7 @@ export default function ConfidentialitePage() {
         <section className="mb-8">
           <div className="bg-primary/5 p-6 rounded-lg border border-primary/10">
             <h2 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
-              <Icon type="shield" size={20} />
+              
               Votre vie privée nous tient à cœur
             </h2>
             <p className="text-sm">
@@ -99,7 +98,7 @@ export default function ConfidentialitePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-muted p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="target" size={16} />
+                
                 Gestion des demandes
               </h3>
               <ul className="text-sm space-y-1">
@@ -111,7 +110,7 @@ export default function ConfidentialitePage() {
 
             <div className="bg-muted p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="mail" size={16} />
+                
                 Communication
               </h3>
               <ul className="text-sm space-y-1">
@@ -123,7 +122,7 @@ export default function ConfidentialitePage() {
 
             <div className="bg-muted p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="building" size={16} />
+                
                 Gestion événements
               </h3>
               <ul className="text-sm space-y-1">
@@ -135,7 +134,7 @@ export default function ConfidentialitePage() {
 
             <div className="bg-muted p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="barChart" size={16} />
+                
                 Amélioration services
               </h3>
               <ul className="text-sm space-y-1">
@@ -152,19 +151,19 @@ export default function ConfidentialitePage() {
           <h2 className="text-2xl font-semibold mb-4">4. Base légale du traitement</h2>
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
-              <Icon type="check" size={16} className="text-primary mt-1" />
+              
               <div>
                 <strong>Exécution d&apos;un contrat :</strong> Organisation de votre événement
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <Icon type="check" size={16} className="text-primary mt-1" />
+              
               <div>
                 <strong>Intérêt légitime :</strong> Prospection commerciale et amélioration de nos services
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <Icon type="check" size={16} className="text-primary mt-1" />
+              
               <div>
                 <strong>Consentement :</strong> Newsletter et communications marketing (révocable à tout moment)
               </div>
@@ -221,7 +220,7 @@ export default function ConfidentialitePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-primary/5 p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="search" size={16} />
+                
                 Droit d&apos;accès
               </h3>
               <p className="text-sm">Connaître les données que nous détenons sur vous</p>
@@ -229,7 +228,7 @@ export default function ConfidentialitePage() {
             
             <div className="bg-primary/5 p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="edit" size={16} />
+                
                 Droit de rectification
               </h3>
               <p className="text-sm">Corriger ou mettre à jour vos données</p>
@@ -237,7 +236,7 @@ export default function ConfidentialitePage() {
             
             <div className="bg-primary/5 p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="trash" size={16} />
+                
                 Droit d&apos;effacement
               </h3>
               <p className="text-sm">Supprimer vos données personnelles</p>
@@ -245,7 +244,7 @@ export default function ConfidentialitePage() {
             
             <div className="bg-primary/5 p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="pause" size={16} />
+                
                 Droit de limitation
               </h3>
               <p className="text-sm">Limiter le traitement de vos données</p>
@@ -253,7 +252,7 @@ export default function ConfidentialitePage() {
             
             <div className="bg-primary/5 p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="package" size={16} />
+                
                 Droit à la portabilité
               </h3>
               <p className="text-sm">Récupérer vos données dans un format lisible</p>
@@ -261,7 +260,7 @@ export default function ConfidentialitePage() {
             
             <div className="bg-primary/5 p-4 rounded-lg">
               <h3 className="font-medium mb-2 flex items-center gap-2">
-                <Icon type="ban" size={16} />
+                
                 Droit d&apos;opposition
               </h3>
               <p className="text-sm">Vous opposer au traitement de vos données</p>
@@ -272,11 +271,11 @@ export default function ConfidentialitePage() {
             <h3 className="font-medium mb-2">Comment exercer vos droits ?</h3>
             <p className="text-sm mb-2">Contactez notre Délégué à la Protection des Données :</p>
             <p className="text-sm flex items-center gap-2 mb-1">
-              <Icon type="mail" size={14} />
+              
               Email : <a href="mailto:dpo@lieuxdexception.fr" className="text-primary hover:underline">dpo@lieuxdexception.fr</a>
             </p>
             <p className="text-sm flex items-center gap-2">
-              <Icon type="package" size={14} />
+              
               Courrier : DPO - Groupe Riou, 123 Avenue des Champs, 75008 Paris
             </p>
           </div>
@@ -329,15 +328,15 @@ export default function ConfidentialitePage() {
             <h3 className="font-medium mb-3">Pour toute question concernant cette politique :</h3>
             <p><strong>Délégué à la Protection des Données</strong></p>
             <p className="flex items-center gap-2">
-              <Icon type="mail" size={14} />
+              
               Email : dpo@lieuxdexception.fr
             </p>
             <p className="flex items-center gap-2">
-              <Icon type="phone" size={14} />
+              
               Téléphone : +33 1 23 45 67 89
             </p>
             <p className="flex items-center gap-2">
-              <Icon type="package" size={14} />
+              
               Adresse : DPO - Groupe Riou, 123 Avenue des Champs, 75008 Paris
             </p>
           </div>

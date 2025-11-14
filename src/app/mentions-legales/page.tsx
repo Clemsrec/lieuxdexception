@@ -24,7 +24,7 @@ export default function MentionsLegalesPage() {
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Mentions Légales</h1>
-        <p className="text-secondary max-w-2xl mx-auto">
+        <p className="text-secondary">
           Informations légales obligatoires du site Lieux d&apos;Exception
         </p>
       </div>

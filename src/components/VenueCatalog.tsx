@@ -15,7 +15,6 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Icon from '@/components/ui/Icon';
 import type { Venue } from '@/types/firebase';
 
 interface VenueCatalogProps {
@@ -94,7 +93,8 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
       {/* Filtres de recherche */}
       <div className="bg-stone/30 rounded-xl p-6 mb-12 border border-accent/10">
         <div className="flex items-center gap-3 mb-6">
-          <Icon type="search" size={24} className="text-accent" aria-label="Filtres" />
+          <span className="text-accent uppercase tracking-widest text-sm font-medium">Filtres</span>
+          <div className="w-12 h-px bg-accent/30" />
           <h2 className="text-2xl font-display font-semibold text-primary">
             Filtrer par vos critères
           </h2>
@@ -185,7 +185,7 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
             onClick={resetFilters}
             className="text-secondary hover:text-primary transition-colors flex items-center gap-2"
           >
-            <Icon type="ban" size={18} aria-label="Réinitialiser" />
+            <span className="text-xl">×</span>
             Réinitialiser les filtres
           </button>
           <div className="text-sm text-secondary">
@@ -197,7 +197,7 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
       {/* Grille des lieux */}
       {filteredVenues.length === 0 ? (
         <div className="text-center py-16">
-          <Icon type="search" size={48} className="mx-auto text-secondary mb-4" aria-label="Aucun résultat" />
+          <div className="text-6xl text-secondary/20 mb-4">◇</div>
           <h3 className="text-2xl font-display font-semibold text-primary mb-3">
             Aucun lieu trouvé
           </h3>
@@ -250,7 +250,7 @@ function VenueCard({ venue }: { venue: Venue }) {
         {/* Badge featured */}
         {venue.featured && (
           <div className="absolute top-4 right-4 bg-linear-to-r from-accent to-accent/80 text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-lg">
-            <Icon type="sparkles" size={14} className="inline mr-1" aria-label="Mis en avant" />
+            <span className="inline mr-1">★</span>
             Mis en avant
           </div>
         )}
@@ -271,13 +271,13 @@ function VenueCard({ venue }: { venue: Venue }) {
         )}
 
         {/* Localisation et capacité */}
-        <div className="flex flex-wrap items-center gap-4 text-sm text-secondary mb-4">
-          <div className="flex items-center gap-1.5">
-            <Icon type="mapPin" size={16} aria-label="Localisation" />
+        <div className="flex flex-wrap items-start gap-4 text-sm text-secondary mb-4">
+          <div>
+            <span className="text-accent uppercase tracking-wider text-xs block mb-1">Localisation</span>
             <span>{venue.address.city}, {venue.address.region}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Icon type="users" size={16} aria-label="Capacité" />
+          <div>
+            <span className="text-accent uppercase tracking-wider text-xs block mb-1">Capacité</span>
             <span>{capacityRange}</span>
           </div>
         </div>
@@ -291,19 +291,16 @@ function VenueCard({ venue }: { venue: Venue }) {
         <div className="flex flex-wrap gap-2 mb-6">
           {venue.eventTypes?.includes('wedding') && (
             <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
-              <Icon type="heart" size={14} aria-label="Mariage" />
               Mariages
             </span>
           )}
           {(venue.eventTypes?.includes('corporate') || venue.eventTypes?.includes('conference') || venue.eventTypes?.includes('seminar')) && (
             <span className="inline-flex items-center gap-1.5 bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-medium">
-              <Icon type="briefcase" size={14} aria-label="B2B" />
               Événements B2B
             </span>
           )}
           {venue.amenitiesList && venue.amenitiesList.includes('Hébergement') && (
             <span className="inline-flex items-center gap-1.5 bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-medium">
-              <Icon type="building" size={14} aria-label="Hébergement" />
               Hébergement
             </span>
           )}
@@ -320,7 +317,7 @@ function VenueCard({ venue }: { venue: Venue }) {
           </div>
           <Link href={`/lieux/${venue.slug}`} className="btn-primary text-sm px-5 py-2.5 flex items-center gap-2">
             Découvrir
-            <Icon type="externalLink" size={16} aria-label="Voir les détails" />
+            <span>→</span>
           </Link>
         </div>
       </div>

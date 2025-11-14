@@ -58,21 +58,21 @@ export default function Navigation() {
 
   return (
     <nav className="bg-background/95 backdrop-blur-md border-b border-border sticky top-0 z-50">
-      <div className="section-container">
+      <div className="header-footer-container">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity shrink-0"
           >
             <Image
               src="/logo/Logo_CLE_avec Texte.png"
               alt="Lieux d'Exception"
-              width={180}
-              height={50}
+              width={120}
+              height={35}
               priority
-              className="h-10 w-auto"
+              className="h-7 w-auto max-w-[120px]"
             />
           </Link>
 
@@ -97,14 +97,8 @@ export default function Navigation() {
               Mariages
             </Link>
             <Link 
-              href="/comparer" 
-              className={getLinkClasses('/comparer')}
-            >
-              Comparer
-            </Link>
-            <Link 
               href="/contact" 
-              className={`btn-primary ${isActive('/contact') ? 'bg-primary/90' : ''}`}
+              className={`btn-primary whitespace-nowrap ${isActive('/contact') ? 'bg-primary/90' : ''}`}
             >
               Contact
             </Link>
@@ -154,15 +148,8 @@ export default function Navigation() {
                 Mariages
               </Link>
               <Link 
-                href="/comparer" 
-                className={getLinkClasses('/comparer')}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Comparer les domaines
-              </Link>
-              <Link 
                 href="/contact" 
-                className={`btn-primary w-fit ${isActive('/contact') ? 'bg-primary/90' : ''}`}
+                className={`btn-primary w-fit whitespace-nowrap ${isActive('/contact') ? 'bg-primary/90' : ''}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact

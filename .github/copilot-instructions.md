@@ -9,12 +9,18 @@
 - **Maintenir la doc à jour** : Mettre à jour les commentaires lors des modifications
 
 ### Interface Utilisateur 🎨
-- **ZÉRO EMOJI dans l'interface** : Bannir complètement les emojis du site (JSX, templates, textes UI)
-- **Icônes Lucide React uniquement** : Utiliser `<Icon type="..." />` de `@/components/ui/Icon`
-- **Accessibilité obligatoire** : Tous les icônes doivent avoir un `aria-label`
-- **Voir `docs/migration-emojis-to-icons.md`** pour le mapping emoji → icône
+- **ZÉRO ICÔNE dans l'interface** : Bannir complètement TOUTES les icônes du site (JSX, templates, textes UI)
+- **❌ Icon.tsx SUPPRIMÉ** : Ne JAMAIS utiliser `<Icon type="..." />` ou importer de bibliothèque d'icônes
+- **Typographie luxe uniquement** : Utiliser symboles Unicode (★ ● ◆ ✦ → •), chiffres romains (I, II, III), numérotation (01, 02, 03)
+- **Lignes décoratives** : `<div className="w-20 h-px bg-accent/40" />` pour séparer les sections
+- **Accessibilité** : Labels uppercase avec `tracking-wider` pour remplacer icônes visuelles
+- **Voir `docs/LUXE-DESIGN-GUIDELINES.md`** pour le design luxe sans icônes
 
 ### Qualité du Code
+- **JAMAIS INVENTER DE DONNÉES** : Ni fausses données, ni faux texte, ni contenu placeholder
+  - Si donnée manquante → Demander au client ou laisser vide avec TODO
+  - Si texte manquant → Ne pas générer de lorem ipsum ou texte fictif
+  - Si image manquante → Utiliser placeholder avec TODO explicite
 - **Données réelles uniquement** : Pas de mocks, utiliser Firebase/Firestore
 - **Pas de solutions temporaires** : Implémenter directement la version définitive
 - **Validation Zod stricte** : Tous les inputs utilisateur passent par `lib/validation.ts`

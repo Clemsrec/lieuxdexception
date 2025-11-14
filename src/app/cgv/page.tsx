@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Icon from '@/components/ui/Icon';
 
 /**
  * Métadonnées pour les CGV
@@ -25,7 +24,7 @@ export default function CGVPage() {
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Conditions Générales de Vente</h1>
-        <p className="text-secondary max-w-2xl mx-auto">
+        <p className="text-secondary">
           Conditions contractuelles pour la réservation de nos lieux d&apos;exception
         </p>
         <p className="text-sm text-accent mt-2">
@@ -40,7 +39,7 @@ export default function CGVPage() {
         <section className="mb-8">
           <div className="bg-primary/5 p-6 rounded-lg border border-primary/10">
             <h2 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
-              <Icon type="clipboardList" size={20} />
+              
               Préambule
             </h2>
             <p className="text-sm">
@@ -92,7 +91,7 @@ export default function CGVPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
               <h3 className="font-medium mb-2 text-green-800 flex items-center gap-2">
-                <Icon type="building" size={16} />
+                
                 Prestations incluses
               </h3>
               <ul className="text-sm text-green-700 space-y-1">
@@ -106,7 +105,7 @@ export default function CGVPage() {
             
             <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
               <h3 className="font-medium mb-2 text-blue-800 flex items-center gap-2">
-                <Icon type="target" size={16} />
+                
                 Services optionnels
               </h3>
               <ul className="text-sm text-blue-700 space-y-1">
@@ -138,7 +137,7 @@ export default function CGVPage() {
             
             <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
               <h3 className="font-medium mb-2 text-yellow-800 flex items-center gap-2">
-                <Icon type="alertTriangle" size={16} />
+                
                 3.2 Conditions de validité
               </h3>
               <p className="text-sm text-yellow-700">
@@ -205,7 +204,7 @@ export default function CGVPage() {
           <div className="space-y-4">
             <div className="bg-red-50 border border-red-200 p-6 rounded-lg">
               <h3 className="font-medium mb-3 text-red-800 flex items-center gap-2">
-                <Icon type="ban" size={16} />
+                
                 5.1 Annulation par le Client
               </h3>
               
@@ -231,7 +230,7 @@ export default function CGVPage() {
             
             <div className="bg-orange-50 border border-orange-200 p-4 rounded-lg">
               <h3 className="font-medium mb-2 text-orange-800 flex items-center gap-2">
-                <Icon type="scale" size={16} />
+                
                 5.2 Cas de force majeure
               </h3>
               <p className="text-sm text-orange-700">
@@ -260,7 +259,7 @@ export default function CGVPage() {
             
             <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg">
               <h3 className="font-medium mb-3 text-blue-800 flex items-center gap-2">
-                <Icon type="clipboardList" size={16} />
+                
                 Obligations du Client
               </h3>
               <ul className="text-sm text-blue-700 space-y-2">
@@ -296,7 +295,7 @@ export default function CGVPage() {
             
             <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
               <h3 className="font-medium mb-2 text-yellow-800 flex items-center gap-2">
-                <Icon type="alertTriangle" size={16} />
+                
                 7.2 Assurance obligatoire du Client
               </h3>
               <p className="text-sm text-yellow-700">
@@ -387,11 +386,11 @@ export default function CGVPage() {
                 <p>123 Avenue des Champs</p>
                 <p>75008 Paris, France</p>
                 <p className="flex items-center gap-2">
-                  <Icon type="phone" size={14} />
+                  
                   +33 1 23 45 67 89
                 </p>
                 <p className="flex items-center gap-2">
-                  <Icon type="mail" size={14} />
+                  
                   contact@lieuxdexception.fr
                 </p>
               </div>

@@ -1,6 +1,8 @@
 import { initializeApp, getApps, cert, App } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
+import * as fs from 'fs';
+import * as path from 'path';
 
 /**
  * Firebase Admin SDK pour Lieux d'Exception
@@ -40,9 +42,23 @@ function initializeAdminApp() {
       });
     }
     
-    // En développement local, utiliser le service account
+    // En développement local : Méthode 1 - Fichier service account
+    if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+      console.log('[Firebase Admin] Initialisation avec FIREBASE_SERVICE_ACCOUNT_KEY (fichier)');
+      
+      const serviceAccountPath = path.resolve(process.cwd(), process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+      const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
+      
+      return initializeApp({
+        credential: cert(serviceAccount),
+        projectId: serviceAccount.project_id,
+        storageBucket: `${serviceAccount.project_id}.appspot.com`,
+      });
+    }
+    
+    // En développement local : Méthode 2 - JSON string direct
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-      console.log('[Firebase Admin] Initialisation avec FIREBASE_SERVICE_ACCOUNT');
+      console.log('[Firebase Admin] Initialisation avec FIREBASE_SERVICE_ACCOUNT (JSON string)');
       
       const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
       
@@ -77,6 +93,7 @@ try {
 } catch (error) {
   console.error('[Firebase Admin] Configuration manquante:', {
     hasFirebaseConfig: !!process.env.FIREBASE_CONFIG,
+    hasServiceAccountKey: !!process.env.FIREBASE_SERVICE_ACCOUNT_KEY,
     hasServiceAccount: !!process.env.FIREBASE_SERVICE_ACCOUNT,
     hasProjectId: !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     nodeEnv: process.env.NODE_ENV,

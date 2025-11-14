@@ -12,7 +12,6 @@
 'use client';
 
 import { useState } from 'react';
-import Icon from '@/components/ui/Icon';
 
 export interface VenueFiltersState {
   capacity: string;
@@ -59,7 +58,7 @@ export default function VenueFilters({ onFilterChange }: VenueFiltersProps) {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md mb-8">
       <div className="flex items-center gap-2 mb-4">
-        <Icon type="search" size={24} className="text-primary" aria-label="Recherche" />
+        
         <h3 className="text-xl font-bold">Filtrer les domaines</h3>
       </div>
 
@@ -67,7 +66,7 @@ export default function VenueFilters({ onFilterChange }: VenueFiltersProps) {
         {/* Filtre Capacité */}
         <div>
           <label htmlFor="filter-capacity" className="block text-sm font-medium mb-2">
-            <Icon type="users" size={16} className="inline mr-1" aria-label="Capacité" />
+            
             Capacité
           </label>
           <select
@@ -87,7 +86,7 @@ export default function VenueFilters({ onFilterChange }: VenueFiltersProps) {
         {/* Filtre Région */}
         <div>
           <label htmlFor="filter-region" className="block text-sm font-medium mb-2">
-            <Icon type="mapPin" size={16} className="inline mr-1" aria-label="Région" />
+            
             Région
           </label>
           <select
@@ -108,7 +107,7 @@ export default function VenueFilters({ onFilterChange }: VenueFiltersProps) {
         {/* Filtre Type d'événement */}
         <div>
           <label htmlFor="filter-eventType" className="block text-sm font-medium mb-2">
-            <Icon type="calendar" size={16} className="inline mr-1" aria-label="Type d'événement" />
+            
             Type d&apos;événement
           </label>
           <select
@@ -129,7 +128,7 @@ export default function VenueFilters({ onFilterChange }: VenueFiltersProps) {
         {/* Filtre Budget */}
         <div>
           <label htmlFor="filter-budget" className="block text-sm font-medium mb-2">
-            <Icon type="scale" size={16} className="inline mr-1" aria-label="Budget" />
+            
             Budget
           </label>
           <select
@@ -153,7 +152,7 @@ export default function VenueFilters({ onFilterChange }: VenueFiltersProps) {
           onClick={handleReset}
           className="mt-4 inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium"
         >
-          <Icon type="ban" size={16} aria-label="Réinitialiser" />
+          
           Réinitialiser les filtres
         </button>
       )}

@@ -7,7 +7,6 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import Icon from '@/components/ui/Icon';
 import { getVenues } from '@/lib/firestore';
 
 // ISR : Cache avec revalidation toutes les 2 heures
@@ -77,10 +76,10 @@ export default async function VenuePage({ params }: VenuePageProps) {
         
         <div className="absolute inset-0 flex items-end">
           <div className="section-container pb-16 w-full">
-            <div className="max-w-4xl">
+            <div>
               <div className="flex items-center gap-4 mb-4 text-white/90">
                 <Link href="/catalogue" className="hover:text-white transition-colors flex items-center gap-2">
-                  <Icon type="arrowUp" size={16} className="-rotate-90" aria-label="Retour" />
+                  
                   Retour au catalogue
                 </Link>
               </div>
@@ -97,16 +96,16 @@ export default async function VenuePage({ params }: VenuePageProps) {
               
               <div className="flex flex-wrap gap-6 text-white/90 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="flex items-center gap-2">
-                  <Icon type="mapPin" size={20} aria-label="Localisation" />
+                  
                   <span>{venue.location}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon type="users" size={20} aria-label="Capacité" />
+                  
                   <span>{venue.capacityMin || 20} - {venue.capacitySeated} personnes</span>
                 </div>
                 {venue.rating && (
                   <div className="flex items-center gap-2">
-                    <Icon type="star" size={20} className="text-accent-light" aria-label="Note" />
+                    
                     <span>{venue.rating}/5 ({venue.reviewsCount} avis)</span>
                   </div>
                 )}
@@ -180,7 +179,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   {/* Capacité */}
                   <div>
                     <div className="flex items-center gap-2 text-accent-dark font-medium mb-2">
-                      <Icon type="users" size={18} aria-label="Capacité" />
+                      
                       Capacité
                     </div>
                     <ul className="text-sm text-secondary space-y-1 ml-6">
@@ -196,7 +195,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   {venue.amenitiesList && venue.amenitiesList.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2 text-accent-dark font-medium mb-2">
-                        <Icon type="sparkles" size={18} aria-label="Équipements" />
+                        
                         Équipements
                       </div>
                       <ul className="text-sm text-secondary space-y-1 ml-6">
@@ -209,15 +208,15 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
                   {/* Contact rapide */}
                   <div className="pt-4 border-t border-neutral-200">
-                    <Link href="/contact" className="btn-primary w-full justify-center">
+                    <Link href="/contact" className="btn-primary w-full">
                       Demander un devis
                     </Link>
                     {venue.contact?.phone && (
                       <a 
                         href={`tel:${venue.contact.phone}`}
-                        className="btn-secondary w-full justify-center mt-3"
+                        className="btn-secondary w-full inline-flex items-center gap-2 mt-3"
                       >
-                        <Icon type="phone" size={18} aria-label="Téléphone" />
+                        
                         {venue.contact.phone}
                       </a>
                     )}
@@ -236,12 +235,12 @@ export default async function VenuePage({ params }: VenuePageProps) {
             <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
               Espaces disponibles
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {venue.spaces.map((space: string, index: number) => (
                 <div key={index} className="bg-white p-6 rounded-lg border border-neutral-200">
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center shrink-0">
-                      <Icon type="building" size={20} className="text-accent" aria-label="Espace" />
+                      
                     </div>
                     <div>
                       <h3 className="font-heading font-semibold text-primary mb-1">{space}</h3>
@@ -281,7 +280,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
       {/* Contact et coordonnées */}
       <section id="contact" className="section section-alt">
         <div className="section-container">
-          <div className="max-w-4xl mx-auto">
+          <div>
             <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
               Contactez-nous
             </h2>
@@ -295,7 +294,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                 <div className="space-y-4">
                   {venue.contact?.phone && (
                     <div className="flex items-start gap-3">
-                      <Icon type="phone" size={20} className="text-accent mt-1" aria-label="Téléphone" />
+                      
                       <div>
                         <div className="text-sm text-secondary mb-1">Téléphone</div>
                         <a href={`tel:${venue.contact.phone}`} className="text-primary font-medium hover:text-accent transition-colors">
@@ -307,7 +306,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   
                   {venue.contact?.email && (
                     <div className="flex items-start gap-3">
-                      <Icon type="mail" size={20} className="text-accent mt-1" aria-label="Email" />
+                      
                       <div>
                         <div className="text-sm text-secondary mb-1">Email</div>
                         <a href={`mailto:${venue.contact.email}`} className="text-primary font-medium hover:text-accent transition-colors break-all">
@@ -319,7 +318,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   
                   {venue.address && typeof venue.address === 'string' && (
                     <div className="flex items-start gap-3">
-                      <Icon type="mapPin" size={20} className="text-accent mt-1" aria-label="Adresse" />
+                      
                       <div>
                         <div className="text-sm text-secondary mb-1">Adresse</div>
                         <address className="text-primary font-medium not-italic">
@@ -331,7 +330,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
                   {venue.contact?.instagram && (
                     <div className="flex items-start gap-3">
-                      <Icon type="instagram" size={20} className="text-accent mt-1" aria-label="Instagram" />
+                      
                       <div>
                         <div className="text-sm text-secondary mb-1">Instagram</div>
                         <a 
@@ -354,7 +353,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-accent hover:text-accent-dark transition-colors font-medium"
                       >
-                        <Icon type="externalLink" size={18} aria-label="Lien externe" />
+                        
                         Voir sur Mariages.net
                       </a>
                     </div>
@@ -372,7 +371,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                 </p>
                 <Link 
                   href="/contact" 
-                  className="btn-primary w-full justify-center"
+                  className="btn-primary w-full"
                   style={{ background: 'white', color: 'var(--primary)' }}
                 >
                   Demander un devis
