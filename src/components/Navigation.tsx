@@ -132,7 +132,7 @@ export default function Navigation() {
                 className={getLinkClasses('/catalogue')}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Catalogue des Lieux
+                Catalogue
               </Link>
               <Link 
                 href="/evenements-b2b" 

@@ -94,31 +94,19 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
                 <span className="text-primary mr-2 mt-1 font-bold">•</span>
-                <div>
-                  <span className="text-secondary block">Séminaires & Conférences</span>
-                  <span className="text-xs text-secondary/70">10 à 500 participants</span>
-                </div>
+                <span className="text-secondary">Séminaires & Conférences</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-2 mt-1 font-bold">•</span>
-                <div>
-                  <span className="text-secondary block">Mariages & Réceptions</span>
-                  <span className="text-xs text-secondary/70">50 à 300 invités</span>
-                </div>
+                <span className="text-secondary">Mariages & Réceptions</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-2 mt-1 font-bold">•</span>
-                <div>
-                  <span className="text-secondary block">Événements Corporate</span>
-                  <span className="text-xs text-secondary/70">Team building, galas</span>
-                </div>
+                <span className="text-secondary">Événements Corporate</span>
               </li>
               <li className="flex items-start">
                 <span className="text-primary mr-2 mt-1 font-bold">•</span>
-                <div>
-                  <span className="text-secondary block">Hébergement & Restauration</span>
-                  <span className="text-xs text-secondary/70">Service complet</span>
-                </div>
+                <span className="text-secondary">Hébergement & Restauration</span>
               </li>
             </ul>
           </div>
@@ -226,48 +214,6 @@ export default function Footer() {
             <span className="group-hover:animate-bounce mr-1">↑</span>
             <span>Retour en haut</span>
           </button>
-        </div>
-      </div>
-
-      {/* Section légale */}
-      <div className="border-t border-border bg-muted/30">
-        <div className="section-container py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            {/* Copyright */}
-            <div className="text-center md:text-left">
-              <p className="text-sm text-secondary">
-                © 2024 Lieux d&apos;Exception - Groupe Riou. Tous droits réservés.
-              </p>
-            </div>
-
-            {/* Liens légaux */}
-            <div className="flex flex-wrap justify-center md:justify-end space-x-4 text-sm text-secondary">
-              <Link 
-                href="/mentions-legales" 
-                className="hover:text-primary transition-colors"
-              >
-                Mentions légales
-              </Link>
-              <Link 
-                href="/confidentialite" 
-                className="hover:text-primary transition-colors"
-              >
-                Confidentialité
-              </Link>
-              <Link 
-                href="/cookies" 
-                className="hover:text-primary transition-colors"
-              >
-                Cookies
-              </Link>
-              <Link 
-                href="/cgv" 
-                className="hover:text-primary transition-colors"
-              >
-                CGV
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
     </footer>

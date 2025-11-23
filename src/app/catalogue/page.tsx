@@ -30,14 +30,14 @@ export default async function CataloguePage() {
     <main className="min-h-screen">
       
       {/* Hero Section */}
-      <section className="section-alt py-16">
+      <section className="section-alt py-12 md:py-16">
         <div className="section-container">
           <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-display font-semibold text-primary mb-6 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-primary mb-6 animate-fade-in">
               Catalogue des Lieux d&apos;Exception
             </h1>
             <div className="accent-line" />
-            <p className="text-xl text-secondary leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className="text-lg md:text-xl text-secondary leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
               Découvrez notre sélection de {venues.length} lieux événementiels d&apos;exception en France, 
               parfaits pour vos événements professionnels et mariages.
             </p>
@@ -56,10 +56,10 @@ export default async function CataloguePage() {
       <section className="section">
         <div className="section-container">
           <div className="text-center">
-            <h2 className="text-3xl font-display font-semibold text-primary mb-4">
+            <h2 className="text-2xl md:text-3xl font-display font-semibold text-primary mb-4">
               Besoin d&apos;aide pour choisir ?
             </h2>
-            <p className="text-secondary text-lg mb-8">
+            <p className="text-secondary text-base md:text-lg mb-6 md:mb-8">
               Nos experts sont là pour vous conseiller et vous aider à trouver 
               le lieu parfait pour votre événement.
             </p>
@@ -67,7 +67,7 @@ export default async function CataloguePage() {
               <Link href="/contact" className="btn-primary">
                 Demander un devis
               </Link>
-              <a href="tel:0602037011" className="btn-secondary">
+              <a href="tel:0602037011" className="btn-secondary text-sm md:text-base">
                 <span className="text-xs uppercase tracking-wider mr-2">Tel</span>
                 06 02 03 70 11
               </a>

@@ -43,10 +43,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    // TODO: Ajouter les codes de vérification Google Search Console
-    google: 'google-verification-code',
-  },
 };
 
 /**

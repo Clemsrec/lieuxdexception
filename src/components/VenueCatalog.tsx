@@ -91,16 +91,16 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
   return (
     <>
       {/* Filtres de recherche */}
-      <div className="bg-stone/30 rounded-xl p-6 mb-12 border border-accent/10">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="text-accent uppercase tracking-widest text-sm font-medium">Filtres</span>
+      <div className="bg-stone/30 rounded-xl p-6 md:p-8 mb-12 border border-accent/10">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8">
+          <span className="text-accent uppercase tracking-widest text-xs md:text-sm font-medium">Filtres</span>
           <div className="w-12 h-px bg-accent/30" />
-          <h2 className="text-2xl font-display font-semibold text-primary">
+          <h2 className="text-xl md:text-2xl font-display font-semibold text-primary">
             Filtrer par vos critères
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6">
           
           {/* Type d'événement */}
           <div>
@@ -180,15 +180,15 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
         </div>
 
         {/* Actions */}
-        <div className="flex justify-between items-center pt-4 border-t border-accent/10">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6 border-t border-accent/10">
           <button
             onClick={resetFilters}
-            className="text-secondary hover:text-primary transition-colors flex items-center gap-2"
+            className="text-secondary hover:text-primary transition-colors flex items-center gap-2 text-sm md:text-base"
           >
             <span className="text-xl">×</span>
             Réinitialiser les filtres
           </button>
-          <div className="text-sm text-secondary">
+          <div className="text-sm md:text-base text-secondary">
             <span className="font-semibold text-accent">{filteredVenues.length}</span> lieu{filteredVenues.length > 1 ? 'x' : ''} trouvé{filteredVenues.length > 1 ? 's' : ''}
           </div>
         </div>
@@ -209,7 +209,7 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           {filteredVenues.map((venue) => (
             <VenueCard key={venue.id} venue={venue} />
           ))}
@@ -234,15 +234,15 @@ function VenueCard({ venue }: { venue: Venue }) {
     : 'Sur demande';
 
   return (
-    <article className="venue-card group">
+    <article className="venue-card group overflow-hidden">
       {/* Image principale */}
-      <Link href={`/lieux/${venue.slug}`} className="block relative mb-6 overflow-hidden rounded-lg">
-        <div className="relative w-full aspect-16/10 bg-stone/20">
+      <Link href={`/lieux/${venue.slug}`} className="block relative overflow-hidden">
+        <div className="relative w-full aspect-16/10 md:aspect-16/11 bg-stone/20">
           <Image
             src={venue.images.hero || '/images/venues/placeholder.jpg'}
             alt={venue.name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         </div>
@@ -257,7 +257,7 @@ function VenueCard({ venue }: { venue: Venue }) {
       </Link>
 
       {/* Contenu */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col p-6 md:p-8">
         <Link href={`/lieux/${venue.slug}`} className="group-hover:text-accent transition-colors">
           <h3 className="text-2xl font-display font-semibold text-primary mb-2">
             {venue.name}
@@ -290,34 +290,34 @@ function VenueCard({ venue }: { venue: Venue }) {
         {/* Tags types d'événements */}
         <div className="flex flex-wrap gap-2 mb-6">
           {venue.eventTypes?.includes('wedding') && (
-            <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
+            <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs md:text-sm font-medium">
               Mariages
             </span>
           )}
           {(venue.eventTypes?.includes('corporate') || venue.eventTypes?.includes('conference') || venue.eventTypes?.includes('seminar')) && (
-            <span className="inline-flex items-center gap-1.5 bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-medium">
+            <span className="inline-flex items-center gap-1.5 bg-accent/10 text-accent px-3 py-1.5 rounded-full text-xs md:text-sm font-medium">
               Événements B2B
             </span>
           )}
           {venue.amenitiesList && venue.amenitiesList.includes('Hébergement') && (
-            <span className="inline-flex items-center gap-1.5 bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-medium">
+            <span className="inline-flex items-center gap-1.5 bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-xs md:text-sm font-medium">
               Hébergement
             </span>
           )}
         </div>
 
         {/* Footer avec prix et CTA */}
-        <div className="flex justify-between items-end mt-auto pt-4 border-t border-stone/20">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mt-auto pt-6 border-t border-stone/20">
           <div>
-            <span className="text-xs text-secondary block mb-1">À partir de</span>
-            <div className="font-semibold text-xl text-accent">
+            <span className="text-xs md:text-sm text-secondary block mb-1.5">À partir de</span>
+            <div className="font-semibold text-xl md:text-2xl text-accent">
               {dayRate}
-              <span className="text-sm text-secondary font-normal">/jour</span>
+              <span className="text-sm md:text-base text-secondary font-normal">/jour</span>
             </div>
           </div>
-          <Link href={`/lieux/${venue.slug}`} className="btn-primary text-sm px-5 py-2.5 flex items-center gap-2">
-            Découvrir
-            <span>→</span>
+          <Link href={`/lieux/${venue.slug}`} className="btn-primary text-sm md:text-base px-6 py-3 flex items-center gap-2 w-full sm:w-auto justify-center group/btn">
+            Découvrir ce lieu
+            <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
       </div>
