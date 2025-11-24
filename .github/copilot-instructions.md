@@ -16,6 +16,27 @@
 - **Accessibilité** : Labels uppercase avec `tracking-wider` pour remplacer icônes visuelles
 - **Voir `docs/LUXE-DESIGN-GUIDELINES.md`** pour le design luxe sans icônes
 
+### Layout Dashboard Admin 🎛️
+- **Sans header/footer public** : Le dashboard admin ne doit PAS inclure Navigation.tsx ni Footer.tsx
+- **Header indépendant** : Créer un header admin distinct dans le layout du dashboard
+- **Layout dédié** : Utiliser `app/admin/layout.tsx` pour wrapper toutes les pages admin
+- **Navigation admin** : Sidebar ou top nav spécifique au dashboard (liens admin uniquement)
+
+### Emojis - Règle Stricte 🚫
+- **INTERDICTION TOTALE** : Ne JAMAIS utiliser d'emojis dans les pages publiques (home, catalogue, lieux, mariages, etc.)
+- **INTERDICTION DASHBOARD** : Ne JAMAIS utiliser d'emojis dans l'interface admin/dashboard
+- **EXCEPTION UNIQUE** : Emojis autorisés UNIQUEMENT pour les notifications/alertes système (⚠️ ❌ ✅ 🚫)
+  - Messages d'erreur : `❌ Erreur de connexion`
+  - Alertes : `⚠️ Attention, trop de tentatives`
+  - Succès : `✅ Enregistré avec succès`
+  - Bloqué : `🚫 Accès refusé`
+- **PRÉFÉRER LUCIDE ICONS** : Pour toute icône fonctionnelle, utiliser la bibliothèque Lucide React
+  ```tsx
+  import { AlertTriangle, CheckCircle, XCircle, Lock } from 'lucide-react';
+  <AlertTriangle className="w-5 h-5 text-yellow-500" />
+  ```
+- **Design luxe** : Les emojis cassent l'esthétique haut de gamme du site
+
 ### Qualité du Code
 - **JAMAIS INVENTER DE DONNÉES** : Ni fausses données, ni faux texte, ni contenu placeholder
   - Si donnée manquante → Demander au client ou laisser vide avec TODO

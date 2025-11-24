@@ -57,8 +57,8 @@ export default function NotFoundPage() {
       </div>
 
       {/* Contenu principal */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
-        <div className="max-w-2xl w-full">
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+        <div className="w-full">
           {/* Logo */}
           <div
             className={`text-center mb-8 transition-all duration-700 ${
@@ -77,7 +77,7 @@ export default function NotFoundPage() {
 
           {/* Carte principale */}
           <div
-            className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-white/50 transition-all duration-700 delay-200 ${
+            className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12 border border-white/50 transition-all duration-700 delay-200 max-w-4xl mx-auto ${
               mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >

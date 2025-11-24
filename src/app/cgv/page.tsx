@@ -34,11 +34,11 @@ export default function CGVPage() {
       </div>
 
       {/* Contenu */}
-      <div className="max-w-4xl mx-auto prose prose-lg">
+      <div className="max-w-4xl mx-auto">
         
         {/* Préambule */}
         <section className="mb-8">
-          <div className="bg-primary/5 p-6 rounded-lg border border-primary/10">
+          <div className="bg-primary/5 p-6 rounded-lg border border-primary/10 text-foreground">
             <h2 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
               
               Préambule
