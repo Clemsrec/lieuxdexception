@@ -55,16 +55,14 @@ export default function ContactPage() {
 
       {/* Formulaires */}
       <section className="section">
-        <div className="section-container">
-          <motion.div 
-            className="mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <ContactFormSwitcher />
-          </motion.div>
-        </div>
+        <motion.div 
+          className="mt-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <ContactFormSwitcher />
+        </motion.div>
       </section>
 
       {/* Informations de contact */}

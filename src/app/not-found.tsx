@@ -77,7 +77,7 @@ export default function NotFoundPage() {
 
           {/* Carte principale */}
           <div
-            className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12 border border-white/50 transition-all duration-700 delay-200 max-w-4xl mx-auto ${
+            className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12 border border-white/50 transition-all duration-700 delay-200 max-w-7xl mx-auto ${
               mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >

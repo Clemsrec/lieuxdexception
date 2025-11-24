@@ -76,7 +76,7 @@ export default function MariagesPage() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="relative aspect-4/3 overflow-hidden rounded-lg">
               <Image
                 src="/venues/chateau-de-la-brulaire/ef0dc0f1-274d-49f6-bdf8-abd123a8eaa2-01.webp"
                 alt="Château de la Brûlaire"
@@ -85,7 +85,7 @@ export default function MariagesPage() {
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="relative aspect-4/3 overflow-hidden rounded-lg">
               <Image
                 src="/venues/manoir-de-la-boulaie/image-17-nov-2025-18-29-07-01.webp"
                 alt="Manoir de la Boulaie"
@@ -94,7 +94,7 @@ export default function MariagesPage() {
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="relative aspect-4/3 overflow-hidden rounded-lg">
               <Image
                 src="/venues/chateau-de-la-corbe/photo-2025-11-13-18-49-13-3-01.webp"
                 alt="Château de la Corbe"
@@ -103,7 +103,7 @@ export default function MariagesPage() {
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="relative aspect-4/3 overflow-hidden rounded-lg">
               <Image
                 src="/venues/domaine-nantais/image-17-nov-2025-19-34-28-01.webp"
                 alt="Domaine Nantais"
@@ -112,7 +112,7 @@ export default function MariagesPage() {
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="relative aspect-4/3 overflow-hidden rounded-lg">
               <Image
                 src="/venues/le-dome/whatsapp-image-2025-11-05-at-12-03-07-1-01.webp"
                 alt="Le Dôme"
@@ -121,7 +121,7 @@ export default function MariagesPage() {
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="relative aspect-4/3 overflow-hidden rounded-lg">
               <Image
                 src="/venues/chateau-de-la-brulaire/img-0079-02.webp"
                 alt="Détail château"

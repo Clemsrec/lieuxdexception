@@ -34,7 +34,7 @@ export default function CGVPage() {
       </div>
 
       {/* Contenu */}
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         
         {/* Préambule */}
         <section className="mb-8">

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import CookieSettings from '@/components/CookieSettings';
 
 /**
  * Métadonnées pour la page Politique des Cookies
@@ -31,7 +32,7 @@ export default function CookiesPage() {
       </div>
 
       {/* Contenu */}
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         
         {/* Introduction */}
         <section className="mb-8">
@@ -388,13 +389,18 @@ export default function CookiesPage() {
         </section>
 
         {/* Dernière mise à jour */}
-        <section className="text-center pt-8 border-t border-border">
+        <section className="text-center pt-8 border-t border-border mb-12">
           <p className="text-sm text-secondary">
             Dernière mise à jour : 5 novembre 2024
           </p>
           <p className="text-xs text-secondary mt-2">
             Version 2.1 - Cette politique est mise à jour régulièrement
           </p>
+        </section>
+
+        {/* Gestion des préférences */}
+        <section className="mb-8">
+          <CookieSettings />
         </section>
         </div>
         </div>

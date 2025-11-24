@@ -24,14 +24,14 @@ export default function ConfidentialitePage() {
         <div className="section-container">
           {/* Header */}
           <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Politique de Confidentialité</h1>
-        <p className="text-secondary">
-          Protection et traitement de vos données personnelles - Conforme RGPD
-        </p>
-      </div>
+            <h1 className="text-4xl font-bold mb-4">Politique de Confidentialité</h1>
+            <p className="text-secondary">
+              Protection et traitement de vos données personnelles - Conforme RGPD
+            </p>
+          </div>
 
-      {/* Contenu */}
-      <div className="max-w-4xl mx-auto">
+          {/* Contenu */}
+          <div className="max-w-7xl mx-auto">
         
         {/* Introduction */}
         <section className="mb-8">
@@ -352,7 +352,7 @@ export default function ConfidentialitePage() {
             Cette politique peut être mise à jour. La version en vigueur est toujours disponible sur cette page.
           </p>
         </section>
-        </div>
+          </div>
         </div>
       </section>
     </main>

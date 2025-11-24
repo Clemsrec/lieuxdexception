@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CookieBanner from "@/components/CookieBanner";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 
 /**
@@ -71,6 +72,9 @@ export default function RootLayout({
         
         {/* Footer principal */}
         <Footer />
+        
+        {/* Banner de consentement des cookies (RGPD) */}
+        <CookieBanner />
       </body>
     </html>
   );

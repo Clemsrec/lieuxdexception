@@ -31,7 +31,7 @@ export default function MentionsLegalesPage() {
       </div>
 
       {/* Contenu légal */}
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         
         {/* Éditeur du site */}
         <section className="mb-8">
