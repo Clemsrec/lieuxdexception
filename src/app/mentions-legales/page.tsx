@@ -19,10 +19,11 @@ export const metadata: Metadata = {
  */
 export default function MentionsLegalesPage() {
   return (
-    <div className="section-container py-12">
-      
-      {/* Header */}
-      <div className="text-center mb-12">
+    <main className="min-h-screen">
+      <section className="section">
+        <div className="section-container">
+          {/* Header */}
+          <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Mentions Légales</h1>
         <p className="text-secondary">
           Informations légales obligatoires du site Lieux d&apos;Exception
@@ -132,7 +133,9 @@ export default function MentionsLegalesPage() {
             Dernière mise à jour : 5 novembre 2024
           </p>
         </section>
-      </div>
-    </div>
+        </div>
+        </div>
+      </section>
+    </main>
   );
 }

@@ -51,13 +51,13 @@ export default function Navigation() {
   const getLinkClasses = (href: string) => {
     const baseClasses = "transition-colors duration-200";
     const activeClasses = "text-primary font-medium";
-    const inactiveClasses = "text-foreground/80 hover:text-primary";
+    const inactiveClasses = "text-foreground hover:text-primary";
     
     return `${baseClasses} ${isActive(href) ? activeClasses : inactiveClasses}`;
   };
 
   return (
-    <nav className="bg-background/95 backdrop-blur-md border-b border-border sticky top-0 z-50">
+    <nav className="bg-background backdrop-blur-md border-b border-border sticky top-0 z-50">
       <div className="header-footer-container">
         <div className="flex items-center justify-between h-16">
           

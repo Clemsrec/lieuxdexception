@@ -22,14 +22,12 @@ service cloud.firestore {
     
     /**
      * Vérifie si l'utilisateur est admin
-     * TODO: Ajouter un système de rôles dans Firestore
+     * Utilise les custom claims Firebase (admin: true)
+     * Configurer via: npx tsx scripts/set-admin-claims.ts grant <email>
      */
     function isAdmin() {
       return isAuthenticated() && 
-             request.auth.token.email in [
-               'admin@grouperiou.com',
-               'contact@grouperiou.com'
-             ];
+             request.auth.token.admin == true;
     }
     
     /**
@@ -155,6 +153,36 @@ service cloud.firestore {
       
       // Mise à jour/Suppression: Admin uniquement
       allow update, delete: if isAdmin();
+    }
+    
+    // ===========================================
+    // COLLECTION: AUDIT_LOGS (Logs d'audit)
+    // ===========================================
+    
+    match /audit_logs/{logId} {
+      // Lecture: Admin uniquement
+      allow read: if isAdmin();
+      
+      // Création: Admins peuvent créer des logs
+      allow create: if isAdmin();
+      
+      // Modification/Suppression: Interdites (logs immuables)
+      allow update, delete: if false;
+    }
+    
+    // ===========================================
+    // COLLECTION: SECURITY_LOGS (Logs sécurité)
+    // ===========================================
+    
+    match /security_logs/{logId} {
+      // Lecture: Admin uniquement
+      allow read: if isAdmin();
+      
+      // Création: Tout le monde (logs automatiques)
+      allow create: if true;
+      
+      // Modification/Suppression: Interdites (logs immuables)
+      allow update, delete: if false;
     }
     
     // ===========================================

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 
 /**
  * Métadonnées principales pour le site Lieux d'Exception
@@ -57,6 +58,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased">
+        {/* Enregistrement Service Worker pour FCM */}
+        <ServiceWorkerRegistration />
+        
         {/* Navigation principale */}
         <Navigation />
         

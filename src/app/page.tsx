@@ -2,15 +2,16 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getVenues } from '@/lib/firestore';
+import { generateHomeMetadata } from '@/lib/smartMetadata';
+import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
+import HeroCarousel from '@/components/HeroCarousel';
+import HeroSection from '@/components/HeroSection';
 
 // ISR : Cache avec revalidation toutes les heures
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Lieux d\'Exception | La clé de vos moments uniques',
-  description: 'Découvrez 5 domaines d\'exception en France pour vos mariages et événements professionnels. Châteaux, domaines et salles de prestige sélectionnés avec passion.',
-  keywords: ['lieux d\'exception', 'mariages', 'événements B2B', 'châteaux', 'domaines', 'séminaires', 'réceptions'],
-};
+// Métadonnées SEO optimisées avec système universel
+export const metadata: Metadata = generateHomeMetadata();
 
 /**
  * Page d'accueil - Lieux d'Exception
@@ -19,53 +20,69 @@ export const metadata: Metadata = {
  * Contenu basé sur la brochure officielle Lieux d'Exception
  */
 export default async function Home() {
-  // Récupérer les domaines mis en avant
-  const venues = await getVenues({ featured: true });
+  // Récupérer TOUS les domaines (5 châteaux)
+  const venues = await getVenues();
+
+  // Générer structured data pour la page d'accueil
+  const organizationSchema = generateUniversalStructuredData({
+    siteType: 'corporate',
+    pageType: 'homepage',
+    url: 'https://lieuxdexception.fr'
+  });
+
+  const faqSchema = generateFAQSchema('homepage');
 
   return (
     <main className="min-h-screen">
       
-      {/* Hero Section */}
-      <section className="hero-section relative">
-        <Image
-          src="/images/Vue-chateau.jpg"
-          alt=""
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
+      {/* Structured Data JSON-LD */}
+      {organizationSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <div className="hero-content">
-          <h1 className="hero-title animate-fade-in">
-            Lieux d&apos;Exception
-          </h1>
-          <div className="accent-line" />
-          <p className="hero-subtitle animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            La clé de vos moments uniques
-          </p>
-          <p className="text-white/90 text-base md:text-lg mb-6 md:mb-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            Des domaines où se mêlent beauté, sincérité et art de recevoir
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            <Link href="/catalogue" className="btn-primary">
-              Découvrir nos lieux
-            </Link>
-            <Link href="/contact" className="btn-secondary" style={{ color: 'white', borderColor: 'white' }}>
-              Nous contacter
-            </Link>
-          </div>
-        </div>
-      </section>
+      )}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
+      {/* Hero Section avec carousel de photos réelles des châteaux */}
+      <HeroSection
+        title="Lieux d'Exception"
+        subtitle="La clé de vos moments uniques"
+        description="Des domaines où se mêlent beauté, sincérité et art de recevoir"
+        buttons={[
+          { label: "Découvrir nos lieux", href: "/catalogue", primary: true },
+          { label: "Nous contacter", href: "/contact", primary: false }
+        ]}
+        carousel={
+          <HeroCarousel 
+            images={venues
+              .filter(v => v.heroImage || v.images?.heroImage)
+              .map(v => v.heroImage || v.images?.heroImage || v.images?.hero)
+              .filter(Boolean)
+              .slice(0, 5)}
+            fallbackImages={[
+              '/images/Vue-chateau.jpg',
+              '/images/table.jpg',
+              '/images/salle-seminaire.jpg',
+            ]}
+          />
+        }
+      />
 
       {/* Histoire et Philosophie */}
       <section className="section">
         <div className="section-container">
           <div>
-            <h2 className="section-title animate-fade-in">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-primary mb-6 md:mb-8 animate-fade-in">
               Une aventure née de lieux & de passion
             </h2>
-            <div className="accent-line" />
-            <div className="section-subtitle animate-fade-in space-y-4 md:space-y-6 text-base md:text-lg">
+            <div className="w-20 h-px bg-accent/40 mb-6 md:mb-8" />
+            <div className="text-secondary animate-fade-in space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed">
               <p>
                 Tout commence par un lieu.
               </p>
@@ -101,13 +118,14 @@ export default async function Home() {
             {venues.map((venue, index) => (
               <Link
                 key={venue.id}
-                href={`/lieux/${venue.slug}`}
+                href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
+                {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className="venue-card animate-fade-in group overflow-hidden"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="relative h-72 md:h-80 lg:h-96 overflow-hidden">
                   <Image
-                    src={venue.images.hero}
+                    src={venue.cardImage || venue.images?.cardImage || venue.heroImage || venue.images?.hero || '/images/placeholder.jpg'}
                     alt={venue.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -151,7 +169,7 @@ export default async function Home() {
                   </div>
                   
                   <div className="flex items-center text-primary font-medium text-sm md:text-base group-hover:text-accent transition-colors mt-auto pt-4 border-t border-stone/20">
-                    Découvrir ce lieu
+                    {venue.externalUrl || venue.url || venue.contact?.website ? 'Visiter le site' : 'Découvrir ce lieu'}
                     <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                   </div>
                 </div>

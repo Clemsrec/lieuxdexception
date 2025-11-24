@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aperçu Photos Cards - Lieux d'Exception</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: #888;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+    
+    .venue-section {
+      margin-bottom: 4rem;
+    }
+    
+    .venue-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #D4AF37;
+      text-transform: capitalize;
+    }
+    
+    .images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .image-card {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      background: #1a1a1a;
+    }
+    
+    .image-card:hover {
+      transform: scale(1.02);
+    }
+    
+    .image-card.selected {
+      outline: 4px solid #D4AF37;
+      outline-offset: -4px;
+    }
+    
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .image-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      padding: 12px;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+    
+    .selected-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #D4AF37;
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .stats {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      color: #D4AF37;
+      font-weight: bold;
+    }
+    
+    .stat-label {
+      color: #888;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📸 Aperçu Photos Cards</h1>
+    <p class="subtitle">Cliquez sur une image pour la sélectionner comme photo de card</p>
+    
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Châteaux</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">70</div>
+        <div class="stat-label">Images optimisées</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">90%</div>
+        <div class="stat-label">Réduction poids</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">WebP</div>
+        <div class="stat-label">Format moderne</div>
+      </div>
+    </div>
+    
+    <!-- Château de la Brûlaire -->
+    <div class="venue-section">
+      <h2 class="venue-title">🏰 Château de la Brûlaire (17 images)</h2>
+      <div class="images-grid">
+        <div class="image-card selected" data-venue="chateau-de-la-brulaire" data-index="0">
+          <img src="/venues/chateau-de-la-brulaire/thumbnails/ef0dc0f1-274d-49f6-bdf8-abd123a8eaa2-01.webp" alt="Château de la Brûlaire 1">
+          <div class="selected-badge">Suggéré</div>
+          <div class="image-label">Photo 1 - Portrait</div>
+        </div>
+        <div class="image-card" data-venue="chateau-de-la-brulaire" data-index="6">
+          <img src="/venues/chateau-de-la-brulaire/thumbnails/le-1825-la-table-domaine-de-la-brulaire-00004-07.webp" alt="Château de la Brûlaire 7">
+          <div class="image-label">Photo 7 - Restaurant</div>
+        </div>
+        <div class="image-card" data-venue="chateau-de-la-brulaire" data-index="2">
+          <img src="/venues/chateau-de-la-brulaire/thumbnails/img-0380-03.webp" alt="Château de la Brûlaire 3">
+          <div class="image-label">Photo 3 - Extérieur</div>
+        </div>
+        <div class="image-card" data-venue="chateau-de-la-brulaire" data-index="11">
+          <img src="/venues/chateau-de-la-brulaire/thumbnails/photo-2025-11-17-12-42-11-3-12.webp" alt="Château de la Brûlaire 12">
+          <div class="image-label">Photo 12 - Paysage</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Château de la Corbe -->
+    <div class="venue-section">
+      <h2 class="venue-title">🏰 Château de la Corbe (17 images)</h2>
+      <div class="images-grid">
+        <div class="image-card selected" data-venue="chateau-de-la-corbe" data-index="0">
+          <img src="/venues/chateau-de-la-corbe/thumbnails/photo-2025-11-13-18-49-13-3-01.webp" alt="Château de la Corbe 1">
+          <div class="selected-badge">Suggéré</div>
+          <div class="image-label">Photo 1 - Portrait</div>
+        </div>
+        <div class="image-card" data-venue="chateau-de-la-corbe" data-index="5">
+          <img src="/venues/chateau-de-la-corbe/thumbnails/photo-2025-11-18-12-05-42-06.webp" alt="Château de la Corbe 6">
+          <div class="image-label">Photo 6 - Vue</div>
+        </div>
+        <div class="image-card" data-venue="chateau-de-la-corbe" data-index="8">
+          <img src="/venues/chateau-de-la-corbe/thumbnails/photo-2025-11-18-12-05-44-09.webp" alt="Château de la Corbe 9">
+          <div class="image-label">Photo 9 - Intérieur</div>
+        </div>
+        <div class="image-card" data-venue="chateau-de-la-corbe" data-index="14">
+          <img src="/venues/chateau-de-la-corbe/thumbnails/photo-2025-11-18-12-05-47-2-15.webp" alt="Château de la Corbe 15">
+          <div class="image-label">Photo 15 - Panorama</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Domaine Nantais -->
+    <div class="venue-section">
+      <h2 class="venue-title">🏰 Domaine Nantais (6 images)</h2>
+      <div class="images-grid">
+        <div class="image-card selected" data-venue="domaine-nantais" data-index="0">
+          <img src="/venues/domaine-nantais/thumbnails/image-17-nov-2025-19-34-28-01.webp" alt="Domaine Nantais 1">
+          <div class="selected-badge">Suggéré</div>
+          <div class="image-label">Photo 1 - Paysage</div>
+        </div>
+        <div class="image-card" data-venue="domaine-nantais" data-index="3">
+          <img src="/venues/domaine-nantais/thumbnails/photo-2025-11-17-12-08-54-2-04.webp" alt="Domaine Nantais 4">
+          <div class="image-label">Photo 4 - Portrait</div>
+        </div>
+        <div class="image-card" data-venue="domaine-nantais" data-index="4">
+          <img src="/venues/domaine-nantais/thumbnails/photo-2025-11-17-12-08-55-2-05.webp" alt="Domaine Nantais 5">
+          <div class="image-label">Photo 5 - Vue</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Manoir de la Boulaie -->
+    <div class="venue-section">
+      <h2 class="venue-title">🏰 Manoir de la Boulaie (30 images)</h2>
+      <div class="images-grid">
+        <div class="image-card selected" data-venue="manoir-de-la-boulaie" data-index="0">
+          <img src="/venues/manoir-de-la-boulaie/thumbnails/image-17-nov-2025-18-29-07-01.webp" alt="Manoir de la Boulaie 1">
+          <div class="selected-badge">Suggéré</div>
+          <div class="image-label">Photo 1 - Paysage</div>
+        </div>
+        <div class="image-card" data-venue="manoir-de-la-boulaie" data-index="4">
+          <img src="/venues/manoir-de-la-boulaie/thumbnails/photo-2025-11-17-12-01-10-2-05.webp" alt="Manoir de la Boulaie 5">
+          <div class="image-label">Photo 5 - Panorama</div>
+        </div>
+        <div class="image-card" data-venue="manoir-de-la-boulaie" data-index="27">
+          <img src="/venues/manoir-de-la-boulaie/thumbnails/whatsapp-image-2025-11-11-at-08-54-40-28.webp" alt="Manoir de la Boulaie 28">
+          <div class="image-label">Photo 28 - Façade</div>
+        </div>
+        <div class="image-card" data-venue="manoir-de-la-boulaie" data-index="12">
+          <img src="/venues/manoir-de-la-boulaie/thumbnails/photo-2025-11-17-12-04-44-8-13.webp" alt="Manoir de la Boulaie 13">
+          <div class="image-label">Photo 13 - Intérieur</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Sélection interactive des images
+    document.querySelectorAll('.image-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const venue = this.dataset.venue;
+        
+        // Désélectionner les autres images du même château
+        document.querySelectorAll(`[data-venue="${venue}"]`).forEach(c => {
+          c.classList.remove('selected');
+          const badge = c.querySelector('.selected-badge');
+          if (badge && badge.textContent !== 'Suggéré') {
+            badge.remove();
+          }
+        });
+        
+        // Sélectionner cette image
+        this.classList.add('selected');
+        if (!this.querySelector('.selected-badge')) {
+          const badge = document.createElement('div');
+          badge.className = 'selected-badge';
+          badge.textContent = 'Sélectionné';
+          this.appendChild(badge);
+        }
+        
+        // Afficher dans console
+        const index = this.dataset.index;
+        const imgSrc = this.querySelector('img').src.replace('/thumbnails', '').replace(/.*\/venues/, '/venues');
+        console.log(`${venue}: Image ${parseInt(index) + 1} - ${imgSrc}`);
+      });
+    });
+    
+    console.log('%c📸 Photos suggérées par défaut:', 'font-size: 16px; font-weight: bold; color: #D4AF37');
+    console.log('chateau-de-la-brulaire: Image 1');
+    console.log('chateau-de-la-corbe: Image 1');
+    console.log('domaine-nantais: Image 1');
+    console.log('manoir-de-la-boulaie: Image 1');
+  </script>
+</body>
+</html>

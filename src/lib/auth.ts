@@ -33,16 +33,36 @@ export function useAuth(): AuthState {
 export const authActions = {
   async signIn(email: string, password: string) {
     if (!auth) throw new Error('Auth non disponible');
-    return signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    
+    // Récupérer le token ID pour le middleware
+    const idToken = await userCredential.user.getIdToken();
+    
+    // Stocker le token dans un cookie pour le middleware
+    document.cookie = `auth-token=${idToken}; path=/; max-age=3600; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`;
+    
+    return userCredential;
   },
 
   async signUp(email: string, password: string) {
     if (!auth) throw new Error('Auth non disponible');
-    return createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    
+    // Récupérer le token ID
+    const idToken = await userCredential.user.getIdToken();
+    
+    // Stocker le token
+    document.cookie = `auth-token=${idToken}; path=/; max-age=3600; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`;
+    
+    return userCredential;
   },
 
   async signOut() {
     if (!auth) throw new Error('Auth non disponible');
+    
+    // Supprimer le cookie
+    document.cookie = 'auth-token=; path=/; max-age=0';
+    
     return signOut(auth);
   },
 };

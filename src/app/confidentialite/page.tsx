@@ -19,10 +19,11 @@ export const metadata: Metadata = {
  */
 export default function ConfidentialitePage() {
   return (
-    <div className="section-container py-12">
-      
-      {/* Header */}
-      <div className="text-center mb-12">
+    <main className="min-h-screen">
+      <section className="section">
+        <div className="section-container">
+          {/* Header */}
+          <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Politique de Confidentialité</h1>
         <p className="text-secondary">
           Protection et traitement de vos données personnelles - Conforme RGPD
@@ -351,7 +352,9 @@ export default function ConfidentialitePage() {
             Cette politique peut être mise à jour. La version en vigueur est toujours disponible sur cette page.
           </p>
         </section>
-      </div>
-    </div>
+        </div>
+        </div>
+      </section>
+    </main>
   );
 }

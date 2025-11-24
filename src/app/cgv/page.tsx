@@ -19,10 +19,11 @@ export const metadata: Metadata = {
  */
 export default function CGVPage() {
   return (
-    <div className="section-container py-12">
-      
-      {/* Header */}
-      <div className="text-center mb-12">
+    <main className="min-h-screen">
+      <section className="section">
+        <div className="section-container">
+          {/* Header */}
+          <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Conditions Générales de Vente</h1>
         <p className="text-secondary">
           Conditions contractuelles pour la réservation de nos lieux d&apos;exception
@@ -414,7 +415,9 @@ export default function CGVPage() {
             Version 3.2 - Document contractuel à conserver
           </p>
         </section>
-      </div>
-    </div>
+        </div>
+        </div>
+      </section>
+    </main>
   );
 }

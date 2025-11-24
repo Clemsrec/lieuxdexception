@@ -96,12 +96,16 @@ export interface Venue {
   // Médias
   images: {
     hero: string; // Image principale
-    gallery: string[]; // Galerie d'images
+    heroImage?: string; // Image hero paysage pour homepage carousel
+    cardImage?: string; // Image pour les cards du catalogue (thumbnail optimisé)
+    gallery: string[]; // Galerie d'images complète
     virtual360?: string; // Visite virtuelle
   };
   
   // Format simplifié pour compatibilité
   image?: string; // Image principale (raccourci pour images.hero)
+  heroImage?: string; // Raccourci pour images.heroImage
+  cardImage?: string; // Raccourci pour images.cardImage
   gallery?: string[]; // Raccourci pour images.gallery
   
   // Services et équipements
@@ -142,6 +146,7 @@ export interface Venue {
   phone?: string;
   url?: string; // URL du site dédié du lieu
   websiteUrl?: string;
+  externalUrl?: string; // URL du site externe du lieu (prioritaire pour les cards)
   
   // Métadonnées
   featured: boolean;

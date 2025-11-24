@@ -2,7 +2,7 @@
  * Composant VenueCatalog - Catalogue de lieux avec filtrage
  * 
  * Affiche la liste des lieux avec système de filtres avancés côté client.
- * Gère le filtrage par type d'événement, capacité, région et budget.
+ * Gère le filtrage par type d'événement, capacité et région.
  * 
  * @example
  * ```tsx
@@ -25,7 +25,6 @@ interface Filters {
   eventType: 'all' | 'b2b' | 'wedding';
   capacity: number | null;
   region: string | null;
-  budget: number | null;
 }
 
 export default function VenueCatalog({ venues }: VenueCatalogProps) {
@@ -33,7 +32,6 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
     eventType: 'all',
     capacity: null,
     region: null,
-    budget: null,
   });
 
   /**
@@ -66,12 +64,6 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
         if (venue.region !== filters.region) return false;
       }
 
-      // Filtre par budget (utilise pricing.b2b.fullDay comme référence)
-      if (filters.budget !== null && venue.pricing) {
-        const dayRate = venue.pricing.b2b.fullDay || 0;
-        if (dayRate > filters.budget) return false;
-      }
-
       return true;
     });
   }, [venues, filters]);
@@ -84,7 +76,6 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
       eventType: 'all',
       capacity: null,
       region: null,
-      budget: null,
     });
   };
 
@@ -100,7 +91,7 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
           
           {/* Type d'événement */}
           <div>
@@ -141,7 +132,7 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
           {/* Région */}
           <div>
             <label htmlFor="region" className="form-label">
-              Région
+              Localisation
             </label>
             <select
               id="region"
@@ -149,32 +140,9 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
               value={filters.region || ''}
               onChange={(e) => setFilters({ ...filters, region: e.target.value || null })}
             >
-              <option value="">Toutes les régions</option>
-              <option value="Centre-Val de Loire">Centre-Val de Loire</option>
-              <option value="Pays de la Loire">Pays de la Loire</option>
-              <option value="Île-de-France">Île-de-France</option>
-              <option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d&apos;Azur</option>
-              <option value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</option>
-              <option value="Normandie">Normandie</option>
-            </select>
-          </div>
-
-          {/* Budget */}
-          <div>
-            <label htmlFor="budget" className="form-label">
-              Budget maximum / jour
-            </label>
-            <select
-              id="budget"
-              className="form-input"
-              value={filters.budget || ''}
-              onChange={(e) => setFilters({ ...filters, budget: e.target.value ? Number(e.target.value) : null })}
-            >
-              <option value="">Tous budgets</option>
-              <option value="5000">Jusqu&apos;à 5 000€</option>
-              <option value="8000">Jusqu&apos;à 8 000€</option>
-              <option value="12000">Jusqu&apos;à 12 000€</option>
-              <option value="20000">Plus de 12 000€</option>
+              <option value="">Toutes localisations</option>
+              <option value="Loire-Atlantique">Loire-Atlantique (44)</option>
+              <option value="Vendée">Vendée (85)</option>
             </select>
           </div>
         </div>
@@ -236,10 +204,14 @@ function VenueCard({ venue }: { venue: Venue }) {
   return (
     <article className="venue-card group overflow-hidden">
       {/* Image principale */}
-      <Link href={`/lieux/${venue.slug}`} className="block relative overflow-hidden">
+      <Link 
+        href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
+        {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        className="block relative overflow-hidden"
+      >
         <div className="relative w-full aspect-16/10 md:aspect-16/11 bg-stone/20">
           <Image
-            src={venue.images.hero || '/images/venues/placeholder.jpg'}
+            src={venue.cardImage || venue.images?.cardImage || venue.images?.hero || '/images/venues/placeholder.jpg'}
             alt={venue.name}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -258,7 +230,11 @@ function VenueCard({ venue }: { venue: Venue }) {
 
       {/* Contenu */}
       <div className="flex-1 flex flex-col p-6 md:p-8">
-        <Link href={`/lieux/${venue.slug}`} className="group-hover:text-accent transition-colors">
+        <Link 
+          href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
+          {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          className="group-hover:text-accent transition-colors"
+        >
           <h3 className="text-2xl font-display font-semibold text-primary mb-2">
             {venue.name}
           </h3>
@@ -315,8 +291,12 @@ function VenueCard({ venue }: { venue: Venue }) {
               <span className="text-sm md:text-base text-secondary font-normal">/jour</span>
             </div>
           </div>
-          <Link href={`/lieux/${venue.slug}`} className="btn-primary text-sm md:text-base px-6 py-3 flex items-center gap-2 w-full sm:w-auto justify-center group/btn">
-            Découvrir ce lieu
+          <Link 
+            href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
+            {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            className="btn-primary text-sm md:text-base px-6 py-3 flex items-center gap-2 w-full sm:w-auto justify-center group/btn"
+          >
+            {venue.externalUrl || venue.url || venue.contact?.website ? 'Visiter le site' : 'Découvrir ce lieu'}
             <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
           </Link>
         </div>

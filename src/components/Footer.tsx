@@ -197,9 +197,15 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Liens utiles */}
+            {/* Accès admin discret */}
             <div>
-              
+              <Link
+                href="/admin/connexion"
+                className="text-secondary/40 hover:text-primary transition-colors text-xs"
+                title="Administration"
+              >
+                ⚙️
+              </Link>
             </div>
           </div>
         </div>
