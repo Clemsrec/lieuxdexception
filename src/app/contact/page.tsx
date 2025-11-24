@@ -1,44 +1,75 @@
 'use client';
 
-import type { Metadata } from 'next';
 import ContactFormSwitcher from '@/components/ContactFormSwitcher';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
+import HeroSection from '@/components/HeroSection';
+import { generateContactMetadata } from '@/lib/smartMetadata';
+import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
+import { useEffect, useState } from 'react';
 
 /**
- * Page Contact avec animations Framer Motion
- * Design luxe sans icônes, avec animations légères
+ * Page Contact avec animations Framer Motion + SEO optimisé
  */
 export default function ContactPage() {
+  const [structuredData, setStructuredData] = useState<any>(null);
+  const [faqSchema, setFaqSchema] = useState<any>(null);
+
+  useEffect(() => {
+    // Générer structured data côté client
+    const contactSchema = generateUniversalStructuredData({
+      siteType: 'corporate',
+      pageType: 'contact',
+      url: 'https://lieuxdexception.fr/contact'
+    });
+    setStructuredData(contactSchema);
+
+    const faq = generateFAQSchema('contact');
+    setFaqSchema(faq);
+  }, []);
+
   return (
-    <div className="section-container py-12">
+    <main className="min-h-screen">
       
-      {/* Header */}
-      <motion.div 
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h1 className="text-5xl font-display font-semibold mb-6">Contactez-nous</h1>
-        <div className="accent-line" />
-        <p className="text-xl text-secondary mt-6 max-w-3xl mx-auto leading-relaxed">
-          Que ce soit pour un événement professionnel ou un mariage, 
-          notre équipe vous accompagne pour créer des moments inoubliables.
-        </p>
-      </motion.div>
+      {/* Structured Data */}
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      
+      {/* Hero Section */}
+      <HeroSection
+        title="Contactez-nous"
+        subtitle="Prêt à créer des moments inoubliables ?"
+        description="Que ce soit pour un événement professionnel ou un mariage, notre équipe vous accompagne pour créer des moments inoubliables."
+        backgroundImage="/venues/chateau-de-la-corbe/photo-2025-11-18-12-05-43-2-07.webp"
+      />
 
       {/* Formulaires */}
-      <motion.section 
-        className="mb-20"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <ContactFormSwitcher />
-      </motion.section>
+      <section className="section">
+        <div className="section-container">
+          <motion.div 
+            className="mt-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <ContactFormSwitcher />
+          </motion.div>
+        </div>
+      </section>
 
       {/* Informations de contact */}
-      <section className="mb-16">
+      <section className="section section-alt">
+        <div className="section-container">
         <motion.h2 
           className="text-3xl font-display font-semibold text-center mb-12"
           initial={{ opacity: 0 }}
@@ -127,8 +158,9 @@ export default function ContactPage() {
             </div>
           </motion.div>
         </div>
+        </div>
       </section>
 
-    </div>
+    </main>
   );
 }

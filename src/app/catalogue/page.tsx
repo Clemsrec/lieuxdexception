@@ -2,19 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getVenues } from '@/lib/firestore';
 import VenueCatalog from '@/components/VenueCatalog';
+import HeroSection from '@/components/HeroSection';
+import { generateCatalogueMetadata } from '@/lib/smartMetadata';
+import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
 
 // ISR : Cache avec revalidation toutes les 30 minutes
 export const revalidate = 1800;
 
 /**
- * Métadonnées pour la page Catalogue
- * Présentation des lieux d'exception avec filtres interactifs
+ * Métadonnées SEO optimisées via système universel
  */
-export const metadata: Metadata = {
-  title: 'Catalogue des Lieux | Lieux d\'Exception - Groupe Riou',
-  description: 'Découvrez notre collection de lieux événementiels d\'exception en France. Filtres par capacité, localisation et type d\'événement.',
-  keywords: 'catalogue lieux, événements, mariages, séminaires, châteaux, domaines',
-};
+export const metadata: Metadata = generateCatalogueMetadata();
 
 /**
  * Page Catalogue - Présentation des lieux d'exception
@@ -26,24 +24,44 @@ export default async function CataloguePage() {
   // Récupérer tous les lieux actifs
   const venues = await getVenues({ featured: true });
 
+  // Générer structured data
+  const catalogueSchema = generateUniversalStructuredData({
+    siteType: 'corporate',
+    pageType: 'catalogue',
+    data: { venues },
+    url: 'https://lieuxdexception.fr/catalogue'
+  });
+
+  const faqSchema = generateFAQSchema('catalogue');
+
   return (
     <main className="min-h-screen">
       
+      {/* Structured Data */}
+      {catalogueSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogueSchema) }}
+        />
+      )}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      
       {/* Hero Section */}
-      <section className="section-alt py-12 md:py-16">
-        <div className="section-container">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-primary mb-6 animate-fade-in">
-              Catalogue des Lieux d&apos;Exception
-            </h1>
-            <div className="accent-line" />
-            <p className="text-lg md:text-xl text-secondary leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Découvrez notre sélection de {venues.length} lieux événementiels d&apos;exception en France, 
-              parfaits pour vos événements professionnels et mariages.
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        title="Catalogue des Lieux d'Exception"
+        subtitle="Découvrez nos domaines"
+        description={`Notre sélection de ${venues.length} lieux événementiels d'exception en France, parfaits pour vos événements professionnels et mariages.`}
+        backgroundImage="/images/Vue-chateau.jpg"
+        buttons={[
+          { label: "Demander un devis", href: "/contact", primary: true },
+          { label: "Appeler", href: "tel:0602037011", primary: false }
+        ]}
+      />
 
       {/* Catalogue avec filtres */}
       <section className="section">

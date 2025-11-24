@@ -329,7 +329,7 @@ button[class*="bg-"]:hover {
   padding-bottom: 8rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .section {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -387,6 +387,7 @@ button[class*="bg-"]:hover {
   overflow: hidden;
 }
 
+/* Overlay désactivé car géré dans HeroCarousel
 .hero-section::before {
   content: '';
   position: absolute;
@@ -394,6 +395,7 @@ button[class*="bg-"]:hover {
   background: linear-gradient(180deg, rgba(27, 54, 93, 0.5) 0%, rgba(27, 54, 93, 0.75) 100%);
   z-index: 1;
 }
+*/
 
 /* Section avec image de fond (CTA, etc.) */
 .image-bg-section {
@@ -417,11 +419,11 @@ button[class*="bg-"]:hover {
 
 .hero-content {
   position: relative;
-  z-index: 2;
-  text-align: center;
+  z-index: 30; /* Au-dessus des overlays du carousel (z-20) */
+  text-align: left;
   color: white;
   padding: 0 2rem;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .hero-content h1,
@@ -429,7 +431,10 @@ button[class*="bg-"]:hover {
 .hero-content .hero-title,
 .hero-content .hero-subtitle {
   color: white !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4), 0 4px 40px rgba(0, 0, 0, 0.3);
+  /* text-shadow renforcé pour meilleur contraste avec photos */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 
+               0 4px 16px rgba(0, 0, 0, 0.6),
+               0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .hero-title {
@@ -442,7 +447,7 @@ button[class*="bg-"]:hover {
   color: white;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .hero-title {
     font-size: var(--font-size-5xl);
   }
@@ -625,7 +630,7 @@ html {
 
 /* ========== RESPONSIVE HELPERS ========== */
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   h1 {
     font-size: var(--font-size-5xl);
   }
@@ -695,4 +700,59 @@ img[alt="Lieux d'Exception"] {
 nav img[alt="Lieux d'Exception"] {
   max-width: 120px !important;
   max-height: 35px !important;
+}
+
+/* ========== ANIMATIONS ========== */
+
+/* Animation shake pour les erreurs */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Animation float pour particules décoratives (page 404) */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Animation bounce personnalisée (plus subtile) */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-8px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
 }

@@ -24,6 +24,7 @@ const config = {
       },
     ],
     formats: ['image/avif', 'image/webp'],
+    qualities: [75, 90], // Qualités utilisées (75 par défaut, 90 pour images importantes)
   },
   
   // Désactiver strictMode en production pour éviter les double-renders
