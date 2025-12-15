@@ -39,8 +39,22 @@
     "visitWebsite": "Website besuchen",
     "accommodation": "Unterkunft",
     "parking": "Parkplatz",
-    "catering": "Gastronomie",
-    "eventTypes": {
+    "catering": "Gastronomie",    "filters": {
+      "title": "Nach Ihren Kriterien filtern",
+      "eventType": "Veranstaltungstyp",
+      "allEvents": "Alle Veranstaltungen",
+      "b2bEvents": "B2B-Events",
+      "weddings": "Hochzeiten",
+      "minCapacity": "Mindestkapazität",
+      "allCapacities": "Alle Kapazitäten",
+      "location": "Standort",
+      "allLocations": "Alle Standorte",
+      "reset": "Filter zurücksetzen",
+      "venuesFound": "Ort gefunden",
+      "venuesFoundPlural": "Orte gefunden",
+      "noVenuesTitle": "Keine Orte gefunden",
+      "noVenuesDescription": "Versuchen Sie, Ihre Suchkriterien zu ändern, um mehr Ergebnisse zu sehen."
+    },    "eventTypes": {
       "wedding": "Hochzeiten",
       "b2b": "B2B-Events",
       "seminar": "Seminare",

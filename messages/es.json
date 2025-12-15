@@ -39,8 +39,22 @@
     "visitWebsite": "Visitar el sitio",
     "accommodation": "Alojamiento",
     "parking": "Aparcamiento",
-    "catering": "Restauración",
-    "eventTypes": {
+    "catering": "Restauración",    "filters": {
+      "title": "Filtrar por sus criterios",
+      "eventType": "Tipo de evento",
+      "allEvents": "Todos los eventos",
+      "b2bEvents": "Eventos B2B",
+      "weddings": "Bodas",
+      "minCapacity": "Capacidad mínima",
+      "allCapacities": "Todas las capacidades",
+      "location": "Ubicación",
+      "allLocations": "Todas las ubicaciones",
+      "reset": "Restablecer filtros",
+      "venuesFound": "lugar encontrado",
+      "venuesFoundPlural": "lugares encontrados",
+      "noVenuesTitle": "No se encontraron lugares",
+      "noVenuesDescription": "Intente modificar sus criterios de búsqueda para ver más resultados."
+    },    "eventTypes": {
       "wedding": "Bodas",
       "b2b": "Eventos B2B",
       "seminar": "Seminarios",

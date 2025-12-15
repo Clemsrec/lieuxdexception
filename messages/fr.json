@@ -40,6 +40,22 @@
     "accommodation": "Hébergement",
     "parking": "Parking",
     "catering": "Restauration",
+    "filters": {
+      "title": "Filtrer par vos critères",
+      "eventType": "Type d'événement",
+      "allEvents": "Tous les événements",
+      "b2bEvents": "Événements B2B",
+      "weddings": "Mariages",
+      "minCapacity": "Capacité minimum",
+      "allCapacities": "Toutes capacités",
+      "location": "Localisation",
+      "allLocations": "Toutes localisations",
+      "reset": "Réinitialiser les filtres",
+      "venuesFound": "lieu trouvé",
+      "venuesFoundPlural": "lieux trouvés",
+      "noVenuesTitle": "Aucun lieu trouvé",
+      "noVenuesDescription": "Essayez de modifier vos critères de recherche pour voir plus de résultats."
+    },
     "eventTypes": {
       "wedding": "Mariages",
       "b2b": "Événements B2B",

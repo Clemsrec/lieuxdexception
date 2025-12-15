@@ -3,6 +3,7 @@
  * 
  * Affiche la liste des lieux avec système de filtres avancés côté client.
  * Gère le filtrage par type d'événement, capacité et région.
+ * Textes traduits avec next-intl.
  * 
  * @example
  * ```tsx
@@ -16,6 +17,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useTranslations, useLocale } from 'next-intl';
 import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getCardImage } from '@/lib/sharedVenueImages';
@@ -40,6 +42,10 @@ interface Filters {
 }
 
 export default function VenueCatalog({ venues }: VenueCatalogProps) {
+  const t = useTranslations('Venues');
+  const tCommon = useTranslations('Common');
+  const locale = useLocale();
+  
   const [filters, setFilters] = useState<Filters>({
     eventType: 'all',
     capacity: null,
@@ -96,10 +102,10 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
       {/* Filtres de recherche */}
       <div className="bg-stone/30 rounded-xl p-6 md:p-8 mb-12 border border-accent/10">
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8">
-          <span className="text-accent uppercase tracking-widest text-xs md:text-sm font-medium">Filtres</span>
+          <span className="text-accent uppercase tracking-widest text-xs md:text-sm font-medium">{tCommon('filters')}</span>
           <div className="w-12 h-px bg-accent/30" />
           <h2 className="text-xl md:text-2xl font-display font-semibold text-primary">
-            Filtrer par vos critères
+            {t('filters.title')}
           </h2>
         </div>
 
@@ -108,7 +114,7 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
           {/* Type d'événement */}
           <div>
             <label htmlFor="eventType" className="form-label">
-              Type d&apos;événement
+              {t('filters.eventType')}
             </label>
             <select
               id="eventType"
@@ -116,16 +122,16 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
               value={filters.eventType}
               onChange={(e) => setFilters({ ...filters, eventType: e.target.value as Filters['eventType'] })}
             >
-              <option value="all">Tous les événements</option>
-              <option value="b2b">Événements B2B</option>
-              <option value="wedding">Mariages</option>
+              <option value="all">{t('filters.allEvents')}</option>
+              <option value="b2b">{t('filters.b2bEvents')}</option>
+              <option value="wedding">{t('filters.weddings')}</option>
             </select>
           </div>
 
           {/* Capacité */}
           <div>
             <label htmlFor="capacity" className="form-label">
-              Capacité minimum
+              {t('filters.minCapacity')}
             </label>
             <select
               id="capacity"
@@ -133,18 +139,18 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
               value={filters.capacity || ''}
               onChange={(e) => setFilters({ ...filters, capacity: e.target.value ? Number(e.target.value) : null })}
             >
-              <option value="">Toutes capacités</option>
-              <option value="50">50+ personnes</option>
-              <option value="100">100+ personnes</option>
-              <option value="150">150+ personnes</option>
-              <option value="200">200+ personnes</option>
+              <option value="">{t('filters.allCapacities')}</option>
+              <option value="50">50+ {tCommon('persons')}</option>
+              <option value="100">100+ {tCommon('persons')}</option>
+              <option value="150">150+ {tCommon('persons')}</option>
+              <option value="200">200+ {tCommon('persons')}</option>
             </select>
           </div>
 
           {/* Région */}
           <div>
             <label htmlFor="region" className="form-label">
-              Localisation
+              {t('filters.location')}
             </label>
             <select
               id="region"
@@ -152,7 +158,7 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
               value={filters.region || ''}
               onChange={(e) => setFilters({ ...filters, region: e.target.value || null })}
             >
-              <option value="">Toutes localisations</option>
+              <option value="">{t('filters.allLocations')}</option>
               <option value="Loire-Atlantique">Loire-Atlantique (44)</option>
               <option value="Vendée">Vendée (85)</option>
             </select>
@@ -166,10 +172,11 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
             className="text-secondary hover:text-primary transition-colors flex items-center gap-2 text-sm md:text-base min-h-[44px] py-2"
           >
             <span className="text-xl">×</span>
-            Réinitialiser les filtres
+            {t('filters.reset')}
           </button>
           <div className="text-sm md:text-base text-secondary min-h-[44px] flex items-center">
-            <span className="font-semibold text-accent">{filteredVenues.length}</span> lieu{filteredVenues.length > 1 ? 'x' : ''} trouvé{filteredVenues.length > 1 ? 's' : ''}
+            <span className="font-semibold text-accent">{filteredVenues.length}</span>{' '}
+            {filteredVenues.length > 1 ? t('filters.venuesFoundPlural') : t('filters.venuesFound')}
           </div>
         </div>
       </div>
@@ -179,13 +186,13 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
         <div className="text-center py-16">
           <div className="text-6xl text-secondary/20 mb-4">◇</div>
           <h3 className="text-2xl font-display font-semibold text-primary mb-3">
-            Aucun lieu trouvé
+            {t('filters.noVenuesTitle')}
           </h3>
           <p className="text-secondary mb-6">
-            Essayez de modifier vos critères de recherche pour voir plus de résultats.
+            {t('filters.noVenuesDescription')}
           </p>
           <button onClick={resetFilters} className="btn-secondary">
-            Réinitialiser les filtres
+            {t('filters.reset')}
           </button>
         </div>
       ) : (
@@ -219,8 +226,12 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
  * @param index - Index pour animation stagger
  */
 function VenueCard({ venue, index }: { venue: Venue; index: number }) {
+  const t = useTranslations('Venues');
+  const tCommon = useTranslations('Common');
+  const locale = useLocale();
+  
   const capacityRange = venue.capacity
-    ? `${venue.capacityMin || venue.capacity.min} - ${venue.capacity.max} personnes`
+    ? `${venue.capacityMin || venue.capacity.min} - ${venue.capacity.max} ${tCommon('persons')}`
     : 'Capacité sur demande';
 
   const dayRate = venue.pricing?.b2b?.fullDay
@@ -292,11 +303,11 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
         {/* Localisation et capacité */}
         <div className="flex flex-wrap items-start gap-4 text-sm text-secondary mb-4">
           <div>
-            <span className="text-accent uppercase tracking-wider text-xs block mb-1">Localisation</span>
+            <span className="text-accent uppercase tracking-wider text-xs block mb-1">{t('location')}</span>
             <span>{venue.address.city}, {venue.address.region}</span>
           </div>
           <div>
-            <span className="text-accent uppercase tracking-wider text-xs block mb-1">Capacité</span>
+            <span className="text-accent uppercase tracking-wider text-xs block mb-1">{t('capacity')}</span>
             <span>{capacityRange}</span>
           </div>
         </div>
@@ -310,17 +321,17 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
         <div className="flex flex-wrap gap-2 mb-6">
           {venue.eventTypes?.includes('wedding') && (
             <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs md:text-sm font-medium">
-              Mariages
+              {t('eventTypes.wedding')}
             </span>
           )}
           {(venue.eventTypes?.includes('corporate') || venue.eventTypes?.includes('conference') || venue.eventTypes?.includes('seminar')) && (
             <span className="inline-flex items-center gap-1.5 bg-accent/10 text-accent px-3 py-1.5 rounded-full text-xs md:text-sm font-medium">
-              Événements B2B
+              {t('eventTypes.b2b')}
             </span>
           )}
           {venue.amenitiesList && venue.amenitiesList.includes('Hébergement') && (
             <span className="inline-flex items-center gap-1.5 bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-xs md:text-sm font-medium">
-              Hébergement
+              {t('accommodation')}
             </span>
           )}
         </div>
@@ -328,10 +339,10 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
         {/* Footer avec prix, Instagram et CTA */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mt-auto pt-6 border-t border-stone/20">
           <div>
-            <span className="text-xs md:text-sm text-secondary block mb-1.5">À partir de</span>
+            <span className="text-xs md:text-sm text-secondary block mb-1.5">{t('from')}</span>
             <div className="font-semibold text-xl md:text-2xl text-accent">
               {dayRate}
-              <span className="text-sm md:text-base text-secondary font-normal">/jour</span>
+              <span className="text-sm md:text-base text-secondary font-normal">{t('perDay')}</span>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -359,11 +370,11 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
             })()}
 
             <Link 
-            href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
+            href={venue.externalUrl || venue.url || venue.contact?.website || `/${locale}/lieux/${venue.slug}`}
             {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             className="btn-primary text-sm md:text-base px-6 py-3 min-h-[48px] flex items-center gap-2 w-full sm:w-auto justify-center group/btn"
           >
-            {venue.externalUrl || venue.url || venue.contact?.website ? 'Visiter le site' : 'Découvrir ce lieu'}
+            {venue.externalUrl || venue.url || venue.contact?.website ? t('visitWebsite') : t('discover')}
             <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
           </Link>
           </div>
