@@ -37,11 +37,15 @@ export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
       query = query.where('featured', '==', filters.featured);
     }
     
-    // Tri par ordre alphabétique
-    query = query.orderBy('name', 'asc');
-    
     const snapshot = await query.get();
-    return snapshot.docs.map(doc => {
+    console.log('🔥 [Firestore] Documents récupérés:', snapshot.size);
+    snapshot.docs.forEach(doc => {
+      const data = doc.data();
+      console.log('🔥 [Firestore] Venue:', doc.id, 'active:', data.active, 'displayOrder:', data.displayOrder, 'lat:', data.lat, 'lng:', data.lng);
+    });
+    
+    // Convertir et trier côté code (évite les index composites Firestore)
+    const venues = snapshot.docs.map(doc => {
       const data = doc.data();
       // Convertir les Timestamps Firestore en strings ISO pour la sérialisation
       return {
@@ -50,6 +54,14 @@ export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
         createdAt: data.createdAt?.toDate?.() ? data.createdAt.toDate().toISOString() : data.createdAt,
         updatedAt: data.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data.updatedAt,
       } as Venue;
+    });
+    
+    // Trier par displayOrder puis par nom
+    return venues.sort((a, b) => {
+      const orderA = a.displayOrder ?? 999;
+      const orderB = b.displayOrder ?? 999;
+      if (orderA !== orderB) return orderA - orderB;
+      return (a.name || '').localeCompare(b.name || '');
     });
   } catch (error) {
     console.error('[Firestore] Erreur lors de la récupération des lieux:', error);

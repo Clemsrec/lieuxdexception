@@ -21,7 +21,7 @@ export default function MentionsLegalesPage() {
   return (
     <main className="min-h-screen">
       <section className="section">
-        <div className="section-container">
+        <div className="container">
           {/* Header */}
           <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Mentions Légales</h1>
@@ -31,7 +31,7 @@ export default function MentionsLegalesPage() {
       </div>
 
       {/* Contenu légal */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-content mx-auto">
         
         {/* Éditeur du site */}
         <section className="mb-8">

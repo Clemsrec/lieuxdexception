@@ -20,8 +20,12 @@
  * ```
  */
 
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import Navigation from './Navigation';
 
 interface HeroButton {
   label: string;
@@ -48,6 +52,9 @@ export default function HeroSection({
 }: HeroSectionProps) {
   return (
     <section className="hero-section relative">
+      {/* Navigation intégrée dans le Hero */}
+      <Navigation />
+      
       {/* Background - Carousel ou Image statique */}
       {carousel ? (
         carousel
@@ -68,61 +75,75 @@ export default function HeroSection({
         </>
       ) : null}
       
-      {/* Contenu en 2 colonnes */}
+      {/* Contenu centré */}
       <div className="hero-content">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center max-w-7xl w-full">
+        <div className="flex flex-col items-center text-center w-full mx-auto space-y-6">
           
-          {/* Colonne gauche - Titre */}
-          <div className="flex items-center animate-fade-in">
-            <h1 
-              className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-white leading-tight"
-              style={{ textShadow: '0 4px 30px rgba(0, 0, 0, 0.7)' }}
+          {/* Titre principal */}
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-semibold text-white leading-tight"
+            style={{ textShadow: '0 4px 30px rgba(0, 0, 0, 0.7)' }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          >
+            {title}
+          </motion.h1>
+
+          {/* Ligne décorative */}
+          <motion.div 
+            className="w-20 h-px bg-white/40"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          />
+
+          {/* Sous-titre */}
+          {subtitle && (
+            <motion.p 
+              className="text-xl md:text-2xl lg:text-3xl font-display italic text-white"
+              style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.7)' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
             >
-              {title}
-            </h1>
-          </div>
+              {subtitle}
+            </motion.p>
+          )}
+          
+          {/* Description */}
+          {description && (
+            <motion.p 
+              className="text-base md:text-lg lg:text-xl text-white/95 leading-relaxed"
+              style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.6)' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            >
+              {description}
+            </motion.p>
+          )}
 
-          {/* Colonne droite - Sous-titre + Description + Boutons */}
-          <div className="flex flex-col items-start space-y-4 lg:space-y-6">
-            {subtitle && (
-              <>
-                <div className="w-20 h-px bg-white/40 animate-fade-in" style={{ animationDelay: '0.3s' }} />
-                <p 
-                  className="text-2xl md:text-3xl lg:text-4xl font-display italic text-white animate-fade-in"
-                  style={{ animationDelay: '0.4s', textShadow: '0 2px 20px rgba(0, 0, 0, 0.7)' }}
+          {/* Boutons */}
+          {buttons.length > 0 && (
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 pt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            >
+              {buttons.map((button, index) => (
+                <Link
+                  key={index}
+                  href={button.href}
+                  className={button.primary ? 'btn-primary' : 'btn-secondary'}
+                  style={!button.primary ? { color: 'white', borderColor: 'white' } : undefined}
                 >
-                  {subtitle}
-                </p>
-              </>
-            )}
-            
-            {description && (
-              <p 
-                className="text-base md:text-lg lg:text-xl text-white/95 leading-relaxed animate-fade-in"
-                style={{ animationDelay: '0.5s', textShadow: '0 2px 15px rgba(0, 0, 0, 0.6)' }}
-              >
-                {description}
-              </p>
-            )}
-
-            {buttons.length > 0 && (
-              <div 
-                className="flex flex-col sm:flex-row gap-4 pt-2 animate-fade-in"
-                style={{ animationDelay: '0.6s' }}
-              >
-                {buttons.map((button, index) => (
-                  <Link
-                    key={index}
-                    href={button.href}
-                    className={button.primary ? 'btn-primary' : 'btn-secondary'}
-                    style={!button.primary ? { color: 'white', borderColor: 'white' } : undefined}
-                  >
-                    {button.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+                  {button.label}
+                </Link>
+              ))}
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

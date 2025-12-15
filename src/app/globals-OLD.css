@@ -1,0 +1,938 @@
+/* Configuration Tailwind CSS v4 - Lieux d'Exception */
+@import "tailwindcss";
+
+/* Configuration personnalisée avec @theme */
+@theme {
+  /* ========== COULEURS PREMIUM HARMONISÉES ========== */
+  
+  /* Bleu Marine (inspiré du logo) - Nuances raffinées */
+  --color-primary: #1B365D;
+  --color-primary-50: #F0F3F7;
+  --color-primary-100: #DCE3ED;
+  --color-primary-200: #B8C7DB;
+  --color-primary-300: #8DA2C0;
+  --color-primary-400: #537AA8;
+  --color-primary-500: #1B365D;
+  --color-primary-600: #152B4A;
+  --color-primary-700: #0F1F35;
+  --color-primary-800: #0A1423;
+  --color-primary-900: #050A11;
+  
+  /* Or Champagne (accent premium) - Nuances raffinées */
+  --color-accent: #C9A961;
+  --color-accent-50: #FAF7F1;
+  --color-accent-100: #F5EFE3;
+  --color-accent-200: #EBDFC7;
+  --color-accent-300: #E0CFAB;
+  --color-accent-400: #D4BC86;
+  --color-accent-500: #C9A961;
+  --color-accent-600: #B89445;
+  --color-accent-700: #9A7B34;
+  --color-accent-800: #6D5725;
+  --color-accent-900: #3F3216;
+  
+  /* Gris Anthracite Luxe (nouveau) */
+  --color-charcoal: #2A2A2A;
+  --color-charcoal-50: #F8F8F8;
+  --color-charcoal-100: #F0F0F0;
+  --color-charcoal-200: #E0E0E0;
+  --color-charcoal-300: #BDBDBD;
+  --color-charcoal-400: #757575;
+  --color-charcoal-500: #4A4A4A;
+  --color-charcoal-600: #2A2A2A;
+  --color-charcoal-700: #1F1F1F;
+  --color-charcoal-800: #151515;
+  --color-charcoal-900: #0A0A0A;
+  
+  /* Beige Pierre (fond et nuances) */
+  --color-stone: #E8DCC4;
+  --color-stone-50: #FDFCFA;
+  --color-stone-100: #FAF8F5;
+  --color-stone-200: #F3EFE6;
+  --color-stone-300: #ECE6D7;
+  --color-stone-400: #E8DCC4;
+  --color-stone-500: #D4C8B0;
+  --color-stone-600: #BFB39B;
+  --color-stone-700: #A89D87;
+  
+  /* Neutrals sophistiqués (gris chauds) */
+  --color-neutral-50: #FAFAF9;
+  --color-neutral-100: #F5F5F4;
+  --color-neutral-200: #E7E5E4;
+  --color-neutral-300: #D6D3D1;
+  --color-neutral-400: #A8A29E;
+  --color-neutral-500: #78716C;
+  --color-neutral-600: #57534E;
+  --color-neutral-700: #44403C;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1C1917;
+  
+  /* Couleurs sémantiques */
+  --color-success: #8B9D83;
+  --color-error: #C75450;
+  --color-warning: #E8B86D;
+  
+  /* ========== TYPOGRAPHIE PREMIUM ========== */
+  --font-display: 'Playfair Display', 'Georgia', serif;
+  --font-heading: 'Montserrat', 'Helvetica Neue', sans-serif;
+  --font-body: 'Inter', 'system-ui', sans-serif;
+  
+  /* Font Sizes (échelle harmonieuse) */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  --font-size-5xl: 3rem;        /* 48px */
+  --font-size-6xl: 3.75rem;     /* 60px */
+  --font-size-7xl: 4.5rem;      /* 72px */
+  
+  /* ========== ESPACEMENTS GÉNÉREUX ========== */
+  --spacing-xs: 0.5rem;    /* 8px */
+  --spacing-sm: 1rem;      /* 16px */
+  --spacing-md: 1.5rem;    /* 24px */
+  --spacing-lg: 2rem;      /* 32px */
+  --spacing-xl: 3rem;      /* 48px */
+  --spacing-2xl: 4rem;     /* 64px */
+  --spacing-3xl: 6rem;     /* 96px */
+  --spacing-4xl: 8rem;     /* 128px */
+  
+  /* ========== BORDER RADIUS ÉLÉGANTS ========== */
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius-lg: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;       /* 16px */
+  
+  /* ========== OMBRES SUBTILES ========== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-premium: 0 4px 20px rgba(201, 169, 97, 0.15);
+}
+
+/* Variables CSS pour le thème - Système luxe harmonisé */
+:root {
+  /* Fond principal - Beige pierre très clair (uniforme sur tout le site) */
+  --background: #FAF8F5;
+  --background-alt: #F3EFE6;
+  
+  /* Textes */
+  --foreground: var(--color-charcoal-700);
+  --foreground-muted: var(--color-neutral-600);
+  
+  /* Couleurs principales */
+  --primary: var(--color-primary);
+  --primary-hover: var(--color-primary-400);
+  --secondary: var(--color-charcoal-600);
+  --accent: var(--color-accent);
+  --accent-hover: var(--color-accent-600);
+  
+  /* Surfaces (cards, sections) */
+  --surface: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-muted: #FDFCFA;
+  
+  /* Bordures et séparateurs */
+  --border: var(--color-stone-300);
+  --border-light: var(--color-stone-200);
+  --border-accent: var(--color-accent-200);
+  
+  /* Ring (focus) */
+  --ring: var(--color-accent);
+}
+
+/* Configuration de base pour le body */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
+}
+
+* {
+  border-color: var(--border);
+}
+
+/* ========== TYPOGRAPHIE ÉLÉGANTE ========== */
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--primary);
+}
+
+h1 {
+  font-size: var(--font-size-6xl);
+}
+
+h2 {
+  font-size: var(--font-size-5xl);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+}
+
+p {
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* Espacement entre paragraphes */
+.text-content p + p {
+  margin-top: 1.5rem;
+}
+
+/* ========== COMPOSANTS PREMIUM ========== */
+
+/* Bouton principal (or champagne) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-premium);
+  border: none;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 169, 97, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Bouton secondaire (outline bleu marine) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--primary);
+  padding: 0.875rem 2rem;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Cards élégantes pour venues - Design luxe avec nuances */
+.venue-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(27, 54, 93, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.venue-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(27, 54, 93, 0.12), 0 4px 12px rgba(201, 169, 97, 0.08);
+  border-color: var(--border-accent);
+}
+
+.venue-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.venue-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Card text-center : padding généreux */
+.venue-card.text-center {
+  padding: 3rem 2.5rem;
+}
+
+/* Card avec contenu textuel uniquement (pas d'image) */
+.venue-card:not(:has(img)) {
+  padding: 2.5rem;
+}
+
+/* Améliorer le padding des contenus de card existants */
+.venue-card > div[class*="p-"] {
+  padding: 2rem !important;
+}
+
+/* PADDING GÉNÉREUX PARTOUT - Style luxe uniforme */
+/* Toutes les cards avec padding inline deviennent généreuses */
+[class*="p-4"] { padding: 1.75rem !important; }
+[class*="p-6"] { padding: 2rem !important; }
+[class*="p-8"] { padding: 2.5rem !important; }
+[class*="p-10"] { padding: 3rem !important; }
+[class*="p-12"] { padding: 3.5rem !important; }
+
+/* Cards avec fonds - bordures et ombres */
+.bg-muted,
+.bg-primary\/5,
+.bg-background,
+.bg-white,
+.bg-stone-light,
+[class*="bg-green"],
+[class*="bg-blue"],
+[class*="bg-purple"],
+[class*="bg-orange"] {
+  border: 1px solid var(--color-stone);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s ease;
+}
+
+/* Hover subtil sur cards interactives */
+div[class*="bg-"]:hover,
+button[class*="bg-"]:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Card avec fond subtil - pour variations */
+.card-subtle {
+  background: linear-gradient(135deg, var(--background) 0%, var(--color-stone-light) 100%);
+  border: 1px solid var(--color-stone);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s ease;
+}
+
+.card-subtle:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+/* ========== CONTAINERS GLOBAUX ========== */
+
+/* Container principal pour le contenu des pages - 1536px max */
+.section-container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Classe utilitaire pour forcer la largeur 1536px partout */
+.max-w-content {
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Container pour header et footer (plus large) */
+.header-footer-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Paddings responsive pour tous les containers */
+@media (min-width: 640px) {
+  .section-container,
+  .header-footer-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container,
+  .header-footer-container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Sections avec espacement optimisé - Design luxe harmonisé */
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Section avec fond alternatif (beige pierre) */
+.section-alt {
+  background-color: var(--background-alt);
+}
+
+/* Section avec fond blanc (cards) */
+.section-light {
+  background-color: var(--surface);
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Background alternatif élégant */
+.section-alt {
+  background-color: var(--color-stone-light);
+}
+
+/* Titres de section - Palette luxe harmonisée */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--color-charcoal-700);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--color-accent-600);
+  position: relative;
+}
+
+/* Variante avec couleur primaire (bleu) */
+.section-title-accent {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.section-title-accent em {
+  font-style: italic;
+  color: var(--color-accent-600);
+  position: relative;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--foreground-muted);
+  text-align: center;
+  margin: 0 auto var(--spacing-2xl) auto;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  max-width: 800px;
+}
+
+/* Accents dorés */
+.accent-line {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  margin: var(--spacing-lg) auto;
+}
+
+/* Accent line sur fond sombre (hero) - plus lumineux */
+.hero-content .accent-line {
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.9), transparent);
+  box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+}
+
+/* Hero sections immersives */
+.hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Overlay désactivé car géré dans HeroCarousel
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(27, 54, 93, 0.5) 0%, rgba(27, 54, 93, 0.75) 100%);
+  z-index: 1;
+}
+*/
+
+/* Section avec image de fond (CTA, etc.) */
+.image-bg-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-bg-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(27, 54, 93, 0.7) 0%, rgba(27, 54, 93, 0.85) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.image-bg-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 30; /* Au-dessus des overlays du carousel (z-20) */
+  text-align: left;
+  color: white;
+  padding: 0 2rem;
+  width: 100%;
+  max-width: 1536px; /* Largeur max alignée avec section-container */
+  margin: 0 auto;
+}
+
+.hero-content h1,
+.hero-content p,
+.hero-content .hero-title,
+.hero-content .hero-subtitle {
+  color: white !important;
+  /* text-shadow renforcé pour meilleur contraste avec photos */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 
+               0 4px 16px rgba(0, 0, 0, 0.6),
+               0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-7xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xl);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-2xl);
+  opacity: 0.95;
+  color: white;
+}
+
+/* Formulaires élégants */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  color: var(--foreground);
+  background-color: var(--background);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+/* Labels uppercase style éditorial luxe */
+.label-uppercase {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Effets typographiques élégants (style D&é) */
+.text-cursive-underline {
+  font-family: var(--font-display);
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+.text-cursive-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-accent);
+  opacity: 0.6;
+}
+
+.text-cursive-circled {
+  font-family: var(--font-display);
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+}
+
+.text-cursive-circled::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+/* Badges élégants */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-primary {
+  background-color: rgba(27, 54, 93, 0.1);
+  color: var(--primary);
+}
+
+.badge-accent {
+  background-color: rgba(201, 169, 97, 0.1);
+  color: var(--color-accent-dark);
+}
+
+/* Numérotation élégante pour sections (style D&é) */
+.section-number {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+/* Lignes décoratives */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: var(--spacing-xl) 0;
+}
+
+.divider-accent {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  margin: var(--spacing-xl) 0;
+}
+
+/* Lignes décoratives */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: var(--spacing-xl) 0;
+}
+
+.divider-accent {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  margin: var(--spacing-xl) 0;
+}
+
+/* ========== UTILITAIRES PREMIUM ========== */
+
+/* Effets de texte */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Animations élégantes */
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Effet parallax subtle */
+.parallax-slow {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* États de focus élégants */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accessibilité */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ========== RESPONSIVE HELPERS ========== */
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: var(--font-size-5xl);
+  }
+  
+  h2 {
+    font-size: var(--font-size-4xl);
+  }
+  
+  h3 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+  @page {
+    margin: 2cm;
+  }
+  
+  body {
+    color: black;
+    background: white;
+  }
+  
+  .no-print,
+  nav,
+  footer,
+  .btn-primary,
+  .btn-secondary {
+    display: none !important;
+  }
+}
+
+/* ========== REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========== LOGO SIZING - STRICT RULES ========== */
+/* Empêche le logo de se redimensionner automatiquement */
+img[alt="Lieux d'Exception"] {
+  max-width: 140px !important;
+  max-height: 40px !important;
+  height: auto !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+/* Logo navigation header - plus petit */
+nav img[alt="Lieux d'Exception"] {
+  max-width: 120px !important;
+  max-height: 35px !important;
+}
+
+/* ========== ANIMATIONS ========== */
+
+/* Animation shake pour les erreurs */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Animation float pour particules décoratives (page 404) */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Animation bounce personnalisée (plus subtile) */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-8px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}

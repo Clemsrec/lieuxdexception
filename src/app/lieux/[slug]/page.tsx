@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getVenues } from '@/lib/firestore';
+import { displayVenueName } from '@/lib/formatVenueName';
 
 // ISR : Cache avec revalidation toutes les 2 heures
 export const revalidate = 7200;
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: VenuePageProps): Promise<Meta
   }
 
   return {
-    title: `${venue.name} | Lieux d'Exception`,
+    title: `${displayVenueName(venue.name)} | Lieux d'Exception`,
     description: venue.description,
     keywords: [venue.name, venue.location, 'mariage', 'événement', 'réception', 'château', 'domaine'],
   };
@@ -66,7 +67,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
       <section className="relative h-[70vh] min-h-[500px]">
         <Image
           src={venue.images.hero}
-          alt={venue.name}
+          alt={displayVenueName(venue.name)}
           fill
           priority
           className="object-cover"
@@ -75,7 +76,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
         <div className="absolute inset-0 bg-linear-to-t from-primary/90 via-primary/50 to-transparent" />
         
         <div className="absolute inset-0 flex items-end">
-          <div className="section-container pb-16 w-full">
+          <div className="container pb-16 w-full">
             <div>
               <div className="flex items-center gap-4 mb-4 text-white/90">
                 <Link href="/catalogue" className="hover:text-white transition-colors flex items-center gap-2">
@@ -85,7 +86,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
               </div>
               
               <h1 className="text-5xl md:text-6xl font-display font-semibold text-white mb-4 animate-fade-in">
-                {venue.name}
+                {displayVenueName(venue.name)}
               </h1>
               
               {venue.tagline && (
@@ -117,7 +118,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
       {/* Barre d'actions rapides */}
       <section className="sticky top-16 z-40 bg-white border-b border-neutral-200 shadow-md">
-        <div className="section-container">
+        <div className="container">
           <div className="flex items-center justify-between py-4">
             <div className="flex gap-6">
               <a href="#description" className="text-sm font-medium text-secondary hover:text-primary transition-colors">
@@ -142,14 +143,14 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
       {/* Description et expérience */}
       <section id="description" className="section">
-        <div className="section-container">
+        <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
             {/* Contenu principal */}
             <div className="lg:col-span-2 space-y-8">
               <div>
                 <h2 className="text-3xl font-display font-semibold text-primary mb-6">
-                  Découvrez {venue.name}
+                  Découvrez {displayVenueName(venue.name)}
                 </h2>
                 <div className="prose prose-lg max-w-none text-secondary">
                   <p className="text-lg leading-relaxed">{venue.description}</p>
@@ -230,8 +231,8 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
       {/* Espaces disponibles */}
       {venue.spaces && venue.spaces.length > 0 && (
-        <section id="espaces" className="section section-alt">
-          <div className="section-container">
+        <section id="espaces" className="section bg-alt">
+          <div className="container">
             <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
               Espaces disponibles
             </h2>
@@ -256,7 +257,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
       {/* Galerie photos */}
       {venue.images.gallery && venue.images.gallery.length > 0 && (
         <section id="galerie" className="section">
-          <div className="section-container">
+          <div className="container">
             <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
               Galerie photos
             </h2>
@@ -265,7 +266,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                 <div key={index} className="relative aspect-4/3 overflow-hidden rounded-lg group cursor-pointer">
                   <Image
                     src={image}
-                    alt={`${venue.name} - Photo ${index + 1}`}
+                    alt={`${displayVenueName(venue.name)} - Photo ${index + 1}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 50vw, 33vw"
@@ -278,8 +279,8 @@ export default async function VenuePage({ params }: VenuePageProps) {
       )}
 
       {/* Contact et coordonnées */}
-      <section id="contact" className="section section-alt">
-        <div className="section-container">
+      <section id="contact" className="section bg-alt">
+        <div className="container">
           <div>
             <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
               Contactez-nous
@@ -367,7 +368,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   Prêt à réserver ?
                 </h3>
                 <p className="text-white/90 mb-6 leading-relaxed">
-                  Contactez-nous pour discuter de votre projet et obtenir un devis personnalisé pour {venue.name}.
+                  Contactez-nous pour discuter de votre projet et obtenir un devis personnalisé pour {displayVenueName(venue.name)}.
                 </p>
                 <Link 
                   href="/contact" 
@@ -384,7 +385,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
       {/* Autres lieux */}
       <section className="section">
-        <div className="section-container">
+        <div className="container">
           <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
             Découvrez nos autres lieux
           </h2>

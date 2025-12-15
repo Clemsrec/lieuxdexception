@@ -153,6 +153,8 @@ export interface Venue {
   status: 'active' | 'maintenance' | 'closed';
   createdAt: Timestamp;
   updatedAt: Timestamp;
+  // Ordre d'affichage optionnel pour tri personnalisés
+  displayOrder?: number;
   
   // SEO et multilingue
   seo: {

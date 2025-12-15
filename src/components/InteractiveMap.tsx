@@ -15,6 +15,7 @@
 import { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import type { Venue } from '@/types/firebase';
+import { displayVenueName } from '@/lib/formatVenueName';
 
 interface InteractiveMapProps {
   venues: Venue[];
@@ -66,12 +67,12 @@ export default function InteractiveMap({ venues }: InteractiveMapProps) {
             className="bg-white rounded-lg shadow p-4 flex gap-4 hover:shadow-md transition"
           >
             <img
-              src={venue.image || venue.images.hero}
-              className="w-24 h-24 object-cover rounded"
-              alt={venue.name}
-            />
+                src={venue.image || venue.images.hero}
+                className="w-24 h-24 object-cover rounded"
+                alt={displayVenueName(venue.name)}
+              />
             <div className="flex-1">
-              <h3 className="font-bold text-lg">{venue.name}</h3>
+              <h3 className="font-bold text-lg">{displayVenueName(venue.name)}</h3>
               <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
                 <span>📍</span>
                 <span>{venue.location || venue.address.city}</span>
@@ -135,7 +136,7 @@ export default function InteractiveMap({ venues }: InteractiveMapProps) {
                 url: '/marker-custom.svg',
                 scaledSize: new google.maps.Size(40, 40),
               }}
-              title={venue.name}
+              title={displayVenueName(venue.name)}
             />
           );
         })}
@@ -152,9 +153,9 @@ export default function InteractiveMap({ venues }: InteractiveMapProps) {
               <img
                 src={selected.image || selected.images.hero}
                 className="w-full h-32 object-cover rounded mb-2"
-                alt={selected.name}
+                alt={displayVenueName(selected.name)}
               />
-              <h3 className="font-bold text-lg mb-1">{selected.name}</h3>
+              <h3 className="font-bold text-lg mb-1">{displayVenueName(selected.name)}</h3>
               <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
                 <span>📍</span>
                 <span>{selected.location || selected.address.city}</span>

@@ -10,6 +10,7 @@
 import { usePathname } from 'next/navigation';
 import { universalSEOConfig, type SiteType, type PageType } from '@/config/seo.config';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
+import { displayVenueName } from '@/lib/formatVenueName';
 
 // ============================================================================
 // TYPES
@@ -38,7 +39,7 @@ function generateSmartMeta(pageType: PageType, data?: any) {
   
   if (!template) {
     return {
-      title: "Lieux d'Exception - Groupe Riou",
+      title: "Lieux d'Exception",
       description: config.business.expertise.primary,
       keywords: config.keywords.corporate.primary
     };
@@ -51,7 +52,7 @@ function generateSmartMeta(pageType: PageType, data?: any) {
     'business.experience': config.business.expertise.experience,
     'business.years': '25+',
     'region': config.business.localSEO.region,
-    'venue.name': data?.venue?.name || '',
+    'venue.name': displayVenueName(data?.venue?.name || ''),
     'venue.type': data?.venue?.eventTypes?.[0] || 'Lieu',
     'venue.city': data?.venue?.address?.city || '',
     'venue.capacity': data?.venue?.capacity?.max || '300',

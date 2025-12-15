@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 /**
  * Types pour les différents formulaires de contact
@@ -25,10 +26,10 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
   const [activeForm, setActiveForm] = useState<FormType>(defaultForm);
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full max-w-content mx-auto px-4 sm:px-6 lg:px-8">
       
       {/* Sélecteur de type de contact */}
-      <div className="flex gap-4 mb-8 max-w-2xl mx-auto">
+      <div className="flex gap-4 mb-8 mx-auto">
         <button
           onClick={() => setActiveForm('b2b')}
           className={`flex-1 py-4 px-6 rounded-lg text-base font-medium transition-all ${
@@ -66,11 +67,13 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="block text-sm font-medium mb-2">
                 Société *
               </label>
-              <input
+              <motion.input
                 type="text"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 placeholder="Nom de votre entreprise"
                 required
+                whileFocus={{ scale: 1.01, borderColor: 'var(--color-accent)' }}
+                transition={{ duration: 0.2 }}
               />
             </div>
 

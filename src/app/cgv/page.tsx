@@ -21,7 +21,7 @@ export default function CGVPage() {
   return (
     <main className="min-h-screen">
       <section className="section">
-        <div className="section-container">
+        <div className="container">
           {/* Header */}
           <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Conditions Générales de Vente</h1>
@@ -34,7 +34,7 @@ export default function CGVPage() {
       </div>
 
       {/* Contenu */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-content mx-auto">
         
         {/* Préambule */}
         <section className="mb-8">

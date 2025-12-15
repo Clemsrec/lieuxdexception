@@ -62,7 +62,7 @@ export default function CookieBanner() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 pb-4 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-content mx-auto">
         <div className="bg-white border-2 border-primary/20 rounded-lg shadow-2xl p-6">
           {!showSettings ? (
             // Vue simple (banner principal)

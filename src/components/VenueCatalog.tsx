@@ -15,7 +15,9 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import type { Venue } from '@/types/firebase';
+import { displayVenueName } from '@/lib/formatVenueName';
 
 interface VenueCatalogProps {
   venues: Venue[];
@@ -177,11 +179,24 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-          {filteredVenues.map((venue) => (
-            <VenueCard key={venue.id} venue={venue} />
+        <motion.div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10"
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15
+              }
+            }
+          }}
+        >
+          {filteredVenues.map((venue, index) => (
+            <VenueCard key={venue.id} venue={venue} index={index} />
           ))}
-        </div>
+        </motion.div>
       )}
     </>
   );
@@ -191,8 +206,9 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
  * Composant VenueCard - Carte individuelle d'un lieu
  * 
  * @param venue - Données du lieu à afficher
+ * @param index - Index pour animation stagger
  */
-function VenueCard({ venue }: { venue: Venue }) {
+function VenueCard({ venue, index }: { venue: Venue; index: number }) {
   const capacityRange = venue.capacity
     ? `${venue.capacityMin || venue.capacity.min} - ${venue.capacity.max} personnes`
     : 'Capacité sur demande';
@@ -202,7 +218,24 @@ function VenueCard({ venue }: { venue: Venue }) {
     : 'Sur demande';
 
   return (
-    <article className="venue-card group overflow-hidden">
+    <motion.article 
+      className="venue-card group overflow-hidden"
+      variants={{
+        hidden: { opacity: 0, y: 40 },
+        show: { 
+          opacity: 1, 
+          y: 0,
+          transition: {
+            duration: 0.6,
+            ease: [0.4, 0, 0.2, 1]
+          }
+        }
+      }}
+      whileHover={{ 
+        y: -8,
+        transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+      }}
+    >
       {/* Image principale */}
       <Link 
         href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
@@ -212,7 +245,7 @@ function VenueCard({ venue }: { venue: Venue }) {
         <div className="relative w-full aspect-16/10 md:aspect-16/11 bg-stone/20">
           <Image
             src={venue.cardImage || venue.images?.cardImage || venue.images?.hero || '/images/venues/placeholder.jpg'}
-            alt={venue.name}
+            alt={displayVenueName(venue.name)}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -236,7 +269,7 @@ function VenueCard({ venue }: { venue: Venue }) {
           className="group-hover:text-accent transition-colors"
         >
           <h3 className="text-2xl font-display font-semibold text-primary mb-2">
-            {venue.name}
+            {displayVenueName(venue.name)}
           </h3>
         </Link>
 
@@ -301,6 +334,6 @@ function VenueCard({ venue }: { venue: Venue }) {
           </Link>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

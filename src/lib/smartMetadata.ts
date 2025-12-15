@@ -78,9 +78,9 @@ export function generateSmartMetadata(params: SmartMetadataParams): Metadata {
     title: finalTitle,
     description: finalDescription,
     keywords: finalKeywords,
-    authors: [{ name: 'Lieux d\'Exception - Groupe Riou' }],
-    creator: 'Groupe Riou',
-    publisher: 'Groupe Riou',
+    authors: [{ name: 'Lieux d\'Exception' }],
+    creator: 'Lieux d\'Exception',
+    publisher: 'Lieux d\'Exception',
     
     // Open Graph
     openGraph: {

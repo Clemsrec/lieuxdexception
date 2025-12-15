@@ -17,7 +17,7 @@ import Image from 'next/image';
 export default function Footer() {
   return (
     <footer className="bg-muted border-t border-border mt-16">
-      <div className="header-footer-container py-12">
+      <div className="container-wide py-12">
         
         {/* Contenu principal du footer */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
@@ -35,11 +35,8 @@ export default function Footer() {
               />
             </Link>
             <p className="text-secondary text-sm mb-4 leading-relaxed">
-              Le catalogue B2B du Groupe Riou présentant 5 lieux événementiels 
-              d&apos;exception en France pour vos séminaires, mariages et événements corporate.
-            </p>
-            <p className="text-secondary text-sm font-medium">
-              Excellence événementielle depuis 1995
+              5 lieux événementiels d&apos;exception en France pour vos séminaires, 
+              mariages et événements corporate.
             </p>
           </div>
 
@@ -63,7 +60,7 @@ export default function Footer() {
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Événements B2B
+                    Séminaires & Pro
                   </Link>
                 </li>
                 <li>
@@ -72,7 +69,25 @@ export default function Footer() {
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Mariages d&apos;exception
+                    Mariages & Privés
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/galerie" 
+                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
+                    Galerie
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/histoire" 
+                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
+                    Histoire
                   </Link>
                 </li>
                 <li>
@@ -116,22 +131,37 @@ export default function Footer() {
             <h4 className="font-medium mb-4 text-foreground">Contact</h4>
             <div className="space-y-4 text-sm">
               
-              {/* Téléphone */}
+              {/* Téléphone Pro */}
               <div className="flex items-start">
-                <span className="text-primary mr-2 mt-1 font-medium">Tel :</span>
+                <span className="text-primary mr-2 mt-1 font-medium">•</span>
                 <div>
-                  <p className="text-secondary">
+                  <p className="text-xs text-secondary/70 mb-1">Événements Pro</p>
+                  <a 
+                    href="tel:0670562879"
+                    className="text-secondary hover:text-primary transition-colors"
+                  >
+                    <strong className="text-foreground">06 70 56 28 79</strong>
+                  </a>
+                </div>
+              </div>
+
+              {/* Téléphone Mariages/Privés */}
+              <div className="flex items-start">
+                <span className="text-primary mr-2 mt-1 font-medium">•</span>
+                <div>
+                  <p className="text-xs text-secondary/70 mb-1">Mariages & Privés</p>
+                  <a 
+                    href="tel:0602037011"
+                    className="text-secondary hover:text-primary transition-colors"
+                  >
                     <strong className="text-foreground">06 02 03 70 11</strong>
-                  </p>
-                  <p className="text-xs text-secondary/70">
-                    Lun-Ven : 9h-18h
-                  </p>
+                  </a>
                 </div>
               </div>
 
               {/* Email */}
               <div className="flex items-start">
-                <span className="text-primary mr-2 mt-1 font-medium">Email :</span>
+                <span className="text-primary mr-2 mt-1 font-medium">•</span>
                 <div>
                   <a 
                     href="mailto:contact@lieuxdexception.com"
@@ -139,21 +169,6 @@ export default function Footer() {
                   >
                     <strong>contact@lieuxdexception.com</strong>
                   </a>
-                  <p className="text-xs text-secondary/70">
-                    Réponse sous 2h en journée
-                  </p>
-                </div>
-              </div>
-
-              {/* Localisation */}
-              <div className="flex items-start">
-                <span className="text-primary mr-2 mt-1">📍</span>
-                <div>
-                  <p className="text-secondary">
-                    <strong className="text-foreground">Loire-Atlantique</strong><br />
-                    Pays de la Loire<br />
-                    France
-                  </p>
                 </div>
               </div>
             </div>
@@ -167,7 +182,7 @@ export default function Footer() {
             {/* Copyright et mentions légales */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <p className="text-secondary text-sm">
-                © 2024 Groupe Riou - Lieux d&apos;Exception. Tous droits réservés.
+                © 2024 Lieux d&apos;Exception. Tous droits réservés.
               </p>
               <div className="flex flex-wrap gap-4 text-xs">
                 <Link 

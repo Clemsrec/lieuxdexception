@@ -38,7 +38,7 @@ export const universalSEOConfig = {
     expertise: {
       primary: "Lieux événementiels d'exception et organisation d'événements corporate",
       sectors: ["Mariages haut de gamme", "Séminaires entreprise", "Événements corporate"],
-      certifications: ["Collection de 5 domaines d'exception", "Groupe Riou - Excellence depuis 1995"],
+      certifications: ["Collection de 5 domaines d'exception"],
       experience: "Expertise événementielle depuis plus de 25 ans",
       clientsServed: "Des centaines d'événements réussis en Loire-Atlantique"
     },
@@ -191,7 +191,7 @@ export const universalSEOConfig = {
     expertise: {
       domain: "Organisation d'événements et gestion de lieux d'exception",
       credentials: [
-        "Groupe Riou - 25+ ans d'expérience événementielle",
+        "25+ ans d'expérience événementielle",
         "Collection de 5 domaines historiques classés",
         "Réseau partenaires Premium (traiteurs, décorateurs, photographes)"
       ],
@@ -213,7 +213,7 @@ export const universalSEOConfig = {
 
     // Authoritativeness (Autorité et reconnaissance)
     authoritativeness: {
-      officialStatus: "Groupe Riou - Référence événementielle Pays de la Loire",
+      officialStatus: "Lieux d'Exception - Référence événementielle Pays de la Loire",
       partnerships: ["Partenaires traiteurs étoilés", "Décorateurs reconnus", "Photographes professionnels"],
       mediaPresence: "Présence médias spécialisés mariage et événementiel",
       awards: "Lieux d'exception reconnus patrimoine local"
@@ -291,7 +291,7 @@ export const universalSEOConfig = {
       },
       {
         question: "Où se situent vos lieux d'exception ?",
-        answer: "Nos 5 domaines sont situés en Loire-Atlantique, Pays de la Loire, à proximité de Nantes, Angers et La Baule. Tous nos lieux sont facilement accessibles et offrent des cadres historiques exceptionnels."
+        answer: "Les 5 domaines sont situés en Loire-Atlantique, Pays de la Loire, à proximité de Nantes, Angers et La Baule. Tous nos lieux sont facilement accessibles et offrent des cadres historiques exceptionnels."
       },
       {
         question: "Proposez-vous des prestations tout inclus ?",
@@ -343,7 +343,7 @@ export const universalSEOConfig = {
     about: [
       {
         question: "Quelle est votre expérience dans l'événementiel ?",
-        answer: "Le Groupe Riou organise des événements depuis plus de 25 ans. Nous avons accompagné des centaines d'entreprises et particuliers en Loire-Atlantique pour des événements d'exception."
+        answer: "Nous organisons des événements depuis plus de 25 ans. Nous avons accompagné des centaines d'entreprises et particuliers en Loire-Atlantique pour des événements d'exception."
       },
       {
         question: "Pourquoi choisir Lieux d'Exception ?",

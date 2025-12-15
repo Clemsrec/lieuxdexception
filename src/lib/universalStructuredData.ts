@@ -7,6 +7,7 @@
 
 import { universalSEOConfig, type SiteType, type PageType } from '@/config/seo.config';
 import type { Venue } from '@/types/firebase';
+import { displayVenueName } from '@/lib/formatVenueName';
 
 // ============================================================================
 // TYPES
@@ -45,7 +46,7 @@ function generateCorporateOrganization(data?: any) {
   return {
     "@context": "https://schema.org",
     "@type": "EventVenue",
-    "name": "Lieux d'Exception - Groupe Riou",
+    "name": "Lieux d'Exception",
     "description": config.business.expertise.primary,
     "url": "https://lieuxdexception.fr",
     
@@ -113,7 +114,7 @@ function generateVenueStructuredData(data?: { venue: Venue }) {
   return {
     "@context": "https://schema.org",
     "@type": "EventVenue",
-    "name": venue.name,
+    "name": displayVenueName(venue.name),
     "description": venue.description,
     "url": `https://lieuxdexception.fr/lieux/${venue.slug}`,
     
@@ -172,7 +173,7 @@ function generateServiceStructuredData(data?: any) {
     "serviceType": serviceName,
     "provider": {
       "@type": "Organization",
-      "name": "Lieux d'Exception - Groupe Riou",
+      "name": "Lieux d'Exception",
       "telephone": config.business.contact.phone,
       "email": config.business.contact.email
     },
@@ -202,7 +203,7 @@ function generateContactStructuredData(data?: any) {
     "description": "Contactez-nous pour votre projet événement en Loire-Atlantique",
     "mainEntity": {
       "@type": "Organization",
-      "name": "Lieux d'Exception - Groupe Riou",
+      "name": "Lieux d'Exception",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": config.business.contact.phone,
@@ -235,7 +236,7 @@ function generateAboutStructuredData(data?: any) {
     "description": config.business.expertise.primary,
     "mainEntity": {
       "@type": "Organization",
-      "name": "Lieux d'Exception - Groupe Riou",
+      "name": "Lieux d'Exception",
       "foundingDate": "1995",
       "description": config.business.expertise.primary,
       "knowsAbout": config.ai.expertise.specializations,
@@ -263,9 +264,9 @@ function generateCatalogueStructuredData(data?: { venues: Venue[] }) {
         "itemListElement": data.venues.map((venue, index) => ({
           "@type": "ListItem",
           "position": index + 1,
-          "item": {
+            "item": {
             "@type": "EventVenue",
-            "name": venue.name,
+            "name": displayVenueName(venue.name),
             "url": `https://lieuxdexception.fr/lieux/${venue.slug}`,
             "description": venue.description
           }

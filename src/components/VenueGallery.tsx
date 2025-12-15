@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
 /**
@@ -51,12 +52,35 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
   return (
     <>
       {/* Grille de photos */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+      <motion.div 
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
+        initial="hidden"
+        animate="show"
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.08
+            }
+          }
+        }}
+      >
         {images.map((image, index) => (
-          <button
+          <motion.button
             key={image}
             onClick={() => openLightbox(index)}
             className="group relative aspect-square overflow-hidden rounded-lg bg-stone/20 cursor-pointer"
+            variants={{
+              hidden: { opacity: 0, scale: 0.9 },
+              show: { 
+                opacity: 1, 
+                scale: 1,
+                transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+              }
+            }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            whileTap={{ scale: 0.95 }}
           >
             <Image
               src={image}
@@ -75,17 +99,22 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
             <div className="absolute bottom-2 right-2 bg-primary/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
               {index + 1}/{images.length}
             </div>
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
       {/* Lightbox plein écran */}
-      {lightboxOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
-          onKeyDown={handleKeyDown}
-          tabIndex={0}
-        >
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center backdrop-blur-2xl"
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
           {/* Bouton fermer */}
           <button
             onClick={closeLightbox}
@@ -102,7 +131,7 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
 
           {/* Image courante */}
           <div className="relative w-full h-full flex items-center justify-center p-4 md:p-12">
-            <div className="relative max-w-7xl max-h-full w-full h-full">
+            <div className="relative max-w-content max-h-full w-full h-full">
               <Image
                 src={images[currentIndex]}
                 alt={`${venueName} - Photo ${currentIndex + 1}`}
@@ -159,8 +188,9 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </>
   );
 }

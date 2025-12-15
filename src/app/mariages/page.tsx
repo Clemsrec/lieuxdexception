@@ -34,7 +34,7 @@ export default function MariagesPage() {
   const faqSchema = generateFAQSchema('service');
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-stone-light">
       
       {/* Structured Data */}
       {serviceSchema && (
@@ -63,8 +63,8 @@ export default function MariagesPage() {
       />
 
       {/* Galerie de photos */}
-      <section className="section section-alt">
-        <div className="section-container">
+      <section className="section bg-white">
+        <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">
               Des lieux qui racontent votre histoire
@@ -141,8 +141,8 @@ export default function MariagesPage() {
       </section>
 
       {/* Lieux d'Exception, une signature d'émotion */}
-      <section className="section">
-        <div className="section-container">
+      <section className="section bg-stone/30">
+        <div className="container">
           <div className="text-center">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8">
               Lieux d&apos;Exception, une signature d&apos;émotion
@@ -195,9 +195,9 @@ export default function MariagesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section">
-        <div className="section-container">
-          <div className="text-center bg-primary/5 rounded-2xl p-6 md:p-12">
+      <section className="section bg-accent/5">
+        <div className="container">
+          <div className="text-center bg-accent/10 rounded-2xl p-6 md:p-12 border border-accent/20">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">
               Parce que l&apos;émotion se vit pleinement lorsqu&apos;elle trouve son Lieu d&apos;Exception
             </h2>

@@ -21,7 +21,7 @@ export default function ConfidentialitePage() {
   return (
     <main className="min-h-screen">
       <section className="section">
-        <div className="section-container">
+        <div className="container">
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4">Politique de Confidentialité</h1>
@@ -31,7 +31,7 @@ export default function ConfidentialitePage() {
           </div>
 
           {/* Contenu */}
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-content mx-auto">
         
         {/* Introduction */}
         <section className="mb-8">

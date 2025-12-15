@@ -27,8 +27,8 @@ const config = {
     qualities: [75, 90], // Qualités utilisées (75 par défaut, 90 pour images importantes)
   },
   
-  // Désactiver strictMode en production pour éviter les double-renders
-  reactStrictMode: process.env.NODE_ENV === 'development',
+  // Désactiver strictMode (cause des problèmes avec Leaflet qui ne supporte pas le double-mount)
+  reactStrictMode: false,
   
   // Headers de sécurité (déjà dans middleware.ts mais bon de les avoir ici aussi)
   async headers() {

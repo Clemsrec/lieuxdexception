@@ -50,16 +50,16 @@ export default function Navigation() {
    */
   const getLinkClasses = (href: string) => {
     const baseClasses = "transition-colors duration-200";
-    const activeClasses = "text-primary font-medium";
-    const inactiveClasses = "text-foreground hover:text-primary";
+    const activeClasses = "text-white font-semibold";
+    const inactiveClasses = "text-white/90 hover:text-white";
     
     return `${baseClasses} ${isActive(href) ? activeClasses : inactiveClasses}`;
   };
 
   return (
-    <nav className="bg-background backdrop-blur-md border-b border-border sticky top-0 z-50">
-      <div className="header-footer-container">
-        <div className="flex items-center justify-between h-16">
+    <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
+      <div className="container-wide">
+        <div className="flex items-center justify-between h-20 md:h-24">
           
           {/* Logo */}
           <Link 
@@ -89,17 +89,29 @@ export default function Navigation() {
               href="/evenements-b2b" 
               className={getLinkClasses('/evenements-b2b')}
             >
-              Événements B2B
+              SÉMINAIRES & PRO
             </Link>
             <Link 
               href="/mariages" 
               className={getLinkClasses('/mariages')}
             >
-              Mariages
+              MARIAGES & PRIVÉS
+            </Link>
+            <Link 
+              href="/galerie" 
+              className={getLinkClasses('/galerie')}
+            >
+              Galerie
+            </Link>
+            <Link 
+              href="/histoire" 
+              className={getLinkClasses('/histoire')}
+            >
+              Histoire
             </Link>
             <Link 
               href="/contact" 
-              className={`btn-primary whitespace-nowrap ${isActive('/contact') ? 'bg-primary/90' : ''}`}
+              className="btn-primary whitespace-nowrap"
             >
               Contact
             </Link>
@@ -108,7 +120,7 @@ export default function Navigation() {
           {/* Bouton menu mobile */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg text-foreground hover:bg-muted transition-colors"
+            className="md:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
             aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={isMenuOpen}
           >
@@ -125,7 +137,7 @@ export default function Navigation() {
 
         {/* Menu mobile */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
+          <div className="md:hidden py-4 bg-primary/95 backdrop-blur-md border-t border-white/20 animate-fade-in">
             <div className="flex flex-col space-y-4">
               <Link 
                 href="/catalogue" 
@@ -139,14 +151,28 @@ export default function Navigation() {
                 className={getLinkClasses('/evenements-b2b')}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Événements B2B
+                SÉMINAIRES & PRO
               </Link>
               <Link 
                 href="/mariages" 
                 className={getLinkClasses('/mariages')}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Mariages
+                MARIAGES & PRIVÉS
+              </Link>
+              <Link 
+                href="/galerie" 
+                className={getLinkClasses('/galerie')}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Galerie
+              </Link>
+              <Link 
+                href="/histoire" 
+                className={getLinkClasses('/histoire')}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Histoire
               </Link>
               <Link 
                 href="/contact" 

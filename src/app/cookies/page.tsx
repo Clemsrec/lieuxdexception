@@ -5,7 +5,7 @@ import CookieSettings from '@/components/CookieSettings';
  * Métadonnées pour la page Politique des Cookies
  */
 export const metadata: Metadata = {
-  title: 'Politique des Cookies | Lieux d\'Exception - Groupe Riou',
+  title: 'Politique des Cookies | Lieux d\'Exception',
   description: 'Information sur l\'utilisation des cookies sur le site Lieux d\'Exception et gestion de vos préférences.',
   robots: {
     index: false,
@@ -22,7 +22,7 @@ export default function CookiesPage() {
   return (
     <main className="min-h-screen">
       <section className="section">
-        <div className="section-container">
+        <div className="container">
           {/* Header */}
           <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Politique des Cookies</h1>
@@ -32,7 +32,7 @@ export default function CookiesPage() {
       </div>
 
       {/* Contenu */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-content mx-auto">
         
         {/* Introduction */}
         <section className="mb-8">

@@ -67,7 +67,7 @@ export default function NotFoundPage() {
           >
             <Image
               src="/logo/Logo_CLE_avec Texte.png"
-              alt="Lieux d'Exception - Groupe Riou"
+              alt="Lieux d'Exception"
               width={300}
               height={120}
               className="mx-auto drop-shadow-lg"
@@ -77,7 +77,7 @@ export default function NotFoundPage() {
 
           {/* Carte principale */}
           <div
-            className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12 border border-white/50 transition-all duration-700 delay-200 max-w-7xl mx-auto ${
+            className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12 border border-white/50 transition-all duration-700 delay-200 max-w-content mx-auto ${
               mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -110,7 +110,7 @@ export default function NotFoundPage() {
               Page introuvable
             </h1>
 
-            <p className="text-lg text-secondary text-center mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-secondary text-center mb-8 mx-auto">
               Désolé, la page que vous recherchez semble s&apos;être égarée dans nos magnifiques domaines...
             </p>
 
@@ -200,7 +200,7 @@ export default function NotFoundPage() {
 
           {/* Footer minimal */}
           <p className="text-center text-sm text-white/80 mt-6">
-            © {new Date().getFullYear()} Lieux d&apos;Exception - Groupe Riou
+            © {new Date().getFullYear()} Lieux d&apos;Exception
           </p>
         </div>
       </div>

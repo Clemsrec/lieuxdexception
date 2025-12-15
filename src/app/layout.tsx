@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
@@ -61,9 +60,6 @@ export default function RootLayout({
       <body className="antialiased">
         {/* Enregistrement Service Worker pour FCM */}
         <ServiceWorkerRegistration />
-        
-        {/* Navigation principale */}
-        <Navigation />
         
         {/* Contenu principal */}
         <main>

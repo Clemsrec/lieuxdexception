@@ -1,57 +1,86 @@
-/* Configuration Tailwind CSS v4 - Lieux d'Exception */
+/* ============================================
+   GLOBALS.CSS - Lieux d'Exception
+   Architecture restructurée v2.0
+   ============================================ */
+
 @import "tailwindcss";
 
-/* Configuration personnalisée avec @theme */
+/* ============================================
+   LAYER 1: DESIGN TOKENS
+   ============================================ */
+
 @theme {
-  /* ========== COULEURS PREMIUM ========== */
-  /* Bleu Marine (inspiré du logo) */
-  --color-primary: #1B365D;
-  --color-primary-light: #2C4A7C;
-  --color-primary-dark: #0F1F3D;
+  /* ===== COULEURS PREMIUM HARMONISÉES ===== */
   
-  /* Or Champagne (accent premium) */
-  --color-accent: #C9A961;
-  --color-accent-light: #D7C39B;
-  --color-accent-dark: #B89445;
+  /* Bleu Marine (Primary) */
+  --color-primary-50: #F0F3F7;
+  --color-primary-100: #DCE3ED;
+  --color-primary-200: #B8C7DB;
+  --color-primary-300: #8DA2C0;
+  --color-primary-400: #537AA8;
+  --color-primary-500: #1B365D;
+  --color-primary-600: #152B4A;
+  --color-primary-700: #0F1F35;
+  --color-primary-800: #0A1423;
+  --color-primary-900: #050A11;
   
-  /* Gris élégants */
-  --color-stone: #E8DCC4;
-  --color-stone-light: #F3EFE6;
-  --color-stone-dark: #D4C8B0;
+  /* Or Champagne (Accent) */
+  --color-accent-50: #FAF7F1;
+  --color-accent-100: #F5EFE3;
+  --color-accent-200: #EBDFC7;
+  --color-accent-300: #E0CFAB;
+  --color-accent-400: #D4BC86;
+  --color-accent-500: #C9A961;
+  --color-accent-600: #B89445;
+  --color-accent-700: #9A7B34;
+  --color-accent-800: #6D5725;
+  --color-accent-900: #3F3216;
   
-  /* Neutrals sophistiqués */
-  --color-neutral-50: #FAFAF8;
-  --color-neutral-100: #F5F5F3;
-  --color-neutral-200: #E5E5E3;
-  --color-neutral-300: #D4D4D2;
-  --color-neutral-600: #525250;
-  --color-neutral-800: #2C2C2A;
-  --color-neutral-900: #1A1A18;
+  /* Gris Anthracite (Charcoal) */
+  --color-charcoal-50: #F8F8F8;
+  --color-charcoal-100: #F0F0F0;
+  --color-charcoal-200: #E0E0E0;
+  --color-charcoal-300: #BDBDBD;
+  --color-charcoal-400: #757575;
+  --color-charcoal-500: #4A4A4A;
+  --color-charcoal-600: #2A2A2A;
+  --color-charcoal-700: #1F1F1F;
+  --color-charcoal-800: #151515;
+  --color-charcoal-900: #0A0A0A;
+  
+  /* Beige Pierre (Stone) */
+  --color-stone-50: #FDFCFA;
+  --color-stone-100: #FAF8F5;
+  --color-stone-200: #F3EFE6;
+  --color-stone-300: #ECE6D7;
+  --color-stone-400: #E8DCC4;
+  --color-stone-500: #D4C8B0;
+  --color-stone-600: #BFB39B;
+  --color-stone-700: #A89D87;
+  
+  /* Neutrals (Gris chauds) */
+  --color-neutral-50: #FAFAF9;
+  --color-neutral-100: #F5F5F4;
+  --color-neutral-200: #E7E5E4;
+  --color-neutral-300: #D6D3D1;
+  --color-neutral-400: #A8A29E;
+  --color-neutral-500: #78716C;
+  --color-neutral-600: #57534E;
+  --color-neutral-700: #44403C;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1C1917;
   
   /* Couleurs sémantiques */
   --color-success: #8B9D83;
   --color-error: #C75450;
   --color-warning: #E8B86D;
   
-  /* ========== TYPOGRAPHIE PREMIUM ========== */
+  /* ===== TYPOGRAPHIE ===== */
   --font-display: 'Playfair Display', 'Georgia', serif;
   --font-heading: 'Montserrat', 'Helvetica Neue', sans-serif;
   --font-body: 'Inter', 'system-ui', sans-serif;
   
-  /* Font Sizes (échelle harmonieuse) */
-  --font-size-xs: 0.75rem;      /* 12px */
-  --font-size-sm: 0.875rem;     /* 14px */
-  --font-size-base: 1rem;       /* 16px */
-  --font-size-lg: 1.125rem;     /* 18px */
-  --font-size-xl: 1.25rem;      /* 20px */
-  --font-size-2xl: 1.5rem;      /* 24px */
-  --font-size-3xl: 1.875rem;    /* 30px */
-  --font-size-4xl: 2.25rem;     /* 36px */
-  --font-size-5xl: 3rem;        /* 48px */
-  --font-size-6xl: 3.75rem;     /* 60px */
-  --font-size-7xl: 4.5rem;      /* 72px */
-  
-  /* ========== ESPACEMENTS GÉNÉREUX ========== */
+  /* ===== ESPACEMENTS ===== */
   --spacing-xs: 0.5rem;    /* 8px */
   --spacing-sm: 1rem;      /* 16px */
   --spacing-md: 1.5rem;    /* 24px */
@@ -61,39 +90,56 @@
   --spacing-3xl: 6rem;     /* 96px */
   --spacing-4xl: 8rem;     /* 128px */
   
-  /* ========== BORDER RADIUS ÉLÉGANTS ========== */
+  /* ===== BORDER RADIUS ===== */
   --radius-sm: 0.25rem;    /* 4px */
   --radius-md: 0.5rem;     /* 8px */
   --radius-lg: 0.75rem;    /* 12px */
   --radius-xl: 1rem;       /* 16px */
   
-  /* ========== OMBRES SUBTILES ========== */
+  /* ===== OMBRES ===== */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-premium: 0 4px 20px rgba(201, 169, 97, 0.15);
 }
 
-/* Variables CSS pour le thème */
+/* Variables CSS pour utilisation dans composants */
 :root {
+  /* Fonds */
+  --background: #FAF8F5;
+  --background-alt: #F3EFE6;
+  --surface: #FFFFFF;
+  --surface-muted: #FDFCFA;
+  
+  /* Textes */
+  --foreground: var(--color-charcoal-700);
+  --foreground-muted: var(--color-neutral-600);
+  
   /* Couleurs principales */
-  --background: #FFFFFF;
-  --foreground: var(--color-neutral-900);
-  --primary: var(--color-primary);
-  --secondary: var(--color-neutral-600);
-  --accent: var(--color-accent);
-  --muted: var(--color-neutral-100);
-  --border: var(--color-neutral-200);
-  --ring: var(--color-accent);
+  --primary: var(--color-primary-500);
+  --primary-hover: var(--color-primary-400);
+  --accent: var(--color-accent-500);
+  --accent-hover: var(--color-accent-600);
+  --secondary: var(--color-charcoal-600);
+  
+  /* Bordures */
+  --border: var(--color-stone-300);
+  --border-light: var(--color-stone-200);
+  --border-accent: var(--color-accent-200);
+  
+  /* Focus */
+  --ring: var(--color-accent-500);
 }
 
-/* Configuration de base pour le body */
+/* ============================================
+   LAYER 2: BASE STYLES
+   ============================================ */
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
-  font-size: var(--font-size-base);
+  font-size: 1rem;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -104,123 +150,304 @@ body {
   border-color: var(--border);
 }
 
-/* ========== TYPOGRAPHIE ÉLÉGANTE ========== */
-h1, h2 {
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   LAYER 3: LAYOUT SYSTEM
+   ============================================ */
+
+/* Container principal (contenu 1536px) */
+.container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Container large (header/footer 1920px) */
+.container-wide {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-wide {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-wide {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Sections (espacement vertical uniquement) */
+.section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Classes de fond (séparées de .section) */
+.bg-alt {
+  background-color: var(--background-alt);
+}
+
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.bg-accent {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* ============================================
+   LAYER 4: TYPOGRAPHY
+   ============================================ */
+
+/* Titres display (grands titres hero) */
+.title-hero {
   font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Titres XL (titres de section principaux) */
+.title-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--foreground);
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: var(--primary);
 }
 
-h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+/* Titres LG (sous-titres) */
+.title-lg {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 600;
+  color: var(--foreground);
   line-height: 1.3;
   letter-spacing: -0.015em;
+}
+
+/* Titres MD */
+.title-md {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+/* Accents dans titres (italique or) */
+.title-hero em,
+.title-xl em,
+.title-lg em {
+  font-style: italic;
+  color: var(--color-accent-600);
+}
+
+/* Variante avec couleur primaire (bleu) */
+.title-xl.text-primary,
+.title-lg.text-primary {
   color: var(--primary);
 }
 
-h1 {
-  font-size: var(--font-size-6xl);
-}
-
-h2 {
-  font-size: var(--font-size-5xl);
-}
-
-h3 {
-  font-size: var(--font-size-3xl);
-}
-
-h4 {
-  font-size: var(--font-size-2xl);
-}
-
-p {
+/* Subtitle */
+.subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--foreground-muted);
   line-height: 1.8;
-  letter-spacing: -0.011em;
+  letter-spacing: 0.01em;
 }
 
-/* ========== COMPOSANTS PREMIUM ========== */
+/* Label uppercase (luxe) */
+.label-uppercase {
+  font-family: var(--font-heading);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
 
-/* Bouton principal (or champagne) */
-.btn-primary {
+/* Effets typographiques */
+.text-cursive-underline {
+  font-family: var(--font-display);
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+.text-cursive-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+.text-cursive-circled {
+  font-family: var(--font-display);
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+}
+
+.text-cursive-circled::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+/* ============================================
+   LAYER 5: COMPONENTS
+   ============================================ */
+
+/* ----- BOUTONS ----- */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-  color: white;
   padding: 0.875rem 2rem;
   border-radius: var(--radius-md);
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.875rem;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--shadow-premium);
-  border: none;
+  cursor: pointer;
   white-space: nowrap;
   line-height: 1.2;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--color-accent-600) 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+  border: none;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(201, 169, 97, 0.25);
+  box-shadow: 0 8px 24px rgba(201, 169, 97, 0.4);
 }
 
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-/* Bouton secondaire (outline bleu marine) */
 .btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   background: transparent;
   color: var(--primary);
-  padding: 0.875rem 2rem;
   border: 2px solid var(--primary);
-  border-radius: var(--radius-md);
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.025em;
-  text-transform: uppercase;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
-  line-height: 1.2;
 }
 
 .btn-secondary:hover {
   background: var(--primary);
   color: white;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
 }
 
-/* Cards élégantes pour venues */
+@media (max-width: 640px) {
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ----- CARDS ----- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+}
+
+.card-hover {
+  box-shadow: 0 2px 8px rgba(27, 54, 93, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(27, 54, 93, 0.12), 0 4px 12px rgba(201, 169, 97, 0.08);
+  border-color: var(--border-accent);
+}
+
+/* Venue cards spécifiques */
 .venue-card {
-  background-color: var(--background);
-  border: 1px solid var(--color-stone);
+  background: var(--surface);
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(27, 54, 93, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .venue-card:hover {
-  transform: translateY(-12px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-accent-light);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(27, 54, 93, 0.12), 0 4px 12px rgba(201, 169, 97, 0.08);
+  border-color: var(--border-accent);
 }
 
 .venue-card img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -228,275 +455,7 @@ p {
   transform: scale(1.08);
 }
 
-/* Card text-center : padding généreux */
-.venue-card.text-center {
-  padding: 3rem 2.5rem;
-}
-
-/* Card avec contenu textuel uniquement (pas d'image) */
-.venue-card:not(:has(img)) {
-  padding: 2.5rem;
-}
-
-/* Améliorer le padding des contenus de card existants */
-.venue-card > div[class*="p-"] {
-  padding: 2rem !important;
-}
-
-/* PADDING GÉNÉREUX PARTOUT - Style luxe uniforme */
-/* Toutes les cards avec padding inline deviennent généreuses */
-[class*="p-4"] { padding: 1.75rem !important; }
-[class*="p-6"] { padding: 2rem !important; }
-[class*="p-8"] { padding: 2.5rem !important; }
-[class*="p-10"] { padding: 3rem !important; }
-[class*="p-12"] { padding: 3.5rem !important; }
-
-/* Cards avec fonds - bordures et ombres */
-.bg-muted,
-.bg-primary\/5,
-.bg-background,
-.bg-white,
-.bg-stone-light,
-[class*="bg-green"],
-[class*="bg-blue"],
-[class*="bg-purple"],
-[class*="bg-orange"] {
-  border: 1px solid var(--color-stone);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.4s ease;
-}
-
-/* Hover subtil sur cards interactives */
-div[class*="bg-"]:hover,
-button[class*="bg-"]:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-/* Card avec fond subtil - pour variations */
-.card-subtle {
-  background: linear-gradient(135deg, var(--background) 0%, var(--color-stone-light) 100%);
-  border: 1px solid var(--color-stone);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.4s ease;
-}
-
-.card-subtle:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-}
-
-/* ========== CONTAINERS GLOBAUX ========== */
-
-/* Container principal pour le contenu des pages */
-.section-container {
-  max-width: 1536px;
-  margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-/* Container pour header et footer (plus large) */
-.header-footer-container {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-/* Paddings responsive pour tous les containers */
-@media (min-width: 640px) {
-  .section-container,
-  .header-footer-container {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section-container,
-  .header-footer-container {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-}
-
-/* Sections avec espacement généreux */
-.section {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
-
-@media (max-width: 640px) {
-  .section {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-}
-
-/* Background alternatif élégant */
-.section-alt {
-  background-color: var(--color-stone-light);
-}
-
-/* Titres de section */
-.section-title {
-  font-family: var(--font-display);
-  font-size: var(--font-size-5xl);
-  font-weight: 600;
-  color: var(--primary);
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-  letter-spacing: 0.02em;
-  line-height: 1.1;
-}
-
-.section-subtitle {
-  font-family: var(--font-body);
-  font-size: var(--font-size-xl);
-  color: var(--secondary);
-  text-align: center;
-  margin: 0 auto var(--spacing-2xl) auto;
-  line-height: 1.8;
-  letter-spacing: 0.01em;
-}
-
-/* Accents dorés */
-.accent-line {
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-  margin: var(--spacing-lg) auto;
-}
-
-/* Accent line sur fond sombre (hero) - plus lumineux */
-.hero-content .accent-line {
-  background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.9), transparent);
-  box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
-}
-
-/* Hero sections immersives */
-.hero-section {
-  position: relative;
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-/* Overlay désactivé car géré dans HeroCarousel
-.hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(27, 54, 93, 0.5) 0%, rgba(27, 54, 93, 0.75) 100%);
-  z-index: 1;
-}
-*/
-
-/* Section avec image de fond (CTA, etc.) */
-.image-bg-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.image-bg-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(27, 54, 93, 0.7) 0%, rgba(27, 54, 93, 0.85) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.image-bg-section > * {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 30; /* Au-dessus des overlays du carousel (z-20) */
-  text-align: left;
-  color: white;
-  padding: 0 2rem;
-  width: 100%;
-}
-
-.hero-content h1,
-.hero-content p,
-.hero-content .hero-title,
-.hero-content .hero-subtitle {
-  color: white !important;
-  /* text-shadow renforcé pour meilleur contraste avec photos */
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 
-               0 4px 16px rgba(0, 0, 0, 0.6),
-               0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: var(--font-size-7xl);
-  font-weight: 600;
-  margin-bottom: var(--spacing-lg);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  color: white;
-}
-
-@media (max-width: 640px) {
-  .hero-title {
-    font-size: var(--font-size-5xl);
-  }
-}
-
-.hero-subtitle {
-  font-family: var(--font-body);
-  font-size: var(--font-size-xl);
-  line-height: 1.7;
-  margin-bottom: var(--spacing-2xl);
-  opacity: 0.95;
-  color: white;
-}
-
-/* Formulaires élégants */
-.form-input,
-.form-select,
-.form-textarea {
-  width: 100%;
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  font-family: var(--font-body);
-  font-size: var(--font-size-base);
-  color: var(--foreground);
-  background-color: var(--background);
-  transition: all 0.2s ease;
-}
-
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
-}
-
-.form-label {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--primary);
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.025em;
-  text-transform: uppercase;
-}
-
-/* Badges élégants */
+/* ----- BADGES ----- */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -504,7 +463,7 @@ button[class*="bg-"]:hover {
   padding: 0.5rem 1rem;
   border-radius: 999px;
   font-family: var(--font-heading);
-  font-size: var(--font-size-xs);
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -517,10 +476,17 @@ button[class*="bg-"]:hover {
 
 .badge-accent {
   background-color: rgba(201, 169, 97, 0.1);
-  color: var(--color-accent-dark);
+  color: var(--color-accent-700);
 }
 
-/* Lignes décoratives */
+/* ----- LIGNES DÉCORATIVES ----- */
+.accent-line {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: var(--spacing-lg) auto;
+}
+
 .divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border), transparent);
@@ -529,50 +495,137 @@ button[class*="bg-"]:hover {
 
 .divider-accent {
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
   margin: var(--spacing-xl) 0;
 }
 
-/* Lignes décoratives */
-.divider {
+/* ----- FORMULAIRES ----- */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--foreground);
+  background-color: var(--background);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   LAYER 6: HERO SECTIONS
+   ============================================ */
+
+.hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 30;
+  text-align: left;
+  color: white;
+  padding: 0 2rem;
+  width: 100%;
+  max-width: 1536px;
+  margin: 0 auto;
+}
+
+.hero-content h1,
+.hero-content p,
+.hero-content .hero-title,
+.hero-content .hero-subtitle {
+  color: white !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8),
+               0 4px 16px rgba(0, 0, 0, 0.6),
+               0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-2xl);
+  opacity: 0.95;
+}
+
+.hero-content .accent-line {
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.9), transparent);
+  box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+}
+
+/* ============================================
+   LAYER 7: UTILITIES
+   ============================================ */
+
+/* États de focus */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+/* Accessibilité */
+.sr-only {
+  position: absolute;
+  width: 1px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-  margin: var(--spacing-xl) 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
-.divider-accent {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-  margin: var(--spacing-xl) 0;
-}
-
-/* ========== UTILITAIRES PREMIUM ========== */
-
-/* Effets de texte */
-.text-gradient-gold {
-  background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent-dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-balance {
-  text-wrap: balance;
-}
-
-/* Animations élégantes */
+/* Animations */
 .animate-fade-in {
   animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -591,120 +644,6 @@ button[class*="bg-"]:hover {
   }
 }
 
-/* Effet parallax subtle */
-.parallax-slow {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* États de focus élégants */
-*:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.3);
-  border-radius: var(--radius-sm);
-}
-
-/* Responsive images */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Accessibilité */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* ========== RESPONSIVE HELPERS ========== */
-
-@media (max-width: 640px) {
-  h1 {
-    font-size: var(--font-size-5xl);
-  }
-  
-  h2 {
-    font-size: var(--font-size-4xl);
-  }
-  
-  h3 {
-    font-size: var(--font-size-2xl);
-  }
-  
-  .section-title {
-    font-size: var(--font-size-4xl);
-  }
-  
-  .btn-primary,
-  .btn-secondary {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.8125rem;
-  }
-}
-
-/* ========== PRINT STYLES ========== */
-@media print {
-  @page {
-    margin: 2cm;
-  }
-  
-  body {
-    color: black;
-    background: white;
-  }
-  
-  .no-print,
-  nav,
-  footer,
-  .btn-primary,
-  .btn-secondary {
-    display: none !important;
-  }
-}
-
-/* ========== REDUCED MOTION ========== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ========== LOGO SIZING - STRICT RULES ========== */
-/* Empêche le logo de se redimensionner automatiquement */
-img[alt="Lieux d'Exception"] {
-  max-width: 140px !important;
-  max-height: 40px !important;
-  height: auto !important;
-  width: auto !important;
-  object-fit: contain !important;
-}
-
-/* Logo navigation header - plus petit */
-nav img[alt="Lieux d'Exception"] {
-  max-width: 120px !important;
-  max-height: 35px !important;
-}
-
-/* ========== ANIMATIONS ========== */
-
-/* Animation shake pour les erreurs */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
@@ -715,22 +654,17 @@ nav img[alt="Lieux d'Exception"] {
   animation: shake 0.5s ease-in-out;
 }
 
-/* Animation float pour particules décoratives (page 404) */
 @keyframes float {
   0%, 100% {
     transform: translateY(0) translateX(0);
     opacity: 0;
   }
-  10% {
-    opacity: 0.3;
-  }
+  10% { opacity: 0.3; }
   50% {
     transform: translateY(-100vh) translateX(20px);
     opacity: 0.6;
   }
-  90% {
-    opacity: 0.3;
-  }
+  90% { opacity: 0.3; }
   100% {
     transform: translateY(-120vh) translateX(-20px);
     opacity: 0;
@@ -741,7 +675,6 @@ nav img[alt="Lieux d'Exception"] {
   animation: float 6s ease-in-out infinite;
 }
 
-/* Animation bounce personnalisée (plus subtile) */
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
@@ -755,4 +688,51 @@ nav img[alt="Lieux d'Exception"] {
 
 .animate-bounce {
   animation: bounce 2s infinite;
+}
+
+/* Logo sizing (strict) */
+img[alt="Lieux d'Exception"] {
+  max-width: 140px !important;
+  max-height: 40px !important;
+  height: auto !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+nav img[alt="Lieux d'Exception"] {
+  max-width: 120px !important;
+  max-height: 35px !important;
+}
+
+/* ============================================
+   RESPONSIVE & ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  @page {
+    margin: 2cm;
+  }
+  
+  body {
+    color: black;
+    background: white;
+  }
+  
+  .no-print,
+  nav,
+  footer,
+  .btn {
+    display: none !important;
+  }
 }

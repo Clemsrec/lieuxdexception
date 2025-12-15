@@ -49,7 +49,7 @@
 
 ## Architecture et Stack
 
-**Next.js 15** (App Router + Turbopack) + **TypeScript** + **Tailwind CSS v4** + **Firebase** (Firestore + Auth)
+**Next.js 15** (App Router + Turbopack) + **TypeScript** + **Tailwind CSS v4** + **Firebase** (Firestore + Auth + FCM)
 
 ### Structure Critique
 
@@ -57,23 +57,50 @@
 src/
 ├── app/                      # Pages Next.js avec App Router
 │   ├── globals.css          # Tailwind v4 @theme config + variables CSS
-│   └── [route]/page.tsx     # Server Components par défaut
+│   ├── layout.tsx           # Layout racine (Footer, CookieBanner, ServiceWorker)
+│   ├── page.tsx             # Homepage (Server Component)
+│   ├── admin/               # Dashboard admin (layout dédié, pas de Nav/Footer public)
+│   ├── catalogue/           # Listing lieux filtrable
+│   ├── evenements-b2b/      # Page dédiée B2B
+│   ├── mariages/            # Page dédiée mariages
+│   ├── lieux/[slug]/        # Pages dynamiques par lieu
+│   └── api/                 # API routes (rate-limited, validées Zod)
 ├── components/
-│   └── ui/Icon.tsx          # Composant icônes (remplace emojis)
+│   ├── Navigation.tsx       # Nav principale (states actifs)
+│   ├── ContactFormSwitcher.tsx # Formulaires adaptatifs B2B/Mariage
+│   ├── admin/               # Composants dashboard
+│   ├── seo/                 # SEO components (metadata, structured data)
+│   └── ui/                  # Composants réutilisables (PAS d'Icon.tsx !)
 ├── lib/
-│   ├── firebase.ts          # Config Firebase (1 instance partagée)
-│   ├── firestore.ts         # Services CRUD Firestore (tous typés)
+│   ├── firebase.ts          # Config Firebase Client SDK (auto-detect émulateur)
+│   ├── firebase-admin.ts    # Firebase Admin SDK (bypass rules, server-only)
+│   ├── firestore.ts         # Services CRUD via Admin SDK (tous typés)
 │   ├── validation.ts        # Schémas Zod + helpers sanitization
-│   └── security.ts          # Hash, tokens, rate limiting
+│   ├── security.ts          # Hash, tokens, rate limiting in-memory (dev)
+│   ├── rate-limit.ts        # Upstash Redis rate limiting (prod)
+│   ├── auth.ts              # Auth helpers (login, logout, session)
+│   └── fcm.ts               # Firebase Cloud Messaging (notifications)
 ├── types/
-│   └── firebase.ts          # Interfaces Venue, Lead, Analytics
-└── middleware.ts            # Headers sécurité + protection admin
+│   └── firebase.ts          # Interfaces Venue, Lead, Analytics (types complets)
+├── middleware.ts            # Headers sécurité + protection admin + CSP
+└── scripts/                 # Scripts utilitaires (voir section Scripts Essentiels)
 ```
 
 ### Données Firebase (Firestore)
-- **Collections** : `venues`, `leads`, `analytics`, `i18n`
+- **Collections** : `venues`, `leads`, `analytics`, `i18n`, `users`
+- **Projet** : `lieux-d-exceptions` (ID: 886228169873)
 - **Base de données** : `lieuxdexception` (région: europe-west1)
 - **Accès** : Uniquement via `lib/firestore.ts` (pas d'accès direct depuis composants)
+- **Admin SDK** : Server-only dans `lib/firebase-admin.ts` (bypass rules Firestore)
+
+### Client vs Server Components
+- **Par défaut** : Server Component (pas de "use client")
+- **Client Component nécessaire si** :
+  - Hooks React (useState, useEffect, useContext)
+  - Event handlers (onClick, onChange)
+  - Browser APIs (localStorage, window)
+  - Composants interactifs (formulaires, modals, carousels)
+- **Exemple** : `page.tsx` Server → charge données → passe à `<ClientComponent />` pour interactivité
 
 ## Patterns Essentiels
 
@@ -100,12 +127,20 @@ export default function ContactForm() {
 // ❌ JAMAIS d'accès direct dans composants
 import { collection, getDocs } from 'firebase/firestore';
 
-// ✅ Utiliser les services typés
+// ✅ Utiliser les services typés (Admin SDK côté serveur)
 import { getVenues, createLead } from '@/lib/firestore';
 
+// Dans Server Component (page.tsx, layout.tsx)
 const venues = await getVenues({ eventType: 'b2b', region: 'pays-de-loire' });
+
+// Dans API route
 const leadId = await createLead({ type: 'b2b', contactInfo: {...}, eventDetails: {...} });
 ```
+
+**IMPORTANT** : 
+- `lib/firestore.ts` utilise **Admin SDK** (`firebase-admin`) = bypass rules, server-only
+- `lib/firebase.ts` = Client SDK pour auth navigateur uniquement
+- Jamais d'import `firebase/firestore` dans composants → toujours passer par services
 
 ### 3. Validation Zod (OBLIGATOIRE pour formulaires)
 
@@ -126,9 +161,14 @@ const { data } = result; // data est typé automatiquement
 // ❌ Pas d'emoji dans JSX
 <div>💒 Mariage</div>
 
-// ✅ Icône Lucide avec accessibilité
-import Icon from '@/components/ui/Icon';
-<div><Icon type="church" size={24} aria-label="Mariage" /> Mariage</div>
+// ✅ Lucide Icons pour fonctionnalités (notifications, admin)
+import { AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+<AlertTriangle className="w-5 h-5 text-yellow-500" aria-label="Attention" />
+
+// ✅ Typographie luxe pour interface publique
+<div className="text-accent text-2xl">★</div>  {/* Symbole unicode */}
+<div className="font-display text-accent">I</div>  {/* Chiffre romain */}
+<div className="w-20 h-px bg-accent/40" />  {/* Ligne décorative */}
 ```
 
 ### 5. Styles Tailwind v4
@@ -141,6 +181,32 @@ import Icon from '@/components/ui/Icon';
 ```
 
 ## Workflows Critiques
+
+### Scripts Essentiels
+
+```bash
+# Gestion des lieux (venues)
+node scripts/import-venues.js           # Importer lieux depuis JSON
+node scripts/activate-venues.js         # Activer/désactiver lieux
+node scripts/check-venues.js            # Vérifier données lieux
+node scripts/update-venue-urls.js       # Mettre à jour slugs/URLs
+
+# Gestion admin
+./scripts/create-admin.sh               # Créer compte admin
+npx tsx scripts/set-admin-claims.ts grant <email>  # Donner droits admin
+
+# Images et médias
+node scripts/optimize-images.js         # Optimiser images lieux
+node scripts/check-dome-images.js       # Vérifier images Château Le Dôme
+
+# Sécurité et secrets
+./scripts/setup-secrets.sh              # Configurer secrets Google Cloud
+./scripts/test-security.sh              # Tester headers sécurité
+
+# Tests et validation
+node scripts/check-filters-data.js      # Vérifier données filtres
+./scripts/test-fcm-notification.sh      # Tester notifications FCM
+```
 
 ### Développement Local
 
@@ -270,6 +336,14 @@ if (isRateLimited(ip, { maxRequests: 5, windowSeconds: 60 })) {
 - **Variables CSS** : `var(--primary)`, `var(--background)` définies dans `:root`
 - **Classes custom** : `.btn-primary`, `.venue-card`, `.section-container` déjà définies
 - **Dark mode** : Auto via `@media (prefers-color-scheme: dark)`
+- **Design tokens** : Palette complète dans `@theme` (primary, accent, charcoal, stone, neutral)
+
+### Next.js 15 Spécifique
+- **Output mode** : `standalone` pour Firebase App Hosting (voir `next.config.js`)
+- **App Router** : Routes dans `app/`, pas de `pages/`
+- **Metadata** : Utiliser `export const metadata: Metadata` dans page.tsx
+- **Server Actions** : Pas encore implémenté (utiliser API routes)
+- **Image Optimization** : Remote patterns pour Firebase Storage configurés
 
 ### Debugging
 ```bash
@@ -287,5 +361,8 @@ curl -I http://localhost:3002 | grep -i "content-security\|x-frame"
 ### Documentation Essentielle
 - `docs/DEPLOYMENT.md` : Déploiement + secrets Google Cloud
 - `docs/SECURITY.md` : Sécurité + Firestore Rules + Rate limiting
-- `docs/migration-emojis-to-icons.md` : Mapping emojis → icônes Lucide
+- `docs/DESIGN-SYSTEM-CHEATSHEET.md` : Guide rapide design system (patterns, classes, exemples)
+- `docs/AUDIT-DESIGN-SYSTEM.md` : Audit complet conformité composants
+- `docs/LUXE-DESIGN-GUIDELINES.md` : Principes design luxe sans icônes
+- `docs/MIGRATION-CSS-RESUME.md` : Historique migration CSS v2.0
 - `types/firebase.ts` : Toutes les interfaces de données Firestore

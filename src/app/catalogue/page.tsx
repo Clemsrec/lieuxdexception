@@ -65,14 +65,14 @@ export default async function CataloguePage() {
 
       {/* Catalogue avec filtres */}
       <section className="section">
-        <div className="section-container">
+        <div className="container">
           <VenueCatalog venues={venues} />
         </div>
       </section>
 
       {/* Section contact */}
       <section className="section">
-        <div className="section-container">
+        <div className="container">
           <div className="text-center">
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-primary mb-4">
               Besoin d&apos;aide pour choisir ?
