@@ -37,6 +37,28 @@
   ```
 - **Design luxe** : Les emojis cassent l'esthétique haut de gamme du site
 
+### Responsive Design 📱
+- **TOUJOURS VÉRIFIER** : Chaque composant/page DOIT être responsive avant commit
+- **Mobile-First obligatoire** : Partir du mobile (375px) puis adapter tablet/desktop
+- **Touch Targets (WCAG AA)** :
+  - Minimum **48px × 48px** sur mobile pour tous les boutons/liens
+  - Minimum **44px × 44px** sur desktop
+  - Classe `.btn` intègre déjà `min-height: 48px` mobile, `44px` desktop
+- **Breakpoints standardisés** :
+  - `sm: 640px` (phablet/petit tablet)
+  - `md: 768px` (tablet portrait)
+  - `lg: 1024px` (tablet landscape/petit desktop)
+  - `xl: 1280px` (desktop standard)
+  - `2xl: 1536px` (grand écran)
+- **Grilles fluides** : Toujours mobile→desktop (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`)
+- **Gap responsive** : `gap-4 md:gap-6 lg:gap-8` (espacement progressif)
+- **Typographie fluide** : Utiliser `clamp()` ou classes responsive (`text-2xl md:text-3xl lg:text-4xl`)
+- **Images** : Toujours ajouter `sizes` attribute pour responsive loading
+  ```tsx
+  <Image sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+  ```
+- **Test requis** : Vérifier visuellement sur 375px, 768px, 1024px, 1440px avant push
+
 ### Qualité du Code
 - **JAMAIS INVENTER DE DONNÉES** : Ni fausses données, ni faux texte, ni contenu placeholder
   - Si donnée manquante → Demander au client ou laisser vide avec TODO
@@ -297,7 +319,16 @@ const authToken = request.cookies.get('auth-token');
 ```typescript
 // Tous les formulaires DOIVENT utiliser Zod
 import { validateData, sanitizeString } from '@/lib/validation';
+Responsive & Accessibilité
+- **VÉRIFICATION OBLIGATOIRE** : Avant chaque commit, valider le responsive mobile/tablet/desktop
+- **Touch targets** : Minimum 48px mobile, 44px desktop (WCAG AA)
+- **Grilles fluides** : Toujours `grid-cols-1` mobile puis `sm:`, `md:`, `lg:` pour adapter
+- **Espacement progressif** : `gap-4 md:gap-6 lg:gap-8`, `p-4 md:p-6 lg:p-8`
+- **Typographie fluide** : `text-xl md:text-2xl lg:text-3xl` ou `clamp(1rem, 2vw, 1.5rem)`
+- **Images sizes** : Toujours spécifier pour Next.js Image optimization
+- **Test visuel requis** : 375px, 768px, 1024px, 1440px minimum
 
+### 
 // API route pattern :
 const body = await request.json();
 const result = validateData(b2bFormSchema, body);
