@@ -1,0 +1,76 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "catalogue": "Catalogo",
+    "b2b": "SEMINARI & PRO",
+    "weddings": "MATRIMONI & PRIVATI",
+    "gallery": "Galleria",
+    "history": "Storia",
+    "contact": "Contatto"
+  },
+  "Home": {
+    "title": "Luoghi d'Eccezione",
+    "subtitle": "La Chiave dei Vostri Momenti Unici",
+    "philosophy": "Un'Avventura Nata da Luoghi & Passione",
+    "signature": "Perché l'emozione si vive pienamente quando trova il suo Luogo d'Eccezione",
+    "discoverButton": "Scopri i nostri luoghi",
+    "contactButton": "Contattaci",
+    "exceptionalVenues": "Luoghi d'eccezione"
+  },
+  "B2B": {
+    "hero": "E se i vostri eventi professionali diventassero... semplicemente eccezionali?",
+    "pillar1": "Un'emozione eccezionale",
+    "pillar2": "Un servizio eccezionale",
+    "pillar3": "Luoghi d'eccezione"
+  },
+  "Weddings": {
+    "hero": "Perché l'emozione si vive pienamente...",
+    "service1": "Incontri personalizzati",
+    "service2": "Organizzazione & Coordinamento",
+    "service3": "Rete di partner",
+    "service4": "Disponibilità esclusiva"
+  },
+  "Venues": {
+    "capacity": "Capacità",
+    "location": "Posizione",
+    "from": "Da",
+    "perDay": "/giorno",
+    "discover": "Scopri questo luogo",
+    "visitWebsite": "Visita il sito",
+    "accommodation": "Alloggio",
+    "parking": "Parcheggio",
+    "catering": "Ristorazione",
+    "eventTypes": {
+      "wedding": "Matrimoni",
+      "b2b": "Eventi B2B",
+      "seminar": "Seminari",
+      "reception": "Ricevimenti"
+    }
+  },
+  "Footer": {
+    "navigation": "Navigazione",
+    "services": "Servizi",
+    "contact": "Contatto & Preventivo",
+    "legal": "Note legali",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "cgv": "Termini",
+    "followUs": "Seguici",
+    "allRightsReserved": "Tutti i diritti riservati."
+  },
+  "Common": {
+    "persons": "persone",
+    "search": "Cerca",
+    "filters": "Filtri",
+    "reset": "Ripristina",
+    "apply": "Applica",
+    "close": "Chiudi",
+    "seeMore": "Vedi di più",
+    "seeLess": "Vedi meno",
+    "loading": "Caricamento...",
+    "error": "Si è verificato un errore",
+    "success": "Successo",
+    "submit": "Invia",
+    "cancel": "Annulla"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "Navigation": {
+    "home": "Startseite",
+    "catalogue": "Katalog",
+    "b2b": "SEMINARE & PRO",
+    "weddings": "HOCHZEITEN & PRIVAT",
+    "gallery": "Galerie",
+    "history": "Geschichte",
+    "contact": "Kontakt"
+  },
+  "Home": {
+    "title": "Außergewöhnliche Orte",
+    "subtitle": "Der Schlüssel zu Ihren einzigartigen Momenten",
+    "philosophy": "Ein Abenteuer aus Orten & Leidenschaft",
+    "signature": "Weil Emotionen vollständig erlebt werden, wenn sie ihren außergewöhnlichen Ort finden",
+    "discoverButton": "Unsere Orte entdecken",
+    "contactButton": "Kontaktieren Sie uns",
+    "exceptionalVenues": "Außergewöhnliche Orte"
+  },
+  "B2B": {
+    "hero": "Was wäre, wenn Ihre professionellen Veranstaltungen... einfach außergewöhnlich würden?",
+    "pillar1": "Eine außergewöhnliche Emotion",
+    "pillar2": "Ein außergewöhnlicher Service",
+    "pillar3": "Außergewöhnliche Orte"
+  },
+  "Weddings": {
+    "hero": "Weil Emotionen vollständig erlebt werden...",
+    "service1": "Personalisierte Treffen",
+    "service2": "Organisation & Koordination",
+    "service3": "Partnernetzwerk",
+    "service4": "Exklusive Verfügbarkeit"
+  },
+  "Venues": {
+    "capacity": "Kapazität",
+    "location": "Standort",
+    "from": "Ab",
+    "perDay": "/Tag",
+    "discover": "Diesen Ort entdecken",
+    "visitWebsite": "Website besuchen",
+    "accommodation": "Unterkunft",
+    "parking": "Parkplatz",
+    "catering": "Gastronomie",
+    "eventTypes": {
+      "wedding": "Hochzeiten",
+      "b2b": "B2B-Events",
+      "seminar": "Seminare",
+      "reception": "Empfänge"
+    }
+  },
+  "Footer": {
+    "navigation": "Navigation",
+    "services": "Dienstleistungen",
+    "contact": "Kontakt & Angebot",
+    "legal": "Impressum",
+    "privacy": "Datenschutz",
+    "cookies": "Cookies",
+    "cgv": "AGB",
+    "followUs": "Folgen Sie uns",
+    "allRightsReserved": "Alle Rechte vorbehalten."
+  },
+  "Common": {
+    "persons": "Personen",
+    "search": "Suchen",
+    "filters": "Filter",
+    "reset": "Zurücksetzen",
+    "apply": "Anwenden",
+    "close": "Schließen",
+    "seeMore": "Mehr sehen",
+    "seeLess": "Weniger sehen",
+    "loading": "Laden...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolg",
+    "submit": "Senden",
+    "cancel": "Abbrechen"
+  }
+}

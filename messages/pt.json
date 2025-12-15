@@ -1,0 +1,76 @@
+{
+  "Navigation": {
+    "home": "Início",
+    "catalogue": "Catálogo",
+    "b2b": "SEMINÁRIOS & PRO",
+    "weddings": "CASAMENTOS & PRIVADOS",
+    "gallery": "Galeria",
+    "history": "História",
+    "contact": "Contacto"
+  },
+  "Home": {
+    "title": "Lugares de Exceção",
+    "subtitle": "A Chave dos Seus Momentos Únicos",
+    "philosophy": "Uma Aventura Nascida de Lugares & Paixão",
+    "signature": "Porque a emoção é vivida plenamente quando encontra o seu Lugar de Exceção",
+    "discoverButton": "Descobrir os nossos lugares",
+    "contactButton": "Contacte-nos",
+    "exceptionalVenues": "Lugares de exceção"
+  },
+  "B2B": {
+    "hero": "E se os seus eventos profissionais se tornassem... simplesmente excecionais?",
+    "pillar1": "Uma emoção de exceção",
+    "pillar2": "Um serviço de exceção",
+    "pillar3": "Lugares de exceção"
+  },
+  "Weddings": {
+    "hero": "Porque a emoção é vivida plenamente...",
+    "service1": "Encontros personalizados",
+    "service2": "Organização & Coordenação",
+    "service3": "Rede de parceiros",
+    "service4": "Disponibilidade exclusiva"
+  },
+  "Venues": {
+    "capacity": "Capacidade",
+    "location": "Localização",
+    "from": "A partir de",
+    "perDay": "/dia",
+    "discover": "Descobrir este lugar",
+    "visitWebsite": "Visitar o site",
+    "accommodation": "Alojamento",
+    "parking": "Estacionamento",
+    "catering": "Restauração",
+    "eventTypes": {
+      "wedding": "Casamentos",
+      "b2b": "Eventos B2B",
+      "seminar": "Seminários",
+      "reception": "Receções"
+    }
+  },
+  "Footer": {
+    "navigation": "Navegação",
+    "services": "Serviços",
+    "contact": "Contacto & Orçamento",
+    "legal": "Aviso legal",
+    "privacy": "Privacidade",
+    "cookies": "Cookies",
+    "cgv": "Termos",
+    "followUs": "Siga-nos",
+    "allRightsReserved": "Todos os direitos reservados."
+  },
+  "Common": {
+    "persons": "pessoas",
+    "search": "Pesquisar",
+    "filters": "Filtros",
+    "reset": "Redefinir",
+    "apply": "Aplicar",
+    "close": "Fechar",
+    "seeMore": "Ver mais",
+    "seeLess": "Ver menos",
+    "loading": "A carregar...",
+    "error": "Ocorreu um erro",
+    "success": "Sucesso",
+    "submit": "Enviar",
+    "cancel": "Cancelar"
+  }
+}

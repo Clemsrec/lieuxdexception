@@ -1,0 +1,76 @@
+{
+  "Navigation": {
+    "home": "Accueil",
+    "catalogue": "Catalogue",
+    "b2b": "SÉMINAIRES & PRO",
+    "weddings": "MARIAGES & PRIVÉS",
+    "gallery": "Galerie",
+    "history": "Histoire",
+    "contact": "Contact"
+  },
+  "Home": {
+    "title": "Lieux d'Exception",
+    "subtitle": "La clé de vos moments uniques",
+    "philosophy": "Une aventure née de lieux & de passion",
+    "signature": "Parce que l'émotion se vit pleinement lorsqu'elle trouve son Lieu d'Exception",
+    "discoverButton": "Découvrir nos lieux",
+    "contactButton": "Nous contacter",
+    "exceptionalVenues": "Des lieux d'exception"
+  },
+  "B2B": {
+    "hero": "Et si vos événements professionnels devenaient… tout simplement exceptionnels ?",
+    "pillar1": "Une émotion d'exception",
+    "pillar2": "Un service d'exception",
+    "pillar3": "Des lieux d'exception"
+  },
+  "Weddings": {
+    "hero": "Parce que l'émotion se vit pleinement...",
+    "service1": "Rencontres personnalisées",
+    "service2": "Organisation & Coordination",
+    "service3": "Réseau de partenaires",
+    "service4": "Mise à disposition exclusive"
+  },
+  "Venues": {
+    "capacity": "Capacité",
+    "location": "Localisation",
+    "from": "À partir de",
+    "perDay": "/jour",
+    "discover": "Découvrir ce lieu",
+    "visitWebsite": "Visiter le site",
+    "accommodation": "Hébergement",
+    "parking": "Parking",
+    "catering": "Restauration",
+    "eventTypes": {
+      "wedding": "Mariages",
+      "b2b": "Événements B2B",
+      "seminar": "Séminaires",
+      "reception": "Réceptions"
+    }
+  },
+  "Footer": {
+    "navigation": "Navigation",
+    "services": "Services",
+    "contact": "Contact & Devis",
+    "legal": "Mentions légales",
+    "privacy": "Confidentialité",
+    "cookies": "Cookies",
+    "cgv": "CGV",
+    "followUs": "Nous suivre",
+    "allRightsReserved": "Tous droits réservés."
+  },
+  "Common": {
+    "persons": "personnes",
+    "search": "Rechercher",
+    "filters": "Filtres",
+    "reset": "Réinitialiser",
+    "apply": "Appliquer",
+    "close": "Fermer",
+    "seeMore": "Voir plus",
+    "seeLess": "Voir moins",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "success": "Succès",
+    "submit": "Envoyer",
+    "cancel": "Annuler"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "catalogue": "Catalogue",
+    "b2b": "SEMINARS & PRO",
+    "weddings": "WEDDINGS & PRIVATE",
+    "gallery": "Gallery",
+    "history": "History",
+    "contact": "Contact"
+  },
+  "Home": {
+    "title": "Exceptional Venues",
+    "subtitle": "The Key to Your Unique Moments",
+    "philosophy": "An Adventure Born of Places & Passion",
+    "signature": "Because emotion is fully experienced when it finds its Exceptional Venue",
+    "discoverButton": "Discover our venues",
+    "contactButton": "Contact us",
+    "exceptionalVenues": "Exceptional Venues"
+  },
+  "B2B": {
+    "hero": "What if your professional events became… simply exceptional?",
+    "pillar1": "An Exceptional Emotion",
+    "pillar2": "An Exceptional Service",
+    "pillar3": "Exceptional Venues"
+  },
+  "Weddings": {
+    "hero": "Because emotion is fully experienced...",
+    "service1": "Personalized Meetings",
+    "service2": "Organization & Coordination",
+    "service3": "Network of Partners",
+    "service4": "Exclusive Availability"
+  },
+  "Venues": {
+    "capacity": "Capacity",
+    "location": "Location",
+    "from": "From",
+    "perDay": "/day",
+    "discover": "Discover this venue",
+    "visitWebsite": "Visit website",
+    "accommodation": "Accommodation",
+    "parking": "Parking",
+    "catering": "Catering",
+    "eventTypes": {
+      "wedding": "Weddings",
+      "b2b": "B2B Events",
+      "seminar": "Seminars",
+      "reception": "Receptions"
+    }
+  },
+  "Footer": {
+    "navigation": "Navigation",
+    "services": "Services",
+    "contact": "Contact & Quote",
+    "legal": "Legal Notice",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "cgv": "Terms",
+    "followUs": "Follow us",
+    "allRightsReserved": "All rights reserved."
+  },
+  "Common": {
+    "persons": "persons",
+    "search": "Search",
+    "filters": "Filters",
+    "reset": "Reset",
+    "apply": "Apply",
+    "close": "Close",
+    "seeMore": "See more",
+    "seeLess": "See less",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  }
+}

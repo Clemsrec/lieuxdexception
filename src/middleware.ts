@@ -1,16 +1,17 @@
 /**
- * Middleware Next.js - Sécurité et Protection
+ * Middleware Next.js - i18n + Sécurité + Protection
  * 
- * Ce middleware applique des headers de sécurité HTTP et protège
- * les routes sensibles (admin, API) avec authentification.
+ * Ce middleware gère :
+ * - Détection automatique de la langue (Accept-Language header)
+ * - Redirection vers /[locale]/...
+ * - Headers de sécurité HTTP
+ * - Protection routes admin/API avec authentification
  */
 
+import createMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-// Note: JWT verification désactivée dans middleware (incompatible Edge Runtime)
-// Vérification JWT déplacée dans les API routes avec Node.js runtime
-// import { verifyIdToken, isUserAdmin } from '@/lib/verify-token';
-// import { checkRateLimit, createRateLimitResponse } from '@/lib/rate-limit';
+import { locales, defaultLocale } from './i18n';
 
 /**
  * Routes protégées nécessitant une authentification
@@ -23,18 +24,88 @@ const PROTECTED_ROUTES = ['/admin'];
 const PROTECTED_API_ROUTES = ['/api/admin', '/api/venues/create', '/api/venues/update'];
 
 /**
- * Middleware principal - Sécurité et authentification
+ * Middleware i18n next-intl
+ * Détection automatique de langue et routing /[locale]/...
+ */
+const intlMiddleware = createMiddleware({
+  locales,
+  defaultLocale,
+  localePrefix: 'always', // Toujours afficher /fr/, /en/, etc.
+  localeDetection: true // Détection auto via Accept-Language header
+});
+
+/**
+ * Middleware principal - i18n + Sécurité + Authentification
  */
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  // Créer une réponse avec headers de sécurité
-  const response = NextResponse.next();
+  // 1. Bypass pour fichiers statiques et _next
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/static') ||
+    pathname.match(/\.(jpg|jpeg|png|gif|svg|ico|webp|woff|woff2|ttf|eot)$/i)
+  ) {
+    return NextResponse.next();
+  }
   
-  // ===========================================
-  // HEADERS DE SÉCURITÉ HTTP
-  // ===========================================
+  // 2. Bypass i18n pour /api routes (pas de locale dans les API)
+  if (pathname.startsWith('/api')) {
+    const response = NextResponse.next();
+    // Appliquer quand même les headers de sécurité
+    applySecurityHeaders(response);
+    
+    // Protection API routes
+    if (PROTECTED_API_ROUTES.some(route => pathname.startsWith(route))) {
+      const authToken = request.cookies.get('auth-token');
+      
+      if (!authToken) {
+        return NextResponse.json(
+          { error: 'Authentification requise', code: 'UNAUTHORIZED' },
+          { status: 401 }
+        );
+      }
+      
+      console.log(`[Security] ✅ Cookie auth présent (API): ${pathname}`);
+    }
+    
+    return response;
+  }
   
+  // 3. Appliquer middleware i18n (détection langue + routing)
+  const response = intlMiddleware(request);
+  
+  // 4. Appliquer headers de sécurité HTTP
+  applySecurityHeaders(response);
+  
+  // 5. Protection routes admin
+  // Note: pathname inclut désormais la locale (/fr/admin, /en/admin, etc.)
+  const pathnameWithoutLocale = pathname.replace(/^\/(fr|en|es|de|it|pt)/, '');
+  
+  if (PROTECTED_ROUTES.some(route => pathnameWithoutLocale.startsWith(route))) {
+    console.log(`[Security] Accès route protégée: ${pathname}`);
+    
+    const authToken = request.cookies.get('auth-token');
+    
+    if (!authToken) {
+      // Extraire locale du pathname pour redirection
+      const locale = pathname.split('/')[1] || defaultLocale;
+      const loginUrl = new URL(`/${locale}/admin/connexion`, request.url);
+      loginUrl.searchParams.set('redirect', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+    
+    // TODO: Vérification JWT déplacée dans les API routes (Node.js runtime)
+    console.log(`[Security] ✅ Cookie auth présent: ${pathname}`);
+  }
+  
+  return response;
+}
+
+/**
+ * Applique les headers de sécurité HTTP sur une réponse
+ */
+function applySecurityHeaders(response: NextResponse) {
   /**
    * Content Security Policy (CSP)
    * Protège contre XSS, injections de scripts, etc.
@@ -57,126 +128,26 @@ export async function middleware(request: NextRequest) {
     ].join('; ')
   );
   
-  /**
-   * X-Frame-Options
-   * Protège contre le clickjacking
-   */
   response.headers.set('X-Frame-Options', 'DENY');
-  
-  /**
-   * X-Content-Type-Options
-   * Empêche le MIME sniffing
-   */
   response.headers.set('X-Content-Type-Options', 'nosniff');
-  
-  /**
-   * X-XSS-Protection
-   * Active la protection XSS du navigateur (legacy mais utile)
-   */
   response.headers.set('X-XSS-Protection', '1; mode=block');
-  
-  /**
-   * Referrer-Policy
-   * Contrôle les informations envoyées dans le header Referer
-   */
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
   
-  /**
-   * Permissions-Policy
-   * Contrôle l'accès aux fonctionnalités du navigateur
-   */
-  response.headers.set(
-    'Permissions-Policy',
-    'camera=(), microphone=(), geolocation=(), interest-cohort=()'
-  );
-  
-  /**
-   * Strict-Transport-Security (HSTS)
-   * Force HTTPS pour toutes les requêtes futures
-   * Note: Activé uniquement en production
-   */
   if (process.env.NODE_ENV === 'production') {
-    response.headers.set(
-      'Strict-Transport-Security',
-      'max-age=31536000; includeSubDomains; preload'
-    );
+    response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   }
-  
-  // ===========================================
-  // PROTECTION DES ROUTES ADMIN
-  // ===========================================
-  
-  if (PROTECTED_ROUTES.some(route => pathname.startsWith(route))) {
-    console.log(`[Security] Accès route protégée: ${pathname}`);
-    
-    // Vérification du cookie d'authentification
-    const authToken = request.cookies.get('auth-token');
-    
-    if (!authToken) {
-      // Redirection vers la page de login
-      const loginUrl = new URL('/admin/connexion', request.url);
-      loginUrl.searchParams.set('redirect', pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-    
-    // TODO: Vérification JWT déplacée dans les API routes (Node.js runtime)
-    // Edge Runtime ne supporte pas firebase-admin (node:process, node:crypto)
-    // Pour le moment, on vérifie uniquement la présence du cookie
-    console.log(`[Security] ✅ Cookie auth présent: ${pathname}`);
-  }
-  
-  // ===========================================
-  // PROTECTION DES ROUTES API
-  // ===========================================
-  
-  if (PROTECTED_API_ROUTES.some(route => pathname.startsWith(route))) {
-    // Vérification de l'authentification pour les API sensibles
-    const authToken = request.cookies.get('auth-token');
-    
-    if (!authToken) {
-      return NextResponse.json(
-        { error: 'Authentification requise', code: 'UNAUTHORIZED' },
-        { status: 401 }
-      );
-    }
-    
-    // TODO: Vérification JWT déplacée dans les API routes (Node.js runtime)
-    // Edge Runtime ne supporte pas firebase-admin (node:process, node:crypto)
-    // Pour le moment, on vérifie uniquement la présence du cookie
-    console.log(`[Security] ✅ Cookie auth présent (API): ${pathname}`);
-  }
-  
-  // ===========================================
-  // RATE LIMITING BASIQUE (Upstash Redis)
-  // ===========================================
-  
-  if (pathname.startsWith('/api/')) {
-    // TODO: Rate limiting désactivé temporairement (incompatible Edge Runtime)
-    // Upstash Redis nécessite Node.js runtime
-    // Implémenter rate limiting dans les API routes individuelles avec Node.js runtime
-    
-    // Pour le moment, on ajoute juste des headers informatifs
-    response.headers.set('X-RateLimit-Limit', '100');
-    response.headers.set('X-RateLimit-Remaining', '100');
-    response.headers.set('X-RateLimit-Reset', Date.now().toString());
-  }
-  
-  return response;
 }
 
 /**
  * Configuration du matcher
- * Définit les routes où le middleware s'applique
+ * Applique middleware i18n + sécurité sur toutes les routes sauf fichiers statiques
  */
 export const config = {
   matcher: [
-    /*
-     * Match toutes les routes sauf :
-     * - _next/static (fichiers statiques)
-     * - _next/image (optimisation d'images)
-     * - favicon.ico (favicon)
-     * - Fichiers publics (.svg, .png, .jpg, .jpeg, .gif, .webp)
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // Match toutes les routes pour i18n sauf fichiers statiques et API
+    '/((?!api|_next|static|.*\\..*|favicon.ico|robots.txt|sitemap.xml).*)',
+    // Ajouter /api explicitement pour les headers de sécurité
+    '/api/:path*'
   ],
 };
