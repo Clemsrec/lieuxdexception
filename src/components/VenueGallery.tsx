@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getGalleryImages } from '@/lib/sharedVenueImages';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
 /**
@@ -19,7 +20,10 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (!images || images.length === 0) {
+  // Use the shared 4 images exclusively for now
+  const displayImages = getGalleryImages();
+
+  if (!displayImages || displayImages.length === 0) {
     return null;
   }
 
@@ -126,14 +130,14 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
 
           {/* Compteur */}
           <div className="absolute top-4 left-4 z-50 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium">
-            {currentIndex + 1} / {images.length}
+              {currentIndex + 1} / {displayImages.length}
           </div>
 
           {/* Image courante */}
           <div className="relative w-full h-full flex items-center justify-center p-4 md:p-12">
             <div className="relative max-w-content max-h-full w-full h-full">
               <Image
-                src={images[currentIndex]}
+                src={displayImages[currentIndex]}
                 alt={`${venueName} - Photo ${currentIndex + 1}`}
                 fill
                 className="object-contain"
@@ -168,7 +172,7 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
 
           {/* Miniatures en bas */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex gap-2 overflow-x-auto max-w-full px-4 scrollbar-hide">
-            {images.map((image, index) => (
+            {displayImages.map((image, index) => (
               <button
                 key={image}
                 onClick={() => setCurrentIndex(index)}

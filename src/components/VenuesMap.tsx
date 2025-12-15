@@ -6,6 +6,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import Image from 'next/image';
 import { displayVenueName } from '@/lib/formatVenueName';
+import { getMapThumbnail } from '@/lib/sharedVenueImages';
 import Link from 'next/link';
 import { Venue } from '@/types/firebase';
 import { MapPin, Users, Phone, Mail } from 'lucide-react';
@@ -131,18 +132,16 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
               maxWidth={420}
             >
               <div className="p-3">
-                {/* Image du château */}
-                {venue.images?.cardImage && (
-                  <div className="relative w-full h-56 mb-4 rounded-lg overflow-hidden">
-                    <Image
-                      src={venue.images.cardImage}
-                      alt={displayVenueName(venue.name)}
-                      fill
-                      className="object-cover"
-                      sizes="420px"
-                    />
-                  </div>
-                )}
+                {/* Image du château (forcée aux 4 images partagées) */}
+                <div className="relative w-full h-56 mb-4 rounded-lg overflow-hidden">
+                  <Image
+                    src={getMapThumbnail(venue.id || venue.slug)}
+                    alt={displayVenueName(venue.name)}
+                    fill
+                    className="object-cover"
+                    sizes="420px"
+                  />
+                </div>
 
                 {/* Nom du château */}
                 <h3 className="font-display text-2xl text-primary mb-2">

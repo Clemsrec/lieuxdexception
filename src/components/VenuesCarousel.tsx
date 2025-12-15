@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { MapPin, Users, Bed, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
+import { getCardImage } from '@/lib/sharedVenueImages';
 
 /**
  * Carrousel de venues avec défilement automatique et navigation par flèches
@@ -148,7 +149,7 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
           transition={{ duration: 0.4 }}
         >
           <Image
-            src={venue.images?.cardImage || '/images/placeholder.jpg'}
+            src={getCardImage(venue.id || venue.slug)}
             alt={displayVenueName(venue.name)}
             fill
             className="object-cover"

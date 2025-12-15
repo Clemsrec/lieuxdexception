@@ -8,6 +8,7 @@ import { MapPin, Users } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
+import { getCardImage } from '@/lib/sharedVenueImages';
 
 // Import dynamique de la carte pour éviter les erreurs SSR avec Leaflet
 const VenuesMap = dynamic(() => import('@/components/VenuesMap'), {
@@ -62,7 +63,7 @@ function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
           transition={{ duration: 0.4 }}
         >
           <Image
-            src={venue.cardImage || venue.images?.cardImage || venue.heroImage || venue.images?.hero || '/images/placeholder.jpg'}
+            src={getCardImage(venue.id || venue.slug)}
             alt={displayVenueName(venue.name)}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"

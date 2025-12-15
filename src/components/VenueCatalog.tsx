@@ -18,6 +18,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
+import { getCardImage } from '@/lib/sharedVenueImages';
 
 // Mapping des comptes Instagram par id/slug de lieu
 const venueInstagram: Record<string, string> = {
@@ -253,7 +254,7 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
       >
         <div className="relative w-full aspect-16/10 md:aspect-16/11 bg-stone/20">
           <Image
-            src={venue.cardImage || venue.images?.cardImage || venue.images?.hero || '/images/venues/placeholder.jpg'}
+            src={getCardImage(venue.id || venue.slug)}
             alt={displayVenueName(venue.name)}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
