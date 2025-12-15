@@ -20,7 +20,7 @@ export default function Footer() {
       <div className="container-wide py-12">
         
         {/* Contenu principal du footer */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-8">
           
           {/* Informations principales sur Lieux d'Exception */}
           <div className="lg:col-span-1">

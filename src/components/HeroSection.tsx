@@ -127,7 +127,7 @@ export default function HeroSection({
           {/* Boutons */}
           {buttons.length > 0 && (
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 pt-4"
+              className="flex flex-col sm:flex-row gap-4 pt-6 md:pt-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
@@ -136,7 +136,7 @@ export default function HeroSection({
                 <Link
                   key={index}
                   href={button.href}
-                  className={button.primary ? 'btn-primary' : 'btn-secondary'}
+                  className={`${button.primary ? 'btn-primary' : 'btn-secondary'} min-h-[48px] flex items-center justify-center px-6 md:px-8`}
                   style={!button.primary ? { color: 'white', borderColor: 'white' } : undefined}
                 >
                   {button.label}

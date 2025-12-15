@@ -406,10 +406,18 @@ html {
   transform: translateY(-2px);
 }
 
+/* Touch targets min 48px sur mobile */
 @media (max-width: 640px) {
   .btn {
     padding: 0.75rem 1.5rem;
     font-size: 0.8125rem;
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 640px) {
+  .btn {
+    min-height: 44px;
   }
 }
 

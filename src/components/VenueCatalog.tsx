@@ -163,12 +163,12 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6 border-t border-accent/10">
           <button
             onClick={resetFilters}
-            className="text-secondary hover:text-primary transition-colors flex items-center gap-2 text-sm md:text-base"
+            className="text-secondary hover:text-primary transition-colors flex items-center gap-2 text-sm md:text-base min-h-[44px] py-2"
           >
             <span className="text-xl">×</span>
             Réinitialiser les filtres
           </button>
-          <div className="text-sm md:text-base text-secondary">
+          <div className="text-sm md:text-base text-secondary min-h-[44px] flex items-center">
             <span className="font-semibold text-accent">{filteredVenues.length}</span> lieu{filteredVenues.length > 1 ? 'x' : ''} trouvé{filteredVenues.length > 1 ? 's' : ''}
           </div>
         </div>
@@ -190,7 +190,7 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
         </div>
       ) : (
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10"
           initial="hidden"
           animate="show"
           variants={{
@@ -361,7 +361,7 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
             <Link 
             href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
             {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            className="btn-primary text-sm md:text-base px-6 py-3 flex items-center gap-2 w-full sm:w-auto justify-center group/btn"
+            className="btn-primary text-sm md:text-base px-6 py-3 min-h-[48px] flex items-center gap-2 w-full sm:w-auto justify-center group/btn"
           >
             {venue.externalUrl || venue.url || venue.contact?.website ? 'Visiter le site' : 'Découvrir ce lieu'}
             <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>

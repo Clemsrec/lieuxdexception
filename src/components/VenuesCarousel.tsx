@@ -66,7 +66,7 @@ export default function VenuesCarousel({
       {/* Carrousel */}
       <div className="overflow-hidden">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
           key={currentIndex}
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -89,7 +89,7 @@ export default function VenuesCarousel({
           {/* Flèche gauche */}
           <button
             onClick={goToPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 z-10 w-12 h-12 rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center group border-2 border-accent/20"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 lg:-translate-x-12 z-10 w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center group border-2 border-accent/20"
             aria-label="Lieu précédent"
           >
             <ChevronLeft className="w-6 h-6 text-primary group-hover:text-white" />
@@ -98,7 +98,7 @@ export default function VenuesCarousel({
           {/* Flèche droite */}
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 z-10 w-12 h-12 rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center group border-2 border-accent/20"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 lg:translate-x-12 z-10 w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center group border-2 border-accent/20"
             aria-label="Lieu suivant"
           >
             <ChevronRight className="w-6 h-6 text-primary group-hover:text-white" />
@@ -113,13 +113,11 @@ export default function VenuesCarousel({
             <button
               key={index}
               onClick={() => goToPage(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? 'bg-accent w-8'
-                  : 'bg-accent/30 hover:bg-accent/50'
-              }`}
+              className={`min-w-[44px] min-h-[44px] flex items-center justify-center transition-all duration-300 ${index === currentIndex ? '' : ''}`}
               aria-label={`Aller à la page ${index + 1}`}
-            />
+            >
+              <span className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-accent w-8' : 'bg-accent/30 hover:bg-accent/50'}`} />
+            </button>
           ))}
         </div>
       )}

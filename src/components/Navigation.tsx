@@ -120,7 +120,7 @@ export default function Navigation() {
           {/* Bouton menu mobile */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+            className="md:hidden p-3 rounded-lg text-white hover:bg-white/10 transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
             aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={isMenuOpen}
           >
@@ -137,39 +137,39 @@ export default function Navigation() {
 
         {/* Menu mobile */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 bg-primary/95 backdrop-blur-md border-t border-white/20 animate-fade-in">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden py-6 bg-primary/95 backdrop-blur-md border-t border-white/20 animate-fade-in">
+            <div className="flex flex-col space-y-2">
               <Link 
                 href="/catalogue" 
-                className={getLinkClasses('/catalogue')}
+                className={`${getLinkClasses('/catalogue')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Catalogue
               </Link>
               <Link 
                 href="/evenements-b2b" 
-                className={getLinkClasses('/evenements-b2b')}
+                className={`${getLinkClasses('/evenements-b2b')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 SÉMINAIRES & PRO
               </Link>
               <Link 
                 href="/mariages" 
-                className={getLinkClasses('/mariages')}
+                className={`${getLinkClasses('/mariages')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 MARIAGES & PRIVÉS
               </Link>
               <Link 
                 href="/galerie" 
-                className={getLinkClasses('/galerie')}
+                className={`${getLinkClasses('/galerie')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Galerie
               </Link>
               <Link 
                 href="/histoire" 
-                className={getLinkClasses('/histoire')}
+                className={`${getLinkClasses('/histoire')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Histoire
