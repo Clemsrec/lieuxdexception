@@ -173,6 +173,29 @@ export default function Footer() {
               </div>
             </div>
           </div>
+
+          {/* Réseaux sociaux site-wide */}
+          <div>
+            <h4 className="font-medium mb-4 text-foreground">Réseaux</h4>
+            <div className="space-y-2 text-sm">
+              <a
+                href="https://www.instagram.com/lieuxdexception/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary hover:text-primary transition-colors block"
+              >
+                Instagram
+              </a>
+              <a
+                href="https://www.linkedin.com/in/lieux-d-exception-248b15353/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary hover:text-primary transition-colors block"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Ligne de séparation */}

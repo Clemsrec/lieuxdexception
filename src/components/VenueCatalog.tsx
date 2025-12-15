@@ -19,6 +19,15 @@ import { motion } from 'framer-motion';
 import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
 
+// Mapping des comptes Instagram par id/slug de lieu
+const venueInstagram: Record<string, string> = {
+  'chateau-corbe': 'https://www.instagram.com/chateaudelacorbe/',
+  'manoir-boulaie': 'https://www.instagram.com/manoirdelaboulaie/',
+  'domaine-nantais': 'https://www.instagram.com/domainenantais/',
+  'le-dome': 'https://www.instagram.com/_le_dome/',
+  'chateau-brulaire': 'https://www.instagram.com/chateaudelabrulaire/'
+};
+
 interface VenueCatalogProps {
   venues: Venue[];
 }
@@ -315,7 +324,7 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
           )}
         </div>
 
-        {/* Footer avec prix et CTA */}
+        {/* Footer avec prix, Instagram et CTA */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mt-auto pt-6 border-t border-stone/20">
           <div>
             <span className="text-xs md:text-sm text-secondary block mb-1.5">À partir de</span>
@@ -324,7 +333,31 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
               <span className="text-sm md:text-base text-secondary font-normal">/jour</span>
             </div>
           </div>
-          <Link 
+          <div className="flex items-center gap-4">
+            {/* Instagram specific */}
+            {(() => {
+              const byMap = venueInstagram[venue.id || venue.slug];
+              let insta: string | undefined = undefined;
+              if (byMap) insta = byMap;
+              else if (venue.contact?.instagram) {
+                const raw = venue.contact.instagram;
+                if (raw.startsWith('http')) insta = raw;
+                else insta = `https://www.instagram.com/${raw.replace(/^@/, '')}/`;
+              }
+              if (!insta) return null;
+              return (
+                <a
+                  href={insta}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary hover:text-accent transition-colors text-sm"
+                >
+                  Instagram
+                </a>
+              );
+            })()}
+
+            <Link 
             href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
             {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             className="btn-primary text-sm md:text-base px-6 py-3 flex items-center gap-2 w-full sm:w-auto justify-center group/btn"
@@ -332,6 +365,7 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
             {venue.externalUrl || venue.url || venue.contact?.website ? 'Visiter le site' : 'Découvrir ce lieu'}
             <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
           </Link>
+          </div>
         </div>
       </div>
     </motion.article>
