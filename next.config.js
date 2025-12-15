@@ -2,9 +2,12 @@
  * Configuration Next.js pour Lieux d'Exception
  * Compatible avec Firebase App Hosting
  * 
- * Dernière mise à jour : 13 novembre 2025
+ * Dernière mise à jour : 15 décembre 2025
  * @type {import('next').NextConfig}
  */
+
+const createNextIntlPlugin = require('next-intl/plugin');
+const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 // Configuration de base
 const config = {
@@ -58,4 +61,4 @@ const config = {
   },
 };
 
-module.exports = config;
+module.exports = withNextIntl(config);

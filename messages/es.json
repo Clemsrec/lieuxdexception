@@ -71,6 +71,11 @@
     "error": "Ha ocurrido un error",
     "success": "Éxito",
     "submit": "Enviar",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "metadata": {
+      "title": "Lugares Excepcionales - Groupe Riou | Catálogo B2B",
+      "description": "Descubre nuestra colección de 5 lugares excepcionales para eventos en Francia. Seminarios, conferencias, bodas y recepciones privadas. Groupe Riou - Excelencia en eventos.",
+      "keywords": "lugares para eventos, seminarios, bodas, groupe riou, eventos corporativos, recepciones"
+    }
   }
 }

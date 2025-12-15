@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations, useLocale } from 'next-intl';
 
 /**
  * Composant Footer principal
@@ -12,9 +13,13 @@ import Image from 'next/image';
  * - Services proposés
  * - Coordonnées de contact
  * - Liens légaux et réseaux sociaux
+ * - Traductions i18n
  * - Design responsive et accessible
  */
 export default function Footer() {
+  const t = useTranslations('Footer');
+  const locale = useLocale();
+
   return (
     <footer className="bg-muted border-t border-border mt-16">
       <div className="container-wide py-12">
@@ -24,7 +29,7 @@ export default function Footer() {
           
           {/* Informations principales sur Lieux d'Exception */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity shrink-0">
+            <Link href={`/${locale}`} className="inline-block mb-4 hover:opacity-80 transition-opacity shrink-0">
               <Image
                 src="/logo/Logo_CLE_avec Texte.png"
                 alt="Lieux d'Exception"
@@ -42,12 +47,12 @@ export default function Footer() {
 
           {/* Navigation principale */}
           <div>
-            <h4 className="font-medium mb-4 text-foreground">Navigation</h4>
+            <h4 className="font-medium mb-4 text-foreground">{t('navigation')}</h4>
             <nav>
               <ul className="space-y-3 text-sm">
                 <li>
                   <Link 
-                    href="/catalogue" 
+                    href={`/${locale}/catalogue`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
@@ -56,7 +61,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link 
-                    href="/evenements-b2b" 
+                    href={`/${locale}/evenements-b2b`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
@@ -65,7 +70,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link 
-                    href="/mariages" 
+                    href={`/${locale}/mariages`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
@@ -74,7 +79,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link 
-                    href="/galerie" 
+                    href={`/${locale}/galerie`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
@@ -83,7 +88,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link 
-                    href="/histoire" 
+                    href={`/${locale}/histoire`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
@@ -92,11 +97,11 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link 
-                    href="/contact" 
+                    href={`/${locale}/contact`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Contact & Devis
+                    {t('contact')}
                   </Link>
                 </li>
               </ul>
@@ -105,7 +110,7 @@ export default function Footer() {
 
           {/* Services et prestations */}
           <div>
-            <h4 className="font-medium mb-4 text-foreground">Nos Services</h4>
+            <h4 className="font-medium mb-4 text-foreground">{t('services')}</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
                 <span className="text-primary mr-2 mt-1 font-bold">•</span>
@@ -205,32 +210,32 @@ export default function Footer() {
             {/* Copyright et mentions légales */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <p className="text-secondary text-sm">
-                © 2024 Lieux d&apos;Exception. Tous droits réservés.
+                © 2024 Lieux d&apos;Exception. {t('allRightsReserved')}
               </p>
               <div className="flex flex-wrap gap-4 text-xs">
                 <Link 
-                  href="/mentions-legales" 
+                  href={`/${locale}/mentions-legales`}
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                  Mentions légales
+                  {t('legal')}
                 </Link>
                 <Link 
-                  href="/confidentialite" 
+                  href={`/${locale}/confidentialite`}
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                  Confidentialité
+                  {t('privacy')}
                 </Link>
                 <Link 
-                  href="/cookies" 
+                  href={`/${locale}/cookies`}
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                  Cookies
+                  {t('cookies')}
                 </Link>
                 <Link 
-                  href="/cgv" 
+                  href={`/${locale}/cgv`}
                   className="text-secondary hover:text-primary transition-colors"
                 >
-                  CGV
+                  {t('cgv')}
                 </Link>
               </div>
             </div>

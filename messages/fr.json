@@ -71,6 +71,11 @@
     "error": "Une erreur est survenue",
     "success": "Succès",
     "submit": "Envoyer",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "metadata": {
+      "title": "Lieux d'Exception - Groupe Riou | Catalogue B2B",
+      "description": "Découvrez notre collection de 5 lieux événementiels d'exception en France. Séminaires, conférences, mariages et réceptions privées. Groupe Riou - Excellence événementielle.",
+      "keywords": "lieux événementiels, séminaires, mariages, groupe riou, événements professionnels, réceptions"
+    }
   }
 }

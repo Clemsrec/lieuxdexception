@@ -71,6 +71,11 @@
     "error": "Ein Fehler ist aufgetreten",
     "success": "Erfolg",
     "submit": "Senden",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "metadata": {
+      "title": "Außergewöhnliche Locations - Groupe Riou | B2B-Katalog",
+      "description": "Entdecken Sie unsere Kollektion von 5 außergewöhnlichen Veranstaltungsorten in Frankreich. Seminare, Konferenzen, Hochzeiten und private Empfänge. Groupe Riou - Event-Exzellenz.",
+      "keywords": "Veranstaltungsorte, Seminare, Hochzeiten, Groupe Riou, Firmenveranstaltungen, Empfänge"
+    }
   }
 }

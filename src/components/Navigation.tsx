@@ -6,6 +6,7 @@
  * - Classes composants définies dans globals.css
  * - Support natif du mode sombre
  * - Navigation responsive avec menu mobile
+ * - Traductions i18n avec next-intl
  * 
  * @example
  * ```tsx
@@ -19,10 +20,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations('Navigation');
+  const locale = useLocale();
 
   /**
    * Basculer l'état du menu mobile
@@ -33,14 +37,15 @@ export default function Navigation() {
 
   /**
    * Vérifier si un lien est actif
-   * @param href - Le chemin du lien
+   * @param href - Le chemin du lien (sans locale)
    * @returns boolean - True si le lien est actif
    */
   const isActive = (href: string) => {
+    const localizedPath = `/${locale}${href}`;
     if (href === '/') {
-      return pathname === '/';
+      return pathname === `/${locale}` || pathname === `/${locale}/`;
     }
-    return pathname.startsWith(href);
+    return pathname.startsWith(localizedPath);
   };
 
   /**
@@ -63,7 +68,7 @@ export default function Navigation() {
           
           {/* Logo */}
           <Link 
-            href="/" 
+            href={`/${locale}`}
             className="flex items-center hover:opacity-80 transition-opacity shrink-0"
           >
             <Image
@@ -80,40 +85,40 @@ export default function Navigation() {
           {/* Menu desktop */}
           <div className="hidden md:flex items-center space-x-8">
             <Link 
-              href="/catalogue" 
+              href={`/${locale}/catalogue`}
               className={getLinkClasses('/catalogue')}
             >
-              Catalogue
+              {t('catalogue')}
             </Link>
             <Link 
-              href="/evenements-b2b" 
+              href={`/${locale}/evenements-b2b`}
               className={getLinkClasses('/evenements-b2b')}
             >
-              SÉMINAIRES & PRO
+              {t('b2b')}
             </Link>
             <Link 
-              href="/mariages" 
+              href={`/${locale}/mariages`}
               className={getLinkClasses('/mariages')}
             >
-              MARIAGES & PRIVÉS
+              {t('weddings')}
             </Link>
             <Link 
-              href="/galerie" 
+              href={`/${locale}/galerie`}
               className={getLinkClasses('/galerie')}
             >
-              Galerie
+              {t('gallery')}
             </Link>
             <Link 
-              href="/histoire" 
+              href={`/${locale}/histoire`}
               className={getLinkClasses('/histoire')}
             >
-              Histoire
+              {t('history')}
             </Link>
             <Link 
-              href="/contact" 
+              href={`/${locale}/contact`}
               className="btn-primary whitespace-nowrap"
             >
-              Contact
+              {t('contact')}
             </Link>
           </div>
 
@@ -140,46 +145,46 @@ export default function Navigation() {
           <div className="md:hidden py-6 bg-primary/95 backdrop-blur-md border-t border-white/20 animate-fade-in">
             <div className="flex flex-col space-y-2">
               <Link 
-                href="/catalogue" 
+                href={`/${locale}/catalogue`}
                 className={`${getLinkClasses('/catalogue')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Catalogue
+                {t('catalogue')}
               </Link>
               <Link 
-                href="/evenements-b2b" 
+                href={`/${locale}/evenements-b2b`}
                 className={`${getLinkClasses('/evenements-b2b')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                SÉMINAIRES & PRO
+                {t('b2b')}
               </Link>
               <Link 
-                href="/mariages" 
+                href={`/${locale}/mariages`}
                 className={`${getLinkClasses('/mariages')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                MARIAGES & PRIVÉS
+                {t('weddings')}
               </Link>
               <Link 
-                href="/galerie" 
+                href={`/${locale}/galerie`}
                 className={`${getLinkClasses('/galerie')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Galerie
+                {t('gallery')}
               </Link>
               <Link 
-                href="/histoire" 
+                href={`/${locale}/histoire`}
                 className={`${getLinkClasses('/histoire')} min-h-[48px] flex items-center py-3`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Histoire
+                {t('history')}
               </Link>
               <Link 
-                href="/contact" 
+                href={`/${locale}/contact`}
                 className={`btn-primary w-fit whitespace-nowrap ${isActive('/contact') ? 'bg-primary/90' : ''}`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contact
+                {t('contact')}
               </Link>
             </div>
           </div>

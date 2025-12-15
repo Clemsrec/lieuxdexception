@@ -71,6 +71,11 @@
     "error": "An error occurred",
     "success": "Success",
     "submit": "Submit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "metadata": {
+      "title": "Exceptional Venues - Groupe Riou | B2B Catalog",
+      "description": "Discover our collection of 5 exceptional event venues in France. Seminars, conferences, weddings and private receptions. Groupe Riou - Event Excellence.",
+      "keywords": "event venues, seminars, weddings, groupe riou, corporate events, receptions"
+    }
   }
 }

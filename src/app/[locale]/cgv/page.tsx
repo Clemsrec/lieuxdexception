@@ -1,0 +1,423 @@
+import type { Metadata } from 'next';
+
+/**
+ * Métadonnées pour les CGV
+ */
+export const metadata: Metadata = {
+  title: 'Conditions Générales de Vente | Lieux d\'Exception - Groupe Riou',
+  description: 'Conditions générales de vente pour la réservation de nos lieux d\'exception destinés aux événements d\'entreprise.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+/**
+ * Page Conditions Générales de Vente
+ * 
+ * Conditions contractuelles pour la réservation des lieux d'exception
+ */
+export default function CGVPage() {
+  return (
+    <main className="min-h-screen">
+      <section className="section">
+        <div className="container">
+          {/* Header */}
+          <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-4">Conditions Générales de Vente</h1>
+        <p className="text-secondary">
+          Conditions contractuelles pour la réservation de nos lieux d&apos;exception
+        </p>
+        <p className="text-sm text-accent mt-2">
+          Version en vigueur depuis le 1er novembre 2024
+        </p>
+      </div>
+
+      {/* Contenu */}
+      <div className="max-w-content mx-auto">
+        
+        {/* Préambule */}
+        <section className="mb-8">
+          <div className="bg-primary/5 p-6 rounded-lg border border-primary/10 text-foreground">
+            <h2 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
+              
+              Préambule
+            </h2>
+            <p className="text-sm">
+              Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre 
+              Lieux d&apos;Exception (Groupe Riou) et ses clients pour la mise à disposition de lieux événementiels 
+              et services associés.
+            </p>
+          </div>
+        </section>
+
+        {/* Article 1 - Définitions */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 1 - Définitions</h2>
+          
+          <div className="bg-muted p-6 rounded-lg">
+            <dl className="space-y-3 text-sm">
+              <div>
+                <dt className="font-medium text-foreground">Prestataire :</dt>
+                <dd className="text-secondary">Lieux d&apos;Exception, marque commerciale du Groupe Riou, SARL au capital de 50 000€, immatriculée au RCS de Paris sous le numéro B 123 456 789.</dd>
+              </div>
+              
+              <div>
+                <dt className="font-medium text-foreground">Client :</dt>
+                <dd className="text-secondary">Toute personne physique ou morale qui contracte avec le Prestataire pour la réservation d&apos;un lieu et/ou de services.</dd>
+              </div>
+              
+              <div>
+                <dt className="font-medium text-foreground">Événement :</dt>
+                <dd className="text-secondary">Manifestation organisée par le Client dans les locaux mis à disposition par le Prestataire.</dd>
+              </div>
+              
+              <div>
+                <dt className="font-medium text-foreground">Devis :</dt>
+                <dd className="text-secondary">Document contractuel détaillant les prestations proposées et leurs tarifs.</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        {/* Article 2 - Objet */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 2 - Objet du contrat</h2>
+          
+          <p className="mb-4">
+            Le Prestataire met à disposition du Client des espaces événementiels d&apos;exception et propose 
+            des services complémentaires pour l&apos;organisation d&apos;événements professionnels.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+              <h3 className="font-medium mb-2 text-green-800 flex items-center gap-2">
+                
+                Prestations incluses
+              </h3>
+              <ul className="text-sm text-green-700 space-y-1">
+                <li>• Mise à disposition des espaces</li>
+                <li>• Mobilier de base</li>
+                <li>• Équipements techniques standards</li>
+                <li>• Accès aux sanitaires</li>
+                <li>• Nettoyage post-événement</li>
+              </ul>
+            </div>
+            
+            <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+              <h3 className="font-medium mb-2 text-blue-800 flex items-center gap-2">
+                
+                Services optionnels
+              </h3>
+              <ul className="text-sm text-blue-700 space-y-1">
+                <li>• Traiteur et boissons</li>
+                <li>• Équipements audiovisuels avancés</li>
+                <li>• Décoration et aménagement</li>
+                <li>• Personnel d&apos;accueil</li>
+                <li>• Services de conciergerie</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Article 3 - Réservation */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 3 - Réservation et confirmation</h2>
+          
+          <div className="space-y-4">
+            <div className="bg-muted p-4 rounded-lg">
+              <h3 className="font-medium mb-2">3.1 Processus de réservation</h3>
+              <ol className="text-sm list-decimal list-inside space-y-1">
+                <li>Demande de devis via notre formulaire ou par téléphone</li>
+                <li>Envoi du devis détaillé sous 24h ouvrées</li>
+                <li>Validation et signature du devis par le Client</li>
+                <li>Versement de l&apos;acompte de réservation</li>
+                <li>Confirmation définitive de la réservation</li>
+              </ol>
+            </div>
+            
+            <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+              <h3 className="font-medium mb-2 text-yellow-800 flex items-center gap-2">
+                
+                3.2 Conditions de validité
+              </h3>
+              <p className="text-sm text-yellow-700">
+                La réservation n&apos;est considérée comme ferme et définitive qu&apos;après réception 
+                du devis signé et du versement de l&apos;acompte dans les délais impartis.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Article 4 - Tarifs */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 4 - Tarifs et modalités de paiement</h2>
+          
+          <div className="space-y-6">
+            <div className="bg-muted p-6 rounded-lg">
+              <h3 className="font-medium mb-3">4.1 Tarification</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <strong>Tarifs :</strong> Indiqués TTC, TVA 20% incluse
+                </div>
+                <div>
+                  <strong>Validité :</strong> 30 jours à compter de l&apos;émission
+                </div>
+                <div>
+                  <strong>Révision :</strong> Possible en cas de modification substantielle
+                </div>
+                <div>
+                  <strong>Forfait minimum :</strong> Variable selon le lieu et la période
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg">
+              <h3 className="font-medium mb-3 text-blue-800">💳 4.2 Modalités de paiement</h3>
+              
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between items-center p-2 bg-blue-100 rounded">
+                  <span>À la réservation :</span>
+                  <strong>30% du montant total</strong>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-blue-100 rounded">
+                  <span>30 jours avant l&apos;événement :</span>
+                  <strong>50% du montant total</strong>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-blue-100 rounded">
+                  <span>Le jour de l&apos;événement :</span>
+                  <strong>Solde restant (20%)</strong>
+                </div>
+              </div>
+              
+              <div className="mt-4 text-xs text-blue-600">
+                <p><strong>Moyens de paiement acceptés :</strong></p>
+                <p>Virement bancaire, chèque d&apos;entreprise, carte bancaire (sur place)</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Article 5 - Annulation */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 5 - Conditions d&apos;annulation</h2>
+          
+          <div className="space-y-4">
+            <div className="bg-red-50 border border-red-200 p-6 rounded-lg">
+              <h3 className="font-medium mb-3 text-red-800 flex items-center gap-2">
+                
+                5.1 Annulation par le Client
+              </h3>
+              
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between items-center p-2 bg-red-100 rounded">
+                  <span>Plus de 60 jours avant :</span>
+                  <strong>Remboursement intégral</strong>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-red-100 rounded">
+                  <span>Entre 60 et 30 jours :</span>
+                  <strong>Retenue de 30%</strong>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-red-100 rounded">
+                  <span>Entre 30 et 15 jours :</span>
+                  <strong>Retenue de 50%</strong>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-red-100 rounded">
+                  <span>Moins de 15 jours :</span>
+                  <strong>Retenue de 80%</strong>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-orange-50 border border-orange-200 p-4 rounded-lg">
+              <h3 className="font-medium mb-2 text-orange-800 flex items-center gap-2">
+                
+                5.2 Cas de force majeure
+              </h3>
+              <p className="text-sm text-orange-700">
+                En cas de force majeure (pandémie, catastrophe naturelle, etc.), les sommes versées 
+                pourront être reportées sur une date ultérieure ou remboursées intégralement.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Article 6 - Obligations */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 6 - Obligations des parties</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-green-50 border border-green-200 p-6 rounded-lg">
+              <h3 className="font-medium mb-3 text-green-800">✅ Obligations du Prestataire</h3>
+              <ul className="text-sm text-green-700 space-y-2">
+                <li>• Mettre à disposition les locaux dans un état parfait</li>
+                <li>• Respecter les horaires convenus</li>
+                <li>• Fournir les équipements prévus au contrat</li>
+                <li>• Assurer la sécurité des lieux</li>
+                <li>• Respecter la confidentialité de l&apos;événement</li>
+              </ul>
+            </div>
+            
+            <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg">
+              <h3 className="font-medium mb-3 text-blue-800 flex items-center gap-2">
+                
+                Obligations du Client
+              </h3>
+              <ul className="text-sm text-blue-700 space-y-2">
+                <li>• Respecter les règles d&apos;usage des lieux</li>
+                <li>• Déclarer le nombre exact de participants</li>
+                <li>• Souscrire une assurance responsabilité civile</li>
+                <li>• Respecter les horaires de début et fin</li>
+                <li>• Laisser les lieux dans l&apos;état initial</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Article 7 - Responsabilité */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 7 - Responsabilité et assurances</h2>
+          
+          <div className="space-y-4">
+            <div className="bg-muted p-6 rounded-lg">
+              <h3 className="font-medium mb-3">7.1 Assurance du Prestataire</h3>
+              <p className="text-sm mb-2">
+                Le Prestataire est assuré pour :
+              </p>
+              <ul className="text-sm list-disc list-inside space-y-1">
+                <li>Responsabilité civile propriétaire des locaux</li>
+                <li>Dommages aux biens mobiliers mis à disposition</li>
+                <li>Multirisque professionnelle</li>
+              </ul>
+              <p className="text-xs text-secondary mt-2">
+                Assureur : AXA Assurances - Police n° XXX123456 - Validité jusqu&apos;au 31/12/2024
+              </p>
+            </div>
+            
+            <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+              <h3 className="font-medium mb-2 text-yellow-800 flex items-center gap-2">
+                
+                7.2 Assurance obligatoire du Client
+              </h3>
+              <p className="text-sm text-yellow-700">
+                Le Client doit impérativement souscrire une assurance responsabilité civile couvrant 
+                l&apos;événement et fournir l&apos;attestation au moins 48h avant l&apos;événement.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Article 8 - Litiges */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 8 - Litiges et droit applicable</h2>
+          
+          <div className="bg-muted p-6 rounded-lg">
+            <div className="space-y-4 text-sm">
+              <div>
+                <h3 className="font-medium mb-2">8.1 Droit applicable</h3>
+                <p>Les présentes CGV sont soumises au droit français.</p>
+              </div>
+              
+              <div>
+                <h3 className="font-medium mb-2">8.2 Résolution amiable</h3>
+                <p>
+                  En cas de litige, les parties s&apos;engagent à rechercher une solution amiable. 
+                  À défaut, le Client peut saisir le médiateur de la consommation ou les tribunaux compétents.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="font-medium mb-2">8.3 Juridiction compétente</h3>
+                <p>
+                  À défaut de résolution amiable, tout litige sera de la compétence exclusive 
+                  des tribunaux de Paris, nonobstant pluralité de défendeurs ou appel en garantie.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Article 9 - Divers */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Article 9 - Dispositions diverses</h2>
+          
+          <div className="space-y-4">
+            <div className="bg-muted p-4 rounded-lg">
+              <h3 className="font-medium mb-2">9.1 Modification des CGV</h3>
+              <p className="text-sm">
+                Le Prestataire se réserve le droit de modifier ces CGV à tout moment. 
+                Les CGV applicables sont celles en vigueur à la date de signature du devis.
+              </p>
+            </div>
+            
+            <div className="bg-muted p-4 rounded-lg">
+              <h3 className="font-medium mb-2">9.2 Nullité partielle</h3>
+              <p className="text-sm">
+                Si une ou plusieurs stipulations des présentes CGV sont tenues pour non valides, 
+                les autres dispositions garderont toute leur force et leur portée.
+              </p>
+            </div>
+            
+            <div className="bg-muted p-4 rounded-lg">
+              <h3 className="font-medium mb-2">9.3 Conservation des documents</h3>
+              <p className="text-sm">
+                Conformément à la réglementation, les documents contractuels sont conservés 
+                pendant 10 ans à compter de la fin du contrat.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact et informations légales */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Contact et informations légales</h2>
+          
+          <div className="bg-primary/5 p-6 rounded-lg border border-primary/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+              <div>
+                <h3 className="font-medium mb-2">Lieux d&apos;Exception - Groupe Riou</h3>
+                <p>SARL au capital de 50 000€</p>
+                <p>SIRET : 12345678901234</p>
+                <p>RCS Paris B 123 456 789</p>
+                <p>TVA : FR12345678901</p>
+              </div>
+              
+              <div>
+                <h3 className="font-medium mb-2">Contact</h3>
+                <p>123 Avenue des Champs</p>
+                <p>75008 Paris, France</p>
+                <p className="flex items-center gap-2">
+                  
+                  +33 1 23 45 67 89
+                </p>
+                <p className="flex items-center gap-2">
+                  
+                  contact@lieuxdexception.fr
+                </p>
+              </div>
+            </div>
+            
+            <div className="mt-4 pt-4 border-t border-primary/10">
+              <p className="text-xs text-secondary">
+                Pour toute réclamation : reclamation@lieuxdexception.fr<br />
+                Médiateur de la consommation : <a href="https://www.mediation-consommation.org" className="text-primary hover:underline">www.mediation-consommation.org</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Date de mise à jour */}
+        <section className="text-center pt-8 border-t border-border">
+          <p className="text-sm text-secondary">
+            Conditions Générales de Vente en vigueur au 1er novembre 2024
+          </p>
+          <p className="text-xs text-secondary mt-2">
+            Version 3.2 - Document contractuel à conserver
+          </p>
+        </section>
+        </div>
+        </div>
+      </section>
+    </main>
+  );
+}
