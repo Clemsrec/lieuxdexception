@@ -4,6 +4,7 @@ import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
 import { generateServiceMetadata } from '@/lib/smartMetadata';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
+import { getTranslations } from 'next-intl/server';
 
 /**
  * Métadonnées SEO optimisées via système universel
@@ -19,7 +20,13 @@ export const metadata: Metadata = generateServiceMetadata(
  * Cette page présente les services et solutions pour les événements
  * professionnels dans les 5 lieux d'exception du Groupe Riou.
  */
-export default function EvenementsB2BPage() {
+export default async function EvenementsB2BPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'B2B' });
   // Générer structured data
   const serviceSchema = generateUniversalStructuredData({
     siteType: 'corporate',
@@ -52,13 +59,13 @@ export default function EvenementsB2BPage() {
       
       {/* Hero Section */}
       <HeroSection
-        title="Événements Professionnels"
-        subtitle="Et si vos événements professionnels devenaient… tout simplement exceptionnels ?"
-        description="Implantés en Loire-Atlantique, nous transformons chaque moment d'entreprise en une expérience rare, mémorable et profondément marquante."
+        title={t('title')}
+        subtitle={t('hero')}
+        description={t('description')}
         backgroundImage="/images/salle-seminaire.jpg"
         buttons={[
-          { label: "Demander un devis", href: "/contact", primary: true },
-          { label: "Voir le catalogue", href: "/catalogue", primary: false }
+          { label: t('requestQuote'), href: `/${locale}/contact`, primary: true },
+          { label: t('viewCatalog'), href: `/${locale}/catalogue`, primary: false }
         ]}
       />
 
@@ -67,11 +74,11 @@ export default function EvenementsB2BPage() {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-white">
-              Des espaces pensés pour vos événements
+              {t('gallery.title')}
             </h2>
             <div className="accent-line" />
             <p className="text-neutral-300 text-lg mt-6">
-              Salles modulables, espaces de détente, environnement inspirant
+              {t('gallery.subtitle')}
             </p>
           </div>
           
@@ -79,7 +86,7 @@ export default function EvenementsB2BPage() {
             <div className="relative aspect-3/4 overflow-hidden rounded-lg">
               <Image
                 src="/venues/manoir-de-la-boulaie/photo-2025-11-17-12-04-49-7-24.webp"
-                alt="Salle de séminaire"
+                alt={t('gallery.seminarRoom')}
                 fill
                 className="object-cover hover:scale-110 transition-transform duration-500"
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -88,7 +95,7 @@ export default function EvenementsB2BPage() {
             <div className="relative aspect-3/4 overflow-hidden rounded-lg">
               <Image
                 src="/venues/chateau-de-la-brulaire/le-1825-la-table-domaine-de-la-brulaire-00008-08.webp"
-                alt="Espace de réception"
+                alt={t('gallery.receptionSpace')}
                 fill
                 className="object-cover hover:scale-110 transition-transform duration-500"
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -97,7 +104,7 @@ export default function EvenementsB2BPage() {
             <div className="relative aspect-3/4 overflow-hidden rounded-lg">
               <Image
                 src="/venues/domaine-nantais/photo-2025-11-17-12-08-54-2-04.webp"
-                alt="Salle de conférence"
+                alt={t('gallery.conferenceRoom')}
                 fill
                 className="object-cover hover:scale-110 transition-transform duration-500"
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -106,7 +113,7 @@ export default function EvenementsB2BPage() {
             <div className="relative aspect-3/4 overflow-hidden rounded-lg">
               <Image
                 src="/venues/le-dome/whatsapp-image-2025-11-05-at-12-03-12-04.webp"
-                alt="Espace moderne"
+                alt={t('gallery.modernSpace')}
                 fill
                 className="object-cover hover:scale-110 transition-transform duration-500"
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -121,7 +128,7 @@ export default function EvenementsB2BPage() {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-white">
-              Ce que nous vous offrons
+              {t('offer.title')}
             </h2>
             <div className="accent-line" />
           </div>
@@ -131,12 +138,10 @@ export default function EvenementsB2BPage() {
             <div>
               <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
                 <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
-                Une émotion d&apos;éveil
+                {t('offer.pillar1.title')}
               </h3>
               <p className="text-neutral-200 leading-relaxed">
-                Parce qu&apos;un séminaire, un lancement de produit ou un comité de direction ne devraient jamais laisser indifférent. 
-                Chaque lieu est pensé comme support au service de votre message et de l&apos;expérience que vous souhaitez faire vivre. 
-                Il devient un levier stratégique pour renforcer l&apos;impact de vos événements et suscite une véritable connexion émotionnelle.
+                {t('offer.pillar1.description')}
               </p>
             </div>
 
@@ -144,12 +149,10 @@ export default function EvenementsB2BPage() {
             <div>
               <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
                 <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
-                Un service d&apos;excellence
+                {t('offer.pillar2.title')}
               </h3>
               <p className="text-neutral-200 leading-relaxed">
-                Véritable soutien opérationnel aux entreprises, notre accompagnement est sur mesure : une expertise de plus de 20 ans en accueil et service événementiels, 
-                des partenaires sélectionnés au fil des années, un coordinateur unique à la fois administratif et technique copilote avec vous l&apos;ensemble de votre projet 
-                pour garantir efficacité, cohérence et tenue des objectifs.
+                {t('offer.pillar2.description')}
               </p>
             </div>
 
@@ -157,11 +160,10 @@ export default function EvenementsB2BPage() {
             <div>
               <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
                 <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
-                Des lieux inspirés
+                {t('offer.pillar3.title')}
               </h3>
               <p className="text-neutral-200 leading-relaxed">
-                Manoirs réhabilités, domaines confidentiels, espaces atypiques, parcs paysagés… Nos lieux offrent des conditions idéales pour accueillir vos réunions, 
-                sublimer vos cocktails ou animer journées d&apos;équipe. Entièrement privatisables et modulables, ces lieux sont conçus pour s&apos;adapter à vos objectifs.
+                {t('offer.pillar3.description')}
               </p>
             </div>
           </div>

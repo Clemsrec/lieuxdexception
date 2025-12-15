@@ -9,26 +9,59 @@
     "contact": "Kontakt"
   },
   "Home": {
-    "title": "Außergewöhnliche Orte",
+    "title": "Außergewöhnliche Locations",
     "subtitle": "Der Schlüssel zu Ihren einzigartigen Momenten",
-    "philosophy": "Ein Abenteuer aus Orten & Leidenschaft",
-    "signature": "Weil Emotionen vollständig erlebt werden, wenn sie ihren außergewöhnlichen Ort finden",
-    "discoverButton": "Unsere Orte entdecken",
+    "description": "Anwesen, wo Schönheit, Aufrichtigkeit und die Kunst der Gastfreundschaft sich vermischen",
+    "philosophy": "Ein Abenteuer geboren aus Orten & Leidenschaft",
+    "signature": "Weil Emotionen voll erlebt werden, wenn sie ihren außergewöhnlichen Ort finden",
+    "discoverButton": "Entdecken Sie unsere Locations",
     "contactButton": "Kontaktieren Sie uns",
-    "exceptionalVenues": "Außergewöhnliche Orte"
+    "exceptionalVenues": "Außergewöhnliche Locations"
   },
   "B2B": {
-    "hero": "Was wäre, wenn Ihre professionellen Veranstaltungen... einfach außergewöhnlich würden?",
-    "pillar1": "Eine außergewöhnliche Emotion",
-    "pillar2": "Ein außergewöhnlicher Service",
-    "pillar3": "Außergewöhnliche Orte"
+    "title": "Firmenveranstaltungen",
+    "hero": "Was wäre, wenn Ihre Firmenveranstaltungen... einfach außergewöhnlich würden?",
+    "description": "In Loire-Atlantique ansässig, verwandeln wir jeden Unternehmensmoment in ein seltenes, unvergessliches und tiefgreifend prägendes Erlebnis.",
+    "requestQuote": "Angebot anfordern",
+    "viewCatalog": "Katalog ansehen",
+    "gallery": {
+      "title": "Räume für Ihre Veranstaltungen konzipiert",
+      "subtitle": "Flexible Räume, Entspannungsbereiche, inspirierende Umgebung",
+      "seminarRoom": "Seminarraum",
+      "receptionSpace": "Empfangsbereich",
+      "conferenceRoom": "Konferenzraum",
+      "modernSpace": "Moderner Raum"
+    },
+    "offer": {
+      "title": "Was wir Ihnen bieten",
+      "pillar1": {
+        "title": "Eine erweckende Emotion",
+        "description": "Denn ein Seminar, eine Produkteinführung oder ein Vorstandskomitee sollte niemals gleichgültig lassen. Jeder Ort ist als Unterstützung für Ihre Botschaft und das Erlebnis konzipiert, das Sie schaffen möchten. Er wird zu einem strategischen Hebel, um die Wirkung Ihrer Veranstaltungen zu verstärken und eine echte emotionale Verbindung zu fördern."
+      },
+      "pillar2": {
+        "title": "Exzellenter Service",
+        "description": "Echte operative Unterstützung für Unternehmen, unsere Begleitung ist maßgeschneidert: Expertise von über 20 Jahren in Event-Gastfreundschaft und -Service, ein engagiertes Team zur Orchestrierung jedes Details, Premium-Dienstleistungen (Unterkunft, Catering, Entertainment) und unerschütterliche Reaktionsfähigkeit."
+      },
+      "pillar3": {
+        "title": "Außergewöhnliche Locations",
+        "description": "Sorgfältig ausgewählte Umgebungen, um Ihre Teams zu inspirieren, zu versammeln und zu vereinen. Bemerkenswerte Architektur, geschützte natürliche Umgebungen, moderne Ausstattung: Unsere Anwesen vereinen Charme und Funktionalität, um all Ihren professionellen Anforderungen gerecht zu werden."
+      }
+    }
   },
   "Weddings": {
-    "hero": "Weil Emotionen vollständig erlebt werden...",
-    "service1": "Personalisierte Treffen",
+    "title": "Außergewöhnliche Hochzeiten",
+    "hero": "Weil Emotion voll erlebt wird...",
+    "description": "Feiern Sie Ihre Verbindung in unseren prestigeträchtigen Anwesen. Vollständige Organisation und personalisierte Begleitung für einen einzigartigen Tag.",
+    "requestInfo": "Informationen anfordern",
+    "service1": "Persönliche Treffen",
     "service2": "Organisation & Koordination",
-    "service3": "Partnernetzwerk",
-    "service4": "Exklusive Verfügbarkeit"
+    "service3": "Partner-Netzwerk",
+    "service4": "Exklusive Verfügbarkeit",
+    "viewVenues": "Unsere Locations ansehen",
+    "gallery": {
+      "title": "Orte, die Ihre Geschichte erzählen",
+      "subtitle": "Entdecken Sie unsere außergewöhnlichen Anwesen, Bühnen für Ihre schönsten Erinnerungen"
+    }
   },
   "Venues": {
     "capacity": "Kapazität",
@@ -39,7 +72,8 @@
     "visitWebsite": "Website besuchen",
     "accommodation": "Unterkunft",
     "parking": "Parkplatz",
-    "catering": "Gastronomie",    "filters": {
+    "catering": "Gastronomie",
+    "filters": {
       "title": "Nach Ihren Kriterien filtern",
       "eventType": "Veranstaltungstyp",
       "allEvents": "Alle Veranstaltungen",
@@ -54,7 +88,8 @@
       "venuesFoundPlural": "Orte gefunden",
       "noVenuesTitle": "Keine Orte gefunden",
       "noVenuesDescription": "Versuchen Sie, Ihre Suchkriterien zu ändern, um mehr Ergebnisse zu sehen."
-    },    "eventTypes": {
+    },
+    "eventTypes": {
       "wedding": "Hochzeiten",
       "b2b": "B2B-Events",
       "seminar": "Seminare",

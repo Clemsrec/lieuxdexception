@@ -4,6 +4,7 @@ import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
 import { generateServiceMetadata } from '@/lib/smartMetadata';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
+import { getTranslations } from 'next-intl/server';
 
 /**
  * Métadonnées SEO optimisées via système universel
@@ -19,7 +20,13 @@ export const metadata: Metadata = generateServiceMetadata(
  * Cette page présente les services et solutions pour les mariages
  * dans les 5 lieux d'exception du Groupe Riou.
  */
-export default function MariagesPage() {
+export default async function MariagesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Weddings' });
   // Générer structured data
   const serviceSchema = generateUniversalStructuredData({
     siteType: 'corporate',
@@ -52,13 +59,13 @@ export default function MariagesPage() {
       
       {/* Hero Section */}
       <HeroSection
-        title="Mariages d'Exception"
-        subtitle="Parce que l'émotion se vit pleinement lorsqu'elle trouve son Lieu d'Exception"
-        description="Des domaines où se mêlent beauté, sincérité et art de recevoir pour célébrer le plus beau jour de votre vie."
+        title={t('title')}
+        subtitle={t('hero')}
+        description={t('description')}
         backgroundImage="/images/table-seminaire.jpg"
         buttons={[
-          { label: "Demander un devis mariage", href: "/contact", primary: true },
-          { label: "Voir nos lieux", href: "/catalogue", primary: false }
+          { label: t('requestInfo'), href: `/${locale}/contact`, primary: true },
+          { label: t('viewVenues'), href: `/${locale}/catalogue`, primary: false }
         ]}
       />
 
@@ -67,11 +74,11 @@ export default function MariagesPage() {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-              Des lieux qui racontent votre histoire
+              {t('gallery.title')}
             </h2>
             <div className="accent-line" />
             <p className="text-secondary text-lg mt-6">
-              Découvrez nos domaines d&apos;exception, théâtres de vos plus beaux souvenirs
+              {t('gallery.subtitle')}
             </p>
           </div>
           

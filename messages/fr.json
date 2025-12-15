@@ -11,6 +11,7 @@
   "Home": {
     "title": "Lieux d'Exception",
     "subtitle": "La clé de vos moments uniques",
+    "description": "Des domaines où se mêlent beauté, sincérité et art de recevoir",
     "philosophy": "Une aventure née de lieux & de passion",
     "signature": "Parce que l'émotion se vit pleinement lorsqu'elle trouve son Lieu d'Exception",
     "discoverButton": "Découvrir nos lieux",
@@ -18,17 +19,49 @@
     "exceptionalVenues": "Des lieux d'exception"
   },
   "B2B": {
+    "title": "Événements Professionnels",
     "hero": "Et si vos événements professionnels devenaient… tout simplement exceptionnels ?",
-    "pillar1": "Une émotion d'exception",
-    "pillar2": "Un service d'exception",
-    "pillar3": "Des lieux d'exception"
+    "description": "Implantés en Loire-Atlantique, nous transformons chaque moment d'entreprise en une expérience rare, mémorable et profondément marquante.",
+    "requestQuote": "Demander un devis",
+    "viewCatalog": "Voir le catalogue",
+    "gallery": {
+      "title": "Des espaces pensés pour vos événements",
+      "subtitle": "Salles modulables, espaces de détente, environnement inspirant",
+      "seminarRoom": "Salle de séminaire",
+      "receptionSpace": "Espace de réception",
+      "conferenceRoom": "Salle de conférence",
+      "modernSpace": "Espace moderne"
+    },
+    "offer": {
+      "title": "Ce que nous vous offrons",
+      "pillar1": {
+        "title": "Une émotion d'éveil",
+        "description": "Parce qu'un séminaire, un lancement de produit ou un comité de direction ne devraient jamais laisser indifférent. Chaque lieu est pensé comme support au service de votre message et de l'expérience que vous souhaitez faire vivre. Il devient un levier stratégique pour renforcer l'impact de vos événements et suscite une véritable connexion émotionnelle."
+      },
+      "pillar2": {
+        "title": "Un service d'excellence",
+        "description": "Véritable soutien opérationnel aux entreprises, notre accompagnement est sur mesure : une expertise de plus de 20 ans en accueil et service événementiels, une équipe dédiée pour orchestrer chaque détail, des prestations haut de gamme (hébergement, restauration, animations) et une réactivité à toute épreuve."
+      },
+      "pillar3": {
+        "title": "Des lieux d'exception",
+        "description": "Des environnements soigneusement sélectionnés pour inspirer, rassembler et fédérer vos équipes. Architecture remarquable, cadres naturels préservés, équipements modernes : nos domaines allient charme et fonctionnalité pour répondre à toutes vos exigences professionnelles."
+      }
+    }
   },
   "Weddings": {
+    "title": "Mariages d'Exception",
     "hero": "Parce que l'émotion se vit pleinement...",
+    "description": "Célébrez votre union dans nos domaines prestigieux. Organisation complète et accompagnement personnalisé pour un jour unique.",
+    "requestInfo": "Demander des informations",
+    "viewVenues": "Voir nos lieux",
     "service1": "Rencontres personnalisées",
     "service2": "Organisation & Coordination",
     "service3": "Réseau de partenaires",
-    "service4": "Mise à disposition exclusive"
+    "service4": "Mise à disposition exclusive",
+    "gallery": {
+      "title": "Des lieux qui racontent votre histoire",
+      "subtitle": "Découvrez nos domaines d'exception, théâtres de vos plus beaux souvenirs"
+    }
   },
   "Venues": {
     "capacity": "Capacité",

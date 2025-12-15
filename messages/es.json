@@ -9,26 +9,59 @@
     "contact": "Contacto"
   },
   "Home": {
-    "title": "Lugares de Excepción",
-    "subtitle": "La Clave de Sus Momentos Únicos",
-    "philosophy": "Una Aventura Nacida de Lugares & Pasión",
-    "signature": "Porque la emoción se vive plenamente cuando encuentra su Lugar de Excepción",
+    "title": "Lugares Excepcionales",
+    "subtitle": "La clave de sus momentos únicos",
+    "description": "Fincas donde se mezclan belleza, sinceridad y el arte de recibir",
+    "philosophy": "Una aventura nacida de lugares y pasión",
+    "signature": "Porque la emoción se vive plenamente cuando encuentra su Lugar Excepcional",
     "discoverButton": "Descubrir nuestros lugares",
     "contactButton": "Contáctenos",
-    "exceptionalVenues": "Lugares de excepción"
+    "exceptionalVenues": "Lugares excepcionales"
   },
   "B2B": {
+    "title": "Eventos Corporativos",
     "hero": "¿Y si sus eventos profesionales se volvieran... simplemente excepcionales?",
-    "pillar1": "Una emoción de excepción",
-    "pillar2": "Un servicio de excepción",
-    "pillar3": "Lugares de excepción"
+    "description": "Ubicados en Loire-Atlantique, transformamos cada momento empresarial en una experiencia rara, memorable y profundamente impactante.",
+    "requestQuote": "Solicitar presupuesto",
+    "viewCatalog": "Ver catálogo",
+    "gallery": {
+      "title": "Espacios pensados para sus eventos",
+      "subtitle": "Salas modulables, espacios de relajación, entorno inspirador",
+      "seminarRoom": "Sala de seminarios",
+      "receptionSpace": "Espacio de recepción",
+      "conferenceRoom": "Sala de conferencias",
+      "modernSpace": "Espacio moderno"
+    },
+    "offer": {
+      "title": "Lo que le ofrecemos",
+      "pillar1": {
+        "title": "Una emoción de despertar",
+        "description": "Porque un seminario, lanzamiento de producto o comité de dirección nunca debería dejar indiferente. Cada lugar está diseñado como soporte de su mensaje y la experiencia que desea crear. Se convierte en una palanca estratégica para reforzar el impacto de sus eventos y fomentar una conexión emocional genuina."
+      },
+      "pillar2": {
+        "title": "Un servicio de excelencia",
+        "description": "Verdadero apoyo operacional para empresas, nuestro acompañamiento es a medida: experiencia de más de 20 años en hospitalidad y servicio de eventos, un equipo dedicado para orquestar cada detalle, servicios premium (alojamiento, catering, animaciones) y una reactividad inquebrantable."
+      },
+      "pillar3": {
+        "title": "Lugares excepcionales",
+        "description": "Entornos cuidadosamente seleccionados para inspirar, reunir y federar a sus equipos. Arquitectura notable, entornos naturales preservados, equipamiento moderno: nuestras fincas combinan encanto y funcionalidad para satisfacer todas sus exigencias profesionales."
+      }
+    }
   },
   "Weddings": {
+    "title": "Bodas Excepcionales",
     "hero": "Porque la emoción se vive plenamente...",
-    "service1": "Encuentros personalizados",
-    "service2": "Organización & Coordinación",
+    "description": "Celebre su unión en nuestras fincas prestigiosas. Organización completa y acompañamiento personalizado para un día único.",
+    "requestInfo": "Solicitar información",
+    "service1": "Reuniones personalizadas",
+    "service2": "Organización y Coordinación",
     "service3": "Red de socios",
-    "service4": "Disponibilidad exclusiva"
+    "service4": "Disponibilidad exclusiva",
+    "viewVenues": "Ver nuestros lugares",
+    "gallery": {
+      "title": "Lugares que cuentan tu historia",
+      "subtitle": "Descubre nuestros dominios de excepción, escenarios de tus más bellos recuerdos"
+    }
   },
   "Venues": {
     "capacity": "Capacidad",
@@ -39,7 +72,8 @@
     "visitWebsite": "Visitar el sitio",
     "accommodation": "Alojamiento",
     "parking": "Aparcamiento",
-    "catering": "Restauración",    "filters": {
+    "catering": "Restauración",
+    "filters": {
       "title": "Filtrar por sus criterios",
       "eventType": "Tipo de evento",
       "allEvents": "Todos los eventos",
@@ -54,7 +88,8 @@
       "venuesFoundPlural": "lugares encontrados",
       "noVenuesTitle": "No se encontraron lugares",
       "noVenuesDescription": "Intente modificar sus criterios de búsqueda para ver más resultados."
-    },    "eventTypes": {
+    },
+    "eventTypes": {
       "wedding": "Bodas",
       "b2b": "Eventos B2B",
       "seminar": "Seminarios",

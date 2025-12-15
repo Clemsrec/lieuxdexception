@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, Users } from 'lucide-react';
 import { getVenues } from '@/lib/firestore';
+import { getTranslations } from 'next-intl/server';
 import { generateHomeMetadata } from '@/lib/smartMetadata';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
 import HeroCarousel from '@/components/HeroCarousel';
@@ -21,7 +22,14 @@ export const metadata: Metadata = generateHomeMetadata();
  * Présentation de la marque et des 5 lieux d'exception
  * Contenu basé sur la brochure officielle Lieux d'Exception
  */
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Home' });
+  
   // Récupérer TOUS les domaines (5 châteaux)
   const venues = await getVenues();
   console.log('🏠 [page.tsx] Venues récupérées:', venues.length, venues.map(v => ({ id: v.id, name: v.name, lat: v.lat, lng: v.lng })));
@@ -54,12 +62,12 @@ export default async function Home() {
 
       {/* Hero Section avec carousel de photos réelles des châteaux */}
       <HeroSection
-        title="Lieux d'Exception"
-        subtitle="La clé de vos moments uniques"
-        description="Des domaines où se mêlent beauté, sincérité et art de recevoir"
+        title={t('title')}
+        subtitle={t('subtitle')}
+        description={t('description')}
         buttons={[
-          { label: "Découvrir nos lieux", href: "/catalogue", primary: true },
-          { label: "Nous contacter", href: "/contact", primary: false }
+          { label: t('discoverButton'), href: `/${locale}/catalogue`, primary: true },
+          { label: t('contactButton'), href: `/${locale}/contact`, primary: false }
         ]}
         carousel={
           <HeroCarousel 

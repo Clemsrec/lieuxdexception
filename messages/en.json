@@ -10,25 +10,58 @@
   },
   "Home": {
     "title": "Exceptional Venues",
-    "subtitle": "The Key to Your Unique Moments",
-    "philosophy": "An Adventure Born of Places & Passion",
+    "subtitle": "The key to your unique moments",
+    "description": "Estates where beauty, sincerity and the art of hospitality blend together",
+    "philosophy": "An adventure born from places & passion",
     "signature": "Because emotion is fully experienced when it finds its Exceptional Venue",
     "discoverButton": "Discover our venues",
     "contactButton": "Contact us",
-    "exceptionalVenues": "Exceptional Venues"
+    "exceptionalVenues": "Exceptional venues"
   },
   "B2B": {
+    "title": "Corporate Events",
     "hero": "What if your professional events became… simply exceptional?",
-    "pillar1": "An Exceptional Emotion",
-    "pillar2": "An Exceptional Service",
-    "pillar3": "Exceptional Venues"
+    "description": "Based in Loire-Atlantique, we transform every corporate moment into a rare, memorable and profoundly impactful experience.",
+    "requestQuote": "Request a quote",
+    "viewCatalog": "View catalog",
+    "gallery": {
+      "title": "Spaces designed for your events",
+      "subtitle": "Flexible rooms, relaxation spaces, inspiring environment",
+      "seminarRoom": "Seminar room",
+      "receptionSpace": "Reception space",
+      "conferenceRoom": "Conference room",
+      "modernSpace": "Modern space"
+    },
+    "offer": {
+      "title": "What we offer you",
+      "pillar1": {
+        "title": "An awakening emotion",
+        "description": "Because a seminar, product launch or executive committee should never leave anyone indifferent. Each venue is designed as a support for your message and the experience you want to create. It becomes a strategic lever to enhance the impact of your events and foster genuine emotional connection."
+      },
+      "pillar2": {
+        "title": "Excellence in service",
+        "description": "True operational support for businesses, our accompaniment is tailor-made: expertise of over 20 years in event hospitality and service, a dedicated team to orchestrate every detail, premium services (accommodation, catering, entertainment) and unwavering responsiveness."
+      },
+      "pillar3": {
+        "title": "Exceptional venues",
+        "description": "Carefully selected environments to inspire, gather and unite your teams. Remarkable architecture, preserved natural settings, modern equipment: our estates combine charm and functionality to meet all your professional requirements."
+      }
+    }
   },
   "Weddings": {
+    "title": "Exceptional Weddings",
     "hero": "Because emotion is fully experienced...",
-    "service1": "Personalized Meetings",
+    "description": "Celebrate your union in our prestigious estates. Complete organization and personalized support for a unique day.",
+    "requestInfo": "Request information",
+    "service1": "Personalized meetings",
     "service2": "Organization & Coordination",
-    "service3": "Network of Partners",
-    "service4": "Exclusive Availability"
+    "service3": "Partner network",
+    "service4": "Exclusive availability",
+    "viewVenues": "View our venues",
+    "gallery": {
+      "title": "Places that tell your story",
+      "subtitle": "Discover our exceptional estates, stages for your most beautiful memories"
+    }
   },
   "Venues": {
     "capacity": "Capacity",
