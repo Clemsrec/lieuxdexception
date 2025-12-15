@@ -12,20 +12,62 @@ import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
  */
 
 interface VenueGalleryProps {
-  images: string[]; // Chemins des images originales
+  images?: string[]; // Chemins des images originales (optionnel)
   venueName: string;
+  /**
+   * Optionally specify a category to prefer: 'mariages' or 'seminaires'
+   * This will look for images under the two gallery folders if `images` is empty.
+   */
+  category?: 'mariages' | 'seminaires';
+  /**
+   * Optional slug (filename) to match images. If omitted, slug is generated from `venueName`.
+   */
+  venueSlug?: string;
 }
 
-export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
+export default function VenueGallery({ images, venueName, category, venueSlug }: VenueGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Use the shared 4 images exclusively for now
-  const displayImages = getGalleryImages();
+  // If images are provided, use them. Otherwise try to build image URLs
+  // from the two gallery folders whose files are named after the château.
+  const buildSlug = (input: string) => {
+    return input
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  };
 
-  if (!displayImages || displayImages.length === 0) {
-    return null;
+  const slug = venueSlug || buildSlug(venueName || 'venue');
+
+  const galleryFolders = [
+    'GALERIE Onglet MARIAGES & PRIVÉS',
+    'GALERIE Onglet SÉMINAIRES & PRO'
+  ];
+
+  const exts = ['webp', 'jpg', 'jpeg', 'png'];
+
+  const candidateImages: string[] = [];
+
+  // If a category is specified, prefer that folder first
+  const orderedFolders = category === 'mariages'
+    ? [galleryFolders[0], galleryFolders[1]]
+    : category === 'seminaires'
+    ? [galleryFolders[1], galleryFolders[0]]
+    : galleryFolders;
+
+  for (const folder of orderedFolders) {
+    for (const ext of exts) {
+      const path = `/${encodeURIComponent(folder)}/${encodeURIComponent(slug)}.${ext}`;
+      candidateImages.push(path);
+    }
   }
+
+  const displayImages = (images && images.length > 0) ? images : candidateImages;
+
+  if (!displayImages || displayImages.length === 0) return null;
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -39,11 +81,11 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? displayImages.length - 1 : prev - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === displayImages.length - 1 ? 0 : prev + 1));
   };
 
   // Gestion clavier
@@ -70,7 +112,7 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
           }
         }}
       >
-        {images.map((image, index) => (
+        {displayImages.map((image, index) => (
           <motion.button
             key={image}
             onClick={() => openLightbox(index)}
@@ -101,7 +143,7 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
             
             {/* Numéro de la photo */}
             <div className="absolute bottom-2 right-2 bg-primary/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-              {index + 1}/{images.length}
+              {index + 1}/{displayImages.length}
             </div>
           </motion.button>
         ))}
@@ -136,20 +178,25 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
           {/* Image courante */}
           <div className="relative w-full h-full flex items-center justify-center p-4 md:p-12">
             <div className="relative max-w-content max-h-full w-full h-full">
-              <Image
-                src={displayImages[currentIndex]}
-                alt={`${venueName} - Photo ${currentIndex + 1}`}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
-                quality={95}
-              />
+              <div className="flex flex-col items-center justify-center w-full h-full">
+                <Image
+                  src={displayImages[currentIndex]}
+                  alt={`${venueName} - Photo ${currentIndex + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                  quality={95}
+                />
+                <div className="absolute bottom-8 text-white text-sm bg-black/50 px-3 py-1 rounded">
+                  {venueName}
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Navigation précédent */}
-          {images.length > 1 && (
+          {displayImages.length > 1 && (
             <button
               onClick={goToPrevious}
               className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full transition-colors"
@@ -160,7 +207,7 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
           )}
 
           {/* Navigation suivant */}
-          {images.length > 1 && (
+          {displayImages.length > 1 && (
             <button
               onClick={goToNext}
               className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full transition-colors"
@@ -184,7 +231,7 @@ export default function VenueGallery({ images, venueName }: VenueGalleryProps) {
               >
                 <Image
                   src={image}
-                  alt={`Miniature ${index + 1}`}
+                  alt={`${venueName} - Photo ${index + 1}`}
                   fill
                   className="object-cover"
                   sizes="64px"
