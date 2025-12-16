@@ -9,6 +9,29 @@ import { Timestamp } from 'firebase/firestore';
 export interface FirebaseUser extends User {}
 
 /**
+ * Espace détaillé avec superficie
+ */
+export interface DetailedSpace {
+  name: string;
+  size: number;
+  unit: string; // "m²"
+}
+
+/**
+ * Capacités détaillées par configuration
+ */
+export interface CapacityDetails {
+  meeting?: number;
+  uShape?: number;
+  theater?: number;
+  cabaret?: number;
+  classroom?: number;
+  banquet?: number;
+  cocktail?: number;
+  cocktailPark?: number; // Pour grands espaces extérieurs (ex: Château Corbe 5000 pers.)
+}
+
+/**
  * Profil utilisateur admin
  */
 export interface UserProfile {
@@ -125,11 +148,25 @@ export interface Venue {
   // Équipements détaillés pour compatibilité
   accommodation?: boolean;
   accommodationRooms?: number;
+  accommodationDetails?: string; // Ex: "15 chambres dont 8 twin"
   catering?: boolean;
   parking?: number; // Nombre de places
+  parkingSpaces?: number; // Nombre de places (alias)
   audioVisual?: boolean;
   wifi?: boolean;
   accessibility?: boolean;
+  
+  // Nouvelles données enrichies (depuis fichiers markdown)
+  rooms?: number; // Nombre de salles
+  detailedSpaces?: DetailedSpace[]; // Espaces avec superficies
+  capacityDetails?: CapacityDetails; // Capacités par configuration
+  equipment?: string[]; // Équipements techniques
+  activities?: string[]; // Activités proposées
+  services?: string[]; // Services disponibles
+  displayStatus?: 'Nouveau' | 'Ouverture prochainement' | string; // Statut marketing du lieu
+  privatizable?: boolean; // Privatisable ou non
+  renovationDate?: string; // Date de rénovation (ex: "Mars 2025")
+  totalSurfaceRooms?: number; // Surface totale des salons (m²)
   
   // Informations de contact
   contact: {

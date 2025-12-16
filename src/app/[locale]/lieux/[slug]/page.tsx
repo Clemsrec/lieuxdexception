@@ -83,6 +83,18 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   
                   Retour au catalogue
                 </Link>
+                
+                {/* Badges de statut */}
+                {venue.displayStatus === 'Nouveau' && (
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-full text-sm font-medium">
+                    ★ Nouveau
+                  </span>
+                )}
+                {venue.displayStatus === 'Ouverture prochainement' && (
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full text-sm font-medium">
+                    Bientôt disponible
+                  </span>
+                )}
               </div>
               
               <h1 className="text-5xl md:text-6xl font-display font-semibold text-white mb-4 animate-fade-in">
@@ -177,25 +189,113 @@ export default async function VenuePage({ params }: VenuePageProps) {
                 </h3>
                 
                 <div className="space-y-6">
-                  {/* Capacité */}
+                  {/* Capacité enrichie */}
                   <div>
-                    <div className="flex items-center gap-2 text-accent-dark font-medium mb-2">
+                    <div className="flex items-center gap-2 text-accent-dark font-medium mb-3">
                       
-                      Capacité
+                      Capacités
                     </div>
-                    <ul className="text-sm text-secondary space-y-1 ml-6">
-                      <li>• Minimum : {venue.capacityMin || 20} personnes</li>
-                      <li>• Dîner assis : {venue.capacitySeated} personnes</li>
-                      {venue.capacityStanding && (
-                        <li>• Cocktail : {venue.capacityStanding} personnes</li>
+                    <div className="space-y-2 text-sm">
+                      {venue.capacityDetails?.theater && (
+                        <div className="flex justify-between">
+                          <span className="text-secondary">Configuration théâtre</span>
+                          <span className="font-semibold text-primary">{venue.capacityDetails.theater} pers.</span>
+                        </div>
                       )}
-                    </ul>
+                      {venue.capacityDetails?.banquet && (
+                        <div className="flex justify-between">
+                          <span className="text-secondary">Banquet</span>
+                          <span className="font-semibold text-primary">{venue.capacityDetails.banquet} pers.</span>
+                        </div>
+                      )}
+                      {venue.capacityDetails?.cocktail && (
+                        <div className="flex justify-between">
+                          <span className="text-secondary">Cocktail</span>
+                          <span className="font-semibold text-primary">{venue.capacityDetails.cocktail} pers.</span>
+                        </div>
+                      )}
+                      {venue.capacityDetails?.cocktailPark && (
+                        <div className="flex justify-between">
+                          <span className="text-secondary">Cocktail parc</span>
+                          <span className="font-semibold text-accent">Jusqu'à {venue.capacityDetails.cocktailPark} pers. !</span>
+                        </div>
+                      )}
+                      {venue.capacityDetails?.uShape && (
+                        <div className="flex justify-between">
+                          <span className="text-secondary">Salle en U</span>
+                          <span className="font-semibold text-primary">{venue.capacityDetails.uShape} pers.</span>
+                        </div>
+                      )}
+                      {venue.capacityDetails?.meeting && (
+                        <div className="flex justify-between">
+                          <span className="text-secondary">Réunion</span>
+                          <span className="font-semibold text-primary">{venue.capacityDetails.meeting} pers.</span>
+                        </div>
+                      )}
+                      {venue.capacityDetails?.classroom && (
+                        <div className="flex justify-between">
+                          <span className="text-secondary">Rang d'école</span>
+                          <span className="font-semibold text-primary">{venue.capacityDetails.classroom} pers.</span>
+                        </div>
+                      )}
+                      {/* Fallback si pas de capacityDetails */}
+                      {!venue.capacityDetails && (
+                        <>
+                          <div className="flex justify-between">
+                            <span className="text-secondary">Minimum</span>
+                            <span className="font-semibold text-primary">{venue.capacityMin || 20} pers.</span>
+                          </div>
+                          {venue.capacitySeated && (
+                            <div className="flex justify-between">
+                              <span className="text-secondary">Dîner assis</span>
+                              <span className="font-semibold text-primary">{venue.capacitySeated} pers.</span>
+                            </div>
+                          )}
+                          {venue.capacityStanding && (
+                            <div className="flex justify-between">
+                              <span className="text-secondary">Cocktail</span>
+                              <span className="font-semibold text-primary">{venue.capacityStanding} pers.</span>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
                   </div>
+
+                  {/* Infrastructures */}
+                  {(venue.rooms || venue.accommodationRooms || venue.parkingSpaces) && (
+                    <div className="pt-4 border-t border-neutral-200">
+                      <div className="flex items-center gap-2 text-accent-dark font-medium mb-3">
+                        
+                        Infrastructures
+                      </div>
+                      <div className="space-y-2 text-sm">
+                        {venue.rooms && (
+                          <div className="flex justify-between">
+                            <span className="text-secondary">Salles disponibles</span>
+                            <span className="font-semibold text-primary">{venue.rooms}</span>
+                          </div>
+                        )}
+                        {venue.accommodationRooms && (
+                          <div className="flex justify-between">
+                            <span className="text-secondary">Chambres</span>
+                            <span className="font-semibold text-primary">{venue.accommodationRooms}</span>
+                          </div>
+                        )}
+                        {venue.parkingSpaces && (
+                          <div className="flex justify-between">
+                            <span className="text-secondary">Places parking</span>
+                            <span className="font-semibold text-primary">{venue.parkingSpaces}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Équipements */}
                   {venue.amenitiesList && venue.amenitiesList.length > 0 && (
-                    <div>
-                      <div className="flex items-center gap-2 text-accent-dark font-medium mb-2">
+                    <div className="pt-4 border-t border-neutral-200">
+                      <div className="flex items-center gap-2 text-accent-dark font-medium mb-3">
                         
                         Équipements
                       </div>
@@ -247,6 +347,120 @@ export default async function VenuePage({ params }: VenuePageProps) {
                       <h3 className="font-heading font-semibold text-primary mb-1">{space}</h3>
                     </div>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Salles détaillées */}
+      {venue.detailedSpaces && venue.detailedSpaces.length > 0 && (
+        <section className="section bg-neutral-50">
+          <div className="container">
+            <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
+              Nos salles en détail
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {venue.detailedSpaces.map((space, index) => (
+                <div key={index} className="bg-white p-6 rounded-xl border border-neutral-200 hover:border-accent transition-colors">
+                  <h3 className="font-heading font-semibold text-primary text-lg mb-3">
+                    {space.name}
+                  </h3>
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className="text-3xl font-display font-bold text-accent">{space.size}</span>
+                    <span className="text-secondary">{space.unit}</span>
+                  </div>
+                  <div className="w-full h-px bg-neutral-200 my-3" />
+                  <p className="text-sm text-secondary">
+                    Espace modulable pour vos événements
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Équipements & Services */}
+      {(venue.equipment && venue.equipment.length > 0) || (venue.services && venue.services.length > 0) ? (
+        <section className="section">
+          <div className="container">
+            <h2 className="text-3xl font-display font-semibold text-primary mb-12 text-center">
+              Équipements & Services
+            </h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Équipements techniques */}
+              {venue.equipment && venue.equipment.length > 0 && (
+                <div className="bg-white p-8 rounded-xl border border-neutral-200">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                      <span className="text-2xl">⚙️</span>
+                    </div>
+                    <h3 className="text-xl font-heading font-semibold text-primary">
+                      Équipements techniques
+                    </h3>
+                  </div>
+                  <ul className="grid grid-cols-1 gap-3">
+                    {venue.equipment.map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-secondary">
+                        <div className="w-2 h-2 bg-accent rounded-full shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Services */}
+              {venue.services && venue.services.length > 0 && (
+                <div className="bg-white p-8 rounded-xl border border-neutral-200">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <span className="text-2xl">★</span>
+                    </div>
+                    <h3 className="text-xl font-heading font-semibold text-primary">
+                      Services disponibles
+                    </h3>
+                  </div>
+                  <ul className="grid grid-cols-1 gap-3">
+                    {venue.services.map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-secondary">
+                        <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Activités proposées */}
+      {venue.activities && venue.activities.length > 0 && (
+        <section className="section bg-primary/5">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-display font-semibold text-primary mb-4">
+                Activités proposées
+              </h2>
+              <p className="text-secondary text-lg max-w-2xl mx-auto">
+                Prolongez votre événement avec des activités ludiques et fédératrices
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {venue.activities.map((activity, i) => (
+                <div key={i} className="bg-white p-6 rounded-xl border border-neutral-200 hover:shadow-lg transition-shadow">
+                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-2xl text-accent">★</span>
+                  </div>
+                  <h3 className="font-heading font-semibold text-primary mb-2">
+                    {activity}
+                  </h3>
                 </div>
               ))}
             </div>
