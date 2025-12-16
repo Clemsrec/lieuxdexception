@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 import { 
   hasConsent, 
   acceptAllCookies, 
@@ -21,6 +22,7 @@ import {
  * - Personnaliser les préférences
  */
 export default function CookieBanner() {
+  const locale = useLocale();
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [preferences, setPreferences] = useState<Omit<CookieConsent, 'timestamp'>>({
@@ -78,7 +80,7 @@ export default function CookieBanner() {
                   Vous pouvez accepter tous les cookies, les refuser ou personnaliser vos préférences.
                 </p>
                 <Link 
-                  href="/cookies" 
+                  href={`/${locale}/cookies`} 
                   className="text-sm text-primary hover:underline inline-block mt-2"
                 >
                   En savoir plus sur notre politique des cookies →

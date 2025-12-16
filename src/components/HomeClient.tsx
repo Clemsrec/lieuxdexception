@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Users } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import dynamic from 'next/dynamic';
 import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
@@ -142,6 +143,7 @@ interface HomeClientProps {
 
 export default function HomeClient({ venues }: HomeClientProps) {
   console.log('🎨 [HomeClient] Venues reçues:', venues.length, venues);
+  const locale = useLocale();
   const ctaRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ctaRef,
@@ -329,7 +331,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
             <p className="text-lg md:text-xl text-white/90 mb-4 md:mb-6 font-light uppercase tracking-wider">
               Des domaines où se mêlent beauté, sincérité et art de recevoir.
             </p>
-            <Link href="/contact" className="btn-primary">
+            <Link href={`/${locale}/contact`} className="btn-primary">
               Nous contacter
             </Link>
           </div>

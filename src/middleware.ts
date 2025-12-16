@@ -30,8 +30,8 @@ const PROTECTED_API_ROUTES = ['/api/admin', '/api/venues/create', '/api/venues/u
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'as-needed', // Ajoute locale seulement si différente de la défaut
-  localeDetection: true // Détection auto via Accept-Language header
+  localePrefix: 'always',
+  localeDetection: true, // Détection automatique de la langue via Accept-Language
 });
 
 /**
@@ -49,8 +49,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
   
-  // 2. Bypass i18n pour /api routes (pas de locale dans les API)
-  if (pathname.startsWith('/api')) {
+  // 2. Bypass i18n pour /api, /admin, /robots.txt, /sitemap.xml
+  if (
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/admin') ||
+    pathname === '/robots.txt' ||
+    pathname === '/sitemap.xml'
+  ) {
     const response = NextResponse.next();
     // Appliquer quand même les headers de sécurité
     applySecurityHeaders(response);
@@ -69,6 +74,19 @@ export async function middleware(request: NextRequest) {
       console.log(`[Security] ✅ Cookie auth présent (API): ${pathname}`);
     }
     
+    // Protection admin routes
+    if (pathname.startsWith('/admin') && pathname !== '/admin/connexion') {
+      const authToken = request.cookies.get('auth-token');
+      
+      if (!authToken) {
+        const loginUrl = new URL('/admin/connexion', request.url);
+        loginUrl.searchParams.set('redirect', pathname);
+        return NextResponse.redirect(loginUrl);
+      }
+      
+      console.log(`[Security] ✅ Cookie auth présent (admin): ${pathname}`);
+    }
+    
     return response;
   }
   
@@ -77,27 +95,6 @@ export async function middleware(request: NextRequest) {
   
   // 4. Appliquer headers de sécurité HTTP
   applySecurityHeaders(response);
-  
-  // 5. Protection routes admin
-  // Note: pathname inclut désormais la locale (/fr/admin, /en/admin, etc.)
-  const pathnameWithoutLocale = pathname.replace(/^\/(fr|en|es|de|it|pt)/, '');
-  
-  if (PROTECTED_ROUTES.some(route => pathnameWithoutLocale.startsWith(route))) {
-    console.log(`[Security] Accès route protégée: ${pathname}`);
-    
-    const authToken = request.cookies.get('auth-token');
-    
-    if (!authToken) {
-      // Extraire locale du pathname pour redirection
-      const locale = pathname.split('/')[1] || defaultLocale;
-      const loginUrl = new URL(`/${locale}/admin/connexion`, request.url);
-      loginUrl.searchParams.set('redirect', pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-    
-    // TODO: Vérification JWT déplacée dans les API routes (Node.js runtime)
-    console.log(`[Security] ✅ Cookie auth présent: ${pathname}`);
-  }
   
   return response;
 }
@@ -145,9 +142,7 @@ function applySecurityHeaders(response: NextResponse) {
  */
 export const config = {
   matcher: [
-    // Match toutes les routes pour i18n sauf fichiers statiques et API
-    '/((?!api|_next|static|.*\\..*|favicon.ico|robots.txt|sitemap.xml).*)',
-    // Ajouter /api explicitement pour les headers de sécurité
-    '/api/:path*'
+    // Match toutes les routes SAUF fichiers statiques, API, admin
+    '/((?!api|admin|_next|static|.*\\..*|favicon.ico|robots.txt|sitemap.xml).*)'
   ],
 };

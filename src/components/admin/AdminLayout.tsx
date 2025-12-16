@@ -142,7 +142,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               <NotificationList notifications={[]} />
               
               <Link
-                href="/"
+                href="/fr"
                 target="_blank"
                 className="text-sm text-secondary hover:text-primary transition-colors"
               >
