@@ -25,13 +25,15 @@ const PROTECTED_API_ROUTES = ['/api/admin', '/api/venues/create', '/api/venues/u
 
 /**
  * Middleware i18n next-intl
- * Détection automatique de langue et routing /[locale]/...
+ * Configuration minimale pour éviter les boucles de redirection
+ * - as-needed : ne force pas /fr sur la locale par défaut
+ * - localeDetection: false : désactive la détection auto (évite redirects)
  */
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'always',
-  localeDetection: true, // Détection automatique de la langue via Accept-Language
+  localePrefix: 'as-needed', // Ne force pas /fr, permet / pour français
+  localeDetection: false, // Désactive détection auto (cause des redirects)
 });
 
 /**
@@ -138,11 +140,11 @@ function applySecurityHeaders(response: NextResponse) {
 
 /**
  * Configuration du matcher
- * Applique middleware i18n + sécurité sur toutes les routes sauf fichiers statiques
+ * Applique le middleware sur toutes les routes sauf API, admin, et fichiers statiques
  */
 export const config = {
   matcher: [
-    // Match toutes les routes SAUF fichiers statiques, API, admin
+    // Match toutes les routes SAUF API, admin, fichiers statiques
     '/((?!api|admin|_next|static|.*\\..*|favicon.ico|robots.txt|sitemap.xml).*)'
   ],
 };

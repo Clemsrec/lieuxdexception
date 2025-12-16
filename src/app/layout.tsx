@@ -1,12 +1,13 @@
 /**
- * Layout racine - Redirige vers la locale par défaut
- * Toutes les pages sont maintenant dans app/[locale]/
+ * Layout racine minimal
+ * Le vrai layout avec i18n est dans app/[locale]/layout.tsx
+ * Ce layout ne fait rien, il laisse Next.js router vers [locale]
  */
 
-import { redirect } from 'next/navigation';
-import { defaultLocale } from '@/i18n';
-
-export default function RootLayout() {
-  // Redirection vers la locale par défaut
-  redirect(`/${defaultLocale}`);
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return children;
 }
