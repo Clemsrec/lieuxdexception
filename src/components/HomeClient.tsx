@@ -55,74 +55,78 @@ function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
       <Link
         href={venue.externalUrl || venue.url || venue.contact?.website || `/lieux/${venue.slug}`}
         {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        className="venue-card group overflow-hidden h-full flex flex-col bg-white"
+        className="venue-card group overflow-hidden h-full flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 border border-stone/10"
       >
-        {/* Image avec numéro */}
+        {/* Image avec overlay gradient et numéro */}
         <motion.div 
-          className="relative h-64 overflow-hidden shrink-0"
+          className="relative h-72 overflow-hidden shrink-0"
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.4 }}
         >
           <Image
-            src={getCardImage(venue.id || venue.slug)}
+            src={getCardImage(venue)}
             alt={displayVenueName(venue.name)}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
           />
-          {/* Numéro dans cercle */}
-          <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-white border-2 border-accent flex items-center justify-center">
-            <span className="font-display font-bold text-xl text-primary">{index + 1}</span>
+          {/* Overlay gradient subtil */}
+          <div className="absolute inset-0 bg-linear-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          {/* Numéro dans cercle doré */}
+          <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full bg-linear-to-br from-accent to-accent-dark border-2 border-white shadow-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+            <span className="font-display font-bold text-2xl text-white drop-shadow-md">{index + 1}</span>
           </div>
         </motion.div>
         
-        {/* Contenu */}
-        <div className="p-6 flex-1 flex flex-col text-center">
-          {/* Titre en 2 lignes */}
-          <div className="mb-6">
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-primary italic">
+        {/* Contenu avec fond dégradé subtil */}
+        <div className="p-6 md:p-8 flex-1 flex flex-col text-center bg-linear-to-b from-white to-stone-50/30">
+          {/* Titre avec ligne décorative */}
+          <div className="mb-6 pb-4 border-b border-accent/20">
+            <h3 className="font-display text-2xl md:text-3xl font-bold italic leading-tight group-hover:text-accent-light transition-colors duration-300" style={{ color: '#C9A961 !important' }}>
               {displayVenueName(venue.name)}
             </h3>
+            <div className="w-12 h-0.5 bg-accent/40 mx-auto mt-3" />
           </div>
 
-          {/* 3 icônes horizontales */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          {/* 3 icônes horizontales avec fond */}
+          <div className="grid grid-cols-3 gap-3 mb-6">
             {/* Distance de Paris */}
-            <div className="flex flex-col items-center gap-2">
-              <MapPin className="w-6 h-6 text-accent" />
-              <div className="text-xs uppercase tracking-wider text-secondary">
-                <div className="font-semibold text-primary">50 MIN</div>
-                <div>DE PARIS</div>
+            <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-stone-50/50 border border-stone/10 hover:border-accent/30 transition-colors">
+              <MapPin className="w-5 h-5 text-accent" />
+              <div className="text-xs uppercase tracking-wider text-secondary leading-tight">
+                <div className="font-semibold text-primary text-sm">50 MIN</div>
+                <div className="text-[10px]">DE PARIS</div>
               </div>
             </div>
             
             {/* Capacité */}
-            <div className="flex flex-col items-center gap-2">
-              <Users className="w-6 h-6 text-accent" />
-              <div className="text-xs uppercase tracking-wider text-secondary">
-                <div className="font-semibold text-primary">{venue.capacity?.min || 10}-{venue.capacity?.max || venue.capacity?.seated || 200}</div>
-                <div>PERS.</div>
+            <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-stone-50/50 border border-stone/10 hover:border-accent/30 transition-colors">
+              <Users className="w-5 h-5 text-accent" />
+              <div className="text-xs uppercase tracking-wider text-secondary leading-tight">
+                <div className="font-semibold text-primary text-sm">{venue.capacity?.min || 10}-{venue.capacity?.max || venue.capacity?.seated || 200}</div>
+                <div className="text-[10px]">PERS.</div>
               </div>
             </div>
             
             {/* Chambres */}
-            <div className="flex flex-col items-center gap-2">
-              <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-stone-50/50 border border-stone/10 hover:border-accent/30 transition-colors">
+              <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12h18M3 6h18M3 18h18" />
               </svg>
-              <div className="text-xs uppercase tracking-wider text-secondary">
-                <div className="font-semibold text-primary">{venue.capacity?.classroom || 24} CHAMBRES</div>
-                <div>+ GÎTES</div>
+              <div className="text-xs uppercase tracking-wider text-secondary leading-tight">
+                <div className="font-semibold text-primary text-sm">{venue.capacity?.classroom || 24}</div>
+                <div className="text-[10px]">CHAMBRES</div>
               </div>
             </div>
           </div>
 
-          {/* Badges PRIVÉ / PRO */}
-          <div className="flex justify-center gap-6 mt-auto pt-4 border-t border-stone/20">
-            <div className="text-sm font-medium tracking-widest text-accent hover:text-accent-dark transition-colors cursor-pointer">
+          {/* Badges PRIVÉ / PRO élégants */}
+          <div className="flex justify-center gap-4 mt-auto pt-6 border-t border-accent/10">
+            <div className="px-4 py-2 rounded-full bg-accent/5 border border-accent/20 text-xs font-semibold tracking-widest text-accent hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer">
               PRIVÉ
             </div>
-            <div className="text-sm font-medium tracking-widest text-accent hover:text-accent-dark transition-colors cursor-pointer">
+            <div className="px-4 py-2 rounded-full bg-accent/5 border border-accent/20 text-xs font-semibold tracking-widest text-accent hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer">
               PRO
             </div>
           </div>
@@ -157,7 +161,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
     <>
       {/* Histoire et Philosophie */}
       <SectionReveal>
-        <section className="section">
+        <section className="section bg-white">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -197,7 +201,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
 
       {/* Carrousel des Domaines (unique) */}
       <SectionReveal>
-        <section className="section">
+        <section className="section bg-stone-50">
           <div className="container">
             <motion.div 
               className="text-center mb-8 md:mb-12"
@@ -229,7 +233,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
 
       {/* Nos Prestations */}
       <SectionReveal>
-        <section className="section">
+        <section className="section bg-white">
           <div className="container">
             <motion.div 
               className="text-center mb-8 md:mb-10"
@@ -283,7 +287,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
               ].map((item) => (
                 <motion.div 
                   key={item.number}
-                  className="text-center"
+                  className="h-full"
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     show: { 
@@ -293,10 +297,32 @@ export default function HomeClient({ venues }: HomeClientProps) {
                     }
                   }}
                 >
-                  <div className="section-number">{item.number}</div>
-                  <h3 className="text-lg md:text-xl font-heading font-semibold mb-2 md:mb-3 uppercase tracking-wider">{item.title}</h3>
-                  <div className="w-12 md:w-16 h-px bg-accent/40 mx-auto mb-2 md:mb-3" />
-                  <p className="text-secondary leading-relaxed">{item.text}</p>
+                  <div className="h-full p-8 rounded-lg bg-charcoal-800 shadow-lg hover:shadow-2xl transition-all duration-500 border border-accent/20 flex flex-col text-center group">
+                    {/* Numéro dans un cercle doré */}
+                    <div className="mb-6">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-linear-to-br from-accent to-accent-dark text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <span className="font-display font-bold text-3xl drop-shadow-md">{item.number}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Titre */}
+                    <h3 className="text-xl md:text-2xl font-heading font-bold mb-4 uppercase tracking-wider group-hover:text-accent-light transition-colors duration-300" style={{ color: '#C9A961 !important' }}>
+                      {item.title}
+                    </h3>
+                    
+                    {/* Ligne décorative */}
+                    <div className="w-16 h-0.5 bg-accent/60 mx-auto mb-6" />
+                    
+                    {/* Texte */}
+                    <p className="text-white/90 leading-relaxed text-base flex-1">
+                      {item.text}
+                    </p>
+                    
+                    {/* Point décoratif en bas */}
+                    <div className="mt-6 pt-6 border-t border-accent/20">
+                      <div className="w-2 h-2 rounded-full bg-accent/60 mx-auto" />
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
@@ -309,7 +335,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
         <section ref={ctaRef} className="section relative overflow-hidden">
         <motion.div style={{ y }} className="absolute inset-0">
           <Image
-            src="/images/table.jpg"
+            src="/venues/domaine-nantais/mariages/domaine_cocktail_5.jpg"
             alt=""
             fill
             className="object-cover"

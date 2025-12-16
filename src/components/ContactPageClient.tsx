@@ -69,31 +69,38 @@ export default function ContactPageClient() {
       )}
 
       {/* Section Coordonnées */}
-      <section className="section">
+      <section className="section bg-white">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
+              Nos Coordonnées
+            </h2>
+            <div className="accent-line" />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {/* Contact Pro */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white p-8 rounded-lg shadow-sm border border-stone"
+              className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg"
             >
-              <h2 className="font-display text-2xl text-primary mb-6">
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 !text-[#C9A961]">
                 Événements Professionnels
-              </h2>
+              </h3>
               <div className="space-y-4">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Téléphone</p>
-                  <a href="tel:+33670562879" className="text-lg text-primary hover:text-accent transition-colors">
+                  <p className="text-sm text-neutral-200 mb-1">Téléphone</p>
+                  <a href="tel:+33670562879" className="text-lg text-white hover:text-accent transition-colors">
                     06 70 56 28 79
                   </a>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Email</p>
-                  <a href="mailto:pro@lieuxdexception.fr" className="text-primary hover:text-accent transition-colors">
-                    pro@lieuxdexception.fr
+                  <p className="text-sm text-neutral-200 mb-1">Email</p>
+                  <a href="mailto:contact@lieuxdexception.fr" className="text-white hover:text-accent transition-colors">
+                    contact@lieuxdexception.fr
                   </a>
                 </div>
               </div>
@@ -105,22 +112,22 @@ export default function ContactPageClient() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white p-8 rounded-lg shadow-sm border border-stone"
+              className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg"
             >
-              <h2 className="font-display text-2xl text-primary mb-6">
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 !text-[#C9A961]">
                 Mariages & Événements Privés
-              </h2>
+              </h3>
               <div className="space-y-4">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Téléphone</p>
-                  <a href="tel:+33602037011" className="text-lg text-primary hover:text-accent transition-colors">
+                  <p className="text-sm text-neutral-200 mb-1">Téléphone</p>
+                  <a href="tel:+33602037011" className="text-lg text-white hover:text-accent transition-colors">
                     06 02 03 70 11
                   </a>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Email</p>
-                  <a href="mailto:mariages@lieuxdexception.fr" className="text-primary hover:text-accent transition-colors">
-                    mariages@lieuxdexception.fr
+                  <p className="text-sm text-neutral-200 mb-1">Email</p>
+                  <a href="mailto:contact@lieuxdexception.fr" className="text-white hover:text-accent transition-colors">
+                    contact@lieuxdexception.fr
                   </a>
                 </div>
               </div>
@@ -130,7 +137,7 @@ export default function ContactPageClient() {
       </section>
 
       {/* Section Formulaire */}
-      <section className="section bg-alt">
+      <section className="section bg-stone/30">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -139,10 +146,11 @@ export default function ContactPageClient() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="font-display text-4xl md:text-5xl text-primary mb-6">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
               Votre Demande
             </h2>
-            <p className="text-lg text-muted-foreground mx-auto">
+            <div className="accent-line" />
+            <p className="text-lg text-secondary mt-6 mx-auto">
               Remplissez le formulaire ci-dessous, nous vous répondrons dans les plus brefs délais.
             </p>
           </motion.div>

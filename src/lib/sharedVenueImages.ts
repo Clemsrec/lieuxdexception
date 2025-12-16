@@ -1,29 +1,39 @@
-// Liste centralisée des 4 photos à utiliser pour tous les lieux
-export const SHARED_VENUE_IMAGES = [
-  '/images/Vue-chateau.jpg',
-  '/images/salle-seminaire.jpg',
-  '/images/salle-seminaire2.jpg',
-  '/images/table-seminaire.jpg'
-];
-
-/** Retourne les 4 images (galerie) */
-export function getGalleryImages(): string[] {
-  return SHARED_VENUE_IMAGES;
-}
+import type { Venue } from '@/types/firebase';
 
 /**
- * Choisit une image parmi les 4 en fonction de l'identifiant du lieu
- * pour avoir une répartition visuelle cohérente.
+ * Récupère l'image card pour un venue depuis ses données Firestore
+ * Utilise l'ordre de priorité: cardImage -> heroImage -> hero -> image
  */
-export function getCardImage(identifier?: string): string {
-  if (!identifier) return SHARED_VENUE_IMAGES[0];
-  let sum = 0;
-  for (let i = 0; i < identifier.length; i++) sum += identifier.charCodeAt(i);
-  const idx = sum % SHARED_VENUE_IMAGES.length;
-  return SHARED_VENUE_IMAGES[idx];
+export function getCardImage(venue: Venue | string): string {
+  // Si string, c'est un identifiant → fallback sur placeholder
+  if (typeof venue === 'string') {
+    return '/images/Vue-chateau.jpg';
+  }
+  
+  // Si objet Venue, utiliser les vraies images
+  return venue.images?.cardImage 
+    || venue.images?.heroImage 
+    || venue.images?.hero 
+    || venue.heroImage 
+    || venue.image 
+    || '/images/Vue-chateau.jpg';
+}
+
+/** 
+ * Récupère les images de galerie depuis Firestore
+ */
+export function getGalleryImages(venue: Venue): string[] {
+  if (venue.images?.gallery && venue.images.gallery.length > 0) {
+    return venue.images.gallery;
+  }
+  if (venue.gallery && venue.gallery.length > 0) {
+    return venue.gallery;
+  }
+  // Fallback si pas d'images
+  return ['/images/Vue-chateau.jpg'];
 }
 
 /** Image utilisée pour les miniatures sur la carte */
-export function getMapThumbnail(identifier?: string): string {
-  return getCardImage(identifier);
+export function getMapThumbnail(venue: Venue | string): string {
+  return getCardImage(venue);
 }

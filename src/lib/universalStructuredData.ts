@@ -31,7 +31,7 @@ const structuredDataGenerators = {
     service: generateServiceStructuredData,
     contact: generateContactStructuredData,
     about: generateAboutStructuredData,
-    catalogue: generateCatalogueStructuredData
+    // catalogue: generateCatalogueStructuredData - SUPPRIMÉ (page catalogue supprimée)
   },
   // Autres types extensibles (ecommerce, blog, etc.)
 };
@@ -246,35 +246,10 @@ function generateAboutStructuredData(data?: any) {
 }
 
 // ============================================================================
-// CATALOGUE SCHEMA (Page catalogue)
+// ⚠️ CATALOGUE SCHEMA SUPPRIMÉ
 // ============================================================================
-
-function generateCatalogueStructuredData(data?: { venues: Venue[] }) {
-  const config = universalSEOConfig;
-  
-  return {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Catalogue Lieux d'Exception",
-    "description": `Découvrez notre sélection de lieux événementiels d'exception en ${config.business.localSEO.region}`,
-    ...(data?.venues && {
-      "mainEntity": {
-        "@type": "ItemList",
-        "numberOfItems": data.venues.length,
-        "itemListElement": data.venues.map((venue, index) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-            "item": {
-            "@type": "EventVenue",
-            "name": displayVenueName(venue.name),
-            "url": `https://lieuxdexception.fr/lieux/${venue.slug}`,
-            "description": venue.description
-          }
-        }))
-      }
-    })
-  };
-}
+// La page catalogue a été supprimée, cette fonction n'est plus nécessaire
+// function generateCatalogueStructuredData() { ... } - SUPPRIMÉ
 
 // ============================================================================
 // FAQ SCHEMA GENERATOR

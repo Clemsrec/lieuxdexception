@@ -60,11 +60,11 @@ export default function HeroCarousel({ images, fallbackImages = [], interval = 5
         </div>
       ))}
       
-      {/* Overlay gradient pour contraste texte */}
-      <div className="absolute inset-0 bg-linear-to-b from-primary/70 via-primary/50 to-primary/70 z-20" />
+      {/* Overlay gris-noir pour contraste texte */}
+      <div className="absolute inset-0 bg-black/40 z-20" />
       
-      {/* Overlay supplémentaire au centre pour le texte */}
-      <div className="absolute inset-0 bg-primary/20 z-20" />
+      {/* Overlay gradient pour profondeur */}
+      <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 z-20" />
       
       {/* Indicateurs de slides */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">

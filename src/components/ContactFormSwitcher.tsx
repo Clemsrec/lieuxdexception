@@ -32,20 +32,20 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
       <div className="flex gap-4 mb-8 mx-auto">
         <button
           onClick={() => setActiveForm('b2b')}
-          className={`flex-1 py-4 px-6 rounded-lg text-base font-medium transition-all ${
+          className={`flex-1 py-4 px-6 rounded-xl text-base font-semibold transition-all border ${
             activeForm === 'b2b'
-              ? 'bg-primary text-white shadow-lg'
-              : 'bg-muted text-foreground hover:bg-muted/80'
+              ? 'bg-charcoal-800 !text-[#C9A961] shadow-lg border-accent/20'
+              : 'bg-stone/30 text-secondary hover:bg-stone/50 border-stone'
           }`}
         >
           Événements professionnels
         </button>
         <button
           onClick={() => setActiveForm('prive')}
-          className={`flex-1 py-4 px-6 rounded-lg text-base font-medium transition-all ${
+          className={`flex-1 py-4 px-6 rounded-xl text-base font-semibold transition-all border ${
             activeForm === 'prive'
-              ? 'bg-primary text-white shadow-lg'
-              : 'bg-muted text-foreground hover:bg-muted/80'
+              ? 'bg-charcoal-800 !text-[#C9A961] shadow-lg border-accent/20'
+              : 'bg-stone/30 text-secondary hover:bg-stone/50 border-stone'
           }`}
         >
           Événements privés
@@ -69,7 +69,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <motion.input
                 type="text"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-all"
                 placeholder="Nom de votre entreprise"
                 required
                 whileFocus={{ scale: 1.01, borderColor: 'var(--color-accent)' }}
@@ -83,7 +83,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="text"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="Prénom Nom"
                 required
               />
@@ -95,7 +95,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="text"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="Votre fonction"
                 required
               />
@@ -107,7 +107,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="tel"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="+33 1 XX XX XX XX"
                 required
               />
@@ -119,7 +119,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="email"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="contact@entreprise.com"
                 required
               />
@@ -131,7 +131,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="date"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
               />
             </div>
 
@@ -141,7 +141,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="number"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="Estimer le nombre de participants"
                 required
               />
@@ -151,7 +151,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="block text-sm font-medium mb-2">
                 Type d&apos;événement *
               </label>
-              <select className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
+              <select className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent" required>
                 <option value="">Sélectionner...</option>
                 <option value="seminaire-journee">Séminaire journée</option>
                 <option value="seminaire-residentiel">Séminaire résidentiel</option>
@@ -169,40 +169,40 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Déjeuner</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Dîner</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Cocktail</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Team building</span>
               </label>
               <label className="flex items-center col-span-2">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Sous-commission</span>
                 <input
                   type="number"
-                  className="ml-2 w-20 px-2 py-1 border border-border rounded text-sm"
+                  className="ml-2 w-20 px-2 py-1 bg-white border-2 border-stone rounded text-sm"
                   placeholder="Qté"
                   min="0"
                 />
@@ -216,7 +216,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
             </label>
             <textarea
               rows={5}
-              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
               placeholder="Décrivez votre projet, vos besoins spécifiques, vos contraintes..."
             />
           </div>
@@ -247,7 +247,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="text"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="Votre nom"
                 required
               />
@@ -259,7 +259,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="text"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="Votre prénom"
                 required
               />
@@ -271,7 +271,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="email"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="votre@email.com"
                 required
               />
@@ -283,7 +283,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="tel"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="+33 6 XX XX XX XX"
                 required
               />
@@ -295,7 +295,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="month"
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 required
               />
             </div>
@@ -304,7 +304,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="block text-sm font-medium mb-2">
                 Nombre d&apos;invités approximatif *
               </label>
-              <select className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
+              <select className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent" required>
                 <option value="">Sélectionner...</option>
                 <option value="0-70">0 - 70 personnes</option>
                 <option value="70-100">70 - 100 personnes</option>
@@ -322,35 +322,35 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Manoir de la Boulaie</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Château de la Brûlaire</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Château de la Corbe</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Domaine Nantais</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="mr-2 rounded border-border text-primary focus:ring-primary"
+                  className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
                 <span className="text-sm">Le Dôme</span>
               </label>
@@ -363,7 +363,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
             </label>
             <textarea
               rows={5}
-              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
               placeholder="Parlez-nous de votre projet, de vos envies, de vos besoins spécifiques..."
             />
           </div>

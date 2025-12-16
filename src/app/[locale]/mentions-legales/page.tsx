@@ -84,7 +84,7 @@ export default function MentionsLegalesPage() {
             Pour exercer ces droits, vous pouvez nous contacter :
           </p>
           <ul className="list-disc list-inside mb-4 space-y-1 text-foreground">
-            <li>Par email : dpo@lieuxdexception.fr</li>
+            <li>Par email : contact@lieuxdexception.fr</li>
             <li>Par courrier : Groupe Riou - DPO, 123 Avenue des Champs, 75008 Paris</li>
           </ul>
           <p className="text-foreground leading-relaxed">

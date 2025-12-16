@@ -13,8 +13,7 @@
  *   description="Des domaines où se mêlent beauté, sincérité et art de recevoir"
  *   backgroundImage="/images/hero.jpg"
  *   buttons={[
- *     { label: "Nous contacter", href: "/contact", primary: true },
- *     { label: "Voir nos lieux", href: "/catalogue", primary: false }
+ *     { label: "Nous contacter", href: "/contact", primary: true }
  *   ]}
  * />
  * ```
@@ -68,10 +67,11 @@ export default function HeroSection({
             priority
             sizes="100vw"
           />
-          {/* Overlay gradient pour contraste texte (comme HeroCarousel) */}
-          <div className="absolute inset-0 bg-linear-to-b from-primary/70 via-primary/50 to-primary/70 z-20" />
-          {/* Overlay supplémentaire au centre pour le texte */}
-          <div className="absolute inset-0 bg-primary/20 z-20" />
+          {/* Overlay gris-noir pour contraste texte */}
+          <div className="absolute inset-0 bg-black/40 z-20" />
+          
+          {/* Overlay gradient pour profondeur */}
+          <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 z-20" />
         </>
       ) : null}
       

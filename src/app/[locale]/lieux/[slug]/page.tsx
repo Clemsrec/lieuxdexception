@@ -73,16 +73,17 @@ export default async function VenuePage({ params }: VenuePageProps) {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-primary/90 via-primary/50 to-transparent" />
+        {/* Overlay gris-noir pour contraste texte */}
+        <div className="absolute inset-0 bg-black/40 z-10" />
         
-        <div className="absolute inset-0 flex items-end">
+        {/* Overlay gradient pour profondeur */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 z-10" />
+        
+        <div className="absolute inset-0 flex items-end z-20">
           <div className="container pb-16 w-full">
             <div>
               <div className="flex items-center gap-4 mb-4 text-white/90">
-                <Link href="/catalogue" className="hover:text-white transition-colors flex items-center gap-2">
-                  
-                  Retour au catalogue
-                </Link>
+                {/* Breadcrumb "Retour au catalogue" supprimé - navigation via menu principal */}
                 
                 {/* Badges de statut */}
                 {venue.displayStatus === 'Nouveau' && (
@@ -102,7 +103,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
               </h1>
               
               {venue.tagline && (
-                <p className="text-2xl text-accent-light font-medium mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <p className="text-2xl text-white font-medium mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                   {venue.tagline}
                 </p>
               )}
@@ -170,11 +171,11 @@ export default async function VenuePage({ params }: VenuePageProps) {
               </div>
 
               {venue.experienceText && (
-                <div className="bg-stone-light p-8 rounded-xl">
-                  <h3 className="text-2xl font-display font-semibold text-primary mb-4">
+                <div className="bg-charcoal-800 border border-accent/20 p-8 rounded-xl">
+                  <h3 className="text-2xl font-display font-semibold text-white mb-4">
                     Votre expérience
                   </h3>
-                  <p className="text-secondary leading-relaxed italic">
+                  <p className="text-white/90 leading-relaxed italic">
                     {venue.experienceText}
                   </p>
                 </div>
@@ -183,78 +184,78 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
             {/* Sidebar informations clés */}
             <div className="lg:col-span-1">
-              <div className="bg-white border border-neutral-200 rounded-xl p-6 sticky top-32">
-                <h3 className="text-xl font-heading font-semibold text-primary mb-6">
+              <div className="bg-charcoal-800 border border-accent/20 rounded-xl p-6 sticky top-32">
+                <h3 className="text-xl font-heading font-semibold text-white mb-6">
                   Informations pratiques
                 </h3>
                 
                 <div className="space-y-6">
                   {/* Capacité enrichie */}
                   <div>
-                    <div className="flex items-center gap-2 text-accent-dark font-medium mb-3">
+                    <div className="flex items-center gap-2 text-accent font-medium mb-3">
                       
                       Capacités
                     </div>
                     <div className="space-y-2 text-sm">
                       {venue.capacityDetails?.theater && (
                         <div className="flex justify-between">
-                          <span className="text-secondary">Configuration théâtre</span>
-                          <span className="font-semibold text-primary">{venue.capacityDetails.theater} pers.</span>
+                          <span className="text-white/80">Configuration théâtre</span>
+                          <span className="font-semibold text-white">{venue.capacityDetails.theater} pers.</span>
                         </div>
                       )}
                       {venue.capacityDetails?.banquet && (
                         <div className="flex justify-between">
-                          <span className="text-secondary">Banquet</span>
-                          <span className="font-semibold text-primary">{venue.capacityDetails.banquet} pers.</span>
+                          <span className="text-white/80">Banquet</span>
+                          <span className="font-semibold text-white">{venue.capacityDetails.banquet} pers.</span>
                         </div>
                       )}
                       {venue.capacityDetails?.cocktail && (
                         <div className="flex justify-between">
-                          <span className="text-secondary">Cocktail</span>
-                          <span className="font-semibold text-primary">{venue.capacityDetails.cocktail} pers.</span>
+                          <span className="text-white/80">Cocktail</span>
+                          <span className="font-semibold text-white">{venue.capacityDetails.cocktail} pers.</span>
                         </div>
                       )}
                       {venue.capacityDetails?.cocktailPark && (
                         <div className="flex justify-between">
-                          <span className="text-secondary">Cocktail parc</span>
+                          <span className="text-white/80">Cocktail parc</span>
                           <span className="font-semibold text-accent">Jusqu'à {venue.capacityDetails.cocktailPark} pers. !</span>
                         </div>
                       )}
                       {venue.capacityDetails?.uShape && (
                         <div className="flex justify-between">
-                          <span className="text-secondary">Salle en U</span>
-                          <span className="font-semibold text-primary">{venue.capacityDetails.uShape} pers.</span>
+                          <span className="text-white/80">Salle en U</span>
+                          <span className="font-semibold text-white">{venue.capacityDetails.uShape} pers.</span>
                         </div>
                       )}
                       {venue.capacityDetails?.meeting && (
                         <div className="flex justify-between">
-                          <span className="text-secondary">Réunion</span>
-                          <span className="font-semibold text-primary">{venue.capacityDetails.meeting} pers.</span>
+                          <span className="text-white/80">Réunion</span>
+                          <span className="font-semibold text-white">{venue.capacityDetails.meeting} pers.</span>
                         </div>
                       )}
                       {venue.capacityDetails?.classroom && (
                         <div className="flex justify-between">
-                          <span className="text-secondary">Rang d'école</span>
-                          <span className="font-semibold text-primary">{venue.capacityDetails.classroom} pers.</span>
+                          <span className="text-white/80">Rang d'école</span>
+                          <span className="font-semibold text-white">{venue.capacityDetails.classroom} pers.</span>
                         </div>
                       )}
                       {/* Fallback si pas de capacityDetails */}
                       {!venue.capacityDetails && (
                         <>
                           <div className="flex justify-between">
-                            <span className="text-secondary">Minimum</span>
-                            <span className="font-semibold text-primary">{venue.capacityMin || 20} pers.</span>
+                            <span className="text-white/80">Minimum</span>
+                            <span className="font-semibold text-white">{venue.capacityMin || 20} pers.</span>
                           </div>
                           {venue.capacitySeated && (
                             <div className="flex justify-between">
-                              <span className="text-secondary">Dîner assis</span>
-                              <span className="font-semibold text-primary">{venue.capacitySeated} pers.</span>
+                              <span className="text-white/80">Dîner assis</span>
+                              <span className="font-semibold text-white">{venue.capacitySeated} pers.</span>
                             </div>
                           )}
                           {venue.capacityStanding && (
                             <div className="flex justify-between">
-                              <span className="text-secondary">Cocktail</span>
-                              <span className="font-semibold text-primary">{venue.capacityStanding} pers.</span>
+                              <span className="text-white/80">Cocktail</span>
+                              <span className="font-semibold text-white">{venue.capacityStanding} pers.</span>
                             </div>
                           )}
                         </>
@@ -264,28 +265,28 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
                   {/* Infrastructures */}
                   {(venue.rooms || venue.accommodationRooms || venue.parkingSpaces) && (
-                    <div className="pt-4 border-t border-neutral-200">
-                      <div className="flex items-center gap-2 text-accent-dark font-medium mb-3">
+                    <div className="pt-4 border-t border-accent/20">
+                      <div className="flex items-center gap-2 text-accent font-medium mb-3">
                         
                         Infrastructures
                       </div>
                       <div className="space-y-2 text-sm">
                         {venue.rooms && (
                           <div className="flex justify-between">
-                            <span className="text-secondary">Salles disponibles</span>
-                            <span className="font-semibold text-primary">{venue.rooms}</span>
+                            <span className="text-white/80">Salles disponibles</span>
+                            <span className="font-semibold text-white">{venue.rooms}</span>
                           </div>
                         )}
                         {venue.accommodationRooms && (
                           <div className="flex justify-between">
-                            <span className="text-secondary">Chambres</span>
-                            <span className="font-semibold text-primary">{venue.accommodationRooms}</span>
+                            <span className="text-white/80">Chambres</span>
+                            <span className="font-semibold text-white">{venue.accommodationRooms}</span>
                           </div>
                         )}
                         {venue.parkingSpaces && (
                           <div className="flex justify-between">
-                            <span className="text-secondary">Places parking</span>
-                            <span className="font-semibold text-primary">{venue.parkingSpaces}</span>
+                            <span className="text-white/80">Places parking</span>
+                            <span className="font-semibold text-white">{venue.parkingSpaces}</span>
                           </div>
                         )}
                       </div>
@@ -294,12 +295,12 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
                   {/* Équipements */}
                   {venue.amenitiesList && venue.amenitiesList.length > 0 && (
-                    <div className="pt-4 border-t border-neutral-200">
-                      <div className="flex items-center gap-2 text-accent-dark font-medium mb-3">
+                    <div className="pt-4 border-t border-accent/20">
+                      <div className="flex items-center gap-2 text-accent font-medium mb-3">
                         
                         Équipements
                       </div>
-                      <ul className="text-sm text-secondary space-y-1 ml-6">
+                      <ul className="text-sm text-white/80 space-y-1 ml-6">
                         {venue.amenitiesList.slice(0, 6).map((amenity: string, i: number) => (
                           <li key={i}>• {amenity}</li>
                         ))}
@@ -338,13 +339,13 @@ export default async function VenuePage({ params }: VenuePageProps) {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {venue.spaces.map((space: string, index: number) => (
-                <div key={index} className="bg-white p-6 rounded-lg border border-neutral-200">
+                <div key={index} className="bg-charcoal-800 border border-accent/20 p-6 rounded-lg">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center shrink-0">
                       
                     </div>
                     <div>
-                      <h3 className="font-heading font-semibold text-primary mb-1">{space}</h3>
+                      <h3 className="font-heading font-semibold text-white mb-1">{space}</h3>
                     </div>
                   </div>
                 </div>
@@ -363,16 +364,16 @@ export default async function VenuePage({ params }: VenuePageProps) {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {venue.detailedSpaces.map((space, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl border border-neutral-200 hover:border-accent transition-colors">
-                  <h3 className="font-heading font-semibold text-primary text-lg mb-3">
+                <div key={index} className="bg-charcoal-800 border border-accent/20 p-6 rounded-xl hover:border-accent transition-colors">
+                  <h3 className="font-heading font-semibold text-white text-lg mb-3">
                     {space.name}
                   </h3>
                   <div className="flex items-baseline gap-2 mb-4">
                     <span className="text-3xl font-display font-bold text-accent">{space.size}</span>
-                    <span className="text-secondary">{space.unit}</span>
+                    <span className="text-white/80">{space.unit}</span>
                   </div>
-                  <div className="w-full h-px bg-neutral-200 my-3" />
-                  <p className="text-sm text-secondary">
+                  <div className="w-full h-px bg-accent/20 my-3" />
+                  <p className="text-sm text-white/80">
                     Espace modulable pour vos événements
                   </p>
                 </div>
@@ -393,18 +394,18 @@ export default async function VenuePage({ params }: VenuePageProps) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Équipements techniques */}
               {venue.equipment && venue.equipment.length > 0 && (
-                <div className="bg-white p-8 rounded-xl border border-neutral-200">
+                <div className="bg-charcoal-800 border border-accent/20 p-8 rounded-xl">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center">
                       <span className="text-2xl">⚙️</span>
                     </div>
-                    <h3 className="text-xl font-heading font-semibold text-primary">
+                    <h3 className="text-xl font-heading font-semibold text-white">
                       Équipements techniques
                     </h3>
                   </div>
                   <ul className="grid grid-cols-1 gap-3">
                     {venue.equipment.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-secondary">
+                      <li key={i} className="flex items-center gap-3 text-white/90">
                         <div className="w-2 h-2 bg-accent rounded-full shrink-0" />
                         {item}
                       </li>
@@ -415,19 +416,19 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
               {/* Services */}
               {venue.services && venue.services.length > 0 && (
-                <div className="bg-white p-8 rounded-xl border border-neutral-200">
+                <div className="bg-charcoal-800 border border-accent/20 p-8 rounded-xl">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center">
                       <span className="text-2xl">★</span>
                     </div>
-                    <h3 className="text-xl font-heading font-semibold text-primary">
+                    <h3 className="text-xl font-heading font-semibold text-white">
                       Services disponibles
                     </h3>
                   </div>
                   <ul className="grid grid-cols-1 gap-3">
                     {venue.services.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-secondary">
-                        <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
+                      <li key={i} className="flex items-center gap-3 text-white/90">
+                        <div className="w-2 h-2 bg-accent rounded-full shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -604,8 +605,8 @@ export default async function VenuePage({ params }: VenuePageProps) {
             Découvrez nos autres lieux
           </h2>
           <div className="text-center">
-            <Link href="/catalogue" className="btn-secondary">
-              Voir tous nos domaines
+            <Link href="/contact" className="btn-secondary">
+              Contactez-nous pour découvrir nos autres domaines
             </Link>
           </div>
         </div>

@@ -25,7 +25,7 @@ export default function Footer() {
       <div className="container-wide py-12">
         
         {/* Contenu principal du footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 mb-8">
           
           {/* Informations principales sur Lieux d'Exception */}
           <div className="lg:col-span-1">
@@ -52,15 +52,6 @@ export default function Footer() {
               <ul className="space-y-3 text-sm">
                 <li>
                   <Link 
-                    href={`/${locale}/catalogue`}
-                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
-                  >
-                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Catalogue des lieux
-                  </Link>
-                </li>
-                <li>
-                  <Link 
                     href={`/${locale}/evenements-b2b`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
@@ -79,29 +70,65 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link 
-                    href={`/${locale}/galerie`}
-                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
-                  >
-                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Galerie
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href={`/${locale}/histoire`}
-                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
-                  >
-                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Histoire
-                  </Link>
-                </li>
-                <li>
-                  <Link 
                     href={`/${locale}/contact`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
                     {t('contact')}
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          {/* Nos Lieux */}
+          <div>
+            <h4 className="font-medium mb-4 text-foreground">Nos Lieux</h4>
+            <nav>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <Link 
+                    href={`/${locale}/lieux/chateau-brulaire`}
+                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
+                    Château de la Brûlaire
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/lieux/chateau-corbe`}
+                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
+                    Château de la Corbe
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/lieux/domaine-nantais`}
+                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
+                    Domaine Nantais
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/lieux/manoir-boulaie`}
+                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
+                    Manoir de la Boulaie
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/${locale}/lieux/le-dome`}
+                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
+                    Le Dôme
                   </Link>
                 </li>
               </ul>

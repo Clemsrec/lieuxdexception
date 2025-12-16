@@ -126,7 +126,7 @@ export default function VenuesCarousel({
 }
 
 /**
- * Card individuelle de venue (même design que la version redesignée)
+ * Card individuelle de venue (design luxe cohérent)
  */
 function VenueCard({ venue, index }: { venue: Venue; index: number }) {
   return (
@@ -138,76 +138,80 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
     >
       <Link
         href={`/lieux/${venue.slug}`}
-        className="venue-card group overflow-hidden h-full flex flex-col bg-white hover:shadow-xl transition-all duration-300"
+        className="venue-card group overflow-hidden h-full flex flex-col bg-charcoal-800 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 border border-accent/20"
       >
-        {/* Image avec badge numéroté */}
+        {/* Image avec overlay gradient et numéro */}
         <motion.div
-          className="relative h-64 overflow-hidden"
-          whileHover={{ scale: 1.05 }}
+          className="relative h-72 overflow-hidden shrink-0"
+          whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.4 }}
         >
           <Image
-            src={getCardImage(venue.id || venue.slug)}
+            src={getCardImage(venue)}
             alt={displayVenueName(venue.name)}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-          {/* Badge numéroté */}
-          <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-white border-2 border-accent flex items-center justify-center shadow-md">
-            <span className="font-display font-bold text-xl text-primary">
+          {/* Overlay gradient subtil */}
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          {/* Numéro dans cercle doré */}
+          <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full bg-gradient-to-br from-accent to-accent-dark border-2 border-white shadow-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+            <span className="font-display font-bold text-2xl text-white drop-shadow-md">
               {index + 1}
             </span>
           </div>
         </motion.div>
 
-        {/* Contenu */}
-        <div className="p-6 flex-1 flex flex-col text-center">
-          {/* Titre sur deux lignes */}
-            <div className="mb-6">
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-primary italic">
+        {/* Contenu avec fond sombre */}
+        <div className="p-6 md:p-8 flex-1 flex flex-col text-center bg-charcoal-800">
+          {/* Titre avec ligne décorative */}
+          <div className="mb-6 pb-4 border-b border-accent/20">
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-white italic leading-tight group-hover:text-accent transition-colors duration-300">
               {displayVenueName(venue.name)}
             </h3>
+            <div className="w-12 h-0.5 bg-accent/60 mx-auto mt-3" />
           </div>
 
-          {/* Icônes en grille horizontale */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          {/* Icônes en grille horizontale avec fond */}
+          <div className="grid grid-cols-3 gap-3 mb-6">
             {/* Distance */}
-            <div className="flex flex-col items-center gap-2">
-              <MapPin className="w-6 h-6 text-accent" />
-              <div className="text-xs uppercase tracking-wider font-medium">
-                <div className="font-semibold text-primary">50 MIN</div>
-                <div className="text-neutral-600">DE PARIS</div>
+            <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-charcoal-700 border border-accent/20 hover:border-accent/40 transition-colors">
+              <MapPin className="w-5 h-5 text-white" />
+              <div className="text-xs uppercase tracking-wider text-white/80 leading-tight">
+                <div className="font-semibold text-white text-sm">50 MIN</div>
+                <div className="text-[10px]">DE PARIS</div>
               </div>
             </div>
 
             {/* Capacité */}
-            <div className="flex flex-col items-center gap-2">
-              <Users className="w-6 h-6 text-accent" />
-              <div className="text-xs uppercase tracking-wider font-medium">
-                <div className="font-semibold text-primary">
+            <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-charcoal-700 border border-accent/20 hover:border-accent/40 transition-colors">
+              <Users className="w-5 h-5 text-white" />
+              <div className="text-xs uppercase tracking-wider text-white/80 leading-tight">
+                <div className="font-semibold text-white text-sm">
                   {venue.capacity?.min || 10}-{venue.capacity?.max || 200}
                 </div>
-                <div className="text-neutral-600">PERS.</div>
+                <div className="text-[10px]">PERS.</div>
               </div>
             </div>
 
             {/* Chambres */}
-            <div className="flex flex-col items-center gap-2">
-              <Bed className="w-6 h-6 text-accent" />
-              <div className="text-xs uppercase tracking-wider font-medium">
-                <div className="font-semibold text-primary">24</div>
-                <div className="text-neutral-600">CHAMBRES</div>
+            <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-charcoal-700 border border-accent/20 hover:border-accent/40 transition-colors">
+              <Bed className="w-5 h-5 text-white" />
+              <div className="text-xs uppercase tracking-wider text-white/80 leading-tight">
+                <div className="font-semibold text-white text-sm">{venue.capacity?.classroom || 24}</div>
+                <div className="text-[10px]">CHAMBRES</div>
               </div>
             </div>
           </div>
 
-          {/* Badges PRIVÉ / PRO */}
-          <div className="flex justify-center gap-6 mt-auto pt-4 border-t border-accent/20">
-            <div className="text-sm font-medium tracking-widest text-accent">
+          {/* Badges PRIVÉ / PRO élégants */}
+          <div className="flex justify-center gap-4 mt-auto pt-6 border-t border-accent/10">
+            <div className="px-4 py-2 rounded-full bg-accent/5 border border-accent/20 text-xs font-semibold tracking-widest text-white hover:bg-accent transition-all duration-300 cursor-pointer">
               PRIVÉ
             </div>
-            <div className="text-sm font-medium tracking-widest text-accent">
+            <div className="px-4 py-2 rounded-full bg-accent/5 border border-accent/20 text-xs font-semibold tracking-widest text-white hover:bg-accent transition-all duration-300 cursor-pointer">
               PRO
             </div>
           </div>

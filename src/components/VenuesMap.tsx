@@ -128,23 +128,23 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
           >
             <Popup
               className="venue-popup"
-              minWidth={380}
-              maxWidth={420}
+              minWidth={420}
+              maxWidth={480}
             >
               <div className="p-3">
                 {/* Image du château (forcée aux 4 images partagées) */}
-                <div className="relative w-full h-56 mb-4 rounded-lg overflow-hidden">
+                <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
                   <Image
-                    src={getMapThumbnail(venue.id || venue.slug)}
+                    src={getMapThumbnail(venue)}
                     alt={displayVenueName(venue.name)}
                     fill
                     className="object-cover"
-                    sizes="420px"
+                    sizes="480px"
                   />
                 </div>
 
                 {/* Nom du château */}
-                <h3 className="font-display text-2xl text-primary mb-2">
+                <h3 className="font-display text-2xl text-black mb-2">
                   {displayVenueName(venue.name)}
                 </h3>
 
@@ -155,7 +155,7 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
                 <div className="space-y-2 mb-4">
                   {/* Adresse */}
                   {venue.address && (
-                    <div className="flex items-start gap-2 text-sm text-neutral-700">
+                    <div className="flex items-start gap-2 text-sm text-black">
                       <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                       <span>
                         {venue.address.street && `${venue.address.street}, `}
@@ -167,7 +167,7 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
 
                   {/* Capacité */}
                   {venue.capacity && (
-                    <div className="flex items-center gap-2 text-sm text-neutral-700">
+                    <div className="flex items-center gap-2 text-sm text-black">
                       <Users className="w-4 h-4 text-accent shrink-0" />
                       <span>
                         {venue.capacity.min}-{venue.capacity.max} personnes
@@ -177,7 +177,7 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
 
                   {/* Téléphone */}
                   {venue.contact?.phone && (
-                    <div className="flex items-center gap-2 text-sm text-neutral-700">
+                    <div className="flex items-center gap-2 text-sm text-black">
                       <Phone className="w-4 h-4 text-accent shrink-0" />
                       <a 
                         href={`tel:${venue.contact.phone}`}
@@ -190,11 +190,11 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
 
                   {/* Email */}
                   {venue.contact?.email && (
-                    <div className="flex items-center gap-2 text-sm text-neutral-700">
+                    <div className="flex items-center gap-2 text-sm text-black">
                       <Mail className="w-4 h-4 text-accent shrink-0" />
                       <a 
                         href={`mailto:${venue.contact.email}`}
-                        className="hover:text-accent transition-colors truncate"
+                        className="text-black hover:text-accent transition-colors truncate"
                       >
                         {venue.contact.email}
                       </a>
@@ -205,7 +205,7 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
                 {/* Bouton CTA */}
                 <Link
                   href={`/lieux/${venue.slug}`}
-                  className="block w-full text-center bg-accent hover:bg-accent-dark text-white font-heading font-semibold py-3 px-4 rounded-md transition-all duration-300 hover:shadow-lg"
+                  className="block w-full text-center bg-accent hover:bg-accent-dark !text-white font-heading font-semibold py-3 px-4 rounded-md transition-all duration-300 hover:shadow-lg"
                 >
                   Découvrir le lieu →
                 </Link>
@@ -233,11 +233,13 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
           border-radius: 12px;
           box-shadow: 0 10px 40px rgba(27, 54, 93, 0.15);
           border: 2px solid rgba(201, 169, 97, 0.2);
+          min-width: 420px !important;
+          max-width: 480px !important;
         }
 
         .leaflet-popup-content {
           margin: 0;
-          width: 100% !important;
+          width: auto !important;
         }
 
         .leaflet-popup-tip {

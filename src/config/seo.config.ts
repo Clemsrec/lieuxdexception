@@ -10,7 +10,7 @@
 // ============================================================================
 
 export type SiteType = 'corporate' | 'ecommerce' | 'blog' | 'restaurant' | 'local' | 'saas';
-export type PageType = 'homepage' | 'venue' | 'service' | 'contact' | 'about' | 'catalogue';
+export type PageType = 'homepage' | 'venue' | 'service' | 'contact' | 'about'; // 'catalogue' supprimé
 
 interface KeywordConfig {
   primary: string[];
@@ -270,13 +270,9 @@ export const universalSEOConfig = {
       titlePattern: "À Propos - {business.experience} | {business.name}",
       descriptionPattern: "{business.name}, {business.experience} dans l'événementiel en {region}. {business.expertise}. Découvrez notre histoire.",
       keywordsFocus: ["semantic"]
-    },
-
-    catalogue: {
-      titlePattern: "Catalogue Lieux d'Exception {region} | {business.name}",
-      descriptionPattern: "Parcourez notre sélection de {business.venues} lieux événementiels d'exception en {region}. Châteaux, domaines et espaces privatisables.",
-      keywordsFocus: ["primary", "local"]
     }
+
+    // catalogue: SUPPRIMÉ - page catalogue n'existe plus
   },
 
   // ============================================================================
@@ -351,16 +347,7 @@ export const universalSEOConfig = {
       }
     ],
 
-    catalogue: [
-      {
-        question: "Comment choisir le bon lieu pour mon événement ?",
-        answer: "Nous vous conseillons selon vos critères : nombre d'invités, type d'événement, budget, période et localisation souhaitée. Contactez-nous pour un accompagnement personnalisé dans votre choix."
-      },
-      {
-        question: "Les lieux sont-ils accessibles toute l'année ?",
-        answer: "Oui, nos 5 domaines sont disponibles toute l'année. Certaines périodes (mai-septembre pour mariages) sont très demandées. Nous recommandons de réserver 12-18 mois à l'avance."
-      }
-    ]
+    // catalogue: FAQ SUPPRIMÉE - page catalogue n'existe plus
   }
 };
 

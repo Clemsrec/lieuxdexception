@@ -180,14 +180,5 @@ export function generateContactMetadata(): Metadata {
   });
 }
 
-/**
- * Génère les métadonnées pour la page catalogue
- */
-export function generateCatalogueMetadata(): Metadata {
-  return generateSmartMetadata({
-    pageType: 'catalogue',
-    customMeta: {
-      canonical: 'https://lieuxdexception.fr/catalogue',
-    },
-  });
-}
+// ⚠️ FONCTION SUPPRIMÉE : generateCatalogueMetadata
+// La page catalogue a été supprimée, cette fonction n'est plus nécessaire

@@ -66,21 +66,15 @@ export default async function Home({
         subtitle={t('subtitle')}
         description={t('description')}
         buttons={[
-          { label: t('discoverButton'), href: `/${locale}/catalogue`, primary: true },
-          { label: t('contactButton'), href: `/${locale}/contact`, primary: false }
+          { label: t('contactButton'), href: `/${locale}/contact`, primary: true }
         ]}
         carousel={
           <HeroCarousel 
             images={venues
-              .filter(v => v.heroImage || v.images?.heroImage)
-              .map(v => v.heroImage || v.images?.heroImage || v.images?.hero)
-              .filter(Boolean)
+              .filter(v => v.heroImage || v.images?.heroImage || v.images?.hero || v.image)
+              .map(v => v.images?.heroImage || v.images?.hero || v.heroImage || v.image)
+              .filter((img): img is string => Boolean(img))
               .slice(0, 5)}
-            fallbackImages={[
-              '/images/Vue-chateau.jpg',
-              '/images/table.jpg',
-              '/images/salle-seminaire.jpg',
-            ]}
           />
         }
       />

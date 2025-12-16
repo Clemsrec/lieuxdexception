@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { locales } from '@/i18n';
 import '../globals.css';
+import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import CookieBanner from '@/components/CookieBanner';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
@@ -106,6 +107,9 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           {/* Enregistrement Service Worker pour FCM */}
           <ServiceWorkerRegistration />
+
+          {/* Navigation globale */}
+          <Navigation />
 
           {/* Contenu principal */}
           <main>{children}</main>

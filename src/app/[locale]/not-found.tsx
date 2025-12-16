@@ -129,12 +129,6 @@ export default function NotFoundPage() {
               <ul className="space-y-2 text-secondary">
                 <li className="flex items-center gap-2">
                   <span className="text-accent">→</span>
-                  <Link href="/catalogue" className="hover:text-primary hover:underline transition-colors">
-                    Notre catalogue de lieux d&apos;exception
-                  </Link>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-accent">→</span>
                   <Link href="/evenements-b2b" className="hover:text-primary hover:underline transition-colors">
                     Organiser un événement professionnel
                   </Link>

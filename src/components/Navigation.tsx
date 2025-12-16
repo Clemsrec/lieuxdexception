@@ -24,6 +24,7 @@ import { useTranslations, useLocale } from 'next-intl';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVenuesOpen, setIsVenuesOpen] = useState(false);
   const pathname = usePathname();
   const t = useTranslations('Navigation');
   const locale = useLocale();
@@ -72,24 +73,73 @@ export default function Navigation() {
             className="flex items-center hover:opacity-80 transition-opacity shrink-0"
           >
             <Image
-              src="/logo/Logo_CLE_avec Texte.png"
+              src="/Logos/LOGO-Lieux d_Exception- BLANC_Plan de travail 1.png"
               alt="Lieux d'Exception"
-              width={120}
-              height={35}
+              width={300}
+              height={88}
               priority
-              className="h-7 w-auto max-w-[120px]"
-              style={{ maxWidth: '120px', maxHeight: '35px', width: 'auto', height: 'auto', objectFit: 'contain' }}
+              className="w-auto"
+              style={{ height: '80px', width: 'auto' }}
             />
           </Link>
 
           {/* Menu desktop */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              href={`/${locale}/catalogue`}
-              className={getLinkClasses('/catalogue')}
+            {/* Menu Nos Lieux avec dropdown */}
+            <div 
+              className="relative group"
+              onMouseEnter={() => setIsVenuesOpen(true)}
+              onMouseLeave={() => setIsVenuesOpen(false)}
             >
-              {t('catalogue')}
-            </Link>
+              <button
+                className="text-white/90 hover:text-white transition-colors duration-200 flex items-center gap-1 py-2"
+                aria-expanded={isVenuesOpen}
+              >
+                Nos Lieux
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {/* Dropdown menu avec padding invisible pour éviter le gap */}
+              {isVenuesOpen && (
+                <div className="absolute top-full left-0 pt-1 z-50">
+                  <div className="w-64 bg-white rounded-lg shadow-xl border border-stone-200 py-2">
+                    <Link
+                      href={`/${locale}/lieux/chateau-brulaire`}
+                      className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
+                    >
+                      Château de la Brûlaire
+                    </Link>
+                    <Link
+                      href={`/${locale}/lieux/chateau-corbe`}
+                      className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
+                    >
+                      Château de la Corbe
+                    </Link>
+                    <Link
+                      href={`/${locale}/lieux/domaine-nantais`}
+                      className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
+                    >
+                      Domaine Nantais
+                    </Link>
+                    <Link
+                      href={`/${locale}/lieux/manoir-boulaie`}
+                      className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
+                    >
+                      Manoir de la Boulaie
+                    </Link>
+                    <Link
+                      href={`/${locale}/lieux/le-dome`}
+                      className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
+                    >
+                      Le Dôme
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+            
             <Link 
               href={`/${locale}/evenements-b2b`}
               className={getLinkClasses('/evenements-b2b')}
@@ -101,18 +151,6 @@ export default function Navigation() {
               className={getLinkClasses('/mariages')}
             >
               {t('weddings')}
-            </Link>
-            <Link 
-              href={`/${locale}/galerie`}
-              className={getLinkClasses('/galerie')}
-            >
-              {t('gallery')}
-            </Link>
-            <Link 
-              href={`/${locale}/histoire`}
-              className={getLinkClasses('/histoire')}
-            >
-              {t('history')}
             </Link>
             <Link 
               href={`/${locale}/contact`}
@@ -144,13 +182,46 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden py-6 bg-primary/95 backdrop-blur-md border-t border-white/20 animate-fade-in">
             <div className="flex flex-col space-y-2">
-              <Link 
-                href={`/${locale}/catalogue`}
-                className={`${getLinkClasses('/catalogue')} min-h-[48px] flex items-center py-3`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('catalogue')}
-              </Link>
+              {/* Section Nos Lieux */}
+              <div className="border-b border-white/20 pb-4 mb-2">
+                <p className="text-white/60 text-xs uppercase tracking-wider mb-3 px-2">Nos Lieux</p>
+                <Link 
+                  href={`/${locale}/lieux/chateau-brulaire`}
+                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Château de la Brûlaire
+                </Link>
+                <Link 
+                  href={`/${locale}/lieux/chateau-corbe`}
+                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Château de la Corbe
+                </Link>
+                <Link 
+                  href={`/${locale}/lieux/domaine-nantais`}
+                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Domaine Nantais
+                </Link>
+                <Link 
+                  href={`/${locale}/lieux/manoir-boulaie`}
+                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Manoir de la Boulaie
+                </Link>
+                <Link 
+                  href={`/${locale}/lieux/le-dome`}
+                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Le Dôme
+                </Link>
+              </div>
+              
               <Link 
                 href={`/${locale}/evenements-b2b`}
                 className={`${getLinkClasses('/evenements-b2b')} min-h-[48px] flex items-center py-3`}
@@ -164,20 +235,6 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('weddings')}
-              </Link>
-              <Link 
-                href={`/${locale}/galerie`}
-                className={`${getLinkClasses('/galerie')} min-h-[48px] flex items-center py-3`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('gallery')}
-              </Link>
-              <Link 
-                href={`/${locale}/histoire`}
-                className={`${getLinkClasses('/histoire')} min-h-[48px] flex items-center py-3`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('history')}
               </Link>
               <Link 
                 href={`/${locale}/contact`}
