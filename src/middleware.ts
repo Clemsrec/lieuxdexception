@@ -30,7 +30,7 @@ const PROTECTED_API_ROUTES = ['/api/admin', '/api/venues/create', '/api/venues/u
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'always', // Toujours afficher /fr/, /en/, etc.
+  localePrefix: 'as-needed', // Ajoute locale seulement si différente de la défaut
   localeDetection: true // Détection auto via Accept-Language header
 });
 

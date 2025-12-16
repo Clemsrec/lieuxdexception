@@ -113,7 +113,7 @@ export default function VenuesCarousel({
             <button
               key={index}
               onClick={() => goToPage(index)}
-              className={`min-w-[44px] min-h-[44px] flex items-center justify-center transition-all duration-300 ${index === currentIndex ? '' : ''}`}
+              className={`min-w-11 min-h-11 flex items-center justify-center transition-all duration-300 ${index === currentIndex ? '' : ''}`}
               aria-label={`Aller à la page ${index + 1}`}
             >
               <span className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-accent w-8' : 'bg-accent/30 hover:bg-accent/50'}`} />

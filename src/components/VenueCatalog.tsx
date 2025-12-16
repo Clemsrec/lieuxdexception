@@ -169,12 +169,12 @@ export default function VenueCatalog({ venues }: VenueCatalogProps) {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6 border-t border-accent/10">
           <button
             onClick={resetFilters}
-            className="text-secondary hover:text-primary transition-colors flex items-center gap-2 text-sm md:text-base min-h-[44px] py-2"
+            className="text-secondary hover:text-primary transition-colors flex items-center gap-2 text-sm md:text-base min-h-11 py-2"
           >
             <span className="text-xl">×</span>
             {t('filters.reset')}
           </button>
-          <div className="text-sm md:text-base text-secondary min-h-[44px] flex items-center">
+          <div className="text-sm md:text-base text-secondary min-h-11 flex items-center">
             <span className="font-semibold text-accent">{filteredVenues.length}</span>{' '}
             {filteredVenues.length > 1 ? t('filters.venuesFoundPlural') : t('filters.venuesFound')}
           </div>
@@ -372,7 +372,7 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
             <Link 
             href={venue.externalUrl || venue.url || venue.contact?.website || `/${locale}/lieux/${venue.slug}`}
             {...(venue.externalUrl || venue.url || venue.contact?.website ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            className="btn-primary text-sm md:text-base px-6 py-3 min-h-[48px] flex items-center gap-2 w-full sm:w-auto justify-center group/btn"
+            className="btn-primary text-sm md:text-base px-6 py-3 min-h-12 flex items-center gap-2 w-full sm:w-auto justify-center group/btn"
           >
             {venue.externalUrl || venue.url || venue.contact?.website ? t('visitWebsite') : t('discover')}
             <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
