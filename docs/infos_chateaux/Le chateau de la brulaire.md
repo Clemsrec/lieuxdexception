@@ -1,3 +1,7 @@
+
+Le Château de la Brûlaire
+Pas encore d'avis
+404 La Brulaire, 49600 Beaupréau-en-Mauges, France
 Informations générales
 Château / Domaine · 4 Salles · 15 Chambres dont 8 twin
 Capacités maximales par configuration de salle
@@ -21,7 +25,7 @@ Atypique
 Au vert
 Charme
 
-Entre Nantes, Cholet et Angers, le Le Château de la Brûlaire déploie ses façades élégantes au coeur d'un parc arboré de 5 hectares. Ses espaces accueillent vos événements les plus conventionnels aux plus événementiels, dans un cadre raffiné et fonctionnel.
+Entre Nantes, Cholet et Angers, le Château de la Brûlaire déploie ses façades élégantes au coeur d'un parc arboré de 5 hectares. Ses espaces accueillent vos événements les plus conventionnels aux plus événementiels, dans un cadre raffiné et fonctionnel.
 Equipements & Services
 Activités
     Rallye & Chasse au trésor
@@ -93,4 +97,7 @@ Soirée dansante 	1 espace avec piste de danse pour la soirée + 1 cocktail comp
 Minimum participants : 50
 	
 Dès 140 € HT par pers.
-	
+
+Localisation
+404 La Brulaire, 49600 Beaupréau-en-Mauges, France
+09:00 - 19:00 

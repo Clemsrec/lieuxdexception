@@ -46,11 +46,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       icon: '📬',
     },
     {
-      label: 'Newsletter',
-      href: '/admin/newsletter',
-      icon: '📧',
-    },
-    {
+
       label: 'Statistiques',
       href: '/admin/analytics',
       icon: '📈',

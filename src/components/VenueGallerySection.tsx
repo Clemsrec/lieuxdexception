@@ -18,7 +18,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { getVenueLogo } from '@/lib/logoHelper';
 
 interface VenueGallerySectionProps {
   venueName: string;
@@ -41,7 +40,15 @@ export default function VenueGallerySection({
   const logoTheme = (bgColor === 'white' || bgColor === 'stone-50') ? 'dore' : 'blanc';
   const logoShadow = (bgColor === 'white' || bgColor === 'stone-50') ? 'drop-shadow-md' : 'drop-shadow-lg';
   const logoBg = (bgColor === 'white' || bgColor === 'stone-50') ? 'bg-neutral-800/10' : 'bg-white/10';
-  const logo = getVenueLogo(venueSlug, logoTheme);
+  
+  // Mapping hardcodé des logos
+  const logoMap: Record<string, { blanc: string; dore: string }> = {
+    'chateau-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+    'manoir-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+    'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
+    'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+  };
+  const logo = logoMap[venueSlug]?.[logoTheme] || null;
 
   return (
     <div className={`${bgClass} py-12`}>

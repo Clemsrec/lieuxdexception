@@ -227,3 +227,27 @@ export async function resetRateLimit(identifier: string): Promise<boolean> {
  * Exporter l'instance Redis pour usage avancé
  */
 export { redis };
+
+/**
+ * Extrait l'IP réelle d'une requête (gère proxies Cloudflare/Vercel/Firebase)
+ */
+export function getClientIp(request: Request): string {
+  const headers = request.headers;
+  
+  // Cloudflare
+  const cfConnectingIp = headers.get('cf-connecting-ip');
+  if (cfConnectingIp) return cfConnectingIp;
+  
+  // Vercel/Next.js/Firebase App Hosting
+  const xForwardedFor = headers.get('x-forwarded-for');
+  if (xForwardedFor) {
+    const ips = xForwardedFor.split(',');
+    return ips[0].trim();
+  }
+  
+  // Fallback
+  const xRealIp = headers.get('x-real-ip');
+  if (xRealIp) return xRealIp;
+  
+  return 'unknown';
+}

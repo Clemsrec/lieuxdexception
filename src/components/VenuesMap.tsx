@@ -10,7 +10,6 @@ import { getMapThumbnail } from '@/lib/sharedVenueImages';
 import Link from 'next/link';
 import { Venue } from '@/types/firebase';
 import { MapPin, Users, Phone, Mail, Instagram, ExternalLink } from 'lucide-react';
-import { getVenueLogo } from '@/lib/logoHelper';
 
 /**
  * Composant carte interactive Leaflet pour afficher les châteaux
@@ -127,6 +126,17 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
             key={venue.id}
             position={[venue.lat, venue.lng]}
             icon={createCustomIcon()}
+            eventHandlers={{
+              add: (e) => {
+                // Ajouter aria-label pour accessibilité lecteurs d'écran
+                const markerElement = e.target.getElement();
+                if (markerElement) {
+                  markerElement.setAttribute('aria-label', `Marqueur pour ${displayVenueName(venue.name)}`);
+                  markerElement.setAttribute('role', 'button');
+                  markerElement.setAttribute('tabindex', '0');
+                }
+              }
+            }}
           >
             <Popup
               className="venue-popup"
@@ -143,10 +153,10 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
                     className="object-cover"
                     sizes="480px"
                   />                  {/* Logo doré sur fond clair */}
-                  {getVenueLogo(venue.slug, 'dore') && (
+                  {venue.slug !== 'chateau-de-la-corbe' && (
                     <div className="absolute top-3 right-3 w-16 h-16 flex items-center justify-center">
                       <Image
-                        src={getVenueLogo(venue.slug, 'dore')!}
+                        src={`/logos/${venue.slug === 'chateau-de-la-brulaire' ? 'brulaire' : venue.slug === 'manoir-de-la-boulaie' ? 'boulaie' : venue.slug === 'domaine-nantais' ? 'domaine' : 'dome'}-dore.png`}
                         alt={`Logo ${venue.name}`}
                         width={64}
                         height={64}

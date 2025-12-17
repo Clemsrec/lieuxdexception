@@ -1,19 +1,63 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { collection, addDoc, getDocs, query, where, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase-client';
-import { validateData, b2bFormSchema, weddingFormSchema } from '@/lib/validation';
+import { validateData, b2bFormSchema, weddingFormSchema, sanitizeString } from '@/lib/validation';
+import { checkContactFormRateLimit, getClientIp } from '@/lib/rate-limit';
 
 /**
  * API Route : Soumission formulaire de contact
  * POST /api/contact/submit
+ * 
+ * Sécurité :
+ * - Rate limiting par IP (3 req/min via Upstash Redis)
+ * - Validation stricte Zod
+ * - Sanitization XSS
+ * - Protection doublon email (24h)
+ * - Honeypot anti-bot
  * 
  * Sauvegarde le lead en Firestore + envoie notification FCM aux admins
  */
 
 export async function POST(request: NextRequest) {
   try {
+    // 1. Rate Limiting par IP (3 soumissions/min max)
+    const clientIp = getClientIp(request);
+    const rateLimitResult = await checkContactFormRateLimit(clientIp);
+    
+    if (!rateLimitResult.success) {
+      console.warn(`[Security] Rate limit dépassé: ${clientIp}`);
+      const resetIn = Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000);
+      return NextResponse.json(
+        { 
+          error: 'Trop de requêtes',
+          message: `Veuillez patienter ${Math.ceil(resetIn / 60)} minute(s) avant de réessayer.`,
+          retryAfter: resetIn,
+        },
+        { 
+          status: 429,
+          headers: {
+            'Retry-After': resetIn.toString(),
+            'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+            'X-RateLimit-Remaining': '0',
+          },
+        }
+      );
+    }
+
     const body = await request.json();
-    const { type, ...formData } = body;
+    const { type, website, ...formData } = body;
+
+    // 2. Honeypot anti-bot (champ caché 'website')
+    if (website) {
+      console.warn('[Security] Bot détecté via honeypot:', { 
+        ip: clientIp,
+        website 
+      });
+      return NextResponse.json(
+        { error: 'Erreur de validation' },
+        { status: 400 }
+      );
+    }
 
     // Validation selon le type de formulaire
     let validationResult;
@@ -22,6 +66,7 @@ export async function POST(request: NextRequest) {
     } else if (type === 'mariage') {
       validationResult = validateData(weddingFormSchema, formData);
     } else {
+      console.warn('[Security] Type formulaire invalide:', { type, ip: clientIp });
       return NextResponse.json(
         { error: 'Type de formulaire invalide' },
         { status: 400 }
@@ -29,6 +74,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (!validationResult.success) {
+      console.warn('[Security] Validation Zod échouée:', {
+        ip: clientIp,
+        errors: validationResult.errors,
+      });
       return NextResponse.json(
         { error: 'Données invalides', details: validationResult.errors },
         { status: 400 }
@@ -36,6 +85,17 @@ export async function POST(request: NextRequest) {
     }
 
     const validatedData = validationResult.data;
+
+    // 3. Sanitization XSS des champs texte libre
+    if ((validatedData as any).message) {
+      (validatedData as any).message = sanitizeString((validatedData as any).message);
+    }
+    if ((validatedData as any).requirements) {
+      (validatedData as any).requirements = sanitizeString((validatedData as any).requirements);
+    }
+    if ((validatedData as any).company) {
+      (validatedData as any).company = sanitizeString((validatedData as any).company);
+    }
 
     // Vérifier doublon récent (même email dans les 24h)
     if (db) {

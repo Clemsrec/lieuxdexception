@@ -39,6 +39,16 @@ const config = {
   // Désactiver strictMode (cause des problèmes avec Leaflet qui ne supporte pas le double-mount)
   reactStrictMode: false,
   
+  // Compiler pour navigateurs modernes (ES2020+) - Évite polyfills inutiles
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
+  // Transpiler pour cible moderne uniquement
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react'],
+  },
+  
   // Headers de sécurité et cache control
   async headers() {
     return [

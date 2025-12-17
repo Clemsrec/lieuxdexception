@@ -116,7 +116,6 @@ export default function ConfidentialitePage() {
               </h3>
               <ul className="text-sm space-y-1">
                 <li>• Envoi de propositions</li>
-                <li>• Newsletter (avec consentement)</li>
                 <li>• Invitations événements</li>
               </ul>
             </div>
@@ -163,12 +162,6 @@ export default function ConfidentialitePage() {
                 <strong>Intérêt légitime :</strong> Prospection commerciale et amélioration de nos services
               </div>
             </div>
-            <div className="flex items-start space-x-3">
-              
-              <div>
-                <strong>Consentement :</strong> Newsletter et communications marketing (révocable à tout moment)
-              </div>
-            </div>
           </div>
         </section>
 
@@ -202,10 +195,6 @@ export default function ConfidentialitePage() {
               <div>
                 <strong>Données de navigation :</strong><br />
                 13 mois maximum
-              </div>
-              <div>
-                <strong>Newsletter :</strong><br />
-                Jusqu&apos;à désinscription
               </div>
             </div>
           </div>

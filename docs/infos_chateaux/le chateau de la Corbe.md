@@ -1,3 +1,7 @@
+
+Le Château de la Corbe
+
+Bournezeau, 85480 Bournezeau, France
 Informations générales
 Château / Domaine · 3 Salles
 
@@ -58,3 +62,6 @@ Tarifs Location seule
 Salle Atlantique 	Tarif Journée - dès 900 € HT
 L'Orangerie 	Tarif Journée - dès 2 700 € HT
 Tarif Soirée - dès 3 100 € HT
+
+Localisation
+Bournezeau, 85480 Bournezeau, France

@@ -10,7 +10,6 @@ import Image from 'next/image';
 import { getVenues } from '@/lib/firestore';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getB2BImages, getRandomImages } from '@/lib/mariageImages';
-import { getVenueLogo } from '@/lib/logoHelper';
 
 // ISR : Cache avec revalidation toutes les 2 heures
 // Revalidation toutes les 5 minutes (300s) pour équilibre perf/fraîcheur
@@ -187,10 +186,10 @@ export default async function VenuePage({ params }: VenuePageProps) {
             <div className="lg:col-span-1">
               <div className="bg-charcoal-800 border border-accent/20 rounded-xl p-6 sticky top-32">
                 {/* Logo centré */}
-                {getVenueLogo(slug, 'blanc') && (
+                {slug !== 'chateau-de-la-corbe' && (
                   <div className="flex justify-center mb-6">
                     <Image
-                      src={getVenueLogo(slug, 'blanc')!}
+                      src={`/logos/${slug === 'chateau-de-la-brulaire' ? 'brulaire' : slug === 'manoir-de-la-boulaie' ? 'boulaie' : slug === 'domaine-nantais' ? 'domaine' : 'dome'}-blanc.png`}
                       alt={`Logo ${displayVenueName(venue.name)}`}
                       width={96}
                       height={96}
@@ -668,10 +667,10 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   {/* Contenu */}
                   <div className="p-6 flex-1 flex flex-col">
                     {/* Logo centré */}
-                    {getVenueLogo(otherVenue.slug, 'blanc') && (
+                    {otherVenue.slug !== 'chateau-de-la-corbe' && (
                       <div className="flex justify-center mb-4">
                         <Image
-                          src={getVenueLogo(otherVenue.slug, 'blanc')!}
+                          src={`/logos/${otherVenue.slug === 'chateau-de-la-brulaire' ? 'brulaire' : otherVenue.slug === 'manoir-de-la-boulaie' ? 'boulaie' : otherVenue.slug === 'domaine-nantais' ? 'domaine' : 'dome'}-blanc.png`}
                           alt={`Logo ${otherVenue.name}`}
                           width={64}
                           height={64}

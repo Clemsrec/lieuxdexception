@@ -11,7 +11,7 @@ import { Castle, Mail, TrendingUp, Bell, BarChart3 } from 'lucide-react';
 
 /**
  * Dashboard admin principal
- * - Stats globales (lieux, leads, newsletter)
+ * - Stats globales (lieux, leads)
  * - Leads récents
  * - Graphiques GA4 (à intégrer)
  */
@@ -20,7 +20,6 @@ interface DashboardStats {
   totalVenues: number;
   totalLeads: number;
   leadsThisMonth: number;
-  newsletterSubscribers: number;
   recentLeads: Array<{
     id: string;
     type: string;
@@ -34,7 +33,6 @@ export default function AdminDashboardPage() {
     totalVenues: 0,
     totalLeads: 0,
     leadsThisMonth: 0,
-    newsletterSubscribers: 0,
     recentLeads: [],
   });
   const [loading, setLoading] = useState(true);
@@ -68,11 +66,7 @@ export default function AdminDashboardPage() {
       );
       const leadsThisMonth = leadsThisMonthSnapshot.size;
 
-      // 4. Newsletter subscribers (TODO: créer collection si nécessaire)
-      const newsletterSnapshot = await getDocs(collection(db, 'newsletter'));
-      const newsletterSubscribers = newsletterSnapshot.size;
-
-      // 5. Leads récents (5 derniers)
+      // 4. Leads récents (5 derniers)
       const recentLeadsSnapshot = await getDocs(
         query(collection(db, 'leads'), orderBy('createdAt', 'desc'), limit(5))
       );
@@ -87,7 +81,6 @@ export default function AdminDashboardPage() {
         totalVenues,
         totalLeads,
         leadsThisMonth,
-        newsletterSubscribers,
         recentLeads,
       });
     } catch (error) {
@@ -125,13 +118,6 @@ export default function AdminDashboardPage() {
               value={stats.leadsThisMonth}
               icon={<TrendingUp className="w-6 h-6" />}
               color="bg-success"
-              loading={loading}
-            />
-            <StatCard
-              title="Newsletter"
-              value={stats.newsletterSubscribers}
-              icon={<Bell className="w-6 h-6" />}
-              color="bg-primary-light"
               loading={loading}
             />
           </div>

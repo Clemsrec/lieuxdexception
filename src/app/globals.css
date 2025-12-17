@@ -731,6 +731,23 @@ nav img[alt="Lieux d'Exception"] {
 }
 
 /* ============================================
+   HONEYPOT ANTI-BOT
+   ============================================ */
+
+/* Masquer complètement les champs honeypot */
+input[name="website"],
+input[id^="website"] {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  display: block !important; /* Visible pour bots qui parsent le DOM */
+}
+
+/* ============================================
    RESPONSIVE & ACCESSIBILITY
    ============================================ */
 

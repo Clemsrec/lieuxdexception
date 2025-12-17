@@ -1,24 +1,7 @@
 /**
  * Helper pour récupérer le bon logo d'un lieu selon le thème (clair/sombre)
- * Utilise les logos blanc pour fonds sombres et dorés pour fonds clairs
+ * Version hardcodée pour plus de fiabilité
  */
-
-/**
- * Mapping des slugs vers les noms de fichiers logo
- * Supporte les slugs courts (chateau-brulaire) et longs (chateau-de-la-brulaire)
- */
-const LOGO_MAP: Record<string, string> = {
-  // Slugs longs (Firestore)
-  'chateau-de-la-brulaire': 'brulaire',
-  'manoir-de-la-boulaie': 'boulaie',
-  'domaine-nantais': 'domaine',
-  'le-dome': 'dome',
-  // Slugs courts (filesystem/URLs)
-  'chateau-brulaire': 'brulaire',
-  'manoir-boulaie': 'boulaie',
-  'dome': 'dome',
-  // Note: Le Château de la Corbe n'a pas de logo disponible
-};
 
 /**
  * Types de thème pour le logo
@@ -26,17 +9,26 @@ const LOGO_MAP: Record<string, string> = {
 export type LogoTheme = 'blanc' | 'dore';
 
 /**
+ * Map des logos disponibles (centralisée)
+ */
+const LOGO_MAP: Record<string, { blanc: string; dore: string }> = {
+  'chateau-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+  'chateau-de-la-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+  'manoir-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+  'manoir-de-la-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+  'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
+  'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+  'dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+};
+
+/**
  * Récupère le chemin du logo pour un lieu donné
- * @param slug Le slug du lieu (ex: 'chateau-de-la-brulaire')
+ * @param slug Le slug du lieu (ex: 'chateau-brulaire')
  * @param theme Le thème du logo ('blanc' pour fond sombre, 'dore' pour fond clair)
  * @returns Le chemin du logo ou null si non disponible
  */
 export function getVenueLogo(slug: string, theme: LogoTheme = 'blanc'): string | null {
-  const logoName = LOGO_MAP[slug];
-  if (!logoName) {
-    return null;
-  }
-  return `/logos/${logoName}-${theme}.png`;
+  return LOGO_MAP[slug]?.[theme] || null;
 }
 
 /**

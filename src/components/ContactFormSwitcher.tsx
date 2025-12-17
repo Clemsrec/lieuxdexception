@@ -221,6 +221,18 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
             />
           </div>
 
+          {/* Honeypot anti-bot (champ caché) */}
+          <input
+            type="text"
+            name="website"
+            id="website-b2b"
+            autoComplete="off"
+            tabIndex={-1}
+            aria-hidden="true"
+            className="absolute -left-[9999px] w-1 h-1 opacity-0 pointer-events-none"
+            placeholder="Laissez ce champ vide"
+          />
+
           <button
             type="submit"
             className="btn btn-primary w-full text-lg"
@@ -367,6 +379,18 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               placeholder="Parlez-nous de votre projet, de vos envies, de vos besoins spécifiques..."
             />
           </div>
+
+          {/* Honeypot anti-bot (champ caché) */}
+          <input
+            type="text"
+            name="website"
+            id="website-prive"
+            autoComplete="off"
+            tabIndex={-1}
+            aria-hidden="true"
+            className="absolute -left-[9999px] w-1 h-1 opacity-0 pointer-events-none"
+            placeholder="Laissez ce champ vide"
+          />
 
           <button
             type="submit"

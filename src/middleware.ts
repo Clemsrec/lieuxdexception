@@ -108,6 +108,14 @@ function applySecurityHeaders(response: NextResponse) {
   /**
    * Content Security Policy (CSP)
    * Protège contre XSS, injections de scripts, etc.
+   * 
+   * TODO: Remplacer 'unsafe-inline' par nonces pour renforcer sécurité XSS
+   * Nécessite architecture Next.js 15 avec:
+   * 1. Générer nonce aléatoire par requête (crypto.randomBytes)
+   * 2. Passer nonce via headers → page props
+   * 3. Utiliser <Script nonce={nonce}> pour scripts inline
+   * 4. Configurer next.config.js avec experimental.csp
+   * Complexité: Élevée (impact architecture + build time)
    */
   response.headers.set(
     'Content-Security-Policy',
@@ -123,7 +131,8 @@ function applySecurityHeaders(response: NextResponse) {
       "base-uri 'self'",
       "form-action 'self'",
       "frame-ancestors 'none'",
-      "upgrade-insecure-requests"
+      "upgrade-insecure-requests",
+      "require-trusted-types-for 'script'"
     ].join('; ')
   );
   
@@ -132,6 +141,7 @@ function applySecurityHeaders(response: NextResponse) {
   response.headers.set('X-XSS-Protection', '1; mode=block');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
+  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
   
   if (process.env.NODE_ENV === 'production') {
     response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');

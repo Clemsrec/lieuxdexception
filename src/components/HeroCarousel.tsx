@@ -54,8 +54,10 @@ export default function HeroCarousel({ images, fallbackImages = [], interval = 5
             fill
             className="object-cover"
             priority={index === 0}
-            sizes="100vw"
-            quality={90}
+            fetchPriority={index === 0 ? 'high' : undefined}
+            loading={index === 0 ? undefined : 'lazy'}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1920px"
+            quality={75}
           />
         </div>
       ))}
@@ -72,9 +74,9 @@ export default function HeroCarousel({ images, fallbackImages = [], interval = 5
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            className={`w-4 h-4 rounded-full transition-all duration-300 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center ${
               index === currentIndex 
-                ? 'bg-white w-8' 
+                ? 'bg-white/90' 
                 : 'bg-white/50 hover:bg-white/70'
             }`}
             aria-label={`Aller à l'image ${index + 1}`}

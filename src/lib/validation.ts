@@ -177,7 +177,6 @@ export const b2bFormSchema = z.object({
   
   // Consentement
   acceptPrivacy: z.literal(true),
-  acceptMarketing: z.boolean().default(false),
 });
 
 /**
@@ -209,7 +208,6 @@ export const weddingFormSchema = z.object({
   
   // Consentement
   acceptPrivacy: z.literal(true),
-  acceptMarketing: z.boolean().default(false),
 });
 
 // ===========================================

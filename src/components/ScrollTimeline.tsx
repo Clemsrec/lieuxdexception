@@ -113,16 +113,16 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
 
   const generateCurvePath = () => {
     const spacing = 600;
-    const amplitude = 150;
-    let path = `M 100 400`;
+    const amplitude = 80;
+    let path = `M 100 300`;
     
     events.forEach((_, index) => {
       const x = 100 + (index + 1) * spacing;
-      const y = 400 + Math.sin(index * 0.8) * amplitude;
+      const y = 300 + Math.sin(index * 0.8) * amplitude;
       const controlX1 = 100 + (index + 0.5) * spacing;
-      const controlY1 = 400 + Math.sin((index - 0.5) * 0.8) * amplitude;
+      const controlY1 = 300 + Math.sin((index - 0.5) * 0.8) * amplitude;
       const controlX2 = 100 + (index + 0.7) * spacing;
-      const controlY2 = 400 + Math.sin((index + 0.3) * 0.8) * amplitude;
+      const controlY2 = 300 + Math.sin((index + 0.3) * 0.8) * amplitude;
       
       path += ` C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${x} ${y}`;
     });
@@ -186,7 +186,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
 
       <div 
         ref={containerRef}
-        className="relative w-full lg:h-[3000vh]"
+        className="relative w-full lg:h-[3000vh] lg:pb-32"
       >
         {/* Desktop: Scroll horizontal */}
         <div className="sticky top-0 h-screen overflow-hidden bg-neutral-900 hidden lg:block">
@@ -232,7 +232,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
             {/* Événements */}
             {events.map((event, index) => {
               const x = 100 + index * 600;
-              const y = 400 + Math.sin(index * 0.8) * 150;
+              const y = 300 + Math.sin(index * 0.8) * 80;
               const isBottom = event.imagePosition === 'bottom' || index % 2 === 1;
               const isActive = activeIndex === index;
               const distance = Math.abs(activeIndex - index);

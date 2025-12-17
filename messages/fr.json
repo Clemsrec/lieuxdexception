@@ -4,7 +4,7 @@
     "catalogue": "Catalogue",
     "b2b": "SÉMINAIRES & PRO",
     "weddings": "MARIAGES & PRIVÉS",
-    "gallery": "Galerie & Histoire",
+    "gallery": "Histoire",
     "history": "Histoire",
     "contact": "Contact & Devis"
   },
@@ -99,7 +99,7 @@
   "Footer": {
     "navigation": "Navigation",
     "services": "Services",
-    "gallery": "Galerie & Histoire",
+    "gallery": "Histoire",
     "contact": "Contact & Devis",
     "legal": "Mentions légales",
     "privacy": "Confidentialité",

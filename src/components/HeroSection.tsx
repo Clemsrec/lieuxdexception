@@ -65,7 +65,9 @@ export default function HeroSection({
             fill
             className="object-cover"
             priority
-            sizes="100vw"
+            fetchPriority="high"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1920px"
+            quality={75}
           />
           {/* Overlay gris-noir pour contraste texte */}
           <div className="absolute inset-0 bg-black/40 z-20" />
@@ -85,7 +87,7 @@ export default function HeroSection({
             style={{ textShadow: '0 4px 30px rgba(0, 0, 0, 0.7)' }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
           >
             {title}
           </motion.h1>
@@ -95,7 +97,7 @@ export default function HeroSection({
             className="w-20 h-px bg-white/40"
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.3, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           />
 
           {/* Sous-titre */}
@@ -105,7 +107,7 @@ export default function HeroSection({
               style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.7)' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.3, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             >
               {subtitle}
             </motion.p>
@@ -118,7 +120,7 @@ export default function HeroSection({
               style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.6)' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.3, delay: 0.25, ease: [0.4, 0, 0.2, 1] }}
             >
               {description}
             </motion.p>
@@ -130,7 +132,7 @@ export default function HeroSection({
               className="flex flex-col sm:flex-row gap-4 pt-6 md:pt-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.3, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
             >
               {buttons.map((button, index) => (
                 <Link

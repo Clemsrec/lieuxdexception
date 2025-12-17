@@ -4,9 +4,9 @@
     "catalogue": "Catalogo",
     "b2b": "SEMINARI & PRO",
     "weddings": "MATRIMONI & PRIVATI",
-    "gallery": "Galleria",
+    "gallery": "Storia",
     "history": "Storia",
-    "contact": "Contatto"
+    "contact": "Contatto & Preventivo"
   },
   "Home": {
     "title": "Luoghi Eccezionali",
@@ -98,7 +98,9 @@
   },
   "Footer": {
     "navigation": "Navigazione",
-    "services": "Servizi",    "gallery": "Galleria e Storia",    "contact": "Contatto & Preventivo",
+    "services": "Servizi",
+    "gallery": "Storia",
+    "contact": "Contatto & Preventivo",
     "legal": "Note legali",
     "privacy": "Privacy",
     "cookies": "Cookies",

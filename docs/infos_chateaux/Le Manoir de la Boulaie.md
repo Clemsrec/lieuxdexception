@@ -1,4 +1,26 @@
- Présentation du lieu
+
+Le Manoir de la Boulaie
+
+33 Rue de la Chapelle Saint-Martin, 44115 Haute-Goulaine, France
+Informations générales
+Château / Domaine · 11 Salles
+Capacités maximales par configuration de salle
+Réunion
+70 pers.
+Salle en U
+50 pers.
+Théâtre
+200 pers.
+Cabaret
+170 pers.
+Rang d'école
+170 pers.
+Banquet
+200 pers.
+Cocktail
+200 pers.
+Voir toutes les capacités des salles
+Présentation du lieu
 Au vert
 Charme
 
@@ -41,10 +63,15 @@ Salle 	Lumière du jour
 	
 	
 Salon séminaires et réceptions 280 m2
+		70 	50 	200 	170 	170 	200 	200
 Salon de travail 70 m2
+		25 	20 	60 	- 	30 	60 	-
 Salon privé 40 m2
+		12 	10 	40 	- 	- 	30 	30
 L'Orangerie 280 m2
+		- 	- 	200 	- 	- 	200 	200
 L'Amphi 130 m2
+		- 	- 	70 	- 	- 	- 	-
 Formules & Prix d’appels
 Journée d’étude 	1 salle de réunion pour la journée + 2 collations + 1 déjeuner
 Minimum participants : 20

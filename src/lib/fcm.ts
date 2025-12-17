@@ -135,7 +135,6 @@ export function listenToMessages(
 export enum NotificationType {
   NEW_LEAD = 'new_lead',           // Nouveau lead B2B/Mariage
   LEAD_UPDATE = 'lead_update',     // Lead mis à jour
-  NEW_NEWSLETTER = 'new_newsletter', // Nouvelle inscription newsletter
   SYSTEM_ALERT = 'system_alert',   // Alerte système
 }
 

@@ -10,7 +10,6 @@ import dynamic from 'next/dynamic';
 import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getCardImage } from '@/lib/sharedVenueImages';
-import { getVenueLogo } from '@/lib/logoHelper';
 
 // Liens sociaux par lieu
 const venueSocialLinks: Record<string, { instagram: string; mariagesNet: string }> = {
@@ -83,11 +82,7 @@ function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
         className="venue-card group overflow-hidden h-full flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 border border-stone/10"
       >
         {/* Image avec overlay gradient et numéro */}
-        <motion.div 
-          className="relative h-72 overflow-hidden shrink-0"
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.4 }}
-        >
+        <div className="relative h-72 overflow-hidden shrink-0 transition-transform duration-300 group-hover:scale-[1.02]">
           <Image
             src={getCardImage(venue)}
             alt={displayVenueName(venue.name)}
@@ -102,7 +97,7 @@ function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
           <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full bg-linear-to-br from-accent to-accent-dark border-2 border-white shadow-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
             <span className="font-display font-bold text-2xl text-white drop-shadow-md">{index + 1}</span>
           </div>
-        </motion.div>
+        </div>
         
         {/* Contenu avec fond dégradé subtil */}
         <div className="p-6 md:p-8 flex-1 flex flex-col text-center bg-linear-to-b from-white to-stone-50/30">
@@ -203,14 +198,14 @@ export default function HomeClient({ venues }: HomeClientProps) {
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
               />
               <motion.div 
                 className="text-secondary space-y-3 md:space-y-4 text-base md:text-lg leading-relaxed"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.4 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
               >
                 <p>Tout commence par un lieu.</p>
                 <p>Un domaine découvert, une émotion, l&apos;envie de partager sa beauté.</p>
@@ -234,10 +229,10 @@ export default function HomeClient({ venues }: HomeClientProps) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.3 }}
             >
               <h2 className="title-xl text-center">
-                5 <em>Domaines d&apos;Exception</em>
+                <em>Domaines d&apos;Exception</em>
               </h2>
               <div className="accent-line" />
               <p className="subtitle text-center">
@@ -280,10 +275,10 @@ export default function HomeClient({ venues }: HomeClientProps) {
                         {/* Contenu */}
                         <div className="p-6 flex-1 flex flex-col">
                           {/* Logo centré */}
-                          {getVenueLogo(venue.slug, 'blanc') && (
+                          {venue.slug !== 'chateau-de-la-corbe' && (
                             <div className="flex justify-center mb-4">
                               <Image
-                                src={getVenueLogo(venue.slug, 'blanc')!}
+                                src={`/logos/${venue.slug === 'chateau-de-la-brulaire' ? 'brulaire' : venue.slug === 'manoir-de-la-boulaie' ? 'boulaie' : venue.slug === 'domaine-nantais' ? 'domaine' : 'dome'}-blanc.png`}
                                 alt={`Logo ${venue.name}`}
                                 width={96}
                                 height={96}
@@ -399,10 +394,10 @@ export default function HomeClient({ venues }: HomeClientProps) {
                         {/* Contenu */}
                         <div className="p-6 flex-1 flex flex-col">
                           {/* Logo centré */}
-                          {getVenueLogo(venue.slug, 'blanc') && (
+                          {venue.slug !== 'chateau-de-la-corbe' && (
                             <div className="flex justify-center mb-4">
                               <Image
-                                src={getVenueLogo(venue.slug, 'blanc')!}
+                                src={`/logos/${venue.slug === 'chateau-de-la-brulaire' ? 'brulaire' : venue.slug === 'manoir-de-la-boulaie' ? 'boulaie' : venue.slug === 'domaine-nantais' ? 'domaine' : 'dome'}-blanc.png`}
                                 alt={`Logo ${venue.name}`}
                                 width={96}
                                 height={96}

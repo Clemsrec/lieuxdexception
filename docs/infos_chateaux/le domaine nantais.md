@@ -1,3 +1,7 @@
+
+Le Domaine Nantais
+
+6, Rue de la Sensive, 44140 Le Bignon, France
 Informations générales
 Château / Domaine · 3 Salles · Privatisable
 Capacités maximales par configuration de salle
@@ -20,7 +24,7 @@ Présentation du lieu
 Au vert
 Charme
 
-A 10 minutes au sud de Nantes, dans Parc entièrement clos et paysagé de 1,5Ha idéal pour les activités outdoor, le Le Domaine Nantais rénové en mars 2025 accueille vos réunions, séminaires et cocktails d'entreprise jusqu'à 220 personnes. Une terrasse et un patio couvert de 80 m² ouvrent vos événements sur l'extérieur. En soirée, profitez des éclairages du Parc pour prolonger vos événements.
+A 10 minutes au sud de Nantes, dans Parc entièrement clos et paysagé de 1,5Ha idéal pour les activités outdoor, le Domaine Nantais rénové en mars 2025 accueille vos réunions, séminaires et cocktails d'entreprise jusqu'à 220 personnes. Une terrasse et un patio couvert de 80 m² ouvrent vos événements sur l'extérieur. En soirée, profitez des éclairages du Parc pour prolonger vos événements.
 Equipements & Services
 Activités
     Multi-Activités & Olympiades
@@ -75,3 +79,5 @@ Soirée dansante 	1 espace avec piste de danse pour la soirée + 1 cocktail comp
 	
 Dès 70 € HT par pers.
 	
+Localisation
+6, Rue de la Sensive, 44140 Le Bignon, France

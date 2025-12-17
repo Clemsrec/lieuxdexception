@@ -4,9 +4,9 @@
     "catalogue": "Katalog",
     "b2b": "SEMINARE & PRO",
     "weddings": "HOCHZEITEN & PRIVAT",
-    "gallery": "Galerie",
+    "gallery": "Geschichte",
     "history": "Geschichte",
-    "contact": "Kontakt"
+    "contact": "Kontakt & Angebot"
   },
   "Home": {
     "title": "Außergewöhnliche Locations",
@@ -99,7 +99,7 @@
   "Footer": {
     "navigation": "Navigation",
     "services": "Dienstleistungen",
-    "gallery": "Galerie & Geschichte",
+    "gallery": "Geschichte",
     "contact": "Kontakt & Angebot",
     "legal": "Impressum",
     "privacy": "Datenschutz",

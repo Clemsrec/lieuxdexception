@@ -4,9 +4,9 @@
     "catalogue": "Catalogue",
     "b2b": "SEMINARS & PRO",
     "weddings": "WEDDINGS & PRIVATE",
-    "gallery": "Gallery",
+    "gallery": "History",
     "history": "History",
-    "contact": "Contact"
+    "contact": "Contact & Quote"
   },
   "Home": {
     "title": "Exceptional Venues",
@@ -99,7 +99,7 @@
   "Footer": {
     "navigation": "Navigation",
     "services": "Services",
-    "gallery": "Gallery & History",
+    "gallery": "History",
     "contact": "Contact & Quote",
     "legal": "Legal Notice",
     "privacy": "Privacy",
