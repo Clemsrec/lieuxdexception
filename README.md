@@ -84,7 +84,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=votre_app_id_ici
 
 ### ✅ Pages Principales
 - [x] **Page d'accueil** : Présentation générale et héros
-- [x] **Catalogue** : Liste des 5 lieux d'exception avec filtres
+- [x] **Catalogue** : Liste des lieux d'exception avec filtres
 - [x] **Événements B2B** : Page dédiée aux événements professionnels
 - [x] **Mariages** : Page spécialisée mariages et réceptions
 - [x] **Contact** : Formulaires adaptatifs selon le type d'événement

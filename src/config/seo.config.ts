@@ -38,7 +38,7 @@ export const universalSEOConfig = {
     expertise: {
       primary: "Lieux événementiels d'exception et organisation d'événements corporate",
       sectors: ["Mariages haut de gamme", "Séminaires entreprise", "Événements corporate"],
-      certifications: ["Collection de 5 domaines d'exception"],
+      certifications: ["Collection de Domaines d'Exception"],
       experience: "Expertise événementielle depuis plus de 25 ans",
       clientsServed: "Des centaines d'événements réussis en Loire-Atlantique"
     },
@@ -192,7 +192,7 @@ export const universalSEOConfig = {
       domain: "Organisation d'événements et gestion de lieux d'exception",
       credentials: [
         "25+ ans d'expérience événementielle",
-        "Collection de 5 domaines historiques classés",
+        "Collection de domaines historiques classés",
         "Réseau partenaires Premium (traiteurs, décorateurs, photographes)"
       ],
       specializations: [
@@ -208,7 +208,7 @@ export const universalSEOConfig = {
       projects: "Des centaines d'événements organisés",
       clientTypes: ["Entreprises CAC40", "PME régionales", "Particuliers exigeants"],
       testimonials: "Avis clients 5 étoiles",
-      portfolio: "5 domaines d'exception en Loire-Atlantique"
+      portfolio: "Domaines d'Exception en Loire-Atlantique"
     },
 
     // Authoritativeness (Autorité et reconnaissance)
@@ -283,11 +283,11 @@ export const universalSEOConfig = {
     homepage: [
       {
         question: "Quels types d'événements pouvez-vous organiser ?",
-        answer: "Nous organisons des mariages haut de gamme (50-300 invités), séminaires d'entreprise, conférences, team building, lancements produits et galas corporate dans nos 5 domaines d'exception en Loire-Atlantique."
+        answer: "Nous organisons des mariages haut de gamme (50-300 invités), séminaires d'entreprise, conférences, team building, lancements produits et galas corporate dans nos Domaines d'Exception en Loire-Atlantique."
       },
       {
         question: "Où se situent vos lieux d'exception ?",
-        answer: "Les 5 domaines sont situés en Loire-Atlantique, Pays de la Loire, à proximité de Nantes, Angers et La Baule. Tous nos lieux sont facilement accessibles et offrent des cadres historiques exceptionnels."
+        answer: "Nos domaines sont situés en Loire-Atlantique, Pays de la Loire, à proximité de Nantes, Angers et La Baule. Tous nos lieux sont facilement accessibles et offrent des cadres historiques exceptionnels."
       },
       {
         question: "Proposez-vous des prestations tout inclus ?",
@@ -343,7 +343,7 @@ export const universalSEOConfig = {
       },
       {
         question: "Pourquoi choisir Lieux d'Exception ?",
-        answer: "Expertise événementielle de 25+ ans, collection de 5 domaines historiques classés, réseau partenaires Premium, accompagnement personnalisé et équipe locale dédiée en Loire-Atlantique."
+        answer: "Expertise événementielle de 25+ ans, collection de domaines historiques classés, réseau partenaires Premium, accompagnement personnalisé et équipe locale dédiée en Loire-Atlantique."
       }
     ],
 

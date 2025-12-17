@@ -922,7 +922,7 @@ export default function Hero() {
       <div className="hero__overlay" />
       <div className="hero__content">
         <h1 className="hero__title">
-          5 Domaines d'Exception en France
+          Domaines d'Exception en France
         </h1>
         <p className="hero__subtitle">
           Pour vos séminaires et mariages de prestige

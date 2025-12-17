@@ -484,7 +484,7 @@ export default async function ComparePage({ params: { locale } }) {
           Comparez nos domaines
         </h1>
         <p className="text-xl text-gray-600">
-          Trouvez le lieu idéal pour votre événement en comparant nos 5 domaines d'exception
+          Trouvez le lieu idéal pour votre événement en comparant nos Domaines d'Exception
         </p>
       </div>
       
