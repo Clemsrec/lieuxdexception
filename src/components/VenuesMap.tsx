@@ -11,6 +11,16 @@ import Link from 'next/link';
 import { Venue } from '@/types/firebase';
 import { MapPin, Users, Phone, Mail, Instagram, ExternalLink } from 'lucide-react';
 
+// Mapping des logos en dur
+const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
+  'chateau-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+  'chateau-de-la-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+  'manoir-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+  'manoir-de-la-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+  'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
+  'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+};
+
 /**
  * Composant carte interactive Leaflet pour afficher les châteaux
  * Style premium avec markers personnalisés et popups luxe
@@ -153,10 +163,10 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
                     className="object-cover"
                     sizes="480px"
                   />                  {/* Logo doré sur fond clair */}
-                  {venue.slug !== 'chateau-de-la-corbe' && (
+                  {venue.slug !== 'chateau-de-la-corbe' && VENUE_LOGOS[venue.slug]?.dore && (
                     <div className="absolute top-3 right-3 w-16 h-16 flex items-center justify-center">
                       <Image
-                        src={`/logos/${venue.slug === 'chateau-de-la-brulaire' ? 'brulaire' : venue.slug === 'manoir-de-la-boulaie' ? 'boulaie' : venue.slug === 'domaine-nantais' ? 'domaine' : 'dome'}-dore.png`}
+                        src={VENUE_LOGOS[venue.slug]?.dore!}
                         alt={`Logo ${venue.name}`}
                         width={64}
                         height={64}

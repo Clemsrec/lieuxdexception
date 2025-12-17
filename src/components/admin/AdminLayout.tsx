@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAuth, authActions } from '@/lib/auth';
 import { NotificationList } from '@/components/admin/Notifications';
 import Image from 'next/image';
+import { LayoutDashboard, Castle, Mail, BarChart3, Settings, Zap, Users } from 'lucide-react';
 
 /**
  * Layout admin avec sidebar navigation
@@ -33,28 +34,32 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     {
       label: 'Dashboard',
       href: '/admin/dashboard',
-      icon: '📊',
+      icon: LayoutDashboard,
     },
     {
       label: 'Lieux',
       href: '/admin/venues',
-      icon: '🏰',
+      icon: Castle,
     },
     {
       label: 'Leads & Contacts',
       href: '/admin/leads',
-      icon: '📬',
+      icon: Mail,
     },
     {
-
+      label: 'Utilisateurs',
+      href: '/admin/users',
+      icon: Users,
+    },
+    {
       label: 'Statistiques',
       href: '/admin/analytics',
-      icon: '📈',
+      icon: BarChart3,
     },
     {
       label: 'Paramètres',
       href: '/admin/settings',
-      icon: '⚙️',
+      icon: Settings,
     },
   ];
 
@@ -62,7 +67,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     <div className="min-h-screen bg-neutral-50 flex">
       {/* Sidebar */}
       <aside
-        className={`bg-primary text-white transition-all duration-300 ${
+        className={`bg-charcoal-900 text-white transition-all duration-300 ${
           sidebarOpen ? 'w-64' : 'w-20'
         } flex flex-col`}
       >
@@ -74,7 +79,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               <p className="text-xs text-white/70 mt-1">Lieux d&apos;Exception</p>
             </div>
           ) : (
-            <div className="text-2xl">⚡</div>
+            <Zap className="w-6 h-6" />
           )}
         </div>
 
@@ -82,17 +87,18 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         <nav className="flex-1 p-4 space-y-2">
           {menuItems.map((item) => {
             const isActive = pathname === item.href;
+            const IconComponent = item.icon;
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive
-                    ? 'bg-accent text-primary font-medium'
+                    ? 'bg-neutral-200 text-charcoal-900 font-medium'
                     : 'hover:bg-white/10 text-white/90 hover:text-white'
                 }`}
               >
-                <span className="text-xl">{item.icon}</span>
+                <IconComponent className="w-5 h-5 shrink-0" />
                 {sidebarOpen && <span>{item.label}</span>}
               </Link>
             );
@@ -130,7 +136,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         {/* Header */}
         <header className="bg-white border-b border-neutral-200 px-8 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-heading font-semibold text-primary">
+            <h1 className="text-2xl font-heading font-semibold text-charcoal-900">
               {menuItems.find((item) => item.href === pathname)?.label || 'Administration'}
             </h1>
             <div className="flex items-center gap-4">
@@ -140,7 +146,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               <Link
                 href="/fr"
                 target="_blank"
-                className="text-sm text-secondary hover:text-primary transition-colors"
+                className="text-sm text-secondary hover:text-charcoal-900 transition-colors"
               >
                 Voir le site →
               </Link>

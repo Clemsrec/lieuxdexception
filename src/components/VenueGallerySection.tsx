@@ -19,6 +19,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Mapping des logos en dur
+const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
+  'chateau-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+  'chateau-de-la-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+  'manoir-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+  'manoir-de-la-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+  'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
+  'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+};
+
 interface VenueGallerySectionProps {
   venueName: string;
   venueSlug: string;
@@ -41,14 +51,8 @@ export default function VenueGallerySection({
   const logoShadow = (bgColor === 'white' || bgColor === 'stone-50') ? 'drop-shadow-md' : 'drop-shadow-lg';
   const logoBg = (bgColor === 'white' || bgColor === 'stone-50') ? 'bg-neutral-800/10' : 'bg-white/10';
   
-  // Mapping hardcodé des logos
-  const logoMap: Record<string, { blanc: string; dore: string }> = {
-    'chateau-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
-    'manoir-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
-    'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
-    'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
-  };
-  const logo = logoMap[venueSlug]?.[logoTheme] || null;
+  // Utilisation du helper pour récupérer le logo
+  const logo = VENUE_LOGOS[venueSlug]?.[logoTheme as 'blanc' | 'dore'];
 
   return (
     <div className={`${bgClass} py-12`}>

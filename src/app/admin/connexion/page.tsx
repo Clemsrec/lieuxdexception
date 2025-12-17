@@ -143,7 +143,7 @@ export default function AdminLoginPage() {
                 required
                 autoComplete="email"
                 spellCheck="false"
-                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors outline-none text-slate-900 placeholder:text-slate-400"
+                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-charcoal-700 focus:border-charcoal-700 transition-colors outline-none text-slate-900 placeholder:text-slate-400"
                 placeholder="admin@lieuxdexception.fr"
                 disabled={loading}
               />
@@ -166,7 +166,7 @@ export default function AdminLoginPage() {
                   required
                   autoComplete="current-password"
                   minLength={8}
-                  className="w-full px-4 py-3 pr-12 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors outline-none text-slate-900 placeholder:text-slate-400"
+                  className="w-full px-4 py-3 pr-12 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-charcoal-700 focus:border-charcoal-700 transition-colors outline-none text-slate-900 placeholder:text-slate-400"
                   placeholder="Minimum 8 caractères"
                   disabled={loading}
                 />
@@ -210,7 +210,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={loading || attempts >= 5}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+              className="w-full bg-charcoal-800 hover:bg-charcoal-900 text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">

@@ -73,7 +73,7 @@ export default function Navigation() {
             className="flex items-center hover:opacity-80 transition-opacity shrink-0 ml-2 sm:ml-0"
           >
             <Image
-              src="/logos/LOGO-Lieux d_Exception- BLANC_Plan de travail 1.png"
+              src="/logos/logo-lieux-exception-blanc.png"
               alt="Lieux d'Exception"
               width={180}
               height={53}

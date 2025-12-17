@@ -121,11 +121,11 @@ function applySecurityHeaders(response: NextResponse) {
     'Content-Security-Policy',
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com",
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai",
       "img-src 'self' data: https: blob:",
-      "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com wss://*.firebaseio.com",
+      "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebase.google.com wss://*.firebaseio.com https://www.google-analytics.com https://analytics.google.com",
       "frame-src 'self' https://*.firebaseapp.com",
       "object-src 'none'",
       "base-uri 'self'",

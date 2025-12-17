@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Bell } from 'lucide-react';
+import { useAuth } from '@/lib/auth';
 import { 
   requestNotificationPermission, 
   listenToMessages, 
@@ -95,7 +97,7 @@ export function NotificationPrompt() {
 
       {/* Contenu */}
       <div className="flex-1">
-        <h3 className="font-semibold text-primary mb-1">
+        <h3 className="font-semibold text-charcoal-900 mb-1">
           Activer les notifications
         </h3>
         <p className="text-sm text-secondary mb-3">
@@ -107,13 +109,18 @@ export function NotificationPrompt() {
           <button
             onClick={handleEnable}
             disabled={loading}
-            className="btn btn-primary text-sm disabled:opacity-50"
+            className="btn btn-primary text-sm disabled:opacity-50 flex items-center gap-2"
           >
-            {loading ? 'Activation...' : '🔔 Activer'}
+            {loading ? 'Activation...' : (
+              <>
+                <Bell className="w-4 h-4" />
+                Activer
+              </>
+            )}
           </button>
           <button
             onClick={() => setDismissed(true)}
-            className="text-sm text-secondary hover:text-primary px-4 py-2"
+            className="text-sm text-secondary hover:text-charcoal-900 px-4 py-2"
           >
             Plus tard
           </button>
@@ -123,7 +130,7 @@ export function NotificationPrompt() {
       {/* Bouton fermer */}
       <button
         onClick={() => setDismissed(true)}
-        className="shrink-0 text-secondary hover:text-primary"
+        className="shrink-0 text-secondary hover:text-charcoal-900"
         aria-label="Fermer"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,6 +171,7 @@ interface Notification {
 
 export function NotificationList({ notifications }: { notifications: Notification[] }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
@@ -171,7 +179,7 @@ export function NotificationList({ notifications }: { notifications: Notificatio
       {/* Bouton cloche */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 text-secondary hover:text-primary transition-colors"
+        className="relative p-2 text-secondary hover:text-charcoal-900 transition-colors"
         aria-label="Notifications"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +193,7 @@ export function NotificationList({ notifications }: { notifications: Notificatio
         <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-neutral-200 z-50">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-neutral-200">
-            <h3 className="font-semibold text-primary">
+            <h3 className="font-semibold text-charcoal-900">
               Notifications
             </h3>
             {unreadCount > 0 && (
@@ -208,8 +216,28 @@ export function NotificationList({ notifications }: { notifications: Notificatio
               notifications.map((notif) => (
                 <button
                   key={notif.id}
-                  onClick={() => {
-                    // TODO: Marquer comme lu + rediriger si clickAction
+                  onClick={async () => {
+                    // Marquer comme lu
+                    if (!notif.read && user?.uid) {
+                      try {
+                        await fetch('/api/admin/notifications', {
+                          method: 'PUT',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({
+                            notificationId: notif.id,
+                            userId: user.uid,
+                          }),
+                        });
+                      } catch (error) {
+                        console.error('Erreur marquer notification lue:', error);
+                      }
+                    }
+                    
+                    // Rediriger si clickAction
+                    if (notif.clickAction) {
+                      window.location.href = notif.clickAction;
+                    }
+                    
                     setIsOpen(false);
                   }}
                   className={`w-full p-4 text-left border-b border-neutral-100 hover:bg-neutral-50 transition-colors ${
@@ -221,7 +249,7 @@ export function NotificationList({ notifications }: { notifications: Notificatio
                       <div className="w-2 h-2 bg-accent rounded-full mt-2 shrink-0" />
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-primary text-sm mb-1">
+                      <p className="font-medium text-charcoal-900 text-sm mb-1">
                         {notif.title}
                       </p>
                       <p className="text-xs text-secondary line-clamp-2">

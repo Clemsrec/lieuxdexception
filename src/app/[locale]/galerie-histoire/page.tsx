@@ -44,7 +44,7 @@ export default async function HistoirePage({
       title: 'LE DÔME',
       subtitle: 'Acquisition du lieu',
       description: 'Un projet singulier rejoint Lieux d\'Exception. Le Dôme est acquis avec une ambition forte : créer un espace événementiel atypique, immersif et résolument différenciant. Début des événements prévu en 2025.',
-      image: '/venues/le-dome/hero.webp',
+      image: '/venues/le-dome/mariages/dome_interieur_1.jpg',
       imagePosition: 'top' as const,
     },
     {

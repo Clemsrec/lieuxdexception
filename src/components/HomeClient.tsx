@@ -11,6 +11,16 @@ import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getCardImage } from '@/lib/sharedVenueImages';
 
+// Mapping des logos en dur
+const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
+  'chateau-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+  'chateau-de-la-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
+  'manoir-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+  'manoir-de-la-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
+  'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
+  'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+};
+
 // Liens sociaux par lieu
 const venueSocialLinks: Record<string, { instagram: string; mariagesNet: string }> = {
   'chateau-brulaire': {
@@ -275,10 +285,10 @@ export default function HomeClient({ venues }: HomeClientProps) {
                         {/* Contenu */}
                         <div className="p-6 flex-1 flex flex-col">
                           {/* Logo centré */}
-                          {venue.slug !== 'chateau-de-la-corbe' && (
+                          {venue.slug !== 'chateau-de-la-corbe' && VENUE_LOGOS[venue.slug]?.blanc && (
                             <div className="flex justify-center mb-4">
                               <Image
-                                src={`/logos/${venue.slug === 'chateau-de-la-brulaire' ? 'brulaire' : venue.slug === 'manoir-de-la-boulaie' ? 'boulaie' : venue.slug === 'domaine-nantais' ? 'domaine' : 'dome'}-blanc.png`}
+                                src={VENUE_LOGOS[venue.slug]?.blanc!}
                                 alt={`Logo ${venue.name}`}
                                 width={96}
                                 height={96}
@@ -394,10 +404,10 @@ export default function HomeClient({ venues }: HomeClientProps) {
                         {/* Contenu */}
                         <div className="p-6 flex-1 flex flex-col">
                           {/* Logo centré */}
-                          {venue.slug !== 'chateau-de-la-corbe' && (
+                          {venue.slug !== 'chateau-de-la-corbe' && VENUE_LOGOS[venue.slug]?.blanc && (
                             <div className="flex justify-center mb-4">
                               <Image
-                                src={`/logos/${venue.slug === 'chateau-de-la-brulaire' ? 'brulaire' : venue.slug === 'manoir-de-la-boulaie' ? 'boulaie' : venue.slug === 'domaine-nantais' ? 'domaine' : 'dome'}-blanc.png`}
+                                src={VENUE_LOGOS[venue.slug]?.blanc!}
                                 alt={`Logo ${venue.name}`}
                                 width={96}
                                 height={96}

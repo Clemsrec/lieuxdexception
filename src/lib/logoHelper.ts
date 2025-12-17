@@ -19,6 +19,7 @@ const LOGO_MAP: Record<string, { blanc: string; dore: string }> = {
   'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
   'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
   'dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+  // Note: chateau-corbe et chateau-de-la-corbe n'ont pas de logo (affiché sans logo)
 };
 
 /**

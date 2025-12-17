@@ -74,7 +74,7 @@ export default function HeroCarousel({ images, fallbackImages = [], interval = 5
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-4 h-4 rounded-full transition-all duration-300 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center ${
+            className={`w-4 h-4 rounded-full transition-all duration-300 p-2 min-w-11 min-h-11 flex items-center justify-center ${
               index === currentIndex 
                 ? 'bg-white/90' 
                 : 'bg-white/50 hover:bg-white/70'
