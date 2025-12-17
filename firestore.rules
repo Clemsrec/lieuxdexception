@@ -186,6 +186,28 @@ service cloud.firestore {
     }
     
     // ===========================================
+    // COLLECTION: USERS (Gestion rôles)
+    // ===========================================
+    
+    match /users/{userId} {
+      // Lecture: Admins seulement (données sensibles)
+      allow read: if isAdmin();
+      
+      // Écriture: Admins seulement
+      allow create, update: if isAdmin();
+      
+      // Suppression: Jamais (soft delete via update)
+      allow delete: if false;
+      
+      // Validation des données
+      allow create: if hasRequiredFields(['uid', 'role', 'customClaims']) &&
+                       request.resource.data.role in ['admin', 'user'];
+      
+      allow update: if hasRequiredFields(['uid', 'role', 'customClaims']) &&
+                       request.resource.data.role in ['admin', 'user'];
+    }
+    
+    // ===========================================
     // BLOCAGE PAR DÉFAUT
     // ===========================================
     
