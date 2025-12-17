@@ -89,7 +89,7 @@ export default function VenuesCarousel({
           {/* Flèche gauche */}
           <button
             onClick={goToPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 lg:-translate-x-12 z-10 w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center group border-2 border-accent/20"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 lg:-translate-x-12 z-10 w-12 h-12 min-w-12 min-h-12 rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center group border-2 border-accent/20"
             aria-label="Lieu précédent"
           >
             <ChevronLeft className="w-6 h-6 text-primary group-hover:text-white" />
@@ -98,7 +98,7 @@ export default function VenuesCarousel({
           {/* Flèche droite */}
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 lg:translate-x-12 z-10 w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center group border-2 border-accent/20"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 lg:translate-x-12 z-10 w-12 h-12 min-w-12 min-h-12 rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-all duration-300 flex items-center justify-center group border-2 border-accent/20"
             aria-label="Lieu suivant"
           >
             <ChevronRight className="w-6 h-6 text-primary group-hover:text-white" />

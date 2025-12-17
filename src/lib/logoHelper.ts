@@ -17,7 +17,7 @@ const LOGO_MAP: Record<string, string> = {
   'chateau-brulaire': 'brulaire',
   'manoir-boulaie': 'boulaie',
   'dome': 'dome',
-  // 'chateau-de-la-corbe' et 'chateau-corbe' n'ont pas de logo
+  // Note: Le Château de la Corbe n'a pas de logo disponible
 };
 
 /**
@@ -36,7 +36,7 @@ export function getVenueLogo(slug: string, theme: LogoTheme = 'blanc'): string |
   if (!logoName) {
     return null;
   }
-  return `/Logos/${logoName}-${theme}.png`;
+  return `/logos/${logoName}-${theme}.png`;
 }
 
 /**

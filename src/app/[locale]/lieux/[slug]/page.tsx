@@ -620,17 +620,16 @@ export default async function VenuePage({ params }: VenuePageProps) {
               </div>
 
               {/* CTA */}
-              <div className="bg-primary text-white p-8 rounded-xl">
-                <h3 className="text-2xl font-display font-semibold mb-4">
+              <div className="bg-charcoal-800 text-white p-8 rounded-xl border border-accent/20">
+                <h3 className="text-2xl font-display font-semibold mb-4 text-accent">
                   Prêt à réserver ?
                 </h3>
-                <p className="text-white/90 mb-6 leading-relaxed">
+                <p className="text-neutral-200 mb-6 leading-relaxed">
                   Contactez-nous pour discuter de votre projet et obtenir un devis personnalisé pour {displayVenueName(venue.name)}.
                 </p>
                 <Link 
                   href="/contact" 
                   className="btn btn-primary w-full"
-                  style={{ background: 'white', color: 'var(--primary)' }}
                 >
                   Contact & Devis
                 </Link>

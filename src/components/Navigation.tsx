@@ -73,7 +73,7 @@ export default function Navigation() {
             className="flex items-center hover:opacity-80 transition-opacity shrink-0 ml-2 sm:ml-0"
           >
             <Image
-              src="/Logos/LOGO-Lieux d_Exception- BLANC_Plan de travail 1.png"
+              src="/logos/LOGO-Lieux d_Exception- BLANC_Plan de travail 1.png"
               alt="Lieux d'Exception"
               width={180}
               height={53}
@@ -162,7 +162,7 @@ export default function Navigation() {
           {/* Bouton menu mobile */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-3 rounded-lg text-white hover:bg-white/10 transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+            className="md:hidden p-3 rounded-lg text-white hover:bg-white/10 transition-colors min-w-12 min-h-12 flex items-center justify-center"
             aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={isMenuOpen}
           >
@@ -186,35 +186,35 @@ export default function Navigation() {
                 <p className="text-white/60 text-xs uppercase tracking-wider mb-3 px-2">Nos Lieux</p>
                 <Link 
                   href={`/${locale}/lieux/chateau-brulaire`}
-                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-12 flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Château de la Brûlaire
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/chateau-corbe`}
-                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-12 flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Château de la Corbe
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/domaine-nantais`}
-                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-12 flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Domaine Nantais
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/manoir-boulaie`}
-                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-12 flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Manoir de la Boulaie
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/le-dome`}
-                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-12 flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Dôme
@@ -223,14 +223,14 @@ export default function Navigation() {
               
               <Link 
                 href={`/${locale}/evenements-b2b`}
-                className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-3 px-2"
+                className="text-white hover:text-accent transition-colors min-h-12 flex items-center py-3 px-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('b2b')}
               </Link>
               <Link 
                 href={`/${locale}/mariages`}
-                className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-3 px-2"
+                className="text-white hover:text-accent transition-colors min-h-12 flex items-center py-3 px-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('weddings')}

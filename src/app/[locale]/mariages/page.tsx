@@ -61,7 +61,7 @@ export default async function MariagesPage({
   const faqSchema = generateFAQSchema('service');
 
   return (
-    <main className="min-h-screen bg-stone-light">
+    <main className="min-h-screen bg-stone-200">
       
       {/* Structured Data */}
       {serviceSchema && (
@@ -89,7 +89,7 @@ export default async function MariagesPage({
       />
 
       {/* Galerie de photos mariages - Organisée par lieu */}
-      <section className="bg-stone-50 py-16">
+      <section className="bg-stone-200 py-16">
         <div className="container px-4">
           <div className="mb-12">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
@@ -150,14 +150,19 @@ export default async function MariagesPage({
         />
       </section>
 
-      {/* Lieux d'Exception, une signature d'émotion */}
-      <section className="section bg-stone/30">
+      {/* Lieux d'Exception, la signature de votre mariage */}
+      <section className="section bg-stone">
         <div className="container">
           <div className="text-center max-w-4xl mx-auto mb-8">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
-              Lieux d&apos;Exception, une signature d&apos;émotion
+              Lieux d&apos;Exception, la signature de votre mariage
             </h2>
             <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
+            <div className="space-y-4 text-secondary text-base md:text-lg leading-relaxed mt-8">
+              <p>Chaque histoire est unique.</p>
+              <p>Votre mariage mérite un lieu et un accompagnement à la hauteur de ce moment rare.</p>
+              <p>Chez Lieux d&apos;Exception, nous réunissons des domaines de caractère et un savoir-faire éprouvé pour créer des mariages élégants, sincères et profondément mémorables.</p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12">
@@ -165,10 +170,11 @@ export default async function MariagesPage({
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                 <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961 !important' }}>01</div>
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Rencontres personnalisées</h3>
+                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Une rencontre qui donne le ton</h3>
               </div>
               <p className="text-neutral-200 leading-relaxed">
-                Rencontres et échanges personnalisés pour comprendre vos envies et imaginer une réception à votre image.
+                Dès notre première rencontre, nous prenons le temps de vous écouter.<br />
+                Vos envies, vos priorités, vos contraintes : tout est intégré pour construire un mariage fidèle à votre histoire, sans pression ni format imposé.
               </p>
             </div>
 
@@ -176,10 +182,11 @@ export default async function MariagesPage({
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                 <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961 !important' }}>02</div>
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Organisation & Coordination</h3>
+                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Une organisation fluide, du début à la fin</h3>
               </div>
               <p className="text-neutral-200 leading-relaxed">
-                Accompagnement dans l&apos;organisation et la coordination de votre événement, du choix des espaces à la mise en scène du grand jour.
+                Du choix du lieu à la mise en scène du jour J, nous orchestrons chaque étape avec précision.<br />
+                Vous profitez pleinement des préparatifs, l&apos;esprit libre, en toute confiance.
               </p>
             </div>
 
@@ -187,10 +194,11 @@ export default async function MariagesPage({
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                 <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961 !important' }}>03</div>
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Réseau de partenaires sélectionnés</h3>
+                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Des partenaires fiables, pour une confiance totale</h3>
               </div>
               <p className="text-neutral-200 leading-relaxed">
-                Accès à un réseau de partenaires sélectionnés : traiteurs, décorateurs, fleuristes, photographes… tous choisis pour leur exigence et leur sens du service.
+                Chaque prestataire est sélectionné pour son professionnalisme, sa fiabilité et son sens du service.<br />
+                Traiteurs, décorateurs, fleuristes, photographes… vous êtes entourés de professionnels sur lesquels vous pouvez compter, sans mauvaise surprise.
               </p>
             </div>
 
@@ -198,10 +206,11 @@ export default async function MariagesPage({
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                 <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961 !important' }}>04</div>
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Mise à disposition exclusive</h3>
+                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Des lieux exclusifs, pour une tranquillité absolue</h3>
               </div>
               <p className="text-neutral-200 leading-relaxed">
-                Mise à disposition exclusive de domaines pour vos événements.
+                Châteaux et domaines de caractère, entièrement privatisés pour votre mariage.<br />
+                Vous profitez de votre journée en toute intimité, dans un cadre élégant et apaisant, sans contraintes extérieures.
               </p>
             </div>
           </div>

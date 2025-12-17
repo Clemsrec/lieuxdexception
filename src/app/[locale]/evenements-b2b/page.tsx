@@ -35,14 +35,13 @@ export default async function EvenementsB2BPage({
   const corbe_all = await getB2BImages('chateau-corbe');
   const nantais_all = await getB2BImages('domaine-nantais');
   const boulaie_all = await getB2BImages('manoir-boulaie');
-  const dome_all = await getB2BImages('le-dome');
+  // Note: Le Dôme n'a pas encore d'images B2B disponibles
   
   // Sélection aléatoire de 6 images max par lieu
   const brulaire_images = getRandomImages(brulaire_all, 6);
   const corbe_images = getRandomImages(corbe_all, 6);
   const nantais_images = getRandomImages(nantais_all, 6);
   const boulaie_images = getRandomImages(boulaie_all, 6);
-  const dome_images = getRandomImages(dome_all, 6);
   
   // Générer structured data
   const serviceSchema = generateUniversalStructuredData({
@@ -96,6 +95,51 @@ export default async function EvenementsB2BPage({
             <div className="max-w-3xl mx-auto">
               <p className="text-neutral-300 text-lg text-center">
                 Découvrez nos domaines d'exception, chacun avec son caractère unique et ses espaces dédiés aux événements B2B
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Une expérience qui engage vos équipes et vos clients */}
+        <div className="container px-4 pb-16">
+          <div className="text-center mb-12">
+            <h3 className="text-xl md:text-2xl font-semibold mb-8 text-white">
+              Une expérience qui engage vos équipes et vos clients
+            </h3>
+            <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
+            <p className="text-neutral-300 text-base md:text-lg mt-6 max-w-4xl mx-auto">
+              Aujourd'hui, un événement professionnel ne doit plus seulement rassembler.<br />
+              Il doit inspirer, aligner et produire de l'impact.<br />
+              Chez Lieux d'Exception, nous concevons des expériences événementielles exclusives, portées par des lieux rares et un savoir-faire éprouvé, au service de vos enjeux stratégiques.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Marquer durablement les esprits</h4>
+              <p className="text-secondary leading-relaxed">
+                Des lieux à forte identité, pensés pour créer un effet immédiat. <strong className="text-primary">Votre événement devient un moment de référence, qui valorise votre image et renforce l'adhésion de vos équipes et de vos clients.</strong>
+              </p>
+            </div>
+
+            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Des environnements qui déclenchent la performance</h4>
+              <p className="text-secondary leading-relaxed">
+                <strong className="text-primary">Cohésion, créativité, prise de recul, décisions stratégiques.</strong> Nos domaines offrent des cadres propices à l'échange et à la réflexion, loin des formats standardisés et impersonnels.
+              </p>
+            </div>
+
+            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Une liberté totale de création</h4>
+              <p className="text-secondary leading-relaxed">
+                Chaque lieu est privatisable, modulable et ouvert aux formats les plus exigeants. <strong className="text-primary">Séminaire confidentiel, expérience immersive ou événement d'envergure : nous adaptons l'espace à votre ambition, jamais l'inverse.</strong>
+              </p>
+            </div>
+
+            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Un savoir-faire qui sécurise votre projet</h4>
+              <p className="text-secondary leading-relaxed">
+                <strong className="text-primary">Plus de 20 ans d'expertise événementielle, un coordinateur dédié et un réseau de partenaires premium.</strong> Vous bénéficiez d'un pilotage précis, fluide et maîtrisé, du premier échange au jour J.
               </p>
             </div>
           </div>
@@ -185,72 +229,38 @@ export default async function EvenementsB2BPage({
         </div>
       </section>
 
-      {/* Une expérience pour vos équipes */}
-      <section className="section bg-neutral-800">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-white">
-              Une expérience pour vos équipes et vos clients
-            </h2>
-            <div className="accent-line" />
-            <p className="text-neutral-300 text-base md:text-lg mt-6">
-              Dans un environnement professionnel en constante évolution, il est essentiel de proposer des événements qui ont du sens et de l&apos;impact.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
-              <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Marquer les esprits</h3>
-              <p className="text-secondary leading-relaxed">
-                Des lieux conçus pour <strong className="text-primary">marquer les esprits, valoriser votre image et créer une vraie connexion humaine.</strong>
-              </p>
-            </div>
-
-            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
-              <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Environnements propices</h3>
-              <p className="text-secondary leading-relaxed">
-                Des environnements propices à la <strong className="text-primary">cohésion, à la créativité ou à la prise de recul,</strong> loin des lieux standardisés.
-              </p>
-            </div>
-
-            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
-              <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Liberté totale</h3>
-              <p className="text-secondary leading-relaxed">
-                Une <strong className="text-primary">liberté totale de création :</strong> nos lieux sont ouverts aux formats les plus audacieux, des plus confidentiels aux plus immersifs.
-              </p>
-            </div>
-
-            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
-              <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Équipe passionnée</h3>
-              <p className="text-secondary leading-relaxed">
-                Une <strong className="text-primary">équipe de passionnés à vos côtés,</strong> qui aime repousser les limites du brief et aller au-delà des attentes initiales.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="section bg-neutral-900">
-        <div className="container px-4">
-          <div className="text-center bg-stone-50 rounded-2xl p-6 md:p-12 border-2 border-accent/40">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-primary">
+      <section className="section relative overflow-hidden mb-0">
+        <div className="absolute inset-0">
+          <Image
+            src="/venues/manoir-boulaie/b2b/boulaie_seminaire_6.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority={false}
+          />
+        </div>
+        <div className="absolute inset-0 bg-neutral-900/60" />
+        <div className="container relative z-10 px-4">
+          <div className="text-center mx-auto">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-display italic text-white mb-6 md:mb-8" style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.5)' }}>
               Êtes-vous prêt à vivre cette expérience ?
             </h2>
-            <p className="text-secondary text-base md:text-lg mb-2">
-              <strong className="text-primary">Lieux d&apos;Exception, c&apos;est plus qu&apos;un service événementiel :</strong>
+            <p className="text-lg md:text-xl text-white/95 mb-3 font-light max-w-3xl mx-auto">
+              Vous avez un objectif.
             </p>
-            <p className="text-secondary text-base md:text-lg mb-8">
-              c&apos;est une promesse de singularité, une invitation à l&apos;émotion, une exigence de qualité.
+            <p className="text-lg md:text-xl text-white/95 mb-8 font-light max-w-3xl mx-auto">
+              Nous avons les lieux, l&apos;expertise et la méthode pour le transformer en expérience marquante.
             </p>
             
             <div className="flex flex-col gap-6 items-center max-w-2xl mx-auto">
               <Link href="/contact" className="btn btn-primary w-full sm:w-auto">
                 Contact & Devis
               </Link>
-              <div className="text-sm md:text-base text-secondary space-y-1">
-                <p><strong className="text-primary">Téléphone Pro/B2B :</strong> <a href="tel:0670562879" className="hover:text-accent transition-colors">06 70 56 28 79</a></p>
-                <p><strong className="text-primary">Email :</strong> <a href="mailto:contact@lieuxdexception.com" className="hover:text-accent transition-colors break-all">contact@lieuxdexception.com</a></p>
+              <div className="text-sm md:text-base text-white/90 space-y-1">
+                <p><strong className="text-white">Téléphone Pro/B2B :</strong> <a href="tel:0670562879" className="hover:text-accent transition-colors">06 70 56 28 79</a></p>
+                <p><strong className="text-white">Email :</strong> <a href="mailto:contact@lieuxdexception.com" className="hover:text-accent transition-colors break-all">contact@lieuxdexception.com</a></p>
               </div>
             </div>
           </div>
