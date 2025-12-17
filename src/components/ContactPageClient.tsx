@@ -87,7 +87,7 @@ export default function ContactPageClient() {
               transition={{ duration: 0.6 }}
               className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg"
             >
-              <h3 className="text-xl md:text-2xl font-semibold mb-6 !text-[#C9A961]">
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-[#C9A961]!">
                 Événements Professionnels
               </h3>
               <div className="space-y-4">
@@ -99,8 +99,8 @@ export default function ContactPageClient() {
                 </div>
                 <div>
                   <p className="text-sm text-neutral-200 mb-1">Email</p>
-                  <a href="mailto:contact@lieuxdexception.fr" className="text-white hover:text-accent transition-colors">
-                    contact@lieuxdexception.fr
+                  <a href="mailto:contact@lieuxdexception.com" className="text-white hover:text-accent transition-colors">
+                    contact@lieuxdexception.com
                   </a>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export default function ContactPageClient() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg"
             >
-              <h3 className="text-xl md:text-2xl font-semibold mb-6 !text-[#C9A961]">
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-[#C9A961]!">
                 Mariages & Événements Privés
               </h3>
               <div className="space-y-4">
@@ -126,8 +126,8 @@ export default function ContactPageClient() {
                 </div>
                 <div>
                   <p className="text-sm text-neutral-200 mb-1">Email</p>
-                  <a href="mailto:contact@lieuxdexception.fr" className="text-white hover:text-accent transition-colors">
-                    contact@lieuxdexception.fr
+                  <a href="mailto:contact@lieuxdexception.com" className="text-white hover:text-accent transition-colors">
+                    contact@lieuxdexception.com
                   </a>
                 </div>
               </div>

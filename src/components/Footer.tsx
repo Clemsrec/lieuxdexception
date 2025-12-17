@@ -92,7 +92,7 @@ export default function Footer() {
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Château de la Brûlaire
+                    Le Château de la Brûlaire
                   </Link>
                 </li>
                 <li>
@@ -101,7 +101,7 @@ export default function Footer() {
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Château de la Corbe
+                    Le Château de la Corbe
                   </Link>
                 </li>
                 <li>
@@ -110,7 +110,7 @@ export default function Footer() {
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Domaine Nantais
+                    Le Domaine Nantais
                   </Link>
                 </li>
                 <li>
@@ -119,7 +119,7 @@ export default function Footer() {
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
                     <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
-                    Manoir de la Boulaie
+                    Le Manoir de la Boulaie
                   </Link>
                 </li>
                 <li>

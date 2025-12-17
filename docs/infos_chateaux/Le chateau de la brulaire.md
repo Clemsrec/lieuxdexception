@@ -21,7 +21,7 @@ Atypique
 Au vert
 Charme
 
-Entre Nantes, Cholet et Angers, le Château de la Brûlaire déploie ses façades élégantes au coeur d'un parc arboré de 5 hectares. Ses espaces accueillent vos événements les plus conventionnels aux plus événementiels, dans un cadre raffiné et fonctionnel.
+Entre Nantes, Cholet et Angers, le Le Château de la Brûlaire déploie ses façades élégantes au coeur d'un parc arboré de 5 hectares. Ses espaces accueillent vos événements les plus conventionnels aux plus événementiels, dans un cadre raffiné et fonctionnel.
 Equipements & Services
 Activités
     Rallye & Chasse au trésor

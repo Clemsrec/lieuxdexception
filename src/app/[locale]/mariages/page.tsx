@@ -2,9 +2,11 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
+import VenueGallerySection from '@/components/VenueGallerySection';
 import { generateServiceMetadata } from '@/lib/smartMetadata';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
 import { getTranslations } from 'next-intl/server';
+import { getMariageImages, getRandomImages } from '@/lib/mariageImages';
 
 /**
  * Métadonnées SEO optimisées via système universel
@@ -19,6 +21,9 @@ export const metadata: Metadata = generateServiceMetadata(
  * 
  * Cette page présente les services et solutions pour les mariages
  * dans les 5 lieux d'exception du Groupe Riou.
+ * 
+ * Les images sont chargées dynamiquement depuis /public/venues/[slug]/mariages
+ * et randomisées à chaque chargement (6 photos max par lieu)
  */
 export default async function MariagesPage({
   params,
@@ -27,6 +32,21 @@ export default async function MariagesPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Weddings' });
+  
+  // Charger les images depuis le système de fichiers
+  const brulaire_all = await getMariageImages('chateau-brulaire');
+  const corbe_all = await getMariageImages('chateau-corbe');
+  const nantais_all = await getMariageImages('domaine-nantais');
+  const boulaie_all = await getMariageImages('manoir-boulaie');
+  const dome_all = await getMariageImages('le-dome');
+  
+  // Sélection aléatoire de 6 images max par lieu
+  const brulaire_images = getRandomImages(brulaire_all, 6);
+  const corbe_images = getRandomImages(corbe_all, 6);
+  const nantais_images = getRandomImages(nantais_all, 6);
+  const boulaie_images = getRandomImages(boulaie_all, 6);
+  const dome_images = getRandomImages(dome_all, 6);
+  
   // Générer structured data
   const serviceSchema = generateUniversalStructuredData({
     siteType: 'corporate',
@@ -62,230 +82,82 @@ export default async function MariagesPage({
         title={t('title')}
         subtitle={t('hero')}
         description={t('description')}
-        backgroundImage="/images/table-seminaire.jpg"
+        backgroundImage="/venues/chateau-brulaire/mariages/mise-en-scene.jpg"
         buttons={[
           { label: t('requestInfo'), href: `/${locale}/contact`, primary: true }
         ]}
       />
 
-      {/* Galerie de photos mariages - Toutes les images des dossiers mariages/ */}
-      <section className="section bg-white">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4">
+      {/* Galerie de photos mariages - Organisée par lieu */}
+      <section className="bg-stone-50 py-16">
+        <div className="container px-4">
+          <div className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
               Nos domaines pour vos mariages d&apos;exception
             </h2>
-            <div className="accent-line" />
-            <p className="text-secondary text-lg mt-6">
-              Découvrez nos espaces dédiés aux mariages à travers nos 5 domaines d&apos;exception
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
-            {/* Château de la Brûlaire - 20 images */}
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire.jpg" alt="Château de la Brûlaire - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_1.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_2.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_3.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_4.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_5.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_6.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_7.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_8.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_9.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/brulaire_chambre_19.jpg" alt="Château de la Brûlaire - Chambre" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/mise-en-scene.jpg" alt="Château de la Brûlaire - Mise en scène" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/mise-en-scene.1.jpg" alt="Château de la Brûlaire - Mise en scène" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/mise-en-scene.2.jpg" alt="Château de la Brûlaire - Mise en scène" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/mise-en-scene.3.jpg" alt="Château de la Brûlaire - Mise en scène" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/mise-en-scene.4.jpg" alt="Château de la Brûlaire - Mise en scène" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/mise-en-scene.5.jpg" alt="Château de la Brûlaire - Mise en scène" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/mise-en-scene.6.jpg" alt="Château de la Brûlaire - Mise en scène" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-brulaire/mariages/mise-en-scene.7.jpg" alt="Château de la Brûlaire - Mise en scène" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-
-            {/* Château de la Corbe - 13 images */}
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_1.jpg" alt="Château de la Corbe - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_2.jpg" alt="Château de la Corbe - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_3.jpg" alt="Château de la Corbe - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_ceremonie_1.jpg" alt="Château de la Corbe - Cérémonie" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_ceremonie_2.jpg" alt="Château de la Corbe - Cérémonie" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_orangerie_1.jpg" alt="Château de la Corbe - Orangerie" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_orangerie_2.jpg" alt="Château de la Corbe - Orangerie" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_orangerie_3.jpg" alt="Château de la Corbe - Orangerie" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_orangerie_4.jpg" alt="Château de la Corbe - Orangerie" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_orangerie_5.jpg" alt="Château de la Corbe - Orangerie" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_orangerie_6.jpg" alt="Château de la Corbe - Orangerie" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_vue_d_ensemble_1.jpg" alt="Château de la Corbe - Vue d'ensemble" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/chateau-corbe/mariages/corbe_vue_d_ensemble_2.jpg" alt="Château de la Corbe - Vue d'ensemble" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-
-            {/* Domaine Nantais - 12 images */}
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_nantais_1.jpg" alt="Domaine Nantais - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_nantais_2.jpg" alt="Domaine Nantais - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_cocktail_1.jpg" alt="Domaine Nantais - Cocktail" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_cocktail_2.jpg" alt="Domaine Nantais - Cocktail" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_cocktail_3.jpg" alt="Domaine Nantais - Cocktail" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_cocktail_4.jpg" alt="Domaine Nantais - Cocktail" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_cocktail_5.jpg" alt="Domaine Nantais - Cocktail" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_exterieur_1.jpg" alt="Domaine Nantais - Extérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_exterieur_2.png" alt="Domaine Nantais - Extérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_salle_1.jpg" alt="Domaine Nantais - Salle" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_salle_2.jpeg" alt="Domaine Nantais - Salle" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/domaine-nantais/mariages/domaine_salle_3.jpeg" alt="Domaine Nantais - Salle" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-
-            {/* Manoir de la Boulaie - 13 images */}
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/manoir_boulaie_1.jpg" alt="Manoir de la Boulaie - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/manoir_boulaie_2.jpg" alt="Manoir de la Boulaie - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_exterieur_1.jpg" alt="Manoir de la Boulaie - Extérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_exterieur_2.jpg" alt="Manoir de la Boulaie - Extérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_facade_1.jpg" alt="Manoir de la Boulaie - Façade" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_facade_2.jpg" alt="Manoir de la Boulaie - Façade" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_interieur_1.jpg" alt="Manoir de la Boulaie - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_interieur_2.jpg" alt="Manoir de la Boulaie - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_interieur_3.jpg" alt="Manoir de la Boulaie - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_interieur_4.jpg" alt="Manoir de la Boulaie - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_interieur_5.jpg" alt="Manoir de la Boulaie - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/manoir-boulaie/mariages/boulaie_interieur_6.jpg" alt="Manoir de la Boulaie - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-
-            {/* Le Dôme - 5 images */}
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/le-dome/mariages/dome.jpg" alt="Le Dôme - Mariage" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/le-dome/mariages/dome_exterieur_1.jpg" alt="Le Dôme - Extérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/le-dome/mariages/dome_interieur_1.jpg" alt="Le Dôme - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/le-dome/mariages/dome_interieur_2.jpg" alt="Le Dôme - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
-            </div>
-            <div className="relative aspect-3/4 overflow-hidden rounded-lg group">
-              <Image src="/venues/le-dome/mariages/dome_interieur_3.jpg" alt="Le Dôme - Intérieur" fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" />
+            <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
+            <div className="max-w-3xl mx-auto">
+              <p className="text-secondary text-lg text-center">
+                Découvrez nos 5 domaines de prestige, chacun avec son caractère unique pour célébrer votre jour le plus important
+              </p>
             </div>
           </div>
         </div>
+
+        {/* Le Château de la Brûlaire */}
+        <VenueGallerySection
+          venueName="Le Château de la Brûlaire"
+          venueSlug="chateau-brulaire"
+          locale={locale}
+          bgColor="white"
+          images={brulaire_images}
+        />
+
+        {/* Le Château de la Corbe */}
+        <VenueGallerySection
+          venueName="Le Château de la Corbe"
+          venueSlug="chateau-corbe"
+          locale={locale}
+          bgColor="stone-50"
+          images={corbe_images}
+        />
+
+        {/* Le Domaine Nantais */}
+        <VenueGallerySection
+          venueName="Le Domaine Nantais"
+          venueSlug="domaine-nantais"
+          locale={locale}
+          bgColor="white"
+          images={nantais_images}
+        />
+
+        {/* Le Manoir de la Boulaie */}
+        <VenueGallerySection
+          venueName="Le Manoir de la Boulaie"
+          venueSlug="manoir-boulaie"
+          locale={locale}
+          bgColor="stone-50"
+          images={boulaie_images}
+        />
+
+        {/* Le Dôme */}
+        <VenueGallerySection
+          venueName="Le Dôme"
+          venueSlug="le-dome"
+          locale={locale}
+          bgColor="white"
+          images={dome_images}
+        />
       </section>
 
       {/* Lieux d'Exception, une signature d'émotion */}
       <section className="section bg-stone/30">
         <div className="container">
-          <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-accent">
+          <div className="text-center max-w-4xl mx-auto mb-8">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
               Lieux d&apos;Exception, une signature d&apos;émotion
             </h2>
-            <div className="accent-line" />
+            <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12">
@@ -362,11 +234,11 @@ export default async function MariagesPage({
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/contact" className="btn-primary">
+              <Link href="/contact" className="btn btn-primary">
                 Nous contacter
               </Link>
               <div className="text-sm md:text-base text-white">
-                <p><strong className="text-white">Téléphone :</strong> <a href="tel:0602037011" className="text-white/90 hover:text-accent transition-colors">06 02 03 70 11</a></p>
+                <p><strong className="text-white">Téléphone Mariages :</strong> <a href="tel:0602037011" className="text-white/90 hover:text-accent transition-colors">06 02 03 70 11</a></p>
                 <p><strong className="text-white">Email :</strong> <a href="mailto:contact@lieuxdexception.com" className="text-white/90 hover:text-accent transition-colors">contact@lieuxdexception.com</a></p>
               </div>
             </div>

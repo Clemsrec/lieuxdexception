@@ -101,35 +101,36 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-linear-to-br from-neutral-50 via-white to-neutral-100 px-6 py-8">
-      <div className="w-full max-w-3xl">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="inline-block mb-6">
-            <Image
-              src="/logo/Logo_CLE_avec Texte.png"
-              alt="Lieux d'Exception - Groupe Riou"
-              width={280}
-              height={100}
-              className="mx-auto drop-shadow-sm"
-              priority
-            />
+    <div className="min-h-screen flex items-center justify-center p-6 bg-linear-to-br from-slate-50 to-slate-100">
+      <div className="w-full max-w-md">
+        {/* Card de connexion */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
+          {/* Header avec logo */}
+          <div className="text-center mb-8">
+            <div className="mb-6">
+              <Image
+                src="/logo/Logo_CLE_avec Texte.png"
+                alt="Lieux d'Exception"
+                width={200}
+                height={70}
+                className="mx-auto"
+                priority
+              />
+            </div>
+            <h1 className="text-2xl font-semibold text-slate-800 mb-2">
+              Administration
+            </h1>
+            <p className="text-slate-600 text-sm">
+              Connectez-vous à votre espace admin
+            </p>
           </div>
-          <h1 className="text-2xl font-heading font-semibold text-primary">
-            Administration
-          </h1>
-          <p className="text-secondary mt-2">
-            Connexion à l&apos;espace admin
-          </p>
-        </div>
 
-        {/* Formulaire */}
-        <div className="bg-white px-8 py-10 md:px-12 md:py-12 rounded-2xl shadow-2xl border border-neutral-200">
-          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+          {/* Formulaire */}
+          <form onSubmit={handleSubmit} className="space-y-5" noValidate>
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
-                Adresse email *
+              <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                Adresse email
               </label>
               <input
                 id="email"
@@ -137,12 +138,12 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  setError(''); // Efface l'erreur lors de la saisie
+                  setError('');
                 }}
                 required
                 autoComplete="email"
                 spellCheck="false"
-                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-all outline-none"
+                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors outline-none text-slate-900 placeholder:text-slate-400"
                 placeholder="admin@lieuxdexception.fr"
                 disabled={loading}
               />
@@ -150,8 +151,8 @@ export default function AdminLoginPage() {
 
             {/* Mot de passe */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-primary mb-2">
-                Mot de passe *
+              <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-2">
+                Mot de passe
               </label>
               <div className="relative">
                 <input
@@ -160,20 +161,19 @@ export default function AdminLoginPage() {
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
-                    setError(''); // Efface l'erreur lors de la saisie
+                    setError('');
                   }}
                   required
                   autoComplete="current-password"
                   minLength={8}
-                  className="w-full px-4 py-3 pr-12 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-all outline-none"
+                  className="w-full px-4 py-3 pr-12 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors outline-none text-slate-900 placeholder:text-slate-400"
                   placeholder="Minimum 8 caractères"
                   disabled={loading}
                 />
-                {/* Bouton œil pour voir/cacher le mot de passe */}
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors p-1"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
                   tabIndex={-1}
                   aria-label={showPassword ? 'Cacher le mot de passe' : 'Afficher le mot de passe'}
                 >
@@ -189,17 +189,16 @@ export default function AdminLoginPage() {
                   )}
                 </button>
               </div>
-              {/* Indicateur tentatives si erreur */}
               {attempts > 0 && (
-                <p className="text-xs text-secondary mt-1">
+                <p className="text-xs text-slate-500 mt-2">
                   Tentative {attempts}/5
                 </p>
               )}
             </div>
 
-            {/* Message d'erreur amélioré */}
+            {/* Message d'erreur */}
             {error && (
-              <div className="bg-red-50 border-l-4 border-red-500 text-red-800 px-4 py-3 rounded-lg text-sm flex items-start gap-3 animate-shake">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm flex items-start gap-3">
                 <svg className="w-5 h-5 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                 </svg>
@@ -207,11 +206,11 @@ export default function AdminLoginPage() {
               </div>
             )}
 
-            {/* Bouton connexion */}
+            {/* Bouton */}
             <button
               type="submit"
               disabled={loading || attempts >= 5}
-              className="w-full btn-primary py-3 font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:shadow-lg"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -222,25 +221,25 @@ export default function AdminLoginPage() {
                   Connexion en cours...
                 </span>
               ) : attempts >= 5 ? (
-                '🚫 Trop de tentatives'
+                'Trop de tentatives'
               ) : (
                 'Se connecter'
               )}
             </button>
           </form>
 
-          {/* Info première connexion */}
-          <div className="mt-6 pt-6 border-t border-neutral-200">
-            <p className="text-xs text-secondary text-center">
-              <strong>Première connexion ?</strong><br />
-              Contactez l&apos;administrateur système pour créer votre compte.
+          {/* Footer */}
+          <div className="mt-6 pt-6 border-t border-slate-200">
+            <p className="text-xs text-slate-500 text-center">
+              <strong className="text-slate-700">Première connexion ?</strong><br />
+              Contactez l&apos;administrateur pour créer votre compte
             </p>
           </div>
         </div>
 
-        {/* Footer */}
-        <p className="text-center text-xs text-secondary mt-6">
-          Lieux d&apos;Exception © {new Date().getFullYear()} - Groupe Riou
+        {/* Copyright */}
+        <p className="text-center text-sm text-slate-600 mt-6">
+          © {new Date().getFullYear()} Lieux d&apos;Exception - Groupe Riou
         </p>
       </div>
     </div>

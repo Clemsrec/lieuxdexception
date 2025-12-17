@@ -154,10 +154,10 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
           {/* Overlay gradient subtil */}
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-linear-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
           {/* Numéro dans cercle doré */}
-          <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full bg-gradient-to-br from-accent to-accent-dark border-2 border-white shadow-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+          <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full bg-linear-to-br from-accent to-accent-dark border-2 border-white shadow-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
             <span className="font-display font-bold text-2xl text-white drop-shadow-md">
               {index + 1}
             </span>

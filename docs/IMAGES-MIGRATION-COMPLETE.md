@@ -104,17 +104,17 @@
 
 ## 🎨 Images par Château
 
-### Château de la Brûlaire (42 photos)
+### Le Château de la Brûlaire (42 photos)
 - **Hero**: `chateau-brulaire/hero.jpg` (810 KB, optimisé depuis 5.5 MB)
 - **B2B**: 22 photos (séminaires, bar, espaces réception)
 - **Mariages**: 20 photos (chambres, espaces cérémonie)
 
-### Château de la Corbe (41 photos)
+### Le Château de la Corbe (41 photos)
 - **Hero**: `chateau-corbe/hero.jpg`
 - **B2B**: 28 photos
 - **Mariages**: 13 photos (orangerie, vues d'ensemble, cérémonies)
 
-### Domaine Nantais (22 photos)
+### Le Domaine Nantais (22 photos)
 - **Hero**: `domaine-nantais/hero.jpg`
 - **B2B**: 10 photos (séminaires, accueil café)
 - **Mariages**: 12 photos (cocktails, extérieurs, salles)
@@ -124,7 +124,7 @@
 - **B2B**: 0 photo (pas de dossier b2b)
 - **Mariages**: 5 photos (extérieurs, intérieurs)
 
-### Manoir de la Boulaie (28 photos)
+### Le Manoir de la Boulaie (28 photos)
 - **Hero**: `manoir-boulaie/hero.jpg`
 - **B2B**: 15 photos (séminaires, extérieurs, accueil)
 - **Mariages**: 13 photos (façades, intérieurs, extérieurs)

@@ -4,9 +4,9 @@
  * Script d'import des 3 lieux d'exception avec leurs contenus marketing officiels
  * 
  * Lieux importés :
- * 1. Domaine Nantais
+ * 1. Le Domaine Nantais
  * 2. Le Dôme - Port-Saint-Père
- * 3. Manoir de la Boulaie
+ * 3. Le Manoir de la Boulaie
  * 
  * Usage: node scripts/import-lieux-textes.js
  */
@@ -29,15 +29,15 @@ const db = admin.firestore();
  */
 const venues = [
   {
-    // DOMAINE NANTAIS
+    // Le Domaine Nantais
     id: 'domaine-nantais',
     slug: 'domaine-nantais',
-    name: 'Domaine Nantais',
+    name: 'Le Domaine Nantais',
     tagline: 'À 10 minutes de Nantes, dans un parc paysagé d\'1 hectare',
-    description: 'Au cœur d\'un parc paysagé d\'1 hectare, le Domaine Nantais vous accueille dans une salle de caractère en pierre naturelle, entièrement rénovée en 2025. Modulable et élégante, elle peut recevoir jusqu\'à 220 personnes pour vos séminaires, réunions, cocktails ou soirées d\'entreprise.',
+    description: 'Au cœur d\'un parc paysagé d\'1 hectare, le Le Domaine Nantais vous accueille dans une salle de caractère en pierre naturelle, entièrement rénovée en 2025. Modulable et élégante, elle peut recevoir jusqu\'à 220 personnes pour vos séminaires, réunions, cocktails ou soirées d\'entreprise.',
     
     // Textes longs (version site web)
-    longDescription: `Le Domaine Nantais vous ouvre ses portes dans un cadre verdoyant de 1 hectare, entièrement clos et paysagé, idéal pour allier travail, cohésion et convivialité. À seulement 10 minutes du périphérique nantais, notre site vous permet d'organiser vos séminaires, réunions, ateliers ou événements corporate dans un environnement calme, modulable et inspirant.`,
+    longDescription: `Le Le Domaine Nantais vous ouvre ses portes dans un cadre verdoyant de 1 hectare, entièrement clos et paysagé, idéal pour allier travail, cohésion et convivialité. À seulement 10 minutes du périphérique nantais, notre site vous permet d'organiser vos séminaires, réunions, ateliers ou événements corporate dans un environnement calme, modulable et inspirant.`,
     
     highlights: [
       'Salle en pierre naturelle rénovée en 2025',
@@ -116,9 +116,9 @@ const venues = [
     reviewCount: 47,
     
     seo: {
-      metaTitle: 'Domaine Nantais - Séminaires & Événements B2B à 10 min de Nantes',
-      metaDescription: 'Organisez vos séminaires, réunions et événements d\'entreprise au Domaine Nantais. Parc paysagé 1 ha, salle en pierre 220 pers, à 10 min de Nantes.',
-      keywords: ['domaine nantais', 'séminaire nantes', 'événement b2b', 'salle réception nantes', 'team building']
+      metaTitle: 'Le Domaine Nantais - Séminaires & Événements B2B à 10 min de Nantes',
+      metaDescription: 'Organisez vos séminaires, réunions et événements d\'entreprise au Le Domaine Nantais. Parc paysagé 1 ha, salle en pierre 220 pers, à 10 min de Nantes.',
+      keywords: ['Le Domaine Nantais', 'séminaire nantes', 'événement b2b', 'salle réception nantes', 'team building']
     },
     
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -238,10 +238,10 @@ const venues = [
   },
   
   {
-    // MANOIR DE LA BOULAIE
+    // Le Manoir de la Boulaie
     id: 'manoir-boulaie',
     slug: 'manoir-boulaie',
-    name: 'Manoir de la Boulaie',
+    name: 'Le Manoir de la Boulaie',
     tagline: 'Charme historique et confort moderne, à 10 min de Nantes',
     description: 'Dans un écrin de verdure de plus d\'1 ha, ce lieu d\'exception allie charme historique et confort moderne sur 600 m² de salons rénovés. Idéal pour vos événements professionnels (séminaires, réunions, cocktails, lancements…), le Manoir vous offre un cadre élégant et une équipe dédiée pour une organisation sur-mesure.',
     
@@ -340,8 +340,8 @@ const venues = [
     ],
     
     seo: {
-      metaTitle: 'Manoir de la Boulaie - Séminaires & Événements au Bord du Lac près de Nantes',
-      metaDescription: 'Organisez vos séminaires et événements d\'entreprise au Manoir de la Boulaie. 600m² de salons, plage privée, parc 1,5 ha. À 10 min de Nantes.',
+      metaTitle: 'Le Manoir de la Boulaie - Séminaires & Événements au Bord du Lac près de Nantes',
+      metaDescription: 'Organisez vos séminaires et événements d\'entreprise au Le Manoir de la Boulaie. 600m² de salons, plage privée, parc 1,5 ha. À 10 min de Nantes.',
       keywords: ['manoir boulaie', 'séminaire lac nantes', 'événement nature', 'manoir réception', 'team building lac']
     },
     
@@ -368,9 +368,9 @@ async function importVenues() {
     await batch.commit();
     console.log('\n🎉 Tous les lieux ont été importés avec succès !');
     console.log('\n📋 Résumé :');
-    console.log(`   - Domaine Nantais (220 pers) - Séminaires & B2B`);
+    console.log(`   - Le Domaine Nantais (220 pers) - Séminaires & B2B`);
     console.log(`   - Le Dôme (1000 pers) - Événements XXL`);
-    console.log(`   - Manoir de la Boulaie (250 pers) - Séminaires & Mariages au bord du lac`);
+    console.log(`   - Le Manoir de la Boulaie (250 pers) - Séminaires & Mariages au bord du lac`);
     
   } catch (error) {
     console.error('❌ Erreur lors de l\'import :', error);

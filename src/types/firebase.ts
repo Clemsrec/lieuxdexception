@@ -172,6 +172,10 @@ export interface Venue {
   contact: {
     phone: string;
     email: string;
+    phoneB2B?: string;
+    phoneMariages?: string;
+    emailB2B?: string;
+    emailMariages?: string;
     website?: string;
     manager: string;
     instagram?: string;
@@ -181,6 +185,10 @@ export interface Venue {
   // Champs de contact simplifiés pour compatibilité
   email?: string;
   phone?: string;
+  emailB2B?: string;
+  emailMariages?: string;
+  phoneB2B?: string;
+  phoneMariages?: string;
   url?: string; // URL du site dédié du lieu
   websiteUrl?: string;
   externalUrl?: string; // URL du site externe du lieu (prioritaire pour les cards)

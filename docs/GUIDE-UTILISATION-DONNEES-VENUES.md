@@ -452,15 +452,15 @@ const venueSchema = {
 
 ## ✨ Exemples visuels de différenciation
 
-### Château de la Corbe (5000 pers. parc)
+### Le Château de la Corbe (5000 pers. parc)
 - **Badge spécial** : "Capacité exceptionnelle jusqu'à 5000 personnes"
 - **Mise en avant** : Idéal pour méga team-building, festivals corporate
 
-### Manoir de la Boulaie (11 salles)
+### Le Manoir de la Boulaie (11 salles)
 - **Badge** : "11 espaces modulables"
 - **Mise en avant** : Parfait pour événements multi-ateliers
 
-### Domaine Nantais (Récent 2025)
+### Le Domaine Nantais (Récent 2025)
 - **Badge** : "Rénové en 2025"
 - **Mise en avant** : Design moderne, équipements neufs
 

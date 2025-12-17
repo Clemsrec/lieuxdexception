@@ -237,7 +237,7 @@ export default function AdminDashboardPage() {
               <p className="text-secondary text-sm mb-4">
                 Stats en temps réel, pages vues, taux de conversion
               </p>
-              <Link href="/admin/analytics" className="btn-primary inline-block">
+              <Link href="/admin/analytics" className="btn btn-primary inline-block">
                 Configurer GA4
               </Link>
             </div>

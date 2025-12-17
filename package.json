@@ -4,8 +4,8 @@
   "description": "Site catalogue B2B du Groupe Riou présentant 5 lieux événementiels d'exception en France",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "dev:turbo": "next dev --turbopack",
+    "dev": "next dev -p 3001",
+    "dev:turbo": "next dev --turbopack -p 3001",
     "build": "next build --no-lint",
     "start": "next start",
     "lint": "next lint",

@@ -2,7 +2,7 @@
 
 Date: 16 décembre 2025
 
-## 1. Château de la Brûlaire
+## 1. Le Château de la Brûlaire
 
 ### ✅ Données présentes dans Firestore
 - Description complète ✅
@@ -32,7 +32,7 @@ Date: 16 décembre 2025
 
 ---
 
-## 2. Château de la Corbe
+## 2. Le Château de la Corbe
 
 ### ✅ Données présentes dans Firestore
 - Description complète ✅
@@ -64,7 +64,7 @@ Date: 16 décembre 2025
 
 ---
 
-## 3. Domaine Nantais
+## 3. Le Domaine Nantais
 
 ### ✅ Données présentes dans Firestore
 - Parc 1 hectare ✅
@@ -94,7 +94,7 @@ Date: 16 décembre 2025
 
 ---
 
-## 4. Manoir de la Boulaie
+## 4. Le Manoir de la Boulaie
 
 ### ✅ Données présentes dans Firestore
 - 600m² salons ✅
@@ -137,9 +137,9 @@ Date: 16 décembre 2025
 4. **Capacités par configuration** (Réunion, U, Théâtre, Cabaret, École, Banquet, Cocktail)
 
 ### Incohérences à corriger:
-1. **Château de la Corbe**: Cocktail parc 5000 pers (Firestore dit max 300)
-2. **Domaine Nantais**: Banquet 400 pers (Firestore dit 180), Cocktail 100 (Firestore dit 220)
-3. **Château de la Brûlaire**: Théâtre 200 pers (Firestore dit 350)
+1. **Le Château de la Corbe**: Cocktail parc 5000 pers (Firestore dit max 300)
+2. **Le Domaine Nantais**: Banquet 400 pers (Firestore dit 180), Cocktail 100 (Firestore dit 220)
+3. **Le Château de la Brûlaire**: Théâtre 200 pers (Firestore dit 350)
 
 ### Équipements à ajouter partout:
 - Équipement son, Écran LCD, Vidéoprojecteur, Wifi, Paperboard, DJ, Animations, Micro
@@ -182,5 +182,5 @@ Les fichiers .md contiennent des formules et tarifs détaillés pour chaque châ
 7. Ajouter activités disponibles
 
 ### Priorité basse:
-8. Ajouter statut "Nouveau" pour Château de la Corbe
+8. Ajouter statut "Nouveau" pour Le Château de la Corbe
 9. Ajouter statut "Ouverture prochaine" pour Manoir Boulaie

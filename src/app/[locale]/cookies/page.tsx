@@ -171,7 +171,7 @@ export default function CookiesPage() {
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <button className="btn-primary">
+              <button className="btn btn-primary">
                 Gérer mes préférences
               </button>
               <button className="border border-border px-4 py-2 rounded-lg hover:bg-muted transition-colors">

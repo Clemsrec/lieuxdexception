@@ -4,12 +4,37 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { MapPin, Users } from 'lucide-react';
+import { MapPin, Users, Instagram, ExternalLink } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import dynamic from 'next/dynamic';
 import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getCardImage } from '@/lib/sharedVenueImages';
+import { getVenueLogo } from '@/lib/logoHelper';
+
+// Liens sociaux par lieu
+const venueSocialLinks: Record<string, { instagram: string; mariagesNet: string }> = {
+  'chateau-brulaire': {
+    instagram: 'https://www.instagram.com/chateaudelabrulaire/',
+    mariagesNet: 'https://www.mariages.net/chateau-mariage/chateau-de-la-brulaire--e392833'
+  },
+  'chateau-corbe': {
+    instagram: 'https://www.instagram.com/chateaudelacorbe/',
+    mariagesNet: 'https://www.mariages.net/domaine-mariage/chateau-de-la-corbe--e403715'
+  },
+  'manoir-boulaie': {
+    instagram: 'https://www.instagram.com/manoirdelaboulaie/',
+    mariagesNet: 'https://www.mariages.net/domaine-mariage/manoir-de-la-boulaie--e349118'
+  },
+  'domaine-nantais': {
+    instagram: 'https://www.instagram.com/domainenantais/',
+    mariagesNet: 'https://www.mariages.net/domaine-mariage/domaine-nantais--e230388'
+  },
+  'le-dome': {
+    instagram: 'https://www.instagram.com/_le_dome/',
+    mariagesNet: 'https://www.mariages.net/salle-mariage/dome-nantais--e349120'
+  }
+};
 
 // Import dynamique de la carte pour éviter les erreurs SSR avec Leaflet
 const VenuesMap = dynamic(() => import('@/components/VenuesMap'), {
@@ -164,16 +189,17 @@ export default function HomeClient({ venues }: HomeClientProps) {
         <section className="section bg-white">
           <div className="container">
             <motion.div
+              className="text-center max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
             >
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-primary mb-4 md:mb-6">
-                Une aventure née de <span className="text-cursive-underline">lieux</span> & de <span className="text-cursive-underline">passion</span>
+                Une aventure née de <br></br><span className="text-cursive-underline">lieux</span> & de <span className="text-cursive-underline">passion</span>
               </h2>
               <motion.div 
-                className="w-20 h-px bg-accent/40 mb-4 md:mb-5"
+                className="w-20 h-px bg-accent/40 mb-4 md:mb-5 mx-auto"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
@@ -188,8 +214,8 @@ export default function HomeClient({ venues }: HomeClientProps) {
               >
                 <p>Tout commence par un lieu.</p>
                 <p>Un domaine découvert, une émotion, l&apos;envie de partager sa beauté.</p>
-                <p>Puis un second, un troisième… à chaque fois la même flamme, la même passion pour créer des souvenirs précieux.</p>
-                <p>Peu à peu, ces lieux se sont reliés, unis par une même philosophie : révéler leur âme, unir les talents, sublimer chaque instant.</p>
+                <p>Puis un second, un troisième… à chaque fois la même flamme, <br></br>la même passion pour créer des souvenirs précieux.</p>
+                <p>Peu à peu, ces lieux se sont reliés, unis par une même philosophie :<br></br>révéler leur âme, unir les talents, sublimer chaque instant.</p>
                 <p className="text-xl md:text-2xl font-medium text-primary mt-5 md:mt-6">
                   Ainsi est née Lieux d&apos;Exception — une signature plus qu&apos;un nom, un fil conducteur entre des domaines d&apos;âme et des équipes passionnées, où chaque événement devient une histoire.
                 </p>
@@ -225,7 +251,242 @@ export default function HomeClient({ venues }: HomeClientProps) {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <VenuesCarousel venues={venues} autoPlayInterval={6000} />
+              {/* Grille de lieux - Ligne 1: Brûlaire, Corbe, Boulaie */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
+                {venues
+                  .filter(v => ['chateau-brulaire', 'chateau-corbe', 'manoir-boulaie'].includes(v.slug))
+                  .sort((a, b) => {
+                    const order = ['chateau-brulaire', 'chateau-corbe', 'manoir-boulaie'];
+                    return order.indexOf(a.slug) - order.indexOf(b.slug);
+                  })
+                  .map((venue, index) => {
+                    const socialLinks = venueSocialLinks[venue.slug];
+                    return (
+                      <div
+                        key={venue.id}
+                        className="group flex flex-col overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-neutral-800"
+                      >
+                        {/* Image */}
+                        <Link href={`/${locale}/lieux/${venue.slug}`} className="relative aspect-4/3 overflow-hidden">
+                          <Image
+                            src={venue.images?.hero || venue.heroImage || venue.image || '/images/placeholder.jpg'}
+                            alt={venue.name}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </Link>
+                        
+                        {/* Contenu */}
+                        <div className="p-6 flex-1 flex flex-col">
+                          {/* Logo centré */}
+                          {getVenueLogo(venue.slug, 'blanc') && (
+                            <div className="flex justify-center mb-4">
+                              <Image
+                                src={getVenueLogo(venue.slug, 'blanc')!}
+                                alt={`Logo ${venue.name}`}
+                                width={96}
+                                height={96}
+                                className="object-contain drop-shadow-lg"
+                                unoptimized
+                              />
+                            </div>
+                          )}
+                          <Link href={`/${locale}/lieux/${venue.slug}`}>
+                            <h3 className="text-xl md:text-2xl font-display font-semibold mb-3 transition-colors text-center" style={{ color: '#C9A961' }}>
+                              {venue.name}
+                            </h3>
+                          </Link>
+                          
+                          <div className="flex items-center gap-2 text-white/90 text-sm md:text-base mb-2">
+                            <MapPin className="w-4 h-4 shrink-0" />
+                            <span>{venue.location}</span>
+                          </div>
+                          
+                          <div className="flex items-center gap-2 text-white/90 text-sm md:text-base mb-4">
+                            <Users className="w-4 h-4 shrink-0" />
+                            <span>Jusqu&apos;à {venue.capacitySeated} personnes</span>
+                          </div>
+
+                          {/* Contact */}
+                          <div className="space-y-2 mb-4">
+                            {venue.emailMariages && (
+                              <a
+                                href={`mailto:${venue.emailMariages}`}
+                                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                              >
+                                <span>✉</span>
+                                <span>{venue.emailMariages}</span>
+                              </a>
+                            )}
+                            {venue.phoneMariages && (
+                              <a
+                                href={`tel:${venue.phoneMariages.replace(/\s/g, '')}`}
+                                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                              >
+                                <span>☎</span>
+                                <span>{venue.phoneMariages}</span>
+                              </a>
+                            )}
+                          </div>
+
+                          {/* Liens sociaux */}
+                          {socialLinks && (
+                            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/10">
+                              <a
+                                href={socialLinks.instagram}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Instagram className="w-4 h-4" />
+                                <span>Instagram</span>
+                              </a>
+                              <a
+                                href={socialLinks.mariagesNet}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                <span>Mariages.net</span>
+                              </a>
+                            </div>
+                          )}
+
+                          <Link 
+                            href={`/${locale}/lieux/${venue.slug}`}
+                            className="mt-4 inline-flex items-center gap-2 font-medium group-hover:gap-3 transition-all"
+                            style={{ color: '#C9A961' }}
+                          >
+                            Découvrir →
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              {/* Grille de lieux - Ligne 2: Le Domaine Nantais, Le Dôme (centrés) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+                {venues
+                  .filter(v => ['domaine-nantais', 'le-dome'].includes(v.slug))
+                  .sort((a, b) => {
+                    const order = ['domaine-nantais', 'le-dome'];
+                    return order.indexOf(a.slug) - order.indexOf(b.slug);
+                  })
+                  .map((venue, index) => {
+                    const socialLinks = venueSocialLinks[venue.slug];
+                    const displayIndex = index + 4; // 4 et 5 pour la deuxième ligne
+                    return (
+                      <div
+                        key={venue.id}
+                        className="group flex flex-col overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-neutral-800"
+                      >
+                        {/* Image */}
+                        <Link href={`/${locale}/lieux/${venue.slug}`} className="relative aspect-4/3 overflow-hidden">
+                          <Image
+                            src={venue.images?.hero || venue.heroImage || venue.image || '/images/placeholder.jpg'}
+                            alt={venue.name}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        </Link>
+                        
+                        {/* Contenu */}
+                        <div className="p-6 flex-1 flex flex-col">
+                          {/* Logo centré */}
+                          {getVenueLogo(venue.slug, 'blanc') && (
+                            <div className="flex justify-center mb-4">
+                              <Image
+                                src={getVenueLogo(venue.slug, 'blanc')!}
+                                alt={`Logo ${venue.name}`}
+                                width={96}
+                                height={96}
+                                className="object-contain drop-shadow-lg"
+                                unoptimized
+                              />
+                            </div>
+                          )}
+                          <Link href={`/${locale}/lieux/${venue.slug}`}>
+                            <h3 className="text-xl md:text-2xl font-display font-semibold mb-3 transition-colors text-center" style={{ color: '#C9A961' }}>
+                              {venue.name}
+                            </h3>
+                          </Link>
+                          
+                          <div className="flex items-center gap-2 text-white/90 text-sm md:text-base mb-2">
+                            <MapPin className="w-4 h-4 shrink-0" />
+                            <span>{venue.location}</span>
+                          </div>
+                          
+                          <div className="flex items-center gap-2 text-white/90 text-sm md:text-base mb-4">
+                            <Users className="w-4 h-4 shrink-0" />
+                            <span>Jusqu&apos;à {venue.capacitySeated} personnes</span>
+                          </div>
+
+                          {/* Contact */}
+                          <div className="space-y-2 mb-4">
+                            {venue.emailMariages && (
+                              <a
+                                href={`mailto:${venue.emailMariages}`}
+                                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                              >
+                                <span>✉</span>
+                                <span>{venue.emailMariages}</span>
+                              </a>
+                            )}
+                            {venue.phoneMariages && (
+                              <a
+                                href={`tel:${venue.phoneMariages.replace(/\s/g, '')}`}
+                                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                              >
+                                <span>☎</span>
+                                <span>{venue.phoneMariages}</span>
+                              </a>
+                            )}
+                          </div>
+
+                          {/* Liens sociaux */}
+                          {socialLinks && (
+                            <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/10">
+                              <a
+                                href={socialLinks.instagram}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Instagram className="w-4 h-4" />
+                                <span>Instagram</span>
+                              </a>
+                              <a
+                                href={socialLinks.mariagesNet}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                <span>Mariages.net</span>
+                              </a>
+                            </div>
+                          )}
+
+                          <Link 
+                            href={`/${locale}/lieux/${venue.slug}`}
+                            className="mt-4 inline-flex items-center gap-2 font-medium group-hover:gap-3 transition-all"
+                            style={{ color: '#C9A961' }}
+                          >
+                            Découvrir →
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
             </motion.div>
           </div>
         </section>
@@ -357,7 +618,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
             <p className="text-lg md:text-xl text-white/90 mb-4 md:mb-6 font-light uppercase tracking-wider">
               Des domaines où se mêlent beauté, sincérité et art de recevoir.
             </p>
-            <Link href={`/${locale}/contact`} className="btn-primary">
+            <Link href={`/${locale}/contact`} className="btn btn-primary">
               Nous contacter
             </Link>
           </div>

@@ -20,11 +20,11 @@ const path = require('path');
 
 // Mapping des noms de dossiers vers les slugs
 const VENUE_MAPPING = {
-  'Château de la Brûlaire': 'chateau-brulaire',
-  'Château de la Corbe': 'chateau-corbe',
-  'Domaine Nantais': 'domaine-nantais',
+  'Le Château de la Brûlaire': 'chateau-brulaire',
+  'Le Château de la Corbe': 'chateau-corbe',
+  'Le Domaine Nantais': 'domaine-nantais',
   'Le Dôme': 'le-dome',
-  'Manoir de la Boulaie': 'manoir-boulaie'
+  'Le Manoir de la Boulaie': 'manoir-boulaie'
 };
 
 // Chemins

@@ -72,15 +72,15 @@ i18n/
 3. Réseau de partenaires / Network of Partners
 4. Mise à disposition exclusive / Exclusive Availability
 
-### 4. Domaine Nantais
+### 4. Le Domaine Nantais
 
 **Tagline :**
 - FR : "À 10 minutes de Nantes, dans un parc paysagé d'1 hectare"
 - EN : "10 minutes from Nantes, in a landscaped 1-hectare park"
 
 **Description courte :**
-- FR : "Au cœur d'un parc paysagé d'1 hectare, le Domaine Nantais vous accueille..."
-- EN : "In the heart of a landscaped 1-hectare park, the Domaine Nantais welcomes you..."
+- FR : "Au cœur d'un parc paysagé d'1 hectare, le Le Domaine Nantais vous accueille..."
+- EN : "In the heart of a landscaped 1-hectare park, the Le Domaine Nantais welcomes you..."
 
 ### 5. Le Dôme
 
@@ -92,7 +92,7 @@ i18n/
 - FR : "Le Dôme est votre toile blanche"
 - EN : "The Dôme is your blank canvas"
 
-### 6. Manoir de la Boulaie
+### 6. Le Manoir de la Boulaie
 
 **Tagline :**
 - FR : "Charme historique et confort moderne, à 10 min de Nantes"
@@ -178,7 +178,7 @@ node scripts/import-translations.js --lang=en --file=translations-en.json
 ## Notes importantes
 
 ⚠️ **Ne pas traduire :**
-- Noms de lieux (Domaine Nantais, Le Dôme, Manoir de la Boulaie)
+- Noms de lieux (Le Domaine Nantais, Le Dôme, Le Manoir de la Boulaie)
 - Coordonnées (téléphone, email)
 - Noms propres
 

@@ -20,7 +20,7 @@ Présentation du lieu
 Au vert
 Charme
 
-Ouverture prochainement! Bienvenue au Manoir de la Boulaie, un lieu d'exception entièrement rénové pour répondre à toutes vos attentes en matière d'événements.
+Ouverture prochainement! Bienvenue au Le Manoir de la Boulaie, un lieu d'exception entièrement rénové pour répondre à toutes vos attentes en matière d'événements.
 A 10min de Nantes, dans un cadre verdoyant et élégant de plus de 1 ha , les 600m² de salles et salons alliant charme historique et modernité offrent un espace unique pour vos événements professionnels.
 De la conception à la réalisation, une équipe dédiée à votre événement vous accompagne dans chaque détails de votre organisation.
 Equipements & Services

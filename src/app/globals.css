@@ -90,6 +90,19 @@
   --spacing-3xl: 6rem;     /* 96px */
   --spacing-4xl: 8rem;     /* 128px */
   
+  /* ===== MAX WIDTHS (pour éviter conflit avec spacing) ===== */
+  --max-width-xs: 20rem;   /* 320px */
+  --max-width-sm: 24rem;   /* 384px */
+  --max-width-md: 28rem;   /* 448px */
+  --max-width-lg: 32rem;   /* 512px */
+  --max-width-xl: 36rem;   /* 576px */
+  --max-width-2xl: 42rem;  /* 672px */
+  --max-width-3xl: 48rem;  /* 768px */
+  --max-width-4xl: 56rem;  /* 896px */
+  --max-width-5xl: 64rem;  /* 1024px */
+  --max-width-6xl: 72rem;  /* 1152px */
+  --max-width-7xl: 80rem;  /* 1280px */
+  
   /* ===== BORDER RADIUS ===== */
   --radius-sm: 0.25rem;    /* 4px */
   --radius-md: 0.5rem;     /* 8px */
@@ -210,21 +223,21 @@ html {
 
 /* Sections (espacement vertical uniquement) */
 .section {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 @media (min-width: 640px) {
   .section {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }
 
 @media (min-width: 1024px) {
   .section {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 }
 
@@ -369,7 +382,7 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 2rem;
+  padding: 1rem 2.5rem;
   border-radius: var(--radius-md);
   font-family: var(--font-heading);
   font-weight: 600;
@@ -387,6 +400,7 @@ html {
   color: white;
   box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
   border: none;
+  border-radius: 9999px;
 }
 
 .btn-primary:hover {
@@ -395,21 +409,23 @@ html {
 }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--primary);
-  border: 2px solid var(--primary);
+  background: white;
+  color: var(--charcoal-800);
+  border: 2px solid white;
+  border-radius: 9999px;
 }
 
 .btn-secondary:hover {
-  background: var(--primary);
+  background: var(--accent);
   color: white;
+  border-color: var(--accent);
   transform: translateY(-2px);
 }
 
 /* Touch targets min 48px sur mobile */
 @media (max-width: 640px) {
   .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.875rem 2rem;
     font-size: 0.8125rem;
     min-height: 48px;
   }

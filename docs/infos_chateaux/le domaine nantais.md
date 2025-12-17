@@ -20,7 +20,7 @@ Présentation du lieu
 Au vert
 Charme
 
-A 10 minutes au sud de Nantes, dans Parc entièrement clos et paysagé de 1,5Ha idéal pour les activités outdoor, le Domaine Nantais rénové en mars 2025 accueille vos réunions, séminaires et cocktails d'entreprise jusqu'à 220 personnes. Une terrasse et un patio couvert de 80 m² ouvrent vos événements sur l'extérieur. En soirée, profitez des éclairages du Parc pour prolonger vos événements.
+A 10 minutes au sud de Nantes, dans Parc entièrement clos et paysagé de 1,5Ha idéal pour les activités outdoor, le Le Domaine Nantais rénové en mars 2025 accueille vos réunions, séminaires et cocktails d'entreprise jusqu'à 220 personnes. Une terrasse et un patio couvert de 80 m² ouvrent vos événements sur l'extérieur. En soirée, profitez des éclairages du Parc pour prolonger vos événements.
 Equipements & Services
 Activités
     Multi-Activités & Olympiades

@@ -15,11 +15,11 @@ function displayVenueName(rawName) {
 }
 
 const venues = [
-  "Château de la Brûlaire",
-  "Château de la Corbe",
-  "Domaine Nantais",
+  "Le Château de la Brûlaire",
+  "Le Château de la Corbe",
+  "Le Domaine Nantais",
   "Le Dôme",
-  "Manoir de la Boulaie"
+  "Le Manoir de la Boulaie"
 ];
 
 console.log('🏰 Test d\'affichage des noms avec "Le" devant:\n');

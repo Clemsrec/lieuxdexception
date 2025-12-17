@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getVenues } from '@/lib/firestore';
 import { displayVenueName } from '@/lib/formatVenueName';
+import { getB2BImages, getRandomImages } from '@/lib/mariageImages';
 
 // ISR : Cache avec revalidation toutes les 2 heures
 export const revalidate = 7200;
@@ -59,6 +60,10 @@ export default async function VenuePage({ params }: VenuePageProps) {
   if (!venue) {
     notFound();
   }
+
+  // Charger les images B2B dynamiquement depuis le filesystem
+  const allB2BImages = await getB2BImages(slug);
+  const galleryImages = getRandomImages(allB2BImages, 12); // 12 images max randomisées
 
   return (
     <main className="min-h-screen">
@@ -130,7 +135,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
       </section>
 
       {/* Barre d'actions rapides */}
-      <section className="sticky top-16 z-40 bg-white border-b border-neutral-200 shadow-md">
+      <section className="sticky top-0 z-40 bg-white border-b border-neutral-200 shadow-md">
         <div className="container">
           <div className="flex items-center justify-between py-4">
             <div className="flex gap-6">
@@ -147,7 +152,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                 Contact
               </a>
             </div>
-            <Link href="/contact" className="btn-primary btn-sm">
+            <Link href="/contact" className="btn btn-primary text-sm">
               Demander un devis
             </Link>
           </div>
@@ -309,16 +314,16 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   )}
 
                   {/* Contact rapide */}
-                  <div className="pt-4 border-t border-neutral-200">
-                    <Link href="/contact" className="btn-primary w-full">
+                  <div className="pt-4 border-t border-accent/20">
+                    <Link href="/contact" className="btn btn-primary w-full">
                       Demander un devis
                     </Link>
                     {venue.contact?.phone && (
                       <a 
                         href={`tel:${venue.contact.phone}`}
-                        className="btn-secondary w-full inline-flex items-center gap-2 mt-3"
+                        className="btn btn-secondary w-full mt-3"
                       >
-                        
+                        <span className="text-lg">✆</span>
                         {venue.contact.phone}
                       </a>
                     )}
@@ -369,7 +374,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                     {space.name}
                   </h3>
                   <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-3xl font-display font-bold text-accent">{space.size}</span>
+                    <span className="text-3xl font-display font-bold text-accent drop-shadow-md">{space.size}</span>
                     <span className="text-white/80">{space.unit}</span>
                   </div>
                   <div className="w-full h-px bg-accent/20 my-3" />
@@ -470,18 +475,18 @@ export default async function VenuePage({ params }: VenuePageProps) {
       )}
 
       {/* Galerie photos */}
-      {venue.images.gallery && venue.images.gallery.length > 0 && (
+      {galleryImages && galleryImages.length > 0 && (
         <section id="galerie" className="section">
           <div className="container">
             <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
               Galerie photos
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {venue.images.gallery.map((image, index) => (
+              {galleryImages.map((image, index) => (
                 <div key={index} className="relative aspect-4/3 overflow-hidden rounded-lg group cursor-pointer">
                   <Image
-                    src={image}
-                    alt={`${displayVenueName(venue.name)} - Photo ${index + 1}`}
+                    src={image.src}
+                    alt={image.alt}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 50vw, 33vw"
@@ -508,25 +513,53 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   Informations de contact
                 </h3>
                 <div className="space-y-4">
-                  {venue.contact?.phone && (
+                  {/* Email Mariages */}
+                  {venue.emailMariages && (
                     <div className="flex items-start gap-3">
                       
                       <div>
-                        <div className="text-sm text-secondary mb-1">Téléphone</div>
-                        <a href={`tel:${venue.contact.phone}`} className="text-primary font-medium hover:text-accent transition-colors">
-                          {venue.contact.phone}
+                        <div className="text-sm text-secondary mb-1">Email Mariages/Privés</div>
+                        <a href={`mailto:${venue.emailMariages}`} className="text-primary font-medium hover:text-accent transition-colors break-all">
+                          {venue.emailMariages}
                         </a>
                       </div>
                     </div>
                   )}
                   
-                  {venue.contact?.email && (
+                  {/* Email B2B */}
+                  {venue.emailB2B && (
                     <div className="flex items-start gap-3">
                       
                       <div>
-                        <div className="text-sm text-secondary mb-1">Email</div>
-                        <a href={`mailto:${venue.contact.email}`} className="text-primary font-medium hover:text-accent transition-colors break-all">
-                          {venue.contact.email}
+                        <div className="text-sm text-secondary mb-1">Email Pro/B2B</div>
+                        <a href={`mailto:${venue.emailB2B}`} className="text-primary font-medium hover:text-accent transition-colors break-all">
+                          {venue.emailB2B}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Téléphone Mariages */}
+                  {venue.phoneMariages && (
+                    <div className="flex items-start gap-3">
+                      
+                      <div>
+                        <div className="text-sm text-secondary mb-1">Téléphone Mariages/Privés</div>
+                        <a href={`tel:${venue.phoneMariages.replace(/\s/g, '')}`} className="text-primary font-medium hover:text-accent transition-colors">
+                          {venue.phoneMariages}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Téléphone B2B */}
+                  {venue.phoneB2B && (
+                    <div className="flex items-start gap-3">
+                      
+                      <div>
+                        <div className="text-sm text-secondary mb-1">Téléphone Pro/B2B</div>
+                        <a href={`tel:${venue.phoneB2B.replace(/\s/g, '')}`} className="text-primary font-medium hover:text-accent transition-colors">
+                          {venue.phoneB2B}
                         </a>
                       </div>
                     </div>
@@ -587,7 +620,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                 </p>
                 <Link 
                   href="/contact" 
-                  className="btn-primary w-full"
+                  className="btn btn-primary w-full"
                   style={{ background: 'white', color: 'var(--primary)' }}
                 >
                   Demander un devis
@@ -605,7 +638,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
             Découvrez nos autres lieux
           </h2>
           <div className="text-center">
-            <Link href="/contact" className="btn-secondary">
+            <Link href="/contact" className="btn btn-secondary">
               Contactez-nous pour découvrir nos autres domaines
             </Link>
           </div>

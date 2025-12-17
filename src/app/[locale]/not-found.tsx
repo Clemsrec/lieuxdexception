@@ -146,7 +146,7 @@ export default function NotFoundPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/"
-                className="flex-1 btn-primary text-center py-4 font-semibold hover:shadow-lg transition-all group"
+                className="btn btn-primary flex-1 text-center font-semibold group"
               >
                 <span className="inline-flex items-center gap-2">
                   <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

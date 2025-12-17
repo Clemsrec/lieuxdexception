@@ -3,7 +3,7 @@
  * 
  * Modifications :
  * 1. Ajouter "Le" devant les noms des lieux
- * 2. Définir l'ordre : Brulaire - Corbe - Manoir - Domaine Nantais - Le Dôme
+ * 2. Définir l'ordre : Brulaire - Corbe - Manoir - Le Domaine Nantais - Le Dôme
  * 
  * Usage : node scripts/update-venue-names-and-order.js
  */
@@ -33,15 +33,15 @@ const venueUpdates = {
     displayOrder: 1
   },
   'chateau-de-la-corbe': {
-    name: 'Le Château de la Corbe',
+    name: 'Le Le Château de la Corbe',
     displayOrder: 2
   },
   'manoir-de-la-boulaie': {
-    name: 'Le Manoir de la Boulaie',
+    name: 'Le Le Manoir de la Boulaie',
     displayOrder: 3
   },
   'domaine-nantais': {
-    name: 'Le Domaine Nantais',
+    name: 'Le Le Domaine Nantais',
     displayOrder: 4
   },
   'le-dome': {

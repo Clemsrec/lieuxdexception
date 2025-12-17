@@ -34,7 +34,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
           onClick={() => setActiveForm('b2b')}
           className={`flex-1 py-4 px-6 rounded-xl text-base font-semibold transition-all border ${
             activeForm === 'b2b'
-              ? 'bg-charcoal-800 !text-[#C9A961] shadow-lg border-accent/20'
+              ? 'bg-charcoal-800 text-[#C9A961]! shadow-lg border-accent/20'
               : 'bg-stone/30 text-secondary hover:bg-stone/50 border-stone'
           }`}
         >
@@ -44,7 +44,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
           onClick={() => setActiveForm('prive')}
           className={`flex-1 py-4 px-6 rounded-xl text-base font-semibold transition-all border ${
             activeForm === 'prive'
-              ? 'bg-charcoal-800 !text-[#C9A961] shadow-lg border-accent/20'
+              ? 'bg-charcoal-800 text-[#C9A961]! shadow-lg border-accent/20'
               : 'bg-stone/30 text-secondary hover:bg-stone/50 border-stone'
           }`}
         >
@@ -58,7 +58,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
           <div className="text-center mb-8">
             <h3 className="text-2xl font-semibold mb-2">Événements professionnels</h3>
             <p className="text-secondary">
-              Séminaires, team-buildings, conférences, soirées d'entreprise
+              Séminaires, team-buildings, conférences, soirées d&apos;entreprise
             </p>
           </div>
 
@@ -223,7 +223,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
 
           <button
             type="submit"
-            className="w-full btn-primary py-4 text-lg"
+            className="btn btn-primary w-full text-lg"
           >
             Demander un devis
           </button>
@@ -324,28 +324,28 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
                   type="checkbox"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
-                <span className="text-sm">Manoir de la Boulaie</span>
+                <span className="text-sm">Le Manoir de la Boulaie</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
-                <span className="text-sm">Château de la Brûlaire</span>
+                <span className="text-sm">Le Château de la Brûlaire</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
-                <span className="text-sm">Château de la Corbe</span>
+                <span className="text-sm">Le Château de la Corbe</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
                 />
-                <span className="text-sm">Domaine Nantais</span>
+                <span className="text-sm">Le Domaine Nantais</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -370,7 +370,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
 
           <button
             type="submit"
-            className="w-full btn-primary py-4 text-lg"
+            className="btn btn-primary w-full text-lg"
           >
             Demander un devis
           </button>

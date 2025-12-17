@@ -44,11 +44,11 @@ Ainsi est née Lieux d'Exception — une signature plus qu'un nom, un fil conduc
 
 ---
 
-## LIEU 1 : CHÂTEAU DE LA BRÛLAIRE
+## LIEU 1 : Le Château de la Brûlaire
 
 ### Descriptif général
 ```
-Au cœur des coteaux verdoyants de Gesté, le Château de la Brûlaire marie le charme d'une demeure historique à l'élégance d'un domaine de réception.
+Au cœur des coteaux verdoyants de Gesté, le Le Château de la Brûlaire marie le charme d'une demeure historique à l'élégance d'un domaine de réception.
 
 Son parc arboré, son orangerie lumineuse et ses salons raffinés offrent un cadre idéal pour célébrer des moments d'exception, entre authenticité et art de recevoir.
 ```
@@ -103,7 +103,7 @@ Entre élégance des lieux et convivialité des espaces, la Brûlaire est la pro
 
 ### Descriptif général
 ```
-Niché à Haute-Goulaine, le Manoir de la Boulaie marie l'élégance d'une demeure de caractère à la douceur d'un cadre naturel.
+Niché à Haute-Goulaine, le Le Manoir de la Boulaie marie l'élégance d'une demeure de caractère à la douceur d'un cadre naturel.
 
 Entouré de vignes et niché dans un jardin à l'anglaise, ce lieu d'exception accueille vos mariages et réceptions dans une atmosphère à la fois intime, conviviale et poétique.
 
@@ -158,11 +158,11 @@ Un cadre rare, à deux pas de la ville, pour vivre la magie d'un mariage hors du
 
 ---
 
-## LIEU 3 : DOMAINE NANTAIS
+## LIEU 3 : Le Domaine Nantais
 
 ### Descriptif général
 ```
-À seulement quelques minutes de Nantes, le Domaine Nantais invite à célébrer l'amour au cœur de la nature.
+À seulement quelques minutes de Nantes, le Le Domaine Nantais invite à célébrer l'amour au cœur de la nature.
 
 Entouré de prairies et de chênes centenaires, ce lieu lumineux respire la liberté et la douceur de vivre.
 
@@ -174,7 +174,7 @@ Mariages champêtres, cérémonies laïques, réceptions élégantes ou brunchs 
 
 ### Expérience client
 ```
-Le Domaine Nantais est une invitation à célébrer l'amour dans un cadre sincère et authentique.
+Le Le Domaine Nantais est une invitation à célébrer l'amour dans un cadre sincère et authentique.
 
 Nos équipes vous accompagnent avec bienveillance et créativité pour imaginer un mariage à votre image — naturel, chic et plein d'émotion.
 
@@ -274,9 +274,9 @@ Mariages festifs, grandes réceptions ou événements élégants : nos équipes 
 
 | Lieu | Capacité max | Type | Localisation | Particularité |
 |------|--------------|------|--------------|---------------|
-| **Château de la Brûlaire** | 350 personnes | Château historique | Gesté (49600) | Orangerie + 2 parcs |
+| **Le Château de la Brûlaire** | 350 personnes | Château historique | Gesté (49600) | Orangerie + 2 parcs |
 | **Château de la Boulaie** | 250 personnes | Manoir vignoble | Haute-Goulaine (44115) | Jardin anglais + vignes |
-| **Domaine Nantais** | 160 personnes | Domaine champêtre | Le Bignon (44140) | Bohème + chênes centenaires |
+| **Le Domaine Nantais** | 160 personnes | Domaine champêtre | Le Bignon (44140) | Bohème + chênes centenaires |
 | **Le Dôme** | 250 personnes | Salle contemporaine | Port-Saint-Père (44710) | Volumes lumineux + cuisine pro |
 
 ---

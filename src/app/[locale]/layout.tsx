@@ -8,7 +8,6 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { locales } from '@/i18n';
-import '../globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import CookieBanner from '@/components/CookieBanner';
@@ -38,9 +37,10 @@ export async function generateMetadata({
     keywords: t('keywords'),
     icons: {
       icon: [
-        { url: '/favicon.svg', type: 'image/svg+xml' },
+        { url: '/icon.svg', type: 'image/svg+xml' },
         { url: '/favicon.ico' },
       ],
+      apple: '/apple-icon.png',
     },
     authors: [{ name: 'Groupe Riou' }],
     creator: 'Groupe Riou',
@@ -102,25 +102,21 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className="antialiased">
-        <NextIntlClientProvider messages={messages}>
-          {/* Enregistrement Service Worker pour FCM */}
-          <ServiceWorkerRegistration />
+    <NextIntlClientProvider messages={messages}>
+      {/* Enregistrement Service Worker pour FCM */}
+      <ServiceWorkerRegistration />
 
-          {/* Navigation globale */}
-          <Navigation />
+      {/* Navigation globale */}
+      <Navigation />
 
-          {/* Contenu principal */}
-          <main>{children}</main>
+      {/* Contenu principal */}
+      <main>{children}</main>
 
-          {/* Footer principal */}
-          <Footer />
+      {/* Footer principal */}
+      <Footer />
 
-          {/* Banner de consentement des cookies (RGPD) */}
-          <CookieBanner />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+      {/* Banner de consentement des cookies (RGPD) */}
+      <CookieBanner />
+    </NextIntlClientProvider>
   );
 }

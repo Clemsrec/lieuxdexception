@@ -149,7 +149,7 @@ export function SubmitButton({ loading, disabled, children }: {
     <button
       type="submit"
       disabled={loading || disabled}
-      className="w-full btn-primary py-4 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:shadow-lg"
+      className="btn btn-primary w-full text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {loading ? (
         <span className="flex items-center justify-center gap-3">

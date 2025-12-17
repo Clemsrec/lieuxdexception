@@ -35,7 +35,7 @@ export default function AdminPage() {
         
         {/* Actions rapides */}
         <div className="flex gap-3">
-          <button className="btn-primary">
+          <button className="btn btn-primary">
             Nouveau lieu
           </button>
           <button className="border border-border px-4 py-2 rounded-lg hover:bg-muted transition-colors">

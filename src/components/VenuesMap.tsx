@@ -9,7 +9,8 @@ import { displayVenueName } from '@/lib/formatVenueName';
 import { getMapThumbnail } from '@/lib/sharedVenueImages';
 import Link from 'next/link';
 import { Venue } from '@/types/firebase';
-import { MapPin, Users, Phone, Mail } from 'lucide-react';
+import { MapPin, Users, Phone, Mail, Instagram, ExternalLink } from 'lucide-react';
+import { getVenueLogo } from '@/lib/logoHelper';
 
 /**
  * Composant carte interactive Leaflet pour afficher les châteaux
@@ -140,8 +141,18 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
                     fill
                     className="object-cover"
                     sizes="480px"
-                  />
-                </div>
+                  />                  {/* Logo doré sur fond clair */}
+                  {getVenueLogo(venue.slug, 'dore') && (
+                    <div className="absolute top-3 right-3 w-16 h-16 flex items-center justify-center">
+                      <Image
+                        src={getVenueLogo(venue.slug, 'dore')!}
+                        alt={`Logo ${venue.name}`}
+                        width={64}
+                        height={64}
+                        className="object-contain drop-shadow-md"
+                      />
+                    </div>
+                  )}                </div>
 
                 {/* Nom du château */}
                 <h3 className="font-display text-2xl text-black mb-2">
@@ -152,7 +163,7 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
                 <div className="w-16 h-px bg-accent mb-4" />
 
                 {/* Informations */}
-                <div className="space-y-2 mb-4">
+                <div className="space-y-3 mb-4">
                   {/* Adresse */}
                   {venue.address && (
                     <div className="flex items-start gap-2 text-sm text-black">
@@ -175,37 +186,63 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
                     </div>
                   )}
 
-                  {/* Téléphone */}
-                  {venue.contact?.phone && (
+                  {/* Email Mariages */}
+                  {venue.emailMariages && (
                     <div className="flex items-center gap-2 text-sm text-black">
-                      <Phone className="w-4 h-4 text-accent shrink-0" />
+                      <Mail className="w-4 h-4 text-accent shrink-0" />
                       <a 
-                        href={`tel:${venue.contact.phone}`}
-                        className="hover:text-accent transition-colors"
+                        href={`mailto:${venue.emailMariages}`}
+                        className="text-black hover:text-accent transition-colors truncate"
                       >
-                        {venue.contact.phone}
+                        {venue.emailMariages}
                       </a>
                     </div>
                   )}
 
-                  {/* Email */}
-                  {venue.contact?.email && (
+                  {/* Téléphone Mariages */}
+                  {venue.phoneMariages && (
                     <div className="flex items-center gap-2 text-sm text-black">
-                      <Mail className="w-4 h-4 text-accent shrink-0" />
+                      <Phone className="w-4 h-4 text-accent shrink-0" />
                       <a 
-                        href={`mailto:${venue.contact.email}`}
-                        className="text-black hover:text-accent transition-colors truncate"
+                        href={`tel:${venue.phoneMariages.replace(/\s/g, '')}`}
+                        className="hover:text-accent transition-colors"
                       >
-                        {venue.contact.email}
+                        {venue.phoneMariages}
                       </a>
                     </div>
                   )}
+
+                  {/* Liens sociaux */}
+                  <div className="flex items-center gap-3 pt-2 border-t border-neutral-200">
+                    {venue.contact?.instagram && (
+                      <a
+                        href={`https://instagram.com/${venue.contact.instagram.replace('@', '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-xs text-black/70 hover:text-accent transition-colors"
+                      >
+                        <Instagram className="w-3.5 h-3.5" />
+                        <span>Instagram</span>
+                      </a>
+                    )}
+                    {venue.contact?.mariagesNet && (
+                      <a
+                        href={venue.contact.mariagesNet}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-xs text-black/70 hover:text-accent transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Mariages.net</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 {/* Bouton CTA */}
                 <Link
                   href={`/lieux/${venue.slug}`}
-                  className="block w-full text-center bg-accent hover:bg-accent-dark !text-white font-heading font-semibold py-3 px-4 rounded-md transition-all duration-300 hover:shadow-lg"
+                  className="block w-full text-center bg-accent hover:bg-accent-dark text-white! font-heading font-semibold py-3 px-4 rounded-md transition-all duration-300 hover:shadow-lg"
                 >
                   Découvrir le lieu →
                 </Link>

@@ -10,9 +10,9 @@ Projet : Lieux d'Exception - Groupe Riou
 
 1. [Brochure Lieux d'Exception](#1-brochure-lieux-dexception)
 2. [Proposition Introduction Commerciale](#2-proposition-introduction-commerciale)
-3. [Texte Web Domaine Nantais](#3-texte-web-domaine-nantais)
+3. [Texte Web Le Domaine Nantais](#3-texte-web-domaine-nantais)
 4. [Texte Web Le Dôme](#4-texte-web-le-dôme)
-5. [Texte Web Manoir de la Boulaie V2](#5-texte-web-manoir-de-la-boulaie-v2)
+5. [Texte Web Le Manoir de la Boulaie V2](#5-texte-web-manoir-de-la-boulaie-v2)
 
 ---
 
@@ -152,13 +152,13 @@ Chez Lieux d'Exception, nos espaces ne se contentent pas d'accueillir vos évén
 
 ---
 
-## 3. TEXTE WEB DOMAINE NANTAIS
+## 3. TEXTE WEB Le Domaine Nantais
 
 ### VERSION COURTE - PAGE D'ACCUEIL
 
 ### Votre événement professionnel à 10 minutes de Nantes, dans un cadre unique et entièrement privatisable.
 
-Au cœur d'un parc paysagé d'1 hectare, **le Domaine Nantais** vous accueille dans une salle de caractère en pierre naturelle, entièrement rénovée en 2025. Modulable et élégante, elle peut recevoir jusqu'à **220 personnes** pour vos séminaires, réunions, cocktails ou soirées d'entreprise.
+Au cœur d'un parc paysagé d'1 hectare, **le Le Domaine Nantais** vous accueille dans une salle de caractère en pierre naturelle, entièrement rénovée en 2025. Modulable et élégante, elle peut recevoir jusqu'à **220 personnes** pour vos séminaires, réunions, cocktails ou soirées d'entreprise.
 
 ---
 
@@ -191,11 +191,11 @@ Une équipe professionnelle à votre écoute, des équipements modernes, et une 
 
 ### VERSION LONGUE - PAGE SÉMINAIRES
 
-### Organisez vos séminaires d'entreprise au Domaine Nantais
+### Organisez vos séminaires d'entreprise au Le Domaine Nantais
 
 #### Un lieu unique à 10 minutes de Nantes, pensé pour les professionnels
 
-Le Domaine Nantais vous ouvre ses portes dans un cadre verdoyant de 1 hectare, entièrement clos et paysagé, idéal pour allier travail, cohésion et convivialité. À seulement 10 minutes du périphérique nantais, notre site vous permet d'organiser vos **séminaires, réunions, ateliers ou événements corporate** dans un environnement calme, modulable et inspirant.
+Le Le Domaine Nantais vous ouvre ses portes dans un cadre verdoyant de 1 hectare, entièrement clos et paysagé, idéal pour allier travail, cohésion et convivialité. À seulement 10 minutes du périphérique nantais, notre site vous permet d'organiser vos **séminaires, réunions, ateliers ou événements corporate** dans un environnement calme, modulable et inspirant.
 
 ---
 
@@ -225,7 +225,7 @@ De jour comme de nuit, le Domaine s'adapte à vos besoins. Le parc et la salle p
 
 ### Liberté, flexibilité, accompagnement
 
-Au Domaine Nantais, **aucun prestataire n'est imposé.** Venez avec vos partenaires habituels, ou bénéficiez d'une **offre clé en main** grâce à notre réseau de professionnels sélectionnés. Notre **équipe expérimentée** vous accompagne dans chaque étape, avec une attention constante à la qualité et à la réussite de votre événement.
+Au Le Domaine Nantais, **aucun prestataire n'est imposé.** Venez avec vos partenaires habituels, ou bénéficiez d'une **offre clé en main** grâce à notre réseau de professionnels sélectionnés. Notre **équipe expérimentée** vous accompagne dans chaque étape, avec une attention constante à la qualité et à la réussite de votre événement.
 
 ---
 
@@ -237,7 +237,7 @@ Loin de l'agitation urbaine mais proche de tout, le Domaine offre à vos collabo
 
 **Contactez-nous dès maintenant pour construire ensemble un séminaire à votre image.**
 
-**Le Domaine Nantais – Un lieu d'entreprise, ancré dans la nature.**
+**Le Le Domaine Nantais – Un lieu d'entreprise, ancré dans la nature.**
 
 ---
 
@@ -249,7 +249,7 @@ Loin de l'agitation urbaine mais proche de tout, le Domaine offre à vos collabo
 
 **🌿 Donnez de l'impact à vos événements professionnels, à 10 min de Nantes !**
 
-Le Domaine Nantais vous accueille dans un cadre naturel d'1 hectare avec salle en pierre, patio couvert, terrain de team-building et équipements haut de gamme. Liberté totale sur vos prestataires, accompagnement sur-mesure.
+Le Le Domaine Nantais vous accueille dans un cadre naturel d'1 hectare avec salle en pierre, patio couvert, terrain de team-building et équipements haut de gamme. Liberté totale sur vos prestataires, accompagnement sur-mesure.
 
 **📍 Séminaires, cocktails, ateliers, soirées : ici, tout est possible.**
 
@@ -259,7 +259,7 @@ Le Domaine Nantais vous accueille dans un cadre naturel d'1 hectare avec salle e
 
 **🏛️ Un séminaire pro ? Un lancement ? Une soirée ?**
 
-À 10 min du périphérique nantais, le Domaine Nantais conjugue élégance, nature et performance.
+À 10 min du périphérique nantais, le Le Domaine Nantais conjugue élégance, nature et performance.
 
 Salle rénovée, parc paysagé, team-building outdoor, cuisine pro… et une équipe aux petits soins.
 
@@ -325,11 +325,11 @@ Vous êtes **agence événementielle, entreprise, collectivité, marque ou produ
 
 ---
 
-## 5. TEXTE WEB MANOIR DE LA BOULAIE V2
+## 5. TEXTE WEB Le Manoir de la Boulaie V2
 
 ### VERSION INTRO - PAGE D'ACCUEIL
 
-### Bienvenue au Manoir de la Boulaie, à 10 min de Nantes.
+### Bienvenue au Le Manoir de la Boulaie, à 10 min de Nantes.
 
 Dans un écrin de verdure de plus d'1 ha, ce **lieu d'exception** allie charme historique et confort moderne sur **600 m² de salons rénovés.** Idéal pour vos événements professionnels (séminaires, réunions, cocktails, lancements…), le Manoir vous offre un cadre élégant et une équipe dédiée pour une organisation sur-mesure.
 
@@ -450,10 +450,10 @@ Le calme de l'eau, la beauté du paysage et les grands espaces extérieurs crée
 
 ---
 
-### Document 3 : Texte Web Domaine Nantais
-- **Type :** Contenu site web pour le Domaine Nantais
+### Document 3 : Texte Web Le Domaine Nantais
+- **Type :** Contenu site web pour le Le Domaine Nantais
 - **Contenu :** Description complète du lieu, espaces, services, arguments commerciaux
-- **Usage :** Pages du site Domaine Nantais
+- **Usage :** Pages du site Le Domaine Nantais
 - **Versions :** 
   - Version courte (page d'accueil)
   - Version longue (page séminaires)
@@ -469,10 +469,10 @@ Le calme de l'eau, la beauté du paysage et les grands espaces extérieurs crée
 
 ---
 
-### Document 5 : Texte Web Manoir de la Boulaie
+### Document 5 : Texte Web Le Manoir de la Boulaie
 - **Type :** Contenu site web pour le Manoir
 - **Contenu :** Descriptions par sections, arguments commerciaux, services
-- **Usage :** Pages du site Manoir de la Boulaie
+- **Usage :** Pages du site Le Manoir de la Boulaie
 - **Versions :** 5 sections distinctes (Intro, Séminaires, Espaces, Accompagnement, Nature)
 
 ---
@@ -517,9 +517,9 @@ Ces textes sont destinés à alimenter les 6 sites web :
 - Proposition Introduction Commerciale (argumentaire)
 
 ### 5 Sites Vitrines
-- **Domaine Nantais :** Texte Web Domaine complet
+- **Le Domaine Nantais :** Texte Web Domaine complet
 - **Le Dôme :** Texte Web Le Dôme complet
-- **Manoir de la Boulaie :** Texte Web Manoir complet
+- **Le Manoir de la Boulaie :** Texte Web Manoir complet
 - **2 autres lieux :** À compléter avec contenus similaires
 
 ### Déclinaisons multilingues

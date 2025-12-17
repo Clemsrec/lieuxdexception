@@ -39,7 +39,7 @@ const venuesData = {
   },
   'chateau-corbe': {
     address: {
-      street: 'Château de la Corbe',
+      street: 'Le Château de la Corbe',
       city: 'Bournezeau',
       postalCode: '85480',
       region: 'Pays de la Loire',

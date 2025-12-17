@@ -65,12 +65,12 @@ export default function Navigation() {
   return (
     <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
       <div className="container-wide">
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between h-24 md:h-28 lg:h-32">
           
           {/* Logo */}
           <Link 
             href={`/${locale}`}
-            className="flex items-center hover:opacity-80 transition-opacity shrink-0"
+            className="flex items-center hover:opacity-80 transition-opacity shrink-0 ml-2 sm:ml-0"
           >
             <Image
               src="/Logos/LOGO-Lieux d_Exception- BLANC_Plan de travail 1.png"
@@ -109,25 +109,25 @@ export default function Navigation() {
                       href={`/${locale}/lieux/chateau-brulaire`}
                       className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
                     >
-                      Château de la Brûlaire
+                      Le Château de la Brûlaire
                     </Link>
                     <Link
                       href={`/${locale}/lieux/chateau-corbe`}
                       className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
                     >
-                      Château de la Corbe
+                      Le Château de la Corbe
                     </Link>
                     <Link
                       href={`/${locale}/lieux/domaine-nantais`}
                       className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
                     >
-                      Domaine Nantais
+                      Le Domaine Nantais
                     </Link>
                     <Link
                       href={`/${locale}/lieux/manoir-boulaie`}
                       className="block px-4 py-2 text-sm text-charcoal-800 hover:bg-accent/10 hover:text-accent transition-colors"
                     >
-                      Manoir de la Boulaie
+                      Le Manoir de la Boulaie
                     </Link>
                     <Link
                       href={`/${locale}/lieux/le-dome`}
@@ -154,7 +154,7 @@ export default function Navigation() {
             </Link>
             <Link 
               href={`/${locale}/contact`}
-              className="btn-primary whitespace-nowrap"
+              className="btn btn-primary"
             >
               {t('contact')}
             </Link>
@@ -190,28 +190,28 @@ export default function Navigation() {
                   className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Château de la Brûlaire
+                  Le Château de la Brûlaire
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/chateau-corbe`}
                   className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Château de la Corbe
+                  Le Château de la Corbe
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/domaine-nantais`}
                   className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Domaine Nantais
+                  Le Domaine Nantais
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/manoir-boulaie`}
                   className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Manoir de la Boulaie
+                  Le Manoir de la Boulaie
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/le-dome`}
@@ -238,7 +238,7 @@ export default function Navigation() {
               </Link>
               <Link 
                 href={`/${locale}/contact`}
-                className={`btn-primary w-fit whitespace-nowrap ${isActive('/contact') ? 'bg-primary/90' : ''}`}
+                className={`btn btn-primary w-fit ${isActive('/contact') ? 'bg-primary/90' : ''}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('contact')}

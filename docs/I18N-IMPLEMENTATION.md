@@ -115,7 +115,7 @@ Les **venues** ont besoin de traductions dynamiques dans Firestore :
 ```typescript
 // Structure Firestore à ajouter
 venues/{venueId}/
-  name: "Domaine Nantais" // Non traduit (nom propre)
+  name: "Le Domaine Nantais" // Non traduit (nom propre)
   i18n: {
     fr: {
       tagline: "À 10 minutes de Nantes...",
