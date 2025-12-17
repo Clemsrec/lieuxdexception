@@ -33,7 +33,7 @@ const venuesData = {
       cabaret: 3500,
       classroom: null,
       banquet: 170,
-      cocktail: 450
+      cocktail: null // Non spécifié dans le markdown (marqué "—")
     },
     equipment: [
       "Équipement son",
@@ -100,8 +100,8 @@ const venuesData = {
       theater: 200,
       cabaret: 50,
       classroom: 100,
-      banquet: 400, // Correction : 400 selon .md
-      cocktail: 100 // Dans espace accueil
+      banquet: 400, // Capacité maximale dans Le Parc selon markdown
+      cocktail: 100 // Capacité maximale dans Espace Accueil
     },
     equipment: [
       "Équipement son",
@@ -131,8 +131,8 @@ const venuesData = {
   
   'manoir-boulaie': {
     rooms: 11,
-    accommodationRooms: 11,
-    accommodationDetails: '11 chambres',
+    accommodationRooms: 0, // Non spécifié dans le markdown (seules les salles sont mentionnées)
+    accommodationDetails: null,
     status: "Ouverture prochainement",
     totalSurfaceRooms: 600,
     detailedSpaces: [
@@ -145,11 +145,11 @@ const venuesData = {
     capacityDetails: {
       meeting: 70,
       uShape: 50,
-      theater: 250,
+      theater: 200, // Corrigé selon markdown (était 250)
       cabaret: 170,
       classroom: 170,
-      banquet: 250,
-      cocktail: 300
+      banquet: 200, // Corrigé selon markdown (était 250)
+      cocktail: 200 // Corrigé selon markdown (était 300)
     },
     equipment: [
       "Wifi",

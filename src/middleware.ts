@@ -131,8 +131,10 @@ function applySecurityHeaders(response: NextResponse) {
       "base-uri 'self'",
       "form-action 'self'",
       "frame-ancestors 'none'",
-      "upgrade-insecure-requests",
-      "require-trusted-types-for 'script'"
+      "upgrade-insecure-requests"
+      // NOTE: "require-trusted-types-for 'script'" temporairement désactivé
+      // car incompatible avec Next.js 15 (bloque webpack runtime)
+      // TODO: Réactiver après migration vers nonces CSP
     ].join('; ')
   );
   

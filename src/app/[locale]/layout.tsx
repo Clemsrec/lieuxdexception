@@ -38,7 +38,6 @@ export async function generateMetadata({
     icons: {
       icon: [
         { url: '/icon.svg', type: 'image/svg+xml' },
-        { url: '/favicon.ico' },
       ],
       apple: '/apple-icon.png',
     },
