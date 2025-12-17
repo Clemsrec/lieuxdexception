@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { getVenues } from '@/lib/firestore';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getB2BImages, getRandomImages } from '@/lib/mariageImages';
+import { getVenueLogo } from '@/lib/logoHelper';
 
 // ISR : Cache avec revalidation toutes les 2 heures
 export const revalidate = 7200;
@@ -190,7 +191,20 @@ export default async function VenuePage({ params }: VenuePageProps) {
             {/* Sidebar informations clés */}
             <div className="lg:col-span-1">
               <div className="bg-charcoal-800 border border-accent/20 rounded-xl p-6 sticky top-32">
-                <h3 className="text-xl font-heading font-semibold text-white mb-6">
+                {/* Logo centré */}
+                {getVenueLogo(slug, 'blanc') && (
+                  <div className="flex justify-center mb-6">
+                    <Image
+                      src={getVenueLogo(slug, 'blanc')!}
+                      alt={`Logo ${displayVenueName(venue.name)}`}
+                      width={96}
+                      height={96}
+                      className="object-contain drop-shadow-lg"
+                      unoptimized
+                    />
+                  </div>
+                )}
+                <h3 className="text-xl font-heading font-semibold text-white mb-6 text-center">
                   Informations pratiques
                 </h3>
                 
@@ -374,7 +388,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                     {space.name}
                   </h3>
                   <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-3xl font-display font-bold text-accent drop-shadow-md">{space.size}</span>
+                    <span className="text-3xl font-display font-bold drop-shadow-md" style={{ color: '#C9A961' }}>{space.size}</span>
                     <span className="text-white/80">{space.unit}</span>
                   </div>
                   <div className="w-full h-px bg-accent/20 my-3" />
@@ -632,15 +646,65 @@ export default async function VenuePage({ params }: VenuePageProps) {
       </section>
 
       {/* Autres lieux */}
-      <section className="section">
+      <section className="section bg-neutral-800">
         <div className="container">
-          <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
+          <h2 className="text-3xl font-display font-semibold text-accent mb-8 text-center">
             Découvrez nos autres lieux
           </h2>
-          <div className="text-center">
-            <Link href="/contact" className="btn btn-secondary">
-              Contactez-nous pour découvrir nos autres domaines
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {venues
+              .filter(v => v.slug !== slug)
+              .slice(0, 4)
+              .map((otherVenue) => (
+                <div
+                  key={otherVenue.id}
+                  className="group flex flex-col overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-neutral-700"
+                >
+                  {/* Image */}
+                  <Link href={`/lieux/${otherVenue.slug}`} className="relative aspect-4/3 overflow-hidden">
+                    <Image
+                      src={otherVenue.images?.hero || otherVenue.heroImage || otherVenue.image || '/images/placeholder.jpg'}
+                      alt={otherVenue.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                    />
+                  </Link>
+                  
+                  {/* Contenu */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    {/* Logo centré */}
+                    {getVenueLogo(otherVenue.slug, 'blanc') && (
+                      <div className="flex justify-center mb-4">
+                        <Image
+                          src={getVenueLogo(otherVenue.slug, 'blanc')!}
+                          alt={`Logo ${otherVenue.name}`}
+                          width={64}
+                          height={64}
+                          className="object-contain drop-shadow-lg"
+                          unoptimized
+                        />
+                      </div>
+                    )}
+                    <Link href={`/lieux/${otherVenue.slug}`}>
+                      <h3 className="text-lg font-display font-semibold mb-3 transition-colors text-center" style={{ color: '#C9A961' }}>
+                        {otherVenue.name}
+                      </h3>
+                    </Link>
+                    
+                    <p className="text-white/80 text-sm text-center line-clamp-2 mb-4">
+                      {otherVenue.tagline || otherVenue.location}
+                    </p>
+
+                    <Link 
+                      href={`/lieux/${otherVenue.slug}`}
+                      className="mt-auto btn btn-secondary text-sm w-full"
+                    >
+                      Découvrir →
+                    </Link>
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
       </section>
