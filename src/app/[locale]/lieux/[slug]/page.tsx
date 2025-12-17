@@ -123,12 +123,6 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   
                   <span>{venue.capacityMin || 20} - {venue.capacitySeated} personnes</span>
                 </div>
-                {venue.rating && (
-                  <div className="flex items-center gap-2">
-                    
-                    <span>{venue.rating}/5 ({venue.reviewsCount} avis)</span>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -138,22 +132,22 @@ export default async function VenuePage({ params }: VenuePageProps) {
       {/* Barre d'actions rapides */}
       <section className="sticky top-0 z-40 bg-white border-b border-neutral-200 shadow-md">
         <div className="container">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex gap-6">
-              <a href="#description" className="text-sm font-medium text-secondary hover:text-primary transition-colors">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between py-3 md:py-4 gap-3">
+            <div className="flex gap-4 md:gap-6 overflow-x-auto w-full md:w-auto scrollbar-hide">
+              <a href="#description" className="text-xs md:text-sm font-medium text-secondary hover:text-primary transition-colors whitespace-nowrap">
                 Description
               </a>
-              <a href="#espaces" className="text-sm font-medium text-secondary hover:text-primary transition-colors">
+              <a href="#espaces" className="text-xs md:text-sm font-medium text-secondary hover:text-primary transition-colors whitespace-nowrap">
                 Espaces
               </a>
-              <a href="#galerie" className="text-sm font-medium text-secondary hover:text-primary transition-colors">
+              <a href="#galerie" className="text-xs md:text-sm font-medium text-secondary hover:text-primary transition-colors whitespace-nowrap">
                 Galerie
               </a>
-              <a href="#contact" className="text-sm font-medium text-secondary hover:text-primary transition-colors">
+              <a href="#contact" className="text-xs md:text-sm font-medium text-secondary hover:text-primary transition-colors whitespace-nowrap">
                 Contact
               </a>
             </div>
-            <Link href="/contact" className="btn btn-primary text-sm">
+            <Link href="/contact" className="btn btn-primary text-xs md:text-sm w-full md:w-auto">
               Demander un devis
             </Link>
           </div>

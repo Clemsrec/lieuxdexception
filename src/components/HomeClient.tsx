@@ -593,7 +593,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
 
       {/* CTA Émotion avec parallax */}
       <SectionReveal>
-        <section ref={ctaRef} className="section relative overflow-hidden">
+        <section ref={ctaRef} className="section relative overflow-hidden mb-0">
         <motion.div style={{ y }} className="absolute inset-0">
           <Image
             src="/venues/domaine-nantais/mariages/domaine_cocktail_5.jpg"
@@ -601,6 +601,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
             fill
             className="object-cover"
             sizes="100vw"
+            priority
           />
         </motion.div>
         <div className="absolute inset-0 bg-primary/80" />
@@ -628,7 +629,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
 
       {/* Carte Interactive des Lieux */}
       <SectionReveal>
-        <section className="section bg-alt">
+        <section className="section bg-alt mt-0">
           <div className="container">
             <motion.div 
               className="text-center mb-8 md:mb-10"

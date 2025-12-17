@@ -65,7 +65,7 @@ export default function Navigation() {
   return (
     <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
       <div className="container-wide">
-        <div className="flex items-center justify-between h-24 md:h-28 lg:h-32">
+        <div className="flex items-center justify-between min-h-20 md:h-24 lg:h-28 pt-6 pb-4 md:py-4">
           
           {/* Logo */}
           <Link 
@@ -75,11 +75,10 @@ export default function Navigation() {
             <Image
               src="/Logos/LOGO-Lieux d_Exception- BLANC_Plan de travail 1.png"
               alt="Lieux d'Exception"
-              width={300}
-              height={88}
+              width={180}
+              height={53}
               priority
-              className="w-auto"
-              style={{ height: '80px', width: 'auto' }}
+              className="w-auto h-8 md:h-14"
             />
           </Link>
 
@@ -180,42 +179,42 @@ export default function Navigation() {
 
         {/* Menu mobile */}
         {isMenuOpen && (
-          <div className="md:hidden py-6 bg-primary/95 backdrop-blur-md border-t border-white/20 animate-fade-in">
+          <div className="md:hidden py-6 px-4 bg-charcoal-800 backdrop-blur-md border-t border-white/20 animate-fade-in">
             <div className="flex flex-col space-y-2">
               {/* Section Nos Lieux */}
               <div className="border-b border-white/20 pb-4 mb-2">
                 <p className="text-white/60 text-xs uppercase tracking-wider mb-3 px-2">Nos Lieux</p>
                 <Link 
                   href={`/${locale}/lieux/chateau-brulaire`}
-                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Château de la Brûlaire
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/chateau-corbe`}
-                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Château de la Corbe
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/domaine-nantais`}
-                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Domaine Nantais
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/manoir-boulaie`}
-                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Manoir de la Boulaie
                 </Link>
                 <Link 
                   href={`/${locale}/lieux/le-dome`}
-                  className="text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
+                  className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-2 px-4 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Le Dôme
@@ -224,21 +223,21 @@ export default function Navigation() {
               
               <Link 
                 href={`/${locale}/evenements-b2b`}
-                className={`${getLinkClasses('/evenements-b2b')} min-h-[48px] flex items-center py-3`}
+                className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-3 px-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('b2b')}
               </Link>
               <Link 
                 href={`/${locale}/mariages`}
-                className={`${getLinkClasses('/mariages')} min-h-[48px] flex items-center py-3`}
+                className="text-white hover:text-accent transition-colors min-h-[48px] flex items-center py-3 px-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('weddings')}
               </Link>
               <Link 
                 href={`/${locale}/contact`}
-                className={`btn btn-primary w-fit ${isActive('/contact') ? 'bg-primary/90' : ''}`}
+                className="btn btn-primary w-fit mx-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('contact')}
