@@ -47,6 +47,8 @@ const config = {
   // Transpiler pour cible moderne uniquement
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
+    // Turbopack activé pour builds plus rapides
+    turbo: {},
   },
   
   // Headers de sécurité et cache control
