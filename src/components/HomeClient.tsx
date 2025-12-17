@@ -527,23 +527,23 @@ export default function HomeClient({ venues }: HomeClientProps) {
               {[
                 {
                   number: "01",
-                  title: "Rencontres personnalisées",
-                  text: "Rencontres et échanges personnalisés pour comprendre vos envies et imaginer une réception à votre image."
+                  title: "Un accompagnement sur mesure",
+                  text: "Chaque projet débute par une immersion complète dans votre univers : comprendre votre histoire, vos envies et vos contraintes afin de concevoir un événement fidèle à votre image, sans compromis."
                 },
                 {
                   number: "02",
-                  title: "Organisation & Coordination",
-                  text: "Accompagnement dans l'organisation et la coordination de votre événement, du choix des espaces à la mise en scène du grand jour."
+                  title: "Une orchestration fluide",
+                  text: "De la sélection du lieu à la mise en scène finale, nous pilotons l'ensemble de l'organisation avec rigueur et précision. Bénéficiez d'un interlocuteur unique qui coordonne chaque étape pour un déroulé parfaitement maîtrisé."
                 },
                 {
                   number: "03",
-                  title: "Réseau de partenaires",
-                  text: "Accès à un réseau de partenaires sélectionnés : traiteurs, décorateurs, fleuristes, photographes… tous choisis pour leur exigence et leur sens du service."
+                  title: "Un réseau de partenaires",
+                  text: "Nous collaborons exclusivement avec des professionnels reconnus pour leur exigence, leur sens du détail et la qualité irréprochable de leurs prestations."
                 },
                 {
                   number: "04",
-                  title: "Mise à disposition exclusive",
-                  text: "Mise à disposition exclusive de domaines pour vos événements."
+                  title: "Des lieux d'exception, en exclusivité",
+                  text: "Nos lieux vous sont proposés en exclusivité, pour garantir intimité, sérénité et une expérience unique, loin des lieux standardisés."
                 }
               ].map((item) => (
                 <motion.div 
