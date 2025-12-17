@@ -20,7 +20,7 @@ export const metadata: Metadata = generateServiceMetadata(
  * Page Mariages
  * 
  * Cette page présente les services et solutions pour les mariages
- * dans les 5 lieux d'exception du Groupe Riou.
+ * dans les lieux d'exception du Groupe Riou.
  * 
  * Les images sont chargées dynamiquement depuis /public/venues/[slug]/mariages
  * et randomisées à chaque chargement (6 photos max par lieu)
@@ -98,7 +98,7 @@ export default async function MariagesPage({
             <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
             <div className="max-w-3xl mx-auto">
               <p className="text-secondary text-lg text-center">
-                Découvrez nos 5 domaines de prestige, chacun avec son caractère unique pour célébrer votre jour le plus important
+                Découvrez nos domaines de prestige, chacun avec son caractère unique pour célébrer votre jour le plus important
               </p>
             </div>
           </div>
@@ -235,7 +235,7 @@ export default async function MariagesPage({
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/contact" className="btn btn-primary">
-                Nous contacter
+                Contact & Devis
               </Link>
               <div className="text-sm md:text-base text-white">
                 <p><strong className="text-white">Téléphone Mariages :</strong> <a href="tel:0602037011" className="text-white/90 hover:text-accent transition-colors">06 02 03 70 11</a></p>

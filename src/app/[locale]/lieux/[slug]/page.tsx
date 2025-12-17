@@ -13,7 +13,8 @@ import { getB2BImages, getRandomImages } from '@/lib/mariageImages';
 import { getVenueLogo } from '@/lib/logoHelper';
 
 // ISR : Cache avec revalidation toutes les 2 heures
-export const revalidate = 7200;
+// Revalidation toutes les 5 minutes (300s) pour équilibre perf/fraîcheur
+export const revalidate = 300;
 
 interface VenuePageProps {
   params: Promise<{
@@ -148,7 +149,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
               </a>
             </div>
             <Link href="/contact" className="btn btn-primary text-xs md:text-sm w-full md:w-auto">
-              Demander un devis
+              Contact & Devis
             </Link>
           </div>
         </div>
@@ -324,7 +325,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   {/* Contact rapide */}
                   <div className="pt-4 border-t border-accent/20">
                     <Link href="/contact" className="btn btn-primary w-full">
-                      Demander un devis
+                      Contact & Devis
                     </Link>
                     {venue.contact?.phone && (
                       <a 
@@ -631,7 +632,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   className="btn btn-primary w-full"
                   style={{ background: 'white', color: 'var(--primary)' }}
                 >
-                  Demander un devis
+                  Contact & Devis
                 </Link>
               </div>
             </div>

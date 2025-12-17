@@ -40,7 +40,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-secondary text-sm mb-4 leading-relaxed">
-              5 lieux événementiels d&apos;exception en France pour vos séminaires, 
+              Des lieux événementiels d&apos;exception en France pour vos séminaires, 
               mariages et événements corporate.
             </p>
           </div>

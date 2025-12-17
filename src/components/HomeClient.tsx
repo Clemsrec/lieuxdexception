@@ -620,7 +620,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
               Des domaines où se mêlent beauté, sincérité et art de recevoir.
             </p>
             <Link href={`/${locale}/contact`} className="btn btn-primary">
-              Nous contacter
+              Contact & Devis
             </Link>
           </div>
         </motion.div>

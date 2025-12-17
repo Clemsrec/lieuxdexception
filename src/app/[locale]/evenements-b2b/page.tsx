@@ -20,7 +20,7 @@ export const metadata: Metadata = generateServiceMetadata(
  * Page Événements B2B
  * 
  * Cette page présente les services et solutions pour les événements
- * professionnels dans les 5 lieux d'exception du Groupe Riou.
+ * professionnels dans les lieux d'exception du Groupe Riou.
  */
 export default async function EvenementsB2BPage({
   params,
@@ -79,7 +79,7 @@ export default async function EvenementsB2BPage({
         title={t('title')}
         subtitle={t('hero')}
         description={t('description')}
-        backgroundImage="/images/salle-seminaire.jpg"
+        backgroundImage="/venues/chateau-corbe/b2b/corbe_seminaire_1.jpg"
         buttons={[
           { label: t('requestQuote'), href: `/${locale}/contact`, primary: true }
         ]}
@@ -95,7 +95,7 @@ export default async function EvenementsB2BPage({
             <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
             <div className="max-w-3xl mx-auto">
               <p className="text-neutral-300 text-lg text-center">
-                Découvrez nos 5 domaines d'exception, chacun avec son caractère unique et ses espaces dédiés aux événements B2B
+                Découvrez nos domaines d'exception, chacun avec son caractère unique et ses espaces dédiés aux événements B2B
               </p>
             </div>
           </div>
@@ -232,7 +232,7 @@ export default async function EvenementsB2BPage({
 
       {/* CTA Section */}
       <section className="section bg-neutral-900">
-        <div className="container">
+        <div className="container px-4">
           <div className="text-center bg-stone-50 rounded-2xl p-6 md:p-12 border-2 border-accent/40">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-primary">
               Êtes-vous prêt à vivre cette expérience ?
@@ -244,13 +244,13 @@ export default async function EvenementsB2BPage({
               c&apos;est une promesse de singularité, une invitation à l&apos;émotion, une exigence de qualité.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/contact" className="btn btn-primary">
-                Nous contacter
+            <div className="flex flex-col gap-6 items-center max-w-2xl mx-auto">
+              <Link href="/contact" className="btn btn-primary w-full sm:w-auto">
+                Contact & Devis
               </Link>
-              <div className="text-sm md:text-base text-secondary">
+              <div className="text-sm md:text-base text-secondary space-y-1">
                 <p><strong className="text-primary">Téléphone Pro/B2B :</strong> <a href="tel:0670562879" className="hover:text-accent transition-colors">06 70 56 28 79</a></p>
-                <p><strong className="text-primary">Email :</strong> <a href="mailto:contact@lieuxdexception.com" className="hover:text-accent transition-colors">contact@lieuxdexception.com</a></p>
+                <p><strong className="text-primary">Email :</strong> <a href="mailto:contact@lieuxdexception.com" className="hover:text-accent transition-colors break-all">contact@lieuxdexception.com</a></p>
               </div>
             </div>
           </div>

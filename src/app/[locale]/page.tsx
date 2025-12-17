@@ -11,7 +11,8 @@ import HeroSection from '@/components/HeroSection';
 import HomeClient from '@/components/HomeClient';
 
 // ISR : Cache avec revalidation toutes les heures
-export const revalidate = 3600;
+// Revalidation toutes les 60 secondes pour forcer le rafraîchissement
+export const revalidate = 60;
 
 // Métadonnées SEO optimisées avec système universel
 export const metadata: Metadata = generateHomeMetadata();
@@ -19,7 +20,7 @@ export const metadata: Metadata = generateHomeMetadata();
 /**
  * Page d'accueil - Lieux d'Exception
  * 
- * Présentation de la marque et des 5 lieux d'exception
+ * Présentation de la marque et des lieux d'exception
  * Contenu basé sur la brochure officielle Lieux d'Exception
  */
 export default async function Home({
@@ -30,7 +31,7 @@ export default async function Home({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Home' });
   
-  // Récupérer TOUS les domaines (5 châteaux)
+  // Récupérer TOUS les domaines
   const venues = await getVenues();
   console.log('🏠 [page.tsx] Venues récupérées:', venues.length, venues.map(v => ({ id: v.id, name: v.name, lat: v.lat, lng: v.lng })));
 

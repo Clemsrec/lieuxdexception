@@ -4,7 +4,31 @@
  * 
  * ID de l'expéditeur : 886228169873
  * API V1 (recommandée)
+ * 
+ * VERSION: 1.1.0 - Avec cache busting automatique
  */
+
+const CACHE_VERSION = '1.1.0';
+
+// Auto-mise à jour du service worker
+self.addEventListener('install', (event) => {
+  console.log('[SW] Installation version', CACHE_VERSION);
+  self.skipWaiting(); // Force le nouveau SW immédiatement
+});
+
+self.addEventListener('activate', (event) => {
+  console.log('[SW] Activation version', CACHE_VERSION);
+  event.waitUntil(
+    // Nettoyer les anciens caches
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames
+          .filter((name) => name !== CACHE_VERSION)
+          .map((name) => caches.delete(name))
+      );
+    }).then(() => self.clients.claim()) // Prend le contrôle immédiatement
+  );
+});
 
 // Importer Firebase scripts depuis CDN (nécessaire pour Service Worker)
 importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');

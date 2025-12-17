@@ -105,6 +105,7 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
   return (
     <div className="w-full h-[600px] rounded-lg overflow-hidden shadow-lg border-2 border-accent/20">
       <MapContainer
+        key="venues-map"
         center={defaultCenter}
         zoom={9}
         scrollWheelZoom={true}

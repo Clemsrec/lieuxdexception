@@ -14,6 +14,12 @@ const config = {
   // ✅ CRITIQUE : Output standalone pour Firebase App Hosting
   output: 'standalone',
   
+  // Build ID unique pour cache busting
+  generateBuildId: async () => {
+    const { version } = require('./package.json');
+    return `${version}-${Date.now()}`;
+  },
+  
   // Images optimization
   images: {
     remotePatterns: [
@@ -33,7 +39,7 @@ const config = {
   // Désactiver strictMode (cause des problèmes avec Leaflet qui ne supporte pas le double-mount)
   reactStrictMode: false,
   
-  // Headers de sécurité (déjà dans middleware.ts mais bon de les avoir ici aussi)
+  // Headers de sécurité et cache control
   async headers() {
     return [
       {
@@ -54,6 +60,31 @@ const config = {
           {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin'
+          },
+          // Cache control pour forcer le rafraîchissement
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate'
+          },
+        ],
+      },
+      // Images peuvent être cachées plus longtemps
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          },
+        ],
+      },
+      // Logos peuvent être cachés
+      {
+        source: '/Logos/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
           },
         ],
       },

@@ -1,6 +1,6 @@
 {
   "name": "lieux-d-exception",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Site catalogue B2B du Groupe Riou présentant 5 lieux événementiels d'exception en France",
   "private": true,
   "scripts": {

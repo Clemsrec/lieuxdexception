@@ -160,7 +160,7 @@ export default function NotFoundPage() {
                 href="/contact"
                 className="flex-1 border-2 border-primary text-primary text-center py-4 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all"
               >
-                Nous contacter
+                Contact & Devis
               </Link>
             </div>
 

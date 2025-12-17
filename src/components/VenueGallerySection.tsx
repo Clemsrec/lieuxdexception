@@ -45,9 +45,9 @@ export default function VenueGallerySection({
 
   return (
     <div className={`${bgClass} py-12`}>
-      <div className="container">
+      <div className="container px-4">
         {/* Header avec titre, logo et lien */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
           <div className="flex items-center gap-4">
             {logo && (
               <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center shrink-0">
@@ -67,7 +67,7 @@ export default function VenueGallerySection({
           </div>
           <Link 
             href={`/${locale}/lieux/${venueSlug}`}
-            className={`btn btn-secondary text-sm ${linkColor} border-current`}
+            className={`btn btn-secondary text-sm w-full md:w-auto ${linkColor} border-current`}
           >
             Découvrir ce lieu →
           </Link>
