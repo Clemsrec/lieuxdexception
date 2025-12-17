@@ -152,6 +152,12 @@ export default function Navigation() {
               {t('weddings')}
             </Link>
             <Link 
+              href={`/${locale}/galerie-histoire`}
+              className={getLinkClasses('/galerie-histoire')}
+            >
+              {t('gallery')}
+            </Link>
+            <Link 
               href={`/${locale}/contact`}
               className="btn btn-primary"
             >
@@ -234,6 +240,13 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('weddings')}
+              </Link>
+              <Link 
+                href={`/${locale}/galerie-histoire`}
+                className="text-white hover:text-accent transition-colors min-h-12 flex items-center py-3 px-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t('gallery')}
               </Link>
               <Link 
                 href={`/${locale}/contact`}

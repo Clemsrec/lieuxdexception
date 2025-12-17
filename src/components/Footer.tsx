@@ -70,6 +70,15 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link 
+                    href={`/${locale}/galerie-histoire`}
+                    className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1 h-1 bg-secondary rounded-full mr-2 group-hover:bg-primary transition-colors"></span>
+                    {t('gallery')}
+                  </Link>
+                </li>
+                <li>
+                  <Link 
                     href={`/${locale}/contact`}
                     className="text-secondary hover:text-primary transition-colors duration-200 flex items-center group"
                   >
@@ -237,7 +246,7 @@ export default function Footer() {
             {/* Copyright et mentions légales */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <p className="text-secondary text-sm">
-                © 2024 Lieux d&apos;Exception. {t('allRightsReserved')}
+                © {new Date().getFullYear()} Lieux d&apos;Exception. {t('allRightsReserved')}
               </p>
               <div className="flex flex-wrap gap-4 text-xs">
                 <Link 
@@ -258,12 +267,6 @@ export default function Footer() {
                 >
                   {t('cookies')}
                 </Link>
-                <Link 
-                  href={`/${locale}/cgv`}
-                  className="text-secondary hover:text-primary transition-colors"
-                >
-                  {t('cgv')}
-                </Link>
               </div>
             </div>
 
@@ -277,6 +280,21 @@ export default function Footer() {
                 ⚙️
               </Link>
             </div>
+          </div>
+          
+          {/* Crédits développement */}
+          <div className="text-center mt-6">
+            <p className="text-secondary/60 text-xs">
+              Developed & Designed with love by{' '}
+              <a 
+                href="https://nucom.fr" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 transition-colors"
+              >
+                Clément Tournier - Agence NuCom
+              </a>
+            </p>
           </div>
         </div>
 
