@@ -16,19 +16,22 @@ import { getStorage, ref, getDownloadURL, uploadBytes, getMetadata, deleteObject
 import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getStorage as getAdminStorage } from 'firebase-admin/storage';
 
-// Initialiser Firebase Admin si pas déjà fait
-if (getApps().length === 0) {
-  initializeApp({
-    credential: cert({
-      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-    }),
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  });
+/**
+ * Initialise Firebase Admin de manière lazy (seulement au runtime, pas au build)
+ */
+function getAdminStorageInstance() {
+  if (getApps().length === 0) {
+    initializeApp({
+      credential: cert({
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      }),
+      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    });
+  }
+  return getAdminStorage();
 }
-
-const adminStorage = getAdminStorage();
 
 interface OptimizeImageRequest {
   /** Chemin complet du fichier dans Storage */
@@ -79,6 +82,7 @@ export async function POST(request: NextRequest) {
     console.log('[Optimize Image] Début optimisation:', filePath);
 
     // 1. Télécharger l'image depuis Storage
+    const adminStorage = getAdminStorageInstance();
     const bucket = adminStorage.bucket();
     const file = bucket.file(filePath);
 
