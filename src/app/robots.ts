@@ -5,7 +5,7 @@ import { MetadataRoute } from 'next';
  * Autorise tous les robots sauf sur /admin
  */
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://lieuxdexception.fr';
+  const baseUrl = 'https://lieuxdexception.com';
   
   return {
     rules: [

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
+import { getMainLogo } from '@/lib/storage-assets';
 
 /**
  * Composant Footer principal
@@ -31,7 +32,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href={`/${locale}`} className="inline-block mb-4 hover:opacity-80 transition-opacity shrink-0">
               <Image
-                src="/logo/Logo_CLE_avec Texte.png"
+                src={getMainLogo('color')}
                 alt="Lieux d'Exception"
                 width={140}
                 height={40}

@@ -1,0 +1,697 @@
+{
+  "chateau-brulaire": [
+    {
+      "localPath": "b2b/brulaire_1.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_bar_2.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_bar_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_bar_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_bar_3.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_bar_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_bar_3.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_bar_4.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_bar_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_bar_4.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_bar_5.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_bar_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_bar_5.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_exterieur_1.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_exterieur_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_exterieur_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_exterieur_2.jpeg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_exterieur_2.jpeg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_exterieur_2.jpeg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_exterieur_3.jpeg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_exterieur_3.jpeg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_exterieur_3.jpeg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_exterieur_4.jpeg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_exterieur_4.jpeg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_exterieur_4.jpeg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_orangerie_1.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_orangerie_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_orangerie_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_orangerie_2.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_orangerie_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_orangerie_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_orangerie_3.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_orangerie_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_orangerie_3.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_1.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_10.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_10.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_10.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_11.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_11.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_11.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_12.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_12.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_12.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_2.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_6.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_6.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_6.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_7.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_7.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_7.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_8.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_8.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_8.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_salon_9.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_salon_9.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_salon_9.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/brulaire_seminaire_1.jpg",
+      "storagePath": "venues/chateau-brulaire/b2b/brulaire_seminaire_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/b2b/brulaire_seminaire_1.jpg?alt=media"
+    },
+    {
+      "localPath": "hero-optimized.jpg",
+      "storagePath": "venues/chateau-brulaire/hero-optimized.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/hero-optimized.jpg?alt=media"
+    },
+    {
+      "localPath": "hero.jpg",
+      "storagePath": "venues/chateau-brulaire/hero.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/hero.jpg?alt=media"
+    },
+    {
+      "localPath": "hero.webp",
+      "storagePath": "venues/chateau-brulaire/hero.webp",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/hero.webp?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_1.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_19.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_19.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_19.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_2.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_3.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_3.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_4(1).jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_4(1).jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_4(1).jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_4.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_4.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_5.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_5.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_6.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_6.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_6.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_7.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_7.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_7.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_8.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_8.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_8.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/brulaire_chambre_9.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/brulaire_chambre_9.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/brulaire_chambre_9.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/mise-en-scene.1.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/mise-en-scene.1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/mise-en-scene.1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/mise-en-scene.2.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/mise-en-scene.2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/mise-en-scene.2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/mise-en-scene.3.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/mise-en-scene.3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/mise-en-scene.3.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/mise-en-scene.5.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/mise-en-scene.5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/mise-en-scene.5.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/mise-en-scene.6.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/mise-en-scene.6.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/mise-en-scene.6.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/mise-en-scene.7.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/mise-en-scene.7.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/mise-en-scene.7.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/mise-en-scene.jpg",
+      "storagePath": "venues/chateau-brulaire/mariages/mise-en-scene.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-brulaire/mariages/mise-en-scene.jpg?alt=media"
+    }
+  ],
+  "chateau-corbe": [
+    {
+      "localPath": "b2b/corbe_3.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_3.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_exterieur_1.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_exterieur_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_exterieur_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_exterieur_2.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_exterieur_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_exterieur_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_exterieur_orangerie_1.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_exterieur_orangerie_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_exterieur_orangerie_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_exterieur_orangerie_2.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_exterieur_orangerie_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_exterieur_orangerie_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_exterieur_orangerie_3.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_exterieur_orangerie_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_exterieur_orangerie_3.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_exterieur_orangerie_4.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_exterieur_orangerie_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_exterieur_orangerie_4.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_exterieur_orangerie_5.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_exterieur_orangerie_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_exterieur_orangerie_5.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_piscine_1.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_piscine_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_piscine_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_piscine_2.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_piscine_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_piscine_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_piscine_3.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_piscine_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_piscine_3.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_salle_seminaire_1.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_salle_seminaire_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_salle_seminaire_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_salle_seminaire_2.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_salle_seminaire_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_salle_seminaire_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_salle_seminaire_3.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_salle_seminaire_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_salle_seminaire_3.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_salle_seminaire_4.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_salle_seminaire_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_salle_seminaire_4.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_salle_seminaire_5.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_salle_seminaire_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_salle_seminaire_5.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_seminaire_1.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_seminaire_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_seminaire_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_seminaire_2.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_seminaire_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_seminaire_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_seminaire_5.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_seminaire_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_seminaire_5.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_vue_chateau_1.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_vue_chateau_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_vue_chateau_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_vue_chateau_2.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_vue_chateau_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_vue_chateau_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_vue_chateau_3.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_vue_chateau_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_vue_chateau_3.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_vue_chateau_4.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_vue_chateau_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_vue_chateau_4.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/corbe_vue_chateau_5.jpg",
+      "storagePath": "venues/chateau-corbe/b2b/corbe_vue_chateau_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/b2b/corbe_vue_chateau_5.jpg?alt=media"
+    },
+    {
+      "localPath": "hero.jpg",
+      "storagePath": "venues/chateau-corbe/hero.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/hero.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_1.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_2.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_3.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_3.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_ceremonie_1.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_ceremonie_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_ceremonie_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_ceremonie_2.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_ceremonie_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_ceremonie_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_orangerie_1.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_orangerie_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_orangerie_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_orangerie_2.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_orangerie_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_orangerie_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_orangerie_3.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_orangerie_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_orangerie_3.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_orangerie_4.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_orangerie_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_orangerie_4.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_orangerie_5.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_orangerie_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_orangerie_5.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_orangerie_6.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_orangerie_6.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_orangerie_6.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_vue_d_ensemble_1.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_vue_d_ensemble_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_vue_d_ensemble_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/corbe_vue_d_ensemble_2.jpg",
+      "storagePath": "venues/chateau-corbe/mariages/corbe_vue_d_ensemble_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/chateau-corbe/mariages/corbe_vue_d_ensemble_2.jpg?alt=media"
+    }
+  ],
+  "domaine-nantais": [
+    {
+      "localPath": "b2b/domaine_2.jpg",
+      "storagePath": "venues/domaine-nantais/b2b/domaine_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/b2b/domaine_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/domaine_accueil_cafe.jpg",
+      "storagePath": "venues/domaine-nantais/b2b/domaine_accueil_cafe.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/b2b/domaine_accueil_cafe.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/domaine_cocktail_exterieur.png",
+      "storagePath": "venues/domaine-nantais/b2b/domaine_cocktail_exterieur.png",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/b2b/domaine_cocktail_exterieur.png?alt=media"
+    },
+    {
+      "localPath": "b2b/domaine_salle_vide.jpg",
+      "storagePath": "venues/domaine-nantais/b2b/domaine_salle_vide.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/b2b/domaine_salle_vide.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/domaine_salle_vide_2.jpg",
+      "storagePath": "venues/domaine-nantais/b2b/domaine_salle_vide_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/b2b/domaine_salle_vide_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/domaine_seminaire_1.png",
+      "storagePath": "venues/domaine-nantais/b2b/domaine_seminaire_1.png",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/b2b/domaine_seminaire_1.png?alt=media"
+    },
+    {
+      "localPath": "b2b/domaine_seminaire_2.png",
+      "storagePath": "venues/domaine-nantais/b2b/domaine_seminaire_2.png",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/b2b/domaine_seminaire_2.png?alt=media"
+    },
+    {
+      "localPath": "b2b/domaine_seminaire_4.jpg",
+      "storagePath": "venues/domaine-nantais/b2b/domaine_seminaire_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/b2b/domaine_seminaire_4.jpg?alt=media"
+    },
+    {
+      "localPath": "hero-optimized.jpg",
+      "storagePath": "venues/domaine-nantais/hero-optimized.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/hero-optimized.jpg?alt=media"
+    },
+    {
+      "localPath": "hero.jpg",
+      "storagePath": "venues/domaine-nantais/hero.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/hero.jpg?alt=media"
+    },
+    {
+      "localPath": "hero.webp",
+      "storagePath": "venues/domaine-nantais/hero.webp",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/hero.webp?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_cocktail_1.jpg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_cocktail_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_cocktail_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_cocktail_2.jpg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_cocktail_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_cocktail_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_cocktail_3.jpg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_cocktail_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_cocktail_3.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_cocktail_4.jpg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_cocktail_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_cocktail_4.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_cocktail_5.jpg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_cocktail_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_cocktail_5.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_exterieur_1.jpg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_exterieur_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_exterieur_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_exterieur_2.png",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_exterieur_2.png",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_exterieur_2.png?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_nantais_2.jpg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_nantais_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_nantais_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_salle_1.jpg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_salle_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_salle_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_salle_2.jpeg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_salle_2.jpeg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_salle_2.jpeg?alt=media"
+    },
+    {
+      "localPath": "mariages/domaine_salle_3.jpeg",
+      "storagePath": "venues/domaine-nantais/mariages/domaine_salle_3.jpeg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/domaine-nantais/mariages/domaine_salle_3.jpeg?alt=media"
+    }
+  ],
+  "le-dome": [
+    {
+      "localPath": "hero.jpg",
+      "storagePath": "venues/le-dome/hero.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/le-dome/hero.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/dome.jpg",
+      "storagePath": "venues/le-dome/mariages/dome.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/le-dome/mariages/dome.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/dome_exterieur_1.jpg",
+      "storagePath": "venues/le-dome/mariages/dome_exterieur_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/le-dome/mariages/dome_exterieur_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/dome_interieur_1.jpg",
+      "storagePath": "venues/le-dome/mariages/dome_interieur_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/le-dome/mariages/dome_interieur_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/dome_interieur_2.jpg",
+      "storagePath": "venues/le-dome/mariages/dome_interieur_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/le-dome/mariages/dome_interieur_2.jpg?alt=media"
+    }
+  ],
+  "manoir-boulaie": [
+    {
+      "localPath": "b2b/boulaie_accueil_cafe.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_accueil_cafe.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_accueil_cafe.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_exterieur_1.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_exterieur_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_exterieur_1.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_exterieur_2.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_exterieur_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_exterieur_2.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_1.png",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_1.png",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_1.png?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_10.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_10.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_10.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_2.png",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_2.png",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_2.png?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_3.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_3.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_4.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_4.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_5.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_5.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_6.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_6.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_6.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_7.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_7.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_7.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_8.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_8.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_8.jpg?alt=media"
+    },
+    {
+      "localPath": "b2b/boulaie_seminaire_9.jpg",
+      "storagePath": "venues/manoir-boulaie/b2b/boulaie_seminaire_9.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/b2b/boulaie_seminaire_9.jpg?alt=media"
+    },
+    {
+      "localPath": "hero-optimized.jpg",
+      "storagePath": "venues/manoir-boulaie/hero-optimized.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/hero-optimized.jpg?alt=media"
+    },
+    {
+      "localPath": "hero.jpg",
+      "storagePath": "venues/manoir-boulaie/hero.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/hero.jpg?alt=media"
+    },
+    {
+      "localPath": "hero.webp",
+      "storagePath": "venues/manoir-boulaie/hero.webp",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/hero.webp?alt=media"
+    },
+    {
+      "localPath": "hero_1.jpg",
+      "storagePath": "venues/manoir-boulaie/hero_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/hero_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_exterieur_1.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_exterieur_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_exterieur_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_exterieur_2.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_exterieur_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_exterieur_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_facade_1.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_facade_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_facade_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_facade_2.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_facade_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_facade_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_interieur_1.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_interieur_1.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_interieur_1.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_interieur_2.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_interieur_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_interieur_2.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_interieur_3.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_interieur_3.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_interieur_3.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_interieur_4.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_interieur_4.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_interieur_4.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_interieur_5.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_interieur_5.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_interieur_5.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/boulaie_interieur_6.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/boulaie_interieur_6.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/boulaie_interieur_6.jpg?alt=media"
+    },
+    {
+      "localPath": "mariages/copie de boulaie_exterieur_2.jpg",
+      "storagePath": "venues/manoir-boulaie/mariages/copie de boulaie_exterieur_2.jpg",
+      "url": "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues/manoir-boulaie/mariages/copie%20de%20boulaie_exterieur_2.jpg?alt=media"
+    }
+  ]
+}

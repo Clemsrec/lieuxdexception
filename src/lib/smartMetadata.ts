@@ -72,7 +72,7 @@ export function generateSmartMetadata(params: SmartMetadataParams): Metadata {
   const finalTitle = customMeta?.title || title;
   const finalDescription = customMeta?.description || description;
   const finalKeywords = customMeta?.keywords || keywords;
-  const finalImage = customMeta?.image || 'https://lieuxdexception.fr/images/Vue-chateau.jpg';
+  const finalImage = customMeta?.image || 'https://lieuxdexception.com/images/Vue-chateau.jpg';
 
   return {
     title: finalTitle,
@@ -137,7 +137,7 @@ export function generateHomeMetadata(): Metadata {
   return generateSmartMetadata({
     pageType: 'homepage',
     customMeta: {
-      canonical: 'https://lieuxdexception.fr',
+      canonical: 'https://lieuxdexception.com',
     },
   });
 }
@@ -150,7 +150,7 @@ export function generateVenueMetadata(venue: any): Metadata {
     pageType: 'venue',
     data: { venue },
     customMeta: {
-      canonical: `https://lieuxdexception.fr/lieux/${venue.slug}`,
+      canonical: `https://lieuxdexception.com/lieux/${venue.slug}`,
     },
   });
 }
@@ -175,7 +175,7 @@ export function generateContactMetadata(): Metadata {
   return generateSmartMetadata({
     pageType: 'contact',
     customMeta: {
-      canonical: 'https://lieuxdexception.fr/contact',
+      canonical: 'https://lieuxdexception.com/contact',
     },
   });
 }

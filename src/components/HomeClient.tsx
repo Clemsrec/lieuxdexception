@@ -7,28 +7,38 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Users, Instagram, ExternalLink } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import dynamic from 'next/dynamic';
-import type { Venue } from '@/types/firebase';
+import type { Venue, PageContent } from '@/types/firebase';
+import { STORAGE_IMAGES, STORAGE_LOGOS } from '@/lib/storage-assets';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getCardImage } from '@/lib/sharedVenueImages';
+import { ContentSection, FeatureCard } from '@/components/PageContentComponents';
 
-// Import statique des logos
-import logoBrulaireBlanc from '../../public/logos/brulaire-blanc.png';
-import logoBrulaireDore from '../../public/logos/brulaire-dore.png';
-import logoBoulaieBlanc from '../../public/logos/boulaie-blanc.png';
-import logoBoulaieDore from '../../public/logos/boulaie-dore.png';
-import logoDomaineBlanc from '../../public/logos/domaine-blanc.png';
-import logoDomaineDore from '../../public/logos/domaine-dore.png';
-import logoDomeBlanc from '../../public/logos/dome-blanc.png';
-import logoDomeDore from '../../public/logos/dome-dore.png';
-
-// Mapping des logos avec imports statiques
-const VENUE_LOGOS: Record<string, { blanc: StaticImageData; dore: StaticImageData }> = {
-  'chateau-brulaire': { blanc: logoBrulaireBlanc, dore: logoBrulaireDore },
-  'chateau-de-la-brulaire': { blanc: logoBrulaireBlanc, dore: logoBrulaireDore },
-  'manoir-boulaie': { blanc: logoBoulaieBlanc, dore: logoBoulaieDore },
-  'manoir-de-la-boulaie': { blanc: logoBoulaieBlanc, dore: logoBoulaieDore },
-  'domaine-nantais': { blanc: logoDomaineBlanc, dore: logoDomaineDore },
-  'le-dome': { blanc: logoDomeBlanc, dore: logoDomeDore },
+// Mapping des logos depuis Firebase Storage
+const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
+  'chateau-brulaire': { 
+    blanc: STORAGE_LOGOS.venues.brulaireBlanc, 
+    dore: STORAGE_LOGOS.venues.brulaireDore 
+  },
+  'chateau-de-la-brulaire': { 
+    blanc: STORAGE_LOGOS.venues.brulaireBlanc, 
+    dore: STORAGE_LOGOS.venues.brulaireDore 
+  },
+  'manoir-boulaie': { 
+    blanc: STORAGE_LOGOS.venues.boulaieBlanc, 
+    dore: STORAGE_LOGOS.venues.boulaieDore 
+  },
+  'manoir-de-la-boulaie': { 
+    blanc: STORAGE_LOGOS.venues.boulaieBlanc, 
+    dore: STORAGE_LOGOS.venues.boulaieDore 
+  },
+  'domaine-nantais': { 
+    blanc: STORAGE_LOGOS.venues.domaineBlanc, 
+    dore: STORAGE_LOGOS.venues.domaineDore 
+  },
+  'le-dome': { 
+    blanc: STORAGE_LOGOS.venues.domeBlanc, 
+    dore: STORAGE_LOGOS.venues.domeDore 
+  },
 };
 
 // Liens sociaux par lieu
@@ -108,6 +118,7 @@ function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
             alt={displayVenueName(venue.name)}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
+            unoptimized
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
           />
           {/* Overlay gradient subtil */}
@@ -183,10 +194,11 @@ function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
 
 interface HomeClientProps {
   venues: Venue[];
+  pageContent?: PageContent | null;
 }
 
-export default function HomeClient({ venues }: HomeClientProps) {
-  console.log('🎨 [HomeClient] Venues reçues:', venues.length, venues);
+export default function HomeClient({ venues, pageContent }: HomeClientProps) {
+
   const locale = useLocale();
   const ctaRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -284,7 +296,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
                         {/* Image */}
                         <Link href={`/${locale}/lieux/${venue.slug}`} className="relative aspect-4/3 overflow-hidden">
                           <Image
-                            src={venue.images?.hero || venue.heroImage || venue.image || '/images/placeholder.jpg'}
+                            src={venue.images?.hero || venue.heroImage || venue.image || STORAGE_IMAGES.placeholder}
                             alt={venue.name}
                             fill
                             className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -403,7 +415,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
                         {/* Image */}
                         <Link href={`/${locale}/lieux/${venue.slug}`} className="relative aspect-4/3 overflow-hidden">
                           <Image
-                            src={venue.images?.hero || venue.heroImage || venue.image || '/images/placeholder.jpg'}
+                            src={venue.images?.hero || venue.heroImage || venue.image || STORAGE_IMAGES.placeholder}
                             alt={venue.name}
                             fill
                             className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -614,7 +626,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
         <section ref={ctaRef} className="section relative overflow-hidden mb-0">
         <motion.div style={{ y }} className="absolute inset-0">
           <Image
-            src="/venues/domaine-nantais/mariages/domaine_cocktail_5.jpg"
+            src="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fdomaine-nantais%2Fmariages%2Fdomaine_cocktail_5.jpg?alt=media"
             alt=""
             fill
             className="object-cover"
@@ -644,6 +656,58 @@ export default function HomeClient({ venues }: HomeClientProps) {
         </motion.div>
         </section>
       </SectionReveal>
+
+      {/* Sections dynamiques depuis CMS */}
+      {pageContent?.sections && pageContent.sections.filter(s => s.visible).map((section, idx) => (
+        <SectionReveal key={idx}>
+          <ContentSection 
+            title={section.title}
+            content={section.content}
+            className={idx % 2 === 0 ? 'bg-white' : 'bg-stone-50'}
+          />
+        </SectionReveal>
+      ))}
+
+      {/* Cartes de fonctionnalités depuis CMS */}
+      {pageContent?.featureCards && pageContent.featureCards.length > 0 && (
+        <SectionReveal>
+          <section className="section bg-white">
+            <div className="container">
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  show: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.2
+                    }
+                  }
+                }}
+              >
+                {pageContent.featureCards.map((feature, idx) => (
+                  <motion.div
+                    key={idx}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      show: { opacity: 1, y: 0 }
+                    }}
+                  >
+                    <FeatureCard
+                      number={feature.number}
+                      title={feature.title}
+                      content={feature.content}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+        </SectionReveal>
+      )}
 
       {/* Carte Interactive des Lieux */}
       <SectionReveal>

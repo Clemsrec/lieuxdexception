@@ -48,7 +48,7 @@ function generateCorporateOrganization(data?: any) {
     "@type": "EventVenue",
     "name": "Lieux d'Exception",
     "description": config.business.expertise.primary,
-    "url": "https://lieuxdexception.fr",
+    "url": "https://lieuxdexception.com",
     
     // Localisation
     "address": {
@@ -116,7 +116,7 @@ function generateVenueStructuredData(data?: { venue: Venue }) {
     "@type": "EventVenue",
     "name": displayVenueName(venue.name),
     "description": venue.description,
-    "url": `https://lieuxdexception.fr/lieux/${venue.slug}`,
+    "url": `https://lieuxdexception.com/lieux/${venue.slug}`,
     
     // Localisation précise
     "address": {

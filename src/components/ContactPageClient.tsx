@@ -43,7 +43,7 @@ export default function ContactPageClient() {
       const contactSchema = generateUniversalStructuredData({
         siteType: 'corporate',
         pageType: 'contact',
-        url: 'https://lieuxdexception.fr/contact'
+        url: 'https://lieuxdexception.com/contact'
       });
       setStructuredData(contactSchema);
 

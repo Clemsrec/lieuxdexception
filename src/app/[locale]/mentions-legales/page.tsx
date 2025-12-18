@@ -45,7 +45,7 @@ export default function MentionsLegalesPage() {
             <p><strong>Code APE :</strong> 5510Z (Hôtels et hébergement similaire)</p>
             <p><strong>TVA intracommunautaire :</strong> FR 12 123456789</p>
             <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
-            <p><strong>Email :</strong> contact@lieuxdexception.fr</p>
+            <p><strong>Email :</strong> contact@lieuxdexception.com</p>
             <p><strong>Directeur de publication :</strong> M. Jean Riou, Président</p>
           </div>
         </section>
@@ -84,7 +84,7 @@ export default function MentionsLegalesPage() {
             Pour exercer ces droits, vous pouvez nous contacter :
           </p>
           <ul className="list-disc list-inside mb-4 space-y-1 text-foreground">
-            <li>Par email : contact@lieuxdexception.fr</li>
+            <li>Par email : contact@lieuxdexception.com</li>
             <li>Par courrier : Groupe Riou - DPO, 123 Avenue des Champs, 75008 Paris</li>
           </ul>
           <p className="text-foreground leading-relaxed">
@@ -99,7 +99,7 @@ export default function MentionsLegalesPage() {
             Les informations contenues sur ce site sont aussi précises que possible et le site remis à jour à différentes périodes de l&apos;année, mais peut toutefois contenir des inexactitudes ou des omissions.
           </p>
           <p className="mb-4 text-foreground leading-relaxed">
-            Si vous constatez une lacune, erreur ou ce qui parait être un dysfonctionnement, merci de bien vouloir le signaler par email à l&apos;adresse contact@lieuxdexception.fr, en décrivant le problème de la manière la plus précise possible.
+            Si vous constatez une lacune, erreur ou ce qui parait être un dysfonctionnement, merci de bien vouloir le signaler par email à l&apos;adresse contact@lieuxdexception.com, en décrivant le problème de la manière la plus précise possible.
           </p>
           <p className="text-foreground leading-relaxed">
             En aucun cas, le Groupe Riou ne pourra être tenu responsable de tous dommages, quels qu&apos;ils soient, résultant de l&apos;utilisation du site et de ses services.
@@ -110,7 +110,7 @@ export default function MentionsLegalesPage() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-foreground">6. Droit applicable et juridiction</h2>
           <p className="mb-4 text-foreground leading-relaxed">
-            Tout litige en relation avec l&apos;utilisation du site www.lieuxdexception.fr est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.
+            Tout litige en relation avec l&apos;utilisation du site www.lieuxdexception.com est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.
           </p>
         </section>
 
@@ -121,7 +121,7 @@ export default function MentionsLegalesPage() {
             Pour toute question concernant ces mentions légales, vous pouvez nous contacter :
           </p>
           <div className="bg-primary/5 p-6 rounded-lg text-foreground">
-            <p><strong>Email :</strong> contact@lieuxdexception.fr</p>
+            <p><strong>Email :</strong> contact@lieuxdexception.com</p>
             <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
             <p><strong>Horaires :</strong> Du lundi au vendredi de 9h à 18h</p>
           </div>

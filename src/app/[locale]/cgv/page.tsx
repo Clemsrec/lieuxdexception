@@ -392,14 +392,14 @@ export default function CGVPage() {
                 </p>
                 <p className="flex items-center gap-2">
                   
-                  contact@lieuxdexception.fr
+                  contact@lieuxdexception.com
                 </p>
               </div>
             </div>
             
             <div className="mt-4 pt-4 border-t border-primary/10">
               <p className="text-xs text-secondary">
-                Pour toute réclamation : reclamation@lieuxdexception.fr<br />
+                Pour toute réclamation : reclamation@lieuxdexception.com<br />
                 Médiateur de la consommation : <a href="https://www.mediation-consommation.org" className="text-primary hover:underline">www.mediation-consommation.org</a>
               </p>
             </div>

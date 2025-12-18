@@ -4,6 +4,9 @@
  */
 
 import { Metadata } from 'next';
+import AdminLayout from '@/components/admin/AdminLayout';
+import ProtectedRoute from '@/components/admin/ProtectedRoute';
+import AuthCheck from '@/components/admin/AuthCheck';
 
 export const metadata: Metadata = {
   title: 'Administration - Lieux d\'Exception',
@@ -14,10 +17,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AdminLayout({
+export default function RootAdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <ProtectedRoute>
+      <AuthCheck />
+      <AdminLayout>{children}</AdminLayout>
+    </ProtectedRoute>
+  );
 }

@@ -21,6 +21,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
+import { getMainLogo } from '@/lib/storage-assets';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,7 +74,7 @@ export default function Navigation() {
             className="flex items-center hover:opacity-80 transition-opacity shrink-0 ml-2 sm:ml-0"
           >
             <Image
-              src="/logos/logo-lieux-exception-blanc.png"
+              src={getMainLogo('white')}
               alt="Lieux d'Exception"
               width={180}
               height={53}

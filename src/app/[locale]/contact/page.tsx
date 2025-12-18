@@ -19,7 +19,7 @@ export default function ContactPage() {
       <HeroSection
         title="Contactez-Nous"
         subtitle="Notre équipe est à votre écoute pour concrétiser votre projet"
-        backgroundImage="/images/contact-hero.jpg"
+        backgroundImage="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/images%2Fcontact-hero.jpg?alt=media"
       />
 
       <ContactPageClient />

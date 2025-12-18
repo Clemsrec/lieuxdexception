@@ -27,7 +27,8 @@ service firebase.storage {
       return isAuthenticated() && 
              request.auth.token.email in [
                'admin@grouperiou.com',
-               'contact@grouperiou.com'
+               'contact@grouperiou.com',
+               'clement@nucom.fr'
              ];
     }
     
@@ -36,6 +37,21 @@ service firebase.storage {
      */
     function isImage() {
       return request.resource.contentType.matches('image/.*');
+    }
+    
+    /**
+     * Vérifie que c'est un fichier placeholder pour créer des dossiers
+     */
+    function isPlaceholder() {
+      return request.resource.name == '.placeholder' && 
+             request.resource.contentType == 'text/plain';
+    }
+    
+    /**
+     * Vérifie que le fichier est une image OU un placeholder
+     */
+    function isImageOrPlaceholder() {
+      return isImage() || isPlaceholder();
     }
     
     /**
@@ -148,12 +164,28 @@ service firebase.storage {
     }
     
     // ===========================================
-    // BLOCAGE PAR DÉFAUT
+    // DOSSIERS RACINE (Logos + châteaux)
     // ===========================================
     
-    // Bloquer tout accès non explicitement autorisé
-    match /{allPaths=**} {
-      allow read, write: if false;
+    // Logos et dossiers principaux de la galerie
+    match /{folder}/{allPaths=**} {
+      // Lecture: Public pour affichage site
+      allow read: if true;
+      
+      // Création/Modification: Admin uniquement (images ou placeholders pour dossiers)
+      allow create, update: if isAdmin() &&
+                               isImageOrPlaceholder() &&
+                               isValidSize(15) && // Max 15MB
+                               isValidFileName();
+      
+      // Suppression: Admin uniquement (pas de validation de contenu nécessaire)
+      allow delete: if isAdmin();
     }
+    
+    // ===========================================
+    // BLOCAGE PAR DÉFAUT (déjà géré par règle ci-dessus)
+    // ===========================================
+    
+    // Note: La règle {folder}/{allPaths=**} ci-dessus couvre tous les cas
   }
 }

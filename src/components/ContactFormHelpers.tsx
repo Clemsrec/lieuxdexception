@@ -125,7 +125,7 @@ export function ErrorMessage({ error, onRetry }: { error: string; onRetry: () =>
               Réessayer
             </button>
             <a
-              href="mailto:contact@lieuxdexception.fr"
+              href="mailto:contact@lieuxdexception.com"
               className="text-sm text-red-700 hover:text-red-900 underline"
             >
               Nous contacter par email

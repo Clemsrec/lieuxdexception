@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, Users } from 'lucide-react';
-import { getVenues } from '@/lib/firestore';
+import { getVenues, getPageContent } from '@/lib/firestore';
 import { getTranslations } from 'next-intl/server';
 import { generateHomeMetadata } from '@/lib/smartMetadata';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
@@ -33,13 +33,22 @@ export default async function Home({
   
   // Récupérer TOUS les domaines
   const venues = await getVenues();
-  console.log('🏠 [page.tsx] Venues récupérées:', venues.length, venues.map(v => ({ id: v.id, name: v.name, lat: v.lat, lng: v.lng })));
+
+  // Récupérer le contenu de la page depuis Firestore (CMS)
+  const pageContent = await getPageContent('homepage', locale === 'fr' ? 'fr' : 'en');
+  
+  // Préparer les images pour le carousel
+  const carouselImages = venues
+    .filter(v => v.images?.hero || v.heroImage || v.image)
+    .map(v => v.images?.hero || v.heroImage || v.image)
+    .filter((img): img is string => Boolean(img))
+    .slice(0, 5);
 
   // Générer structured data pour la page d'accueil
   const organizationSchema = generateUniversalStructuredData({
     siteType: 'corporate',
     pageType: 'homepage',
-    url: 'https://lieuxdexception.fr'
+    url: 'https://lieuxdexception.com'
   });
 
   const faqSchema = generateFAQSchema('homepage');
@@ -63,25 +72,21 @@ export default async function Home({
 
       {/* Hero Section avec carousel de photos réelles des châteaux */}
       <HeroSection
-        title={t('title')}
-        subtitle={t('subtitle')}
-        description={t('description')}
+        title={pageContent?.hero?.title || t('title')}
+        subtitle={pageContent?.hero?.subtitle || t('subtitle')}
+        description={pageContent?.hero?.description || t('description')}
         buttons={[
-          { label: t('contactButton'), href: `/${locale}/contact`, primary: true }
+          { label: pageContent?.hero?.ctaText || t('contactButton'), href: pageContent?.hero?.ctaLink || `/${locale}/contact`, primary: true }
         ]}
         carousel={
           <HeroCarousel 
-            images={venues
-              .filter(v => v.heroImage || v.images?.heroImage || v.images?.hero || v.image)
-              .map(v => v.images?.heroImage || v.images?.hero || v.heroImage || v.image)
-              .filter((img): img is string => Boolean(img))
-              .slice(0, 5)}
+            images={carouselImages}
           />
         }
       />
 
       {/* Contenu principal géré par le composant client avec animations */}
-      <HomeClient venues={venues} />
+      <HomeClient venues={venues} pageContent={pageContent} />
 
     </main>
   );

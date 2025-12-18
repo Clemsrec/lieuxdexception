@@ -6,7 +6,8 @@ import VenueGallerySection from '@/components/VenueGallerySection';
 import { generateServiceMetadata } from '@/lib/smartMetadata';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
 import { getTranslations } from 'next-intl/server';
-import { getMariageImages, getRandomImages } from '@/lib/mariageImages';
+import { getMariageImagesFromVenue, getRandomImages } from '@/lib/venueGalleryHelpers';
+import { getVenues } from '@/lib/firestore';
 
 /**
  * Métadonnées SEO optimisées via système universel
@@ -33,19 +34,22 @@ export default async function MariagesPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Weddings' });
   
-  // Charger les images depuis le système de fichiers
-  const brulaire_all = await getMariageImages('chateau-brulaire');
-  const corbe_all = await getMariageImages('chateau-corbe');
-  const nantais_all = await getMariageImages('domaine-nantais');
-  const boulaie_all = await getMariageImages('manoir-boulaie');
-  const dome_all = await getMariageImages('le-dome');
+  // Charger toutes les venues depuis Firestore
+  const venues = await getVenues();
   
-  // Sélection aléatoire de 6 images max par lieu
-  const brulaire_images = getRandomImages(brulaire_all, 6);
-  const corbe_images = getRandomImages(corbe_all, 6);
-  const nantais_images = getRandomImages(nantais_all, 6);
-  const boulaie_images = getRandomImages(boulaie_all, 6);
-  const dome_images = getRandomImages(dome_all, 6);
+  // Extraire les images mariages pour chaque lieu
+  const brulaire = venues.find(v => v.slug === 'chateau-brulaire');
+  const corbe = venues.find(v => v.slug === 'chateau-corbe');
+  const nantais = venues.find(v => v.slug === 'domaine-nantais');
+  const boulaie = venues.find(v => v.slug === 'manoir-boulaie');
+  const dome = venues.find(v => v.slug === 'le-dome');
+  
+  // Sélection aléatoire de 6 images max par lieu depuis Firestore
+  const brulaire_images = brulaire ? getRandomImages(getMariageImagesFromVenue(brulaire), 6) : [];
+  const corbe_images = corbe ? getRandomImages(getMariageImagesFromVenue(corbe), 6) : [];
+  const nantais_images = nantais ? getRandomImages(getMariageImagesFromVenue(nantais), 6) : [];
+  const boulaie_images = boulaie ? getRandomImages(getMariageImagesFromVenue(boulaie), 6) : [];
+  const dome_images = dome ? getRandomImages(getMariageImagesFromVenue(dome), 6) : [];
   
   // Générer structured data
   const serviceSchema = generateUniversalStructuredData({
@@ -55,7 +59,7 @@ export default async function MariagesPage({
       name: 'Mariages d\'Exception',
       description: 'Organisation complète de mariages dans nos domaines prestigieux'
     },
-    url: 'https://lieuxdexception.fr/mariages'
+    url: 'https://lieuxdexception.com/mariages'
   });
 
   const faqSchema = generateFAQSchema('service');
@@ -82,7 +86,7 @@ export default async function MariagesPage({
         title={t('title')}
         subtitle={t('hero')}
         description={t('description')}
-        backgroundImage="/venues/chateau-brulaire/mariages/mise-en-scene.jpg"
+        backgroundImage="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-brulaire%2Fmariages%2Fmise-en-scene.jpg?alt=media"
         buttons={[
           { label: t('requestInfo'), href: `/${locale}/contact`, primary: true }
         ]}
@@ -222,7 +226,7 @@ export default async function MariagesPage({
         {/* Image de fond */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/venues/chateau-corbe/mariages/corbe_orangerie_3.jpg"
+            src="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-corbe%2Fmariages%2Fcorbe_orangerie_3.jpg?alt=media"
             alt="Mariage d'exception"
             fill
             className="object-cover"

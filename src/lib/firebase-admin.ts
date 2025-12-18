@@ -52,7 +52,7 @@ function initializeAdminApp() {
       return initializeApp({
         credential: cert(serviceAccount),
         projectId: serviceAccount.project_id,
-        storageBucket: `${serviceAccount.project_id}.appspot.com`,
+        storageBucket: `${serviceAccount.project_id}.firebasestorage.app`,
       });
     }
     
@@ -65,7 +65,7 @@ function initializeAdminApp() {
       return initializeApp({
         credential: cert(serviceAccount),
         projectId: serviceAccount.project_id,
-        storageBucket: `${serviceAccount.project_id}.appspot.com`,
+        storageBucket: `${serviceAccount.project_id}.firebasestorage.app`,
       });
     }
     

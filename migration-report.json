@@ -1,0 +1,39 @@
+{
+  "timestamp": "2025-12-18T11:37:16.636Z",
+  "dryRun": false,
+  "summary": {
+    "totalFiles": 54,
+    "uploaded": 54,
+    "skipped": 0,
+    "errors": 0,
+    "successRate": "100.00%"
+  },
+  "byVenue": {
+    "le-chateau-de-la-brulaire": {
+      "uploaded": 8,
+      "skipped": 0,
+      "errors": 0
+    },
+    "le-chateau-de-la-corbe": {
+      "uploaded": 0,
+      "skipped": 0,
+      "errors": 0
+    },
+    "le-domaine-nantais": {
+      "uploaded": 8,
+      "skipped": 0,
+      "errors": 0
+    },
+    "le-dome": {
+      "uploaded": 4,
+      "skipped": 0,
+      "errors": 0
+    },
+    "le-manoir-de-la-boulaie": {
+      "uploaded": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  "errors": []
+}

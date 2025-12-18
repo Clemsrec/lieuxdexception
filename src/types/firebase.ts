@@ -196,6 +196,9 @@ export interface Venue {
   // Métadonnées
   featured: boolean;
   status: 'active' | 'maintenance' | 'closed';
+  active: boolean; // Statut d'activation (false = désactivé)
+  deleted: boolean; // Soft delete (true = supprimé logiquement)
+  deletedAt?: string; // Date de suppression (soft delete)
   createdAt: Timestamp;
   updatedAt: Timestamp;
   // Ordre d'affichage optionnel pour tri personnalisés
@@ -354,4 +357,100 @@ export interface Analytics {
     tablet: number;
   };
   createdAt: Timestamp;
+}
+
+/**
+ * Section de contenu avec texte riche
+ */
+export interface ContentSection {
+  id: string;
+  title: string;
+  content: string; // HTML depuis éditeur riche
+  order: number;
+  visible: boolean;
+}
+
+/**
+ * Bloc de contenu avec image
+ */
+export interface ContentBlock {
+  id: string;
+  title: string;
+  subtitle?: string;
+  content: string; // HTML depuis éditeur riche
+  image?: string;
+  imageAlt?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  order: number;
+  visible: boolean;
+}
+
+/**
+ * Carte de fonctionnalité numérotée (01, 02, 03...)
+ */
+export interface FeatureCard {
+  id: string;
+  number: string; // "01", "02", etc.
+  title: string;
+  content: string; // HTML depuis éditeur riche
+  order: number;
+  visible: boolean;
+}
+
+/**
+ * Informations de contact
+ */
+export interface ContactInfo {
+  type: 'b2b' | 'wedding' | 'general';
+  phone: string;
+  email: string;
+  description?: string;
+}
+
+/**
+ * Contenu de page public éditable
+ * Collection Firestore: pageContents
+ */
+export interface PageContent {
+  id: string; // 'homepage', 'contact', 'mariages', 'b2b', etc.
+  pageName: string;
+  locale: string; // 'fr', 'en', etc.
+  
+  // Hero Section
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+    backgroundImage?: string;
+    ctaText?: string;
+    ctaLink?: string;
+  };
+  
+  // Sections de contenu
+  sections: ContentSection[];
+  
+  // Blocs de contenu avec images
+  blocks: ContentBlock[];
+  
+  // Cartes de fonctionnalités (pour homepage)
+  featureCards: FeatureCard[];
+  
+  // Informations de contact (pour page contact)
+  contactInfo?: ContactInfo[];
+  
+  // CTA final
+  finalCta?: {
+    title: string;
+    subtitle: string;
+    content: string;
+    ctaText: string;
+    ctaLink: string;
+    backgroundImage?: string;
+  };
+  
+  // Métadonnées
+  updatedAt: Timestamp;
+  updatedBy: string; // email de l'admin
+  version: number;
 }

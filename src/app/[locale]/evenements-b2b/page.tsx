@@ -6,7 +6,8 @@ import VenueGallerySection from '@/components/VenueGallerySection';
 import { generateServiceMetadata } from '@/lib/smartMetadata';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
 import { getTranslations } from 'next-intl/server';
-import { getB2BImages, getRandomImages } from '@/lib/mariageImages';
+import { getB2BImagesFromVenue, getRandomImages } from '@/lib/venueGalleryHelpers';
+import { getVenues } from '@/lib/firestore';
 
 /**
  * Métadonnées SEO optimisées via système universel
@@ -30,18 +31,20 @@ export default async function EvenementsB2BPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'B2B' });
   
-  // Charger les images B2B dynamiquement depuis le filesystem
-  const brulaire_all = await getB2BImages('chateau-brulaire');
-  const corbe_all = await getB2BImages('chateau-corbe');
-  const nantais_all = await getB2BImages('domaine-nantais');
-  const boulaie_all = await getB2BImages('manoir-boulaie');
-  // Note: Le Dôme n'a pas encore d'images B2B disponibles
+  // Charger toutes les venues depuis Firestore
+  const venues = await getVenues();
   
-  // Sélection aléatoire de 6 images max par lieu
-  const brulaire_images = getRandomImages(brulaire_all, 6);
-  const corbe_images = getRandomImages(corbe_all, 6);
-  const nantais_images = getRandomImages(nantais_all, 6);
-  const boulaie_images = getRandomImages(boulaie_all, 6);
+  // Extraire les images B2B pour chaque lieu
+  const brulaire = venues.find(v => v.slug === 'chateau-brulaire');
+  const corbe = venues.find(v => v.slug === 'chateau-corbe');
+  const nantais = venues.find(v => v.slug === 'domaine-nantais');
+  const boulaie = venues.find(v => v.slug === 'manoir-boulaie');
+  
+  // Sélection aléatoire de 6 images max par lieu depuis Firestore
+  const brulaire_images = brulaire ? getRandomImages(getB2BImagesFromVenue(brulaire), 6) : [];
+  const corbe_images = corbe ? getRandomImages(getB2BImagesFromVenue(corbe), 6) : [];
+  const nantais_images = nantais ? getRandomImages(getB2BImagesFromVenue(nantais), 6) : [];
+  const boulaie_images = boulaie ? getRandomImages(getB2BImagesFromVenue(boulaie), 6) : [];
   
   // Générer structured data
   const serviceSchema = generateUniversalStructuredData({
@@ -51,7 +54,7 @@ export default async function EvenementsB2BPage({
       name: 'Événements B2B et Séminaires',
       description: 'Organisation d\'événements professionnels dans nos lieux d\'exception'
     },
-    url: 'https://lieuxdexception.fr/evenements-b2b'
+    url: 'https://lieuxdexception.com/evenements-b2b'
   });
 
   const faqSchema = generateFAQSchema('service');
@@ -78,7 +81,7 @@ export default async function EvenementsB2BPage({
         title={t('title')}
         subtitle={t('hero')}
         description={t('description')}
-        backgroundImage="/venues/chateau-corbe/b2b/corbe_seminaire_1.jpg"
+        backgroundImage="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-corbe%2Fb2b%2Fcorbe_seminaire_1.jpg?alt=media"
         buttons={[
           { label: t('requestQuote'), href: `/${locale}/contact`, primary: true }
         ]}
@@ -233,7 +236,7 @@ export default async function EvenementsB2BPage({
       <section className="section relative overflow-hidden mb-0">
         <div className="absolute inset-0">
           <Image
-            src="/venues/manoir-boulaie/b2b/boulaie_seminaire_6.jpg"
+            src="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fmanoir-boulaie%2Fb2b%2Fboulaie_seminaire_6.jpg?alt=media"
             alt=""
             fill
             className="object-cover"

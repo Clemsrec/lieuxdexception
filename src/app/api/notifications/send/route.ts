@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
       notification: {
         title,
         body: message,
-        imageUrl: 'https://lieuxdexception.fr/logo/Logo_CLE_seule.png',
+        imageUrl: 'https://lieuxdexception.com/logo/Logo_CLE_seule.png',
       },
       data: {
         type: type || 'info',

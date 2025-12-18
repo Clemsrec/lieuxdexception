@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import ProtectedRoute from '@/components/admin/ProtectedRoute';
-import AdminLayout from '@/components/admin/AdminLayout';
 import { 
   LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
@@ -181,23 +179,17 @@ export default function AdminAnalyticsPage() {
 
   if (loading) {
     return (
-      <ProtectedRoute>
-        <AdminLayout>
-          <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="flex items-center justify-center min-h-[60vh]">
             <div className="text-center">
               <RefreshCw className="w-12 h-12 animate-spin text-accent mx-auto mb-4" />
               <p className="text-lg text-secondary">Chargement des statistiques...</p>
             </div>
-          </div>
-        </AdminLayout>
-      </ProtectedRoute>
+      </div>
     );
   }
 
   return (
-    <ProtectedRoute>
-      <AdminLayout>
-        <div className="space-y-6">
+    <div className="space-y-6">
           {/* Header */}
           <div className="flex items-center justify-between">
             <div>
@@ -487,8 +479,6 @@ export default function AdminAnalyticsPage() {
             </div>
           </div>
         </div>
-      </AdminLayout>
-    </ProtectedRoute>
   );
 }
 

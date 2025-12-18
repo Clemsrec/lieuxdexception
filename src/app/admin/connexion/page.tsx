@@ -144,7 +144,7 @@ export default function AdminLoginPage() {
                 autoComplete="email"
                 spellCheck="false"
                 className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-charcoal-700 focus:border-charcoal-700 transition-colors outline-none text-slate-900 placeholder:text-slate-400"
-                placeholder="admin@lieuxdexception.fr"
+                placeholder="contact@lieuxdexception.com"
                 disabled={loading}
               />
             </div>

@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAuth, authActions } from '@/lib/auth';
 import { NotificationList } from '@/components/admin/Notifications';
 import Image from 'next/image';
-import { LayoutDashboard, Castle, Mail, BarChart3, Settings, Zap, Users } from 'lucide-react';
+import { LayoutDashboard, Castle, Mail, BarChart3, Settings, Zap, Users, Image as ImageIcon, FileText } from 'lucide-react';
 
 /**
  * Layout admin avec sidebar navigation
@@ -42,6 +42,16 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       icon: Castle,
     },
     {
+      label: 'Contenus',
+      href: '/admin/contenus',
+      icon: FileText,
+    },
+    {
+      label: 'Galerie',
+      href: '/admin/galerie',
+      icon: ImageIcon,
+    },
+    {
       label: 'Leads & Contacts',
       href: '/admin/leads',
       icon: Mail,
@@ -64,12 +74,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex">
+    <div className="h-screen bg-neutral-50 flex overflow-hidden">
       {/* Sidebar */}
       <aside
         className={`bg-charcoal-900 text-white transition-all duration-300 ${
           sidebarOpen ? 'w-64' : 'w-20'
-        } flex flex-col`}
+        } flex flex-col h-full flex-shrink-0`}
       >
         {/* Logo */}
         <div className="p-6 border-b border-white/10">
@@ -132,9 +142,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 flex flex-col h-full overflow-hidden">
         {/* Header */}
-        <header className="bg-white border-b border-neutral-200 px-8 py-4">
+        <header className="bg-white border-b border-neutral-200 px-8 py-4 flex-shrink-0">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-heading font-semibold text-charcoal-900">
               {menuItems.find((item) => item.href === pathname)?.label || 'Administration'}
@@ -155,7 +165,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         </header>
 
         {/* Content */}
-        <div className="p-8">
+        <div className="flex-1 overflow-y-auto p-8">
           {children}
         </div>
       </main>

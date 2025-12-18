@@ -9,7 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getVenues } from '@/lib/firestore';
 import { displayVenueName } from '@/lib/formatVenueName';
-import { getB2BImages, getRandomImages } from '@/lib/mariageImages';
+import { STORAGE_IMAGES } from '@/lib/storage-assets';
 
 // Mapping des logos en dur
 const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
@@ -72,9 +72,8 @@ export default async function VenuePage({ params }: VenuePageProps) {
     notFound();
   }
 
-  // Charger les images B2B dynamiquement depuis le filesystem
-  const allB2BImages = await getB2BImages(slug);
-  const galleryImages = getRandomImages(allB2BImages, 12); // 12 images max randomisées
+  // Images de la galerie depuis Firestore (Firebase Storage)
+  const galleryImages = venue.images?.gallery || [];
 
   return (
     <main className="min-h-screen">
@@ -500,14 +499,15 @@ export default async function VenuePage({ params }: VenuePageProps) {
               Galerie photos
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {galleryImages.map((image, index) => (
+              {galleryImages.map((imageUrl, index) => (
                 <div key={index} className="relative aspect-4/3 overflow-hidden rounded-lg group cursor-pointer">
                   <Image
-                    src={image.src}
-                    alt={image.alt}
+                    src={imageUrl}
+                    alt={`${displayVenueName(venue.name)} - Photo ${index + 1}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 50vw, 33vw"
+                    unoptimized
                   />
                 </div>
               ))}
@@ -666,7 +666,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
                   {/* Image */}
                   <Link href={`/lieux/${otherVenue.slug}`} className="relative aspect-4/3 overflow-hidden">
                     <Image
-                      src={otherVenue.images?.hero || otherVenue.heroImage || otherVenue.image || '/images/placeholder.jpg'}
+                      src={otherVenue.images?.hero || otherVenue.heroImage || otherVenue.image || STORAGE_IMAGES.placeholder}
                       alt={otherVenue.name}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-700"

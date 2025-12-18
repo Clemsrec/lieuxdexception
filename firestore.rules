@@ -208,6 +208,22 @@ service cloud.firestore {
     }
     
     // ===========================================
+    // COLLECTION: PAGE_CONTENTS (Contenus de Pages)
+    // ===========================================
+    
+    match /pageContents/{pageContentId} {
+      // Lecture: Public (pour affichage des pages)
+      allow read: if true;
+      
+      // Écriture: Admin uniquement
+      allow create, update: if isAdmin() &&
+                               hasRequiredFields(['id', 'pageName', 'locale', 'hero', 'updatedAt', 'updatedBy', 'version']);
+      
+      // Suppression: Admin uniquement
+      allow delete: if isAdmin();
+    }
+    
+    // ===========================================
     // BLOCAGE PAR DÉFAUT
     // ===========================================
     

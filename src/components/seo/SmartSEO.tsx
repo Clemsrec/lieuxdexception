@@ -113,7 +113,7 @@ export default function SmartSEO({
     title: customMeta?.title || autoMeta.title,
     description: customMeta?.description || autoMeta.description,
     keywords: customMeta?.keywords || autoMeta.keywords,
-    canonical: customMeta?.canonical || `https://lieuxdexception.fr${pathname}`,
+    canonical: customMeta?.canonical || `https://lieuxdexception.com${pathname}`,
     image: customMeta?.image || '/images/Vue-chateau.jpg'
   };
 

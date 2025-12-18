@@ -443,12 +443,12 @@ npm audit fix
 
 **Tester headers sécurité :**
 ```bash
-curl -I https://lieuxdexception.fr | grep -i "content-security\|x-frame\|strict-transport"
+curl -I https://lieuxdexception.com | grep -i "content-security\|x-frame\|strict-transport"
 ```
 
 **Scanner SSL :**
 ```bash
-openssl s_client -connect lieuxdexception.fr:443 -servername lieuxdexception.fr
+openssl s_client -connect lieuxdexception.com:443 -servername lieuxdexception.com
 ```
 
 ---

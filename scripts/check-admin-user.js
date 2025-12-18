@@ -91,7 +91,7 @@ async function checkAndFixAdmin(userId) {
     
     // 5. Résumé final
     console.log('📋 Résumé de connexion:');
-    console.log(`   URL: https://lieuxdexception.fr/admin/connexion`);
+    console.log(`   URL: https://lieuxdexception.com/admin/connexion`);
     console.log(`   Email: ${user.email}`);
     console.log(`   Mot de passe: (celui que vous avez défini)`);
     console.log(`   Status: ${needsFix ? 'Corrigé - Déconnectez-vous et reconnectez-vous' : 'OK'}\n`);

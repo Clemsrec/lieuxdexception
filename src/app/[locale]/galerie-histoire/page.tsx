@@ -44,7 +44,7 @@ export default async function HistoirePage({
       title: 'LE DÔME',
       subtitle: 'Acquisition du lieu',
       description: 'Un projet singulier rejoint Lieux d\'Exception. Le Dôme est acquis avec une ambition forte : créer un espace événementiel atypique, immersif et résolument différenciant. Début des événements prévu en 2025.',
-      image: '/venues/le-dome/mariages/dome_interieur_1.jpg',
+      image: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fle-dome%2Fmariages%2Fdome_interieur_1.jpg?alt=media',
       imagePosition: 'top' as const,
     },
     {
@@ -94,7 +94,7 @@ export default async function HistoirePage({
       name: 'Histoire - Lieux d\'Exception',
       description: 'L\'histoire de Lieux d\'Exception à travers une timeline interactive'
     },
-    url: 'https://lieuxdexception.fr/galerie-histoire'
+    url: 'https://lieuxdexception.com/galerie-histoire'
   });
 
   return (
@@ -114,7 +114,7 @@ export default async function HistoirePage({
         subtitle="L'aventure Lieux d'Exception"
         description="Plus de 5 ans d'histoire, d'acquisitions et de passion pour l'événementiel haut de gamme. 
         Découvrez notre parcours à travers une timeline interactive."
-        backgroundImage="/venues/chateau-corbe/b2b/corbe_vue_chateau_2.jpg"
+        backgroundImage="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-corbe%2Fb2b%2Fcorbe_vue_chateau_2.jpg?alt=media"
       />
 
       {/* Timeline Interactive */}

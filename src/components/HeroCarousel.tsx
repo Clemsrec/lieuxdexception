@@ -58,6 +58,7 @@ export default function HeroCarousel({ images, fallbackImages = [], interval = 5
             loading={index === 0 ? undefined : 'lazy'}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1920px"
             quality={75}
+            unoptimized
           />
         </div>
       ))}

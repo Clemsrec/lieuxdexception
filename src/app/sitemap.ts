@@ -8,7 +8,7 @@ import { getVenues } from '@/lib/firestore';
  * @returns {Promise<MetadataRoute.Sitemap>} Configuration du sitemap
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://lieuxdexception.fr';
+  const baseUrl = 'https://lieuxdexception.com';
   
   // Récupérer tous les lieux actifs pour URLs dynamiques
   const venues = await getVenues({ featured: true });

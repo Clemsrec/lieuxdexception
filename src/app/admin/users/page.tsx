@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import ProtectedRoute from '@/components/admin/ProtectedRoute';
-import AdminLayout from '@/components/admin/AdminLayout';
 import { 
   Users, UserPlus, Mail, Lock, Edit, Trash2, Search, 
   Shield, User, X, CheckCircle, AlertCircle, Eye, EyeOff 
@@ -261,77 +259,75 @@ export default function AdminUsersPage() {
   ];
 
   return (
-    <ProtectedRoute>
-      <AdminLayout>
-        <div className="space-y-6">
-          {/* Header */}
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-heading font-bold text-charcoal-900 mb-2">
-                Gestion des utilisateurs
-              </h1>
-              <p className="text-secondary">
-                Gérer les comptes utilisateurs et leurs permissions
-              </p>
-            </div>
-            <button
-              onClick={() => {
-                resetForm();
-                setShowAddModal(true);
-              }}
-              className="btn btn-primary flex items-center gap-2"
-            >
-              <UserPlus className="w-4 h-4" />
-              Ajouter un utilisateur
-            </button>
-          </div>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-heading font-bold text-charcoal-900 mb-2">
+            Gestion des utilisateurs
+          </h1>
+          <p className="text-secondary">
+            Gérer les comptes utilisateurs et leurs permissions
+          </p>
+        </div>
+        <button
+          onClick={() => {
+            resetForm();
+            setShowAddModal(true);
+          }}
+          className="btn btn-primary flex items-center gap-2"
+        >
+          <UserPlus className="w-4 h-4" />
+          Ajouter un utilisateur
+        </button>
+      </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {statsCards.map((stat, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-md border border-neutral-200 p-6">
-                <p className="text-sm text-secondary mb-1">{stat.label}</p>
-                <p className="text-3xl font-bold text-charcoal-900">{stat.value}</p>
-              </div>
-            ))}
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {statsCards.map((stat, index) => (
+          <div key={index} className="bg-white rounded-xl shadow-md border border-neutral-200 p-6">
+            <p className="text-sm text-secondary mb-1">{stat.label}</p>
+            <p className="text-3xl font-bold text-charcoal-900">{stat.value}</p>
           </div>
+        ))}
+      </div>
 
-          {/* Search Bar */}
-          <div className="bg-white rounded-xl shadow-md border border-neutral-200 p-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary" />
-              <input
-                type="text"
-                placeholder="Rechercher par nom, prénom ou email..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-              />
-            </div>
+      {/* Search Bar */}
+      <div className="bg-white rounded-xl shadow-md border border-neutral-200 p-4">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary" />
+          <input
+            type="text"
+            placeholder="Rechercher par nom, prénom ou email..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+          />
+        </div>
+      </div>
+
+      {/* Users Table */}
+      <div className="bg-white rounded-xl shadow-md border border-neutral-200 overflow-hidden">
+        {loading ? (
+          <div className="text-center py-12 text-secondary">
+            Chargement...
           </div>
-
-          {/* Users Table */}
-          <div className="bg-white rounded-xl shadow-md border border-neutral-200 overflow-hidden">
-            {loading ? (
-              <div className="text-center py-12 text-secondary">
-                Chargement...
-              </div>
-            ) : filteredUsers.length === 0 ? (
-              <div className="text-center py-12">
-                <Users className="w-12 h-12 mx-auto mb-3 text-secondary" />
-                <p className="text-secondary">
-                  {searchQuery ? 'Aucun utilisateur trouvé' : 'Aucun utilisateur'}
-                </p>
-              </div>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-neutral-50 border-b border-neutral-200">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-secondary uppercase tracking-wider">
-                        Utilisateur
-                      </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-secondary uppercase tracking-wider">
+        ) : filteredUsers.length === 0 ? (
+          <div className="text-center py-12">
+            <Users className="w-12 h-12 mx-auto mb-3 text-secondary" />
+            <p className="text-secondary">
+              {searchQuery ? 'Aucun utilisateur trouvé' : 'Aucun utilisateur'}
+            </p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-neutral-50 border-b border-neutral-200">
+                <tr>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-secondary uppercase tracking-wider">
+                    Utilisateur
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-secondary uppercase tracking-wider">
                         Email
                       </th>
                       <th className="px-6 py-4 text-left text-xs font-medium text-secondary uppercase tracking-wider">
@@ -403,14 +399,13 @@ export default function AdminUsersPage() {
                       </tr>
                     ))}
                   </tbody>
-                </table>
-              </div>
-            )}
-          </div>
+          </table>
         </div>
+      )}
+    </div>
 
-        {/* Modal Ajout */}
-        {showAddModal && (
+      {/* Modal Ajout */}
+      {showAddModal && (
           <Modal
             title="Ajouter un utilisateur"
             onClose={() => {
@@ -538,8 +533,8 @@ export default function AdminUsersPage() {
           </Modal>
         )}
 
-        {/* Modal Édition */}
-        {showEditModal && selectedUser && (
+      {/* Modal Édition */}
+      {showEditModal && selectedUser && (
           <Modal
             title="Modifier l'utilisateur"
             onClose={() => {
@@ -667,8 +662,8 @@ export default function AdminUsersPage() {
           </Modal>
         )}
 
-        {/* Modal Suppression */}
-        {showDeleteModal && selectedUser && (
+      {/* Modal Suppression */}
+      {showDeleteModal && selectedUser && (
           <Modal
             title="Supprimer l'utilisateur"
             onClose={() => {
@@ -687,9 +682,9 @@ export default function AdminUsersPage() {
                     <p className="text-sm text-secondary">
                       Êtes-vous sûr de vouloir supprimer l&apos;utilisateur{' '}
                       <strong className="text-charcoal-900">
-                        {selectedUser.firstName} {selectedUser.lastName}
+                        {selectedUser?.firstName} {selectedUser?.lastName}
                       </strong>{' '}
-                      ({selectedUser.email}) ?
+                      ({selectedUser?.email}) ?
                     </p>
                   </div>
                 </div>
@@ -711,15 +706,14 @@ export default function AdminUsersPage() {
                   onClick={handleDeleteUser}
                   className="btn bg-danger hover:bg-danger/90 text-white flex-1"
                   disabled={submitting}
-                >
-                  {submitting ? 'Suppression...' : 'Supprimer'}
-                </button>
-              </div>
+              >
+                {submitting ? 'Suppression...' : 'Supprimer'}
+              </button>
             </div>
-          </Modal>
+          </div>
+        </Modal>
         )}
-      </AdminLayout>
-    </ProtectedRoute>
+      </div>
   );
 }
 

@@ -17,35 +17,52 @@ import type { Venue, Lead, VenueFilters, Analytics } from '@/types/firebase';
  * @param filters Filtres optionnels pour la recherche
  * @returns Promise<Venue[]> Liste des lieux
  */
-export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
+/**
+ * Récupérer tous les lieux d'exception
+ * @param filters Filtres optionnels pour la recherche
+ * @param includeInactive Si true, inclut aussi les lieux inactifs (pour admin)
+ * @param includeDeleted Si true, inclut aussi les lieux supprimés (soft delete)
+ * @returns Promise<Venue[]> Liste des lieux
+ */
+export async function getVenues(
+  filters?: VenueFilters, 
+  includeInactive: boolean = false,
+  includeDeleted: boolean = false
+): Promise<Venue[]> {
   try {
     ensureAdminInitialized();
     
-    let query = adminDb!.collection('venues').where('active', '==', true);
+    // Pour l'admin, ne pas filtrer par 'active' pour voir tous les lieux
+    let query = adminDb!.collection('venues');
+    
+    // NOTE: On ne filtre pas 'deleted' dans la query car ce champ n'existe pas dans les anciens lieux
+    // Le filtrage se fera côté code après récupération
+    
+    // Filtrer par statut actif seulement si demandé (pour le site public)
+    // IMPORTANT: Ne pas filtrer si includeInactive=true (admin)
+    if (!includeInactive) {
+      query = query.where('active', '==', true) as any;
+    }
     
     // Appliquer les filtres
     if (filters?.eventType && filters.eventType !== 'all') {
       query = query.where('eventTypes', 'array-contains', 
-        filters.eventType === 'b2b' ? 'b2b' : 'mariage');
+        filters.eventType === 'b2b' ? 'b2b' : 'mariage') as any;
     }
     
     if (filters?.region) {
-      query = query.where('region', '==', filters.region);
+      query = query.where('region', '==', filters.region) as any;
     }
     
     if (filters?.featured !== undefined) {
-      query = query.where('featured', '==', filters.featured);
+      query = query.where('featured', '==', filters.featured) as any;
     }
     
     const snapshot = await query.get();
     console.log('🔥 [Firestore] Documents récupérés:', snapshot.size);
-    snapshot.docs.forEach(doc => {
-      const data = doc.data();
-      console.log('🔥 [Firestore] Venue:', doc.id, 'active:', data.active, 'displayOrder:', data.displayOrder, 'lat:', data.lat, 'lng:', data.lng);
-    });
     
     // Convertir et trier côté code (évite les index composites Firestore)
-    const venues = snapshot.docs.map(doc => {
+    let venues = snapshot.docs.map(doc => {
       const data = doc.data();
       // Convertir les Timestamps Firestore en strings ISO pour la sérialisation
       return {
@@ -53,8 +70,14 @@ export async function getVenues(filters?: VenueFilters): Promise<Venue[]> {
         ...data,
         createdAt: data.createdAt?.toDate?.() ? data.createdAt.toDate().toISOString() : data.createdAt,
         updatedAt: data.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data.updatedAt,
+        deletedAt: data.deletedAt?.toDate?.() ? data.deletedAt.toDate().toISOString() : data.deletedAt,
       } as Venue;
     });
+    
+    // Filtrer les lieux supprimés côté code (le champ 'deleted' peut ne pas exister)
+    if (!includeDeleted) {
+      venues = venues.filter(venue => !venue.deleted);
+    }
     
     // Trier par displayOrder puis par nom
     return venues.sort((a, b) => {
@@ -179,6 +202,80 @@ export async function createVenue(venueData: Omit<Venue, 'id' | 'createdAt' | 'u
   } catch (error) {
     console.error('Erreur lors de la création du lieu:', error);
     throw new Error('Impossible de créer le lieu');
+  }
+}
+
+/**
+ * Mettre à jour un lieu existant (admin uniquement)
+ * @param venueId ID du lieu
+ * @param updates Données à mettre à jour
+ * @returns Promise<void>
+ */
+export async function updateVenue(venueId: string, updates: Partial<Venue>): Promise<void> {
+  try {
+    ensureAdminInitialized();
+    
+    const updateData = {
+      ...updates,
+      updatedAt: new Date().toISOString(),
+    };
+    
+    // Supprimer les champs qui ne doivent pas être mis à jour
+    delete (updateData as any).id;
+    delete (updateData as any).createdAt;
+    
+    await adminDb!.collection('venues').doc(venueId).update(updateData);
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du lieu:', error);
+    throw new Error('Impossible de mettre à jour le lieu');
+  }
+}
+
+/**
+ * Supprimer un lieu (soft delete recommandé)
+ * @param venueId ID du lieu
+ * @param hardDelete Si true, suppression définitive. Sinon soft delete (recommandé)
+ * @returns Promise<void>
+ */
+export async function deleteVenue(venueId: string, hardDelete: boolean = false): Promise<void> {
+  try {
+    ensureAdminInitialized();
+    
+    if (hardDelete) {
+      // Suppression définitive (DANGEREUX - perte de données)
+      await adminDb!.collection('venues').doc(venueId).delete();
+    } else {
+      // Soft delete (RECOMMANDÉ - conservation des données)
+      await adminDb!.collection('venues').doc(venueId).update({
+        active: false,
+        deleted: true,
+        deletedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
+    }
+  } catch (error) {
+    console.error('Erreur lors de la suppression du lieu:', error);
+    throw new Error('Impossible de supprimer le lieu');
+  }
+}
+
+/**
+ * Restaurer un lieu supprimé (soft delete)
+ * @param venueId ID du lieu
+ * @returns Promise<void>
+ */
+export async function restoreVenue(venueId: string): Promise<void> {
+  try {
+    ensureAdminInitialized();
+    
+    await adminDb!.collection('venues').doc(venueId).update({
+      deleted: false,
+      deletedAt: null,
+      updatedAt: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error('Erreur lors de la restauration du lieu:', error);
+    throw new Error('Impossible de restaurer le lieu');
   }
 }
 
@@ -327,4 +424,134 @@ export function formatDate(isoString: string, locale: string = 'fr-FR'): string 
     hour: '2-digit',
     minute: '2-digit',
   });
+}
+
+// =====================================
+// SERVICES PAGE CONTENTS (Contenus de Pages)
+// =====================================
+
+/**
+ * Récupérer le contenu d'une page
+ * @param pageId ID de la page ('homepage', 'contact', 'mariages', 'b2b')
+ * @param locale Locale de la page (défaut: 'fr')
+ * @returns Promise<PageContent | null> Le contenu de la page ou null si non trouvé
+ */
+export async function getPageContent(pageId: string, locale: string = 'fr'): Promise<any | null> {
+  try {
+    ensureAdminInitialized();
+    
+    const docId = `${pageId}_${locale}`;
+    const doc = await adminDb!.collection('pageContents').doc(docId).get();
+    
+    if (!doc.exists) {
+      console.warn(`[Firestore] Contenu de page non trouvé: ${docId}`);
+      return null;
+    }
+    
+    const data = doc.data();
+    return {
+      id: doc.id,
+      ...data,
+      updatedAt: data?.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data?.updatedAt,
+    };
+  } catch (error) {
+    console.error('[Firestore] Erreur lors de la récupération du contenu de page:', error);
+    return null;
+  }
+}
+
+/**
+ * Récupérer tous les contenus de pages pour une locale donnée
+ * @param locale Locale des pages (défaut: 'fr')
+ * @returns Promise<PageContent[]> Liste des contenus de pages
+ */
+export async function getAllPageContents(locale: string = 'fr'): Promise<any[]> {
+  try {
+    ensureAdminInitialized();
+    
+    const snapshot = await adminDb!.collection('pageContents')
+      .where('locale', '==', locale)
+      .get();
+    
+    return snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        updatedAt: data?.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data?.updatedAt,
+      };
+    });
+  } catch (error) {
+    console.error('[Firestore] Erreur lors de la récupération des contenus de pages:', error);
+    return [];
+  }
+}
+
+/**
+ * Créer ou mettre à jour le contenu d'une page
+ * @param pageId ID de la page
+ * @param locale Locale de la page
+ * @param content Contenu de la page
+ * @param userEmail Email de l'utilisateur qui met à jour
+ * @returns Promise<string> ID du document
+ */
+export async function upsertPageContent(
+  pageId: string,
+  locale: string,
+  content: any,
+  userEmail: string
+): Promise<string> {
+  try {
+    ensureAdminInitialized();
+    
+    const docId = `${pageId}_${locale}`;
+    const now = new Date();
+    
+    // Récupérer le document existant pour obtenir la version
+    const existingDoc = await adminDb!.collection('pageContents').doc(docId).get();
+    const currentVersion = existingDoc.exists ? (existingDoc.data()?.version || 0) : 0;
+    
+    const pageContent = {
+      id: pageId,
+      pageName: content.pageName || pageId,
+      locale,
+      hero: content.hero || {},
+      sections: content.sections || [],
+      blocks: content.blocks || [],
+      featureCards: content.featureCards || [],
+      contactInfo: content.contactInfo || [],
+      finalCta: content.finalCta || null,
+      updatedAt: now,
+      updatedBy: userEmail,
+      version: currentVersion + 1,
+    };
+    
+    await adminDb!.collection('pageContents').doc(docId).set(pageContent, { merge: true });
+    
+    console.log(`[Firestore] Contenu de page ${docId} mis à jour (version ${pageContent.version})`);
+    return docId;
+  } catch (error) {
+    console.error('[Firestore] Erreur lors de la mise à jour du contenu de page:', error);
+    throw new Error('Impossible de mettre à jour le contenu de la page');
+  }
+}
+
+/**
+ * Supprimer le contenu d'une page
+ * @param pageId ID de la page
+ * @param locale Locale de la page
+ * @returns Promise<void>
+ */
+export async function deletePageContent(pageId: string, locale: string): Promise<void> {
+  try {
+    ensureAdminInitialized();
+    
+    const docId = `${pageId}_${locale}`;
+    await adminDb!.collection('pageContents').doc(docId).delete();
+    
+    console.log(`[Firestore] Contenu de page ${docId} supprimé`);
+  } catch (error) {
+    console.error('[Firestore] Erreur lors de la suppression du contenu de page:', error);
+    throw new Error('Impossible de supprimer le contenu de la page');
+  }
 }

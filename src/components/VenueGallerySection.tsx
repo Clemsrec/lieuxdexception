@@ -16,33 +16,24 @@
 
 'use client';
 
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
+import { STORAGE_LOGOS } from '@/lib/storage-assets';
 
-// Import statique des logos
-import logoBrulaireBlanc from '../../public/logos/brulaire-blanc.png';
-import logoBrulaireDore from '../../public/logos/brulaire-dore.png';
-import logoBoulaieBlanc from '../../public/logos/boulaie-blanc.png';
-import logoBoulaieDore from '../../public/logos/boulaie-dore.png';
-import logoDomaineBlanc from '../../public/logos/domaine-blanc.png';
-import logoDomaineDore from '../../public/logos/domaine-dore.png';
-import logoDomeBlanc from '../../public/logos/dome-blanc.png';
-import logoDomeDore from '../../public/logos/dome-dore.png';
-
-// Mapping des logos avec imports statiques
-const VENUE_LOGOS: Record<string, { blanc: StaticImageData; dore: StaticImageData }> = {
-  'chateau-brulaire': { blanc: logoBrulaireBlanc, dore: logoBrulaireDore },
-  'chateau-de-la-brulaire': { blanc: logoBrulaireBlanc, dore: logoBrulaireDore },
-  'manoir-boulaie': { blanc: logoBoulaieBlanc, dore: logoBoulaieDore },
-  'manoir-de-la-boulaie': { blanc: logoBoulaieBlanc, dore: logoBoulaieDore },
-  'domaine-nantais': { blanc: logoDomaineBlanc, dore: logoDomaineDore },
-  'le-dome': { blanc: logoDomeBlanc, dore: logoDomeDore },
+// Mapping des logos depuis Firebase Storage
+const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
+  'chateau-brulaire': { blanc: STORAGE_LOGOS.venues.brulaireBlanc, dore: STORAGE_LOGOS.venues.brulaireDore },
+  'chateau-de-la-brulaire': { blanc: STORAGE_LOGOS.venues.brulaireBlanc, dore: STORAGE_LOGOS.venues.brulaireDore },
+  'manoir-boulaie': { blanc: STORAGE_LOGOS.venues.boulaieBlanc, dore: STORAGE_LOGOS.venues.boulaieDore },
+  'manoir-de-la-boulaie': { blanc: STORAGE_LOGOS.venues.boulaieBlanc, dore: STORAGE_LOGOS.venues.boulaieDore },
+  'domaine-nantais': { blanc: STORAGE_LOGOS.venues.domaineBlanc, dore: STORAGE_LOGOS.venues.domaineDore },
+  'le-dome': { blanc: STORAGE_LOGOS.venues.domeBlanc, dore: STORAGE_LOGOS.venues.domeDore },
 };
 
 interface VenueGallerySectionProps {
   venueName: string;
   venueSlug: string;
-  images: { src: string; alt: string }[];
+  images: string[] | { src: string; alt: string }[];  // Accepter les deux formats
   locale: string;
   bgColor?: 'white' | 'neutral-800' | 'stone-50';
 }
@@ -95,19 +86,26 @@ export default function VenueGallerySection({
 
         {/* Grille photos */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 md:gap-4">
-          {images.map((image, index) => (
-            <div key={index} className="relative aspect-3/4 overflow-hidden rounded-lg group cursor-pointer">
-              <Image 
-                src={image.src} 
-                alt={image.alt} 
-                fill 
-                className="object-cover group-hover:scale-110 transition-transform duration-500" 
-                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw" 
-              />
-              {/* Overlay au hover */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-            </div>
-          ))}
+          {images.map((image, index) => {
+            // Support des deux formats: string ou {src, alt}
+            const imageSrc = typeof image === 'string' ? image : image.src;
+            const imageAlt = typeof image === 'string' ? `${venueName} - Photo ${index + 1}` : image.alt;
+            
+            return (
+              <div key={index} className="relative aspect-3/4 overflow-hidden rounded-lg group cursor-pointer">
+                <Image 
+                  src={imageSrc} 
+                  alt={imageAlt} 
+                  fill 
+                  className="object-cover group-hover:scale-110 transition-transform duration-500" 
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                  unoptimized
+                />
+                {/* Overlay au hover */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
