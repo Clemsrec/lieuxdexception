@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Users, Instagram, ExternalLink } from 'lucide-react';
 import { useLocale } from 'next-intl';
@@ -11,14 +11,24 @@ import type { Venue } from '@/types/firebase';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getCardImage } from '@/lib/sharedVenueImages';
 
-// Mapping des logos en dur
-const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
-  'chateau-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
-  'chateau-de-la-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
-  'manoir-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
-  'manoir-de-la-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
-  'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
-  'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+// Import statique des logos
+import logoBrulaireBlanc from '@/../public/logos/brulaire-blanc.png';
+import logoBrulaireDore from '@/../public/logos/brulaire-dore.png';
+import logoBoulaieBlanc from '@/../public/logos/boulaie-blanc.png';
+import logoBoulaieDore from '@/../public/logos/boulaie-dore.png';
+import logoDomaineBlanc from '@/../public/logos/domaine-blanc.png';
+import logoDomaineDore from '@/../public/logos/domaine-dore.png';
+import logoDomeBlanc from '@/../public/logos/dome-blanc.png';
+import logoDomeDore from '@/../public/logos/dome-dore.png';
+
+// Mapping des logos avec imports statiques
+const VENUE_LOGOS: Record<string, { blanc: StaticImageData; dore: StaticImageData }> = {
+  'chateau-brulaire': { blanc: logoBrulaireBlanc, dore: logoBrulaireDore },
+  'chateau-de-la-brulaire': { blanc: logoBrulaireBlanc, dore: logoBrulaireDore },
+  'manoir-boulaie': { blanc: logoBoulaieBlanc, dore: logoBoulaieDore },
+  'manoir-de-la-boulaie': { blanc: logoBoulaieBlanc, dore: logoBoulaieDore },
+  'domaine-nantais': { blanc: logoDomaineBlanc, dore: logoDomaineDore },
+  'le-dome': { blanc: logoDomeBlanc, dore: logoDomeDore },
 };
 
 // Liens sociaux par lieu
@@ -293,7 +303,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
                                 width={96}
                                 height={96}
                                 className="object-contain drop-shadow-lg"
-                                unoptimized
+                                
                               />
                             </div>
                           )}
@@ -412,7 +422,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
                                 width={96}
                                 height={96}
                                 className="object-contain drop-shadow-lg"
-                                unoptimized
+                                
                               />
                             </div>
                           )}
