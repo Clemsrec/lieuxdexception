@@ -33,15 +33,20 @@ async function updateDomeHero() {
     
     console.log('\n🔄 Mise à jour...');
     
-    // Mettre à jour avec la nouvelle image
+    // Mettre à jour avec la nouvelle image (tous les champs possibles)
     await domeRef.update({
+      heroImage: NEW_HERO_IMAGE,
       heroImages: [NEW_HERO_IMAGE],
       featuredImage: NEW_HERO_IMAGE,
+      'images.hero': NEW_HERO_IMAGE,
+      'images.cardImage': NEW_HERO_IMAGE,
+      'images.heroImage': NEW_HERO_IMAGE,
       updatedAt: FieldValue.serverTimestamp(),
     });
     
     console.log('✅ Image hero mise à jour avec succès!');
     console.log('   Nouvelle image:', NEW_HERO_IMAGE);
+    console.log('\n📸 Tous les champs hero ont été mis à jour.');
     
     process.exit(0);
   } catch (error) {

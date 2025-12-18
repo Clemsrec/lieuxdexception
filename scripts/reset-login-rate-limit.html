@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Réinitialiser Rate Limit - Admin</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 0;
+      width: 100%;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .success {
+      background: #27ae60;
+      color: white;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 15px;
+      display: none;
+    }
+    .success.show {
+      display: block;
+    }
+    .info {
+      background: #ecf0f1;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+      color: #2c3e50;
+    }
+    code {
+      background: #34495e;
+      color: #ecf0f1;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔓 Réinitialiser Rate Limit Admin</h1>
+    
+    <div class="info">
+      <p><strong>Tentatives actuelles:</strong> <span id="attempts">0</span> / 5</p>
+      <p><strong>État:</strong> <span id="status">OK</span></p>
+    </div>
+
+    <button onclick="resetRateLimit()">🔄 Réinitialiser le compteur de tentatives</button>
+    <button onclick="clearAllStorage()">🧹 Nettoyer tout le localStorage</button>
+    <button onclick="clearCookies()">🍪 Supprimer les cookies auth</button>
+    <button onclick="fullReset()">⚡ Reset complet (tout en un)</button>
+
+    <div class="success" id="successMsg"></div>
+
+    <div class="info" style="margin-top: 30px;">
+      <h3>Instructions:</h3>
+      <ol>
+        <li>Cliquer sur <strong>"Reset complet"</strong></li>
+        <li>Fermer cette page</li>
+        <li>Aller sur <code>http://localhost:3002/admin/connexion</code></li>
+        <li>Se connecter avec:
+          <ul style="margin-top: 10px;">
+            <li>Email: <code>clement@nucom.fr</code></li>
+            <li>MDP: <code>AdminLieux2024</code></li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    // Afficher les tentatives actuelles
+    function updateStatus() {
+      const attempts = parseInt(localStorage.getItem('loginAttempts') || '0');
+      const timestamp = localStorage.getItem('loginAttemptsTimestamp');
+      
+      document.getElementById('attempts').textContent = attempts;
+      
+      if (attempts >= 5) {
+        document.getElementById('status').textContent = '🚫 Bloqué';
+        document.getElementById('status').style.color = 'red';
+      } else {
+        document.getElementById('status').textContent = '✅ OK';
+        document.getElementById('status').style.color = 'green';
+      }
+    }
+
+    function showSuccess(message) {
+      const successMsg = document.getElementById('successMsg');
+      successMsg.textContent = '✅ ' + message;
+      successMsg.classList.add('show');
+      
+      setTimeout(() => {
+        successMsg.classList.remove('show');
+      }, 3000);
+    }
+
+    function resetRateLimit() {
+      localStorage.removeItem('loginAttempts');
+      localStorage.removeItem('loginAttemptsTimestamp');
+      updateStatus();
+      showSuccess('Compteur de tentatives réinitialisé');
+    }
+
+    function clearAllStorage() {
+      localStorage.clear();
+      updateStatus();
+      showSuccess('localStorage entièrement nettoyé');
+    }
+
+    function clearCookies() {
+      // Supprimer auth-token
+      document.cookie = 'auth-token=; path=/; max-age=0';
+      document.cookie = 'auth-token=; path=/; domain=localhost; max-age=0';
+      document.cookie = 'auth-token=; path=/admin; max-age=0';
+      
+      showSuccess('Cookies auth supprimés');
+    }
+
+    function fullReset() {
+      // Reset localStorage
+      localStorage.clear();
+      
+      // Reset sessionStorage
+      sessionStorage.clear();
+      
+      // Clear cookies
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf('=');
+        const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+        document.cookie = name + '=; path=/; max-age=0';
+        document.cookie = name + '=; path=/; domain=localhost; max-age=0';
+      }
+      
+      updateStatus();
+      showSuccess('🎉 Reset complet effectué! Vous pouvez maintenant vous reconnecter.');
+    }
+
+    // Au chargement
+    updateStatus();
+  </script>
+</body>
+</html>
