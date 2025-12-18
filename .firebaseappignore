@@ -1,0 +1,48 @@
+# Firebase App Hosting - Fichiers à ignorer lors du déploiement
+
+# Node modules (rebuilt par App Hosting)
+node_modules/
+
+# Logs
+*.log
+logs/
+.firebase/logs/
+
+# Tests
+**/__tests__/
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+coverage/
+
+# Development
+.env.local
+.env.development
+.env.test
+
+# Build temporaire (reconstruit par App Hosting)
+.next/
+
+# Documentation locale
+docs/
+
+# Scripts utilitaires (non nécessaires en prod)
+scripts/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Fichiers macOS
+.DS_Store
+
+# Backups
+*-backup/
+venues-backup/

@@ -32,6 +32,8 @@ export const trackPageView = (url: string) => {
   if (typeof window !== 'undefined' && (window as any).gtag) {
     (window as any).gtag('config', GA_MEASUREMENT_ID, {
       page_path: url,
+      cookie_domain: 'auto',
+      cookie_flags: 'SameSite=None;Secure'
     });
   }
 };
@@ -76,7 +78,10 @@ export default function GoogleAnalytics() {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             
-            gtag('config', '${GA_MEASUREMENT_ID}');
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              cookie_domain: 'auto',
+              cookie_flags: 'SameSite=None;Secure'
+            });
           `,
         }}
       />

@@ -90,9 +90,19 @@ const config = {
           },
         ],
       },
-      // Logos peuvent être cachés
+      // Logos peuvent être cachés (minuscule pour correspondre au dossier réel)
       {
-        source: '/Logos/:path*',
+        source: '/logos/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          },
+        ],
+      },
+      // Venues images peuvent être cachées
+      {
+        source: '/venues/:path*',
         headers: [
           {
             key: 'Cache-Control',
