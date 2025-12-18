@@ -582,7 +582,10 @@ export default function HomeClient({ venues }: HomeClientProps) {
                     </div>
                     
                     {/* Titre */}
-                    <h3 className="text-xl md:text-2xl font-heading font-bold mb-4 uppercase tracking-wider group-hover:text-accent-light transition-colors duration-300" style={{ color: '#C9A961 !important' }}>
+                    <h3 
+                      className="text-lg md:text-xl font-heading font-semibold mb-4 uppercase tracking-wider group-hover:opacity-80 transition-all duration-300 min-h-[4.5rem] md:min-h-[5rem] flex items-center justify-center"
+                      style={{ color: '#C9A961' }}
+                    >
                       {item.title}
                     </h3>
                     
@@ -590,7 +593,7 @@ export default function HomeClient({ venues }: HomeClientProps) {
                     <div className="w-16 h-0.5 bg-accent/60 mx-auto mb-6" />
                     
                     {/* Texte */}
-                    <p className="text-white/90 leading-relaxed text-base flex-1">
+                    <p className="text-white/90 leading-relaxed text-sm md:text-base flex-1">
                       {item.text}
                     </p>
                     

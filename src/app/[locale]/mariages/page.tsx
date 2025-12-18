@@ -169,8 +169,8 @@ export default async function MariagesPage({
             {/* Card 01 */}
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961 !important' }}>01</div>
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Une rencontre qui donne le ton</h3>
+                <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961' }}>01</div>
+                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961' }}>Une rencontre qui donne le ton</h3>
               </div>
               <p className="text-neutral-200 leading-relaxed">
                 Dès notre première rencontre, nous prenons le temps de vous écouter.<br />
@@ -181,8 +181,8 @@ export default async function MariagesPage({
             {/* Card 02 */}
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961 !important' }}>02</div>
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Une organisation fluide, du début à la fin</h3>
+                <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961' }}>02</div>
+                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961' }}>Une organisation fluide, du début à la fin</h3>
               </div>
               <p className="text-neutral-200 leading-relaxed">
                 Du choix du lieu à la mise en scène du jour J, nous orchestrons chaque étape avec précision.<br />
@@ -193,8 +193,8 @@ export default async function MariagesPage({
             {/* Card 03 */}
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961 !important' }}>03</div>
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Des partenaires fiables, pour une confiance totale</h3>
+                <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961' }}>03</div>
+                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961' }}>Des partenaires fiables, pour une confiance totale</h3>
               </div>
               <p className="text-neutral-200 leading-relaxed">
                 Chaque prestataire est sélectionné pour son professionnalisme, sa fiabilité et son sens du service.<br />
@@ -205,8 +205,8 @@ export default async function MariagesPage({
             {/* Card 04 */}
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961 !important' }}>04</div>
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961 !important' }}>Des lieux exclusifs, pour une tranquillité absolue</h3>
+                <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961' }}>04</div>
+                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961' }}>Des lieux exclusifs, pour une tranquillité absolue</h3>
               </div>
               <p className="text-neutral-200 leading-relaxed">
                 Châteaux et domaines de caractère, entièrement privatisés pour votre mariage.<br />
