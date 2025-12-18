@@ -12,14 +12,14 @@ import { Venue } from '@/types/firebase';
 import { MapPin, Users, Phone, Mail, Instagram, ExternalLink } from 'lucide-react';
 
 // Import statique des logos
-import logoBrulaireBlanc from '@/../public/logos/brulaire-blanc.png';
-import logoBrulaireDore from '@/../public/logos/brulaire-dore.png';
-import logoBoulaieBlanc from '@/../public/logos/boulaie-blanc.png';
-import logoBoulaieDore from '@/../public/logos/boulaie-dore.png';
-import logoDomaineBlanc from '@/../public/logos/domaine-blanc.png';
-import logoDomaineDore from '@/../public/logos/domaine-dore.png';
-import logoDomeBlanc from '@/../public/logos/dome-blanc.png';
-import logoDomeDore from '@/../public/logos/dome-dore.png';
+import logoBrulaireBlanc from '../../public/logos/brulaire-blanc.png';
+import logoBrulaireDore from '../../public/logos/brulaire-dore.png';
+import logoBoulaieBlanc from '../../public/logos/boulaie-blanc.png';
+import logoBoulaieDore from '../../public/logos/boulaie-dore.png';
+import logoDomaineBlanc from '../../public/logos/domaine-blanc.png';
+import logoDomaineDore from '../../public/logos/domaine-dore.png';
+import logoDomeBlanc from '../../public/logos/dome-blanc.png';
+import logoDomeDore from '../../public/logos/dome-dore.png';
 
 // Mapping des logos avec imports statiques
 const VENUE_LOGOS: Record<string, { blanc: StaticImageData; dore: StaticImageData }> = {
