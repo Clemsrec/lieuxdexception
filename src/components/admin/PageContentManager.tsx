@@ -7,20 +7,21 @@ import ImageInputField from './ImageInputField';
 
 // Types des pages disponibles
 const PAGES = [
-  { id: 'homepage', name: 'Page d\'Accueil', icon: '🏠' },
-  { id: 'contact', name: 'Contact', icon: '📧' },
-  { id: 'mariages', name: 'Mariages', icon: '💍' },
-  { id: 'b2b', name: 'Événements B2B', icon: '🏢' },
+  { id: 'homepage', name: 'Page d\'Accueil' },
+  { id: 'contact', name: 'Contact' },
+  { id: 'mariages', name: 'Mariages' },
+  { id: 'b2b', name: 'Événements B2B' },
+  { id: 'histoire', name: 'Histoire' },
 ];
 
 // Locales disponibles
 const LOCALES = [
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  { code: 'fr', name: 'Français' },
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Español' },
+  { code: 'de', name: 'Deutsch' },
+  { code: 'it', name: 'Italiano' },
+  { code: 'pt', name: 'Português' },
 ];
 
 /**
@@ -245,7 +246,7 @@ export default function PageContentManager() {
             >
               {PAGES.map(page => (
                 <option key={page.id} value={page.id}>
-                  {page.icon} {page.name}
+                  {page.name}
                 </option>
               ))}
             </select>
@@ -263,7 +264,7 @@ export default function PageContentManager() {
             >
               {LOCALES.map(locale => (
                 <option key={locale.code} value={locale.code}>
-                  {locale.flag} {locale.name}
+                  {locale.name}
                 </option>
               ))}
             </select>

@@ -87,7 +87,54 @@ export default async function EvenementsB2BPage({
         ]}
       />
 
-      {/* Galerie de photos événements B2B - Organisée par lieu */}
+      {/* Ce que nous vous offrons - EN PREMIER */}
+      <section className="section bg-primary/95">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-white">
+              {t('offer.title')}
+            </h2>
+            <div className="accent-line" />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+            {/* Une émotion d'éveil */}
+            <div>
+              <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
+                <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
+                {t('offer.pillar1.title')}
+              </h3>
+              <p className="text-neutral-200 leading-relaxed">
+                {t('offer.pillar1.description')}
+              </p>
+            </div>
+
+            {/* Un service d'excellence */}
+            <div>
+              <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
+                <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
+                {t('offer.pillar2.title')}
+              </h3>
+              <p className="text-neutral-200 leading-relaxed">
+                {t('offer.pillar2.description')}
+              </p>
+            </div>
+
+            {/* Des lieux inspirés */}
+            <div>
+              <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
+                <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
+                {t('offer.pillar3.title')}
+              </h3>
+              <p className="text-neutral-200 leading-relaxed">
+                {t('offer.pillar3.description')}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Galerie de photos événements B2B - EN DEUXIÈME */}
       <section className="bg-neutral-900 py-16">
         <div className="container px-4">
           <div className="mb-12">
@@ -98,51 +145,6 @@ export default async function EvenementsB2BPage({
             <div className="max-w-3xl mx-auto">
               <p className="text-neutral-300 text-lg text-center">
                 Découvrez nos domaines d'exception, chacun avec son caractère unique et ses espaces dédiés aux événements B2B
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Une expérience qui engage vos équipes et vos clients */}
-        <div className="container px-4 pb-16">
-          <div className="text-center mb-12">
-            <h3 className="text-xl md:text-2xl font-semibold mb-8 text-white">
-              Une expérience qui engage vos équipes et vos clients
-            </h3>
-            <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
-            <p className="text-neutral-300 text-base md:text-lg mt-6 max-w-4xl mx-auto">
-              Aujourd'hui, un événement professionnel ne doit plus seulement rassembler.<br />
-              Il doit inspirer, aligner et produire de l'impact.<br />
-              Chez Lieux d'Exception, nous concevons des expériences événementielles exclusives, portées par des lieux rares et un savoir-faire éprouvé, au service de vos enjeux stratégiques.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
-              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Marquer durablement les esprits</h4>
-              <p className="text-secondary leading-relaxed">
-                Des lieux à forte identité, pensés pour créer un effet immédiat. <strong className="text-primary">Votre événement devient un moment de référence, qui valorise votre image et renforce l'adhésion de vos équipes et de vos clients.</strong>
-              </p>
-            </div>
-
-            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
-              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Des environnements qui déclenchent la performance</h4>
-              <p className="text-secondary leading-relaxed">
-                <strong className="text-primary">Cohésion, créativité, prise de recul, décisions stratégiques.</strong> Nos domaines offrent des cadres propices à l'échange et à la réflexion, loin des formats standardisés et impersonnels.
-              </p>
-            </div>
-
-            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
-              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Une liberté totale de création</h4>
-              <p className="text-secondary leading-relaxed">
-                Chaque lieu est privatisable, modulable et ouvert aux formats les plus exigeants. <strong className="text-primary">Séminaire confidentiel, expérience immersive ou événement d'envergure : nous adaptons l'espace à votre ambition, jamais l'inverse.</strong>
-              </p>
-            </div>
-
-            <div className="bg-stone-50 border border-stone/20 rounded-xl p-6 shadow-lg">
-              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Un savoir-faire qui sécurise votre projet</h4>
-              <p className="text-secondary leading-relaxed">
-                <strong className="text-primary">Plus de 20 ans d'expertise événementielle, un coordinateur dédié et un réseau de partenaires premium.</strong> Vous bénéficiez d'un pilotage précis, fluide et maîtrisé, du premier échange au jour J.
               </p>
             </div>
           </div>
@@ -185,47 +187,47 @@ export default async function EvenementsB2BPage({
         />
       </section>
 
-      {/* Ce que nous vous offrons */}
-      <section className="section bg-primary/95">
-        <div className="container">
+      {/* Une expérience qui engage vos équipes et vos clients - EN DERNIER */}
+      <section className="bg-stone-50 py-16">
+        <div className="container px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-white">
-              {t('offer.title')}
-            </h2>
-            <div className="accent-line" />
+            <h3 className="text-xl md:text-2xl font-semibold mb-8 text-primary">
+              Une expérience qui engage vos équipes et vos clients
+            </h3>
+            <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
+            <p className="text-secondary text-base md:text-lg mt-6 max-w-4xl mx-auto">
+              Aujourd'hui, un événement professionnel ne doit plus seulement rassembler.<br />
+              Il doit inspirer, aligner et produire de l'impact.<br />
+              Chez Lieux d'Exception, nous concevons des expériences événementielles exclusives, portées par des lieux rares et un savoir-faire éprouvé, au service de vos enjeux stratégiques.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
-            {/* Une émotion d'éveil */}
-            <div>
-              <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
-                <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
-                {t('offer.pillar1.title')}
-              </h3>
-              <p className="text-neutral-200 leading-relaxed">
-                {t('offer.pillar1.description')}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="bg-white border border-stone/20 rounded-xl p-6 shadow-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Marquer durablement les esprits</h4>
+              <p className="text-secondary leading-relaxed">
+                Des lieux à forte identité, pensés pour créer un effet immédiat. <strong className="text-primary">Votre événement devient un moment de référence, qui valorise votre image et renforce l'adhésion de vos équipes et de vos clients.</strong>
               </p>
             </div>
 
-            {/* Un service d'excellence */}
-            <div>
-              <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
-                <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
-                {t('offer.pillar2.title')}
-              </h3>
-              <p className="text-neutral-200 leading-relaxed">
-                {t('offer.pillar2.description')}
+            <div className="bg-white border border-stone/20 rounded-xl p-6 shadow-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Des environnements qui déclenchent la performance</h4>
+              <p className="text-secondary leading-relaxed">
+                <strong className="text-primary">Cohésion, créativité, prise de recul, décisions stratégiques.</strong> Nos domaines offrent des cadres propices à l'échange et à la réflexion, loin des formats standardisés et impersonnels.
               </p>
             </div>
 
-            {/* Des lieux inspirés */}
-            <div>
-              <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-white flex items-center">
-                <div className="w-12 md:w-20 h-px bg-accent mr-3 md:mr-4 shrink-0" />
-                {t('offer.pillar3.title')}
-              </h3>
-              <p className="text-neutral-200 leading-relaxed">
-                {t('offer.pillar3.description')}
+            <div className="bg-white border border-stone/20 rounded-xl p-6 shadow-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Une liberté totale de création</h4>
+              <p className="text-secondary leading-relaxed">
+                Chaque lieu est privatisable, modulable et ouvert aux formats les plus exigeants. <strong className="text-primary">Séminaire confidentiel, expérience immersive ou événement d'envergure : nous adaptons l'espace à votre ambition, jamais l'inverse.</strong>
+              </p>
+            </div>
+
+            <div className="bg-white border border-stone/20 rounded-xl p-6 shadow-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Un savoir-faire qui sécurise votre projet</h4>
+              <p className="text-secondary leading-relaxed">
+                <strong className="text-primary">Plus de 20 ans d'expertise événementielle, un coordinateur dédié et un réseau de partenaires premium.</strong> Vous bénéficiez d'un pilotage précis, fluide et maîtrisé, du premier échange au jour J.
               </p>
             </div>
           </div>

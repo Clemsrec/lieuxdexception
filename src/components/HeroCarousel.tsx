@@ -70,16 +70,16 @@ export default function HeroCarousel({ images, fallbackImages = [], interval = 5
       <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/40 z-20" />
       
       {/* Indicateurs de slides */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
         {displayImages.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-4 h-4 rounded-full transition-all duration-300 p-2 min-w-11 min-h-11 flex items-center justify-center ${
+            className={`transition-all duration-300 p-2 flex items-center justify-center ${
               index === currentIndex 
-                ? 'bg-white/90' 
-                : 'bg-white/50 hover:bg-white/70'
-            }`}
+                ? 'w-2 h-2 bg-white/90' 
+                : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+            } rounded-full`}
             aria-label={`Aller à l'image ${index + 1}`}
           />
         ))}

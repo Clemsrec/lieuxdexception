@@ -555,3 +555,32 @@ export async function deletePageContent(pageId: string, locale: string): Promise
     throw new Error('Impossible de supprimer le contenu de la page');
   }
 }
+
+/**
+ * Récupérer tous les événements de la timeline
+ * @returns Promise<any[]> Liste des événements triés par date
+ */
+export async function getTimelineEvents(): Promise<any[]> {
+  try {
+    ensureAdminInitialized();
+    
+    const snapshot = await adminDb!.collection('timeline')
+      .where('visible', '==', true)
+      .orderBy('date', 'asc')
+      .get();
+    
+    return snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        // Convertir les Timestamps Firestore en ISO strings pour la sérialisation
+        createdAt: data.createdAt?.toDate?.()?.toISOString() || null,
+        updatedAt: data.updatedAt?.toDate?.()?.toISOString() || null,
+      };
+    });
+  } catch (error) {
+    console.error('[Firestore] Erreur lors de la récupération des événements timeline:', error);
+    return [];
+  }
+}

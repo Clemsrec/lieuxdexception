@@ -6,7 +6,7 @@ import PageContentManager from '@/components/admin/PageContentManager';
  */
 export const metadata: Metadata = {
   title: 'Gestion des Contenus - Admin Lieux d\'Exception',
-  description: 'Gérer les contenus des pages publiques (Homepage, Contact, Mariages, B2B)',
+  description: 'Gérer les contenus des pages publiques (Homepage, Contact, Mariages, B2B, Histoire)',
 };
 
 /**
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
  * - Contact
  * - Mariages
  * - Événements B2B
+ * - Histoire
  * 
  * Utilise un éditeur de texte riche (TipTap) pour éditer les contenus
  */

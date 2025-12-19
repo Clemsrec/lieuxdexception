@@ -213,7 +213,7 @@ export default function GalerieAdminPage() {
   return (
     <div className="flex h-screen bg-stone-50 overflow-hidden">
       {/* Sidebar Dossiers */}
-      <aside className="w-64 bg-white border-r border-stone-200 h-full flex-shrink-0 flex flex-col">
+      <aside className="w-64 bg-white border-r border-stone-200 h-full shrink-0 flex flex-col">
         <h2 className="text-lg font-semibold px-6 py-4 border-b border-stone-200">Dossiers</h2>
         
         <div className="flex-1 overflow-y-auto p-4">
@@ -261,7 +261,7 @@ export default function GalerieAdminPage() {
       {/* Contenu principal */}
       <div className="flex-1 flex flex-col h-full overflow-hidden">
         {/* Header fixe */}
-        <div className="bg-white border-b border-stone-200 px-6 py-4 flex-shrink-0">
+        <div className="bg-white border-b border-stone-200 px-6 py-4 shrink-0">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-3xl font-display font-semibold text-primary">Gestionnaire de Galerie</h1>
             
@@ -354,7 +354,7 @@ export default function GalerieAdminPage() {
             {error && (
               <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6 mb-6">
                 <div className="flex items-start gap-3">
-                  <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+                  <AlertTriangle className="w-6 h-6 text-red-600 shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <p className="text-red-800 font-medium mb-2">Erreur Firebase Storage</p>
                     <p className="text-red-700 text-sm">{error}</p>
@@ -468,7 +468,7 @@ export default function GalerieAdminPage() {
                           className="w-4 h-4"
                         />
                         
-                        <div className="w-16 h-16 relative rounded overflow-hidden flex-shrink-0">
+                        <div className="w-16 h-16 relative rounded overflow-hidden shrink-0">
                           <Image
                             src={file.url}
                             alt={file.customMetadata?.alt || file.name}

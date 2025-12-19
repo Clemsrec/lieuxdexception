@@ -595,7 +595,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                     
                     {/* Titre */}
                     <h3 
-                      className="text-lg md:text-xl font-heading font-semibold mb-4 uppercase tracking-wider group-hover:opacity-80 transition-all duration-300 min-h-[4.5rem] md:min-h-[5rem] flex items-center justify-center"
+                      className="text-lg md:text-xl font-heading font-semibold mb-4 uppercase tracking-wider group-hover:opacity-80 transition-all duration-300 min-h-18 md:min-h-20 flex items-center justify-center"
                       style={{ color: '#C9A961' }}
                     >
                       {item.title}
@@ -656,58 +656,6 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
         </motion.div>
         </section>
       </SectionReveal>
-
-      {/* Sections dynamiques depuis CMS */}
-      {pageContent?.sections && pageContent.sections.filter(s => s.visible).map((section, idx) => (
-        <SectionReveal key={idx}>
-          <ContentSection 
-            title={section.title}
-            content={section.content}
-            className={idx % 2 === 0 ? 'bg-white' : 'bg-stone-50'}
-          />
-        </SectionReveal>
-      ))}
-
-      {/* Cartes de fonctionnalités depuis CMS */}
-      {pageContent?.featureCards && pageContent.featureCards.length > 0 && (
-        <SectionReveal>
-          <section className="section bg-white">
-            <div className="container">
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={{
-                  hidden: { opacity: 0 },
-                  show: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.2
-                    }
-                  }
-                }}
-              >
-                {pageContent.featureCards.map((feature, idx) => (
-                  <motion.div
-                    key={idx}
-                    variants={{
-                      hidden: { opacity: 0, y: 30 },
-                      show: { opacity: 1, y: 0 }
-                    }}
-                  >
-                    <FeatureCard
-                      number={feature.number}
-                      title={feature.title}
-                      content={feature.content}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </section>
-        </SectionReveal>
-      )}
 
       {/* Carte Interactive des Lieux */}
       <SectionReveal>

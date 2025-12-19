@@ -115,15 +115,14 @@ export default function HeroSection({
           
           {/* Description */}
           {description && (
-            <motion.p 
+            <motion.div 
               className="text-base md:text-lg lg:text-xl text-white/95 leading-relaxed"
               style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.6)' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.25, ease: [0.4, 0, 0.2, 1] }}
-            >
-              {description}
-            </motion.p>
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
           )}
 
           {/* Boutons */}
