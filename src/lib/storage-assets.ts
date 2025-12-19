@@ -9,31 +9,33 @@
  * - Optimisation automatique des images
  * - Gestion centralisée
  * - Version CDN automatique
+ * 
+ * Cache-busting : v=20251219 pour forcer le rafraîchissement après optimisation
  */
 
 /**
  * URLs des logos depuis Firebase Storage
  */
 export const STORAGE_LOGOS = {
-  // Logo principal (blanc pour header)
-  mainWhite: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Flogo-lieux-exception-blanc.png?alt=media',
+  // Logo principal (blanc pour header) - Optimisé 112 KB → 17 KB
+  mainWhite: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Flogo-lieux-exception-blanc.png?alt=media&v=20251219',
   
   // Logo principal (couleur pour footer/autres)
-  mainColor: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Flogo-lieux-exception-couleur.png?alt=media',
+  mainColor: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Flogo-lieux-exception-couleur.png?alt=media&v=20251219',
   
   // Logo compact (pour mobile)
-  compact: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Flogo-compact.png?alt=media',
+  compact: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Flogo-compact.png?alt=media&v=20251219',
   
-  // Logos des châteaux (blanc)
+  // Logos des châteaux (blanc) - Optimisés 116 KB → 11 KB, 97 KB → 10 KB
   venues: {
-    domeBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdome-blanc.png?alt=media',
-    domeDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdome-dore.png?alt=media',
-    brulaireBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fbrulaire-blanc.png?alt=media',
-    brulaireDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fbrulaire-dore.png?alt=media',
-    domaineBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdomaine-blanc.png?alt=media',
-    domaineDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdomaine-dore.png?alt=media',
-    boulaieBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fboulaie-blanc.png?alt=media',
-    boulaieDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fboulaie-dore.png?alt=media',
+    domeBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdome-blanc.png?alt=media&v=20251219',
+    domeDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdome-dore.png?alt=media&v=20251219',
+    brulaireBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fbrulaire-blanc.png?alt=media&v=20251219',
+    brulaireDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fbrulaire-dore.png?alt=media&v=20251219',
+    domaineBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdomaine-blanc.png?alt=media&v=20251219',
+    domaineDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdomaine-dore.png?alt=media&v=20251219',
+    boulaieBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fboulaie-blanc.png?alt=media&v=20251219',
+    boulaieDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fboulaie-dore.png?alt=media&v=20251219',
   },
 } as const;
 
