@@ -62,16 +62,16 @@ function GoogleAnalyticsTracker() {
 export default function GoogleAnalytics() {
   return (
     <>
-      {/* Google Tag Manager Script */}
+      {/* Google Tag Manager Script - Lazy load pour performance */}
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
       
       {/* GA4 Initialization */}
       <Script
         id="google-analytics"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
