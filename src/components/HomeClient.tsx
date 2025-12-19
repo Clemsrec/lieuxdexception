@@ -366,6 +366,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
                                 onClick={(e) => e.stopPropagation()}
+                                aria-label={`Instagram ${displayVenueName(venue.name)}`}
                               >
                                 <Instagram className="w-4 h-4" />
                                 <span>Instagram</span>
@@ -376,6 +377,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
                                 onClick={(e) => e.stopPropagation()}
+                                aria-label={`Mariages.net ${displayVenueName(venue.name)}`}
                               >
                                 <ExternalLink className="w-4 h-4" />
                                 <span>Mariages.net</span>
@@ -485,6 +487,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
                                 onClick={(e) => e.stopPropagation()}
+                                aria-label={`Instagram ${displayVenueName(venue.name)}`}
                               >
                                 <Instagram className="w-4 h-4" />
                                 <span>Instagram</span>
@@ -495,6 +498,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
                                 onClick={(e) => e.stopPropagation()}
+                                aria-label={`Mariages.net ${displayVenueName(venue.name)}`}
                               >
                                 <ExternalLink className="w-4 h-4" />
                                 <span>Mariages.net</span>
