@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { getGalleryImages } from '@/lib/sharedVenueImages';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
@@ -98,7 +98,7 @@ export default function VenueGallery({ images, venueName, category, venueSlug }:
   return (
     <>
       {/* Grille de photos */}
-      <motion.div 
+      <m.div 
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
         initial="hidden"
         animate="show"
@@ -113,7 +113,7 @@ export default function VenueGallery({ images, venueName, category, venueSlug }:
         }}
       >
         {displayImages.map((image, index) => (
-          <motion.button
+          <m.button
             key={image}
             onClick={() => openLightbox(index)}
             className="group relative aspect-square overflow-hidden rounded-lg bg-stone/20 cursor-pointer"
@@ -145,14 +145,14 @@ export default function VenueGallery({ images, venueName, category, venueSlug }:
             <div className="absolute bottom-2 right-2 bg-primary/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
               {index + 1}/{displayImages.length}
             </div>
-          </motion.button>
+          </m.button>
         ))}
-      </motion.div>
+      </m.div>
 
       {/* Lightbox plein écran */}
       <AnimatePresence>
         {lightboxOpen && (
-          <motion.div
+          <m.div
             className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center backdrop-blur-2xl"
             onKeyDown={handleKeyDown}
             tabIndex={0}
@@ -239,7 +239,7 @@ export default function VenueGallery({ images, venueName, category, venueSlug }:
               </button>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       )}
       </AnimatePresence>
     </>

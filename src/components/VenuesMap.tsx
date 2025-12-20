@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import Image from 'next/image';
 import { displayVenueName } from '@/lib/formatVenueName';
 import { getMapThumbnail } from '@/lib/sharedVenueImages';
@@ -11,6 +10,11 @@ import Link from 'next/link';
 import { Venue } from '@/types/firebase';
 import { MapPin, Users, Phone, Mail, Instagram, ExternalLink } from 'lucide-react';
 import { STORAGE_LOGOS } from '@/lib/storage-assets';
+
+// Lazy load Leaflet CSS seulement quand composant est utilisé (économise ~5 KB)
+if (typeof window !== 'undefined') {
+  import('leaflet/dist/leaflet.css');
+}
 
 // Mapping des logos depuis Firebase Storage
 const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {

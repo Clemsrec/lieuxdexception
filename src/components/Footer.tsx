@@ -48,7 +48,7 @@ export default function Footer() {
 
           {/* Navigation principale */}
           <div>
-            <h4 className="font-medium mb-4 text-foreground">{t('navigation')}</h4>
+            <p className="font-semibold mb-4 text-foreground">{t('navigation')}</p>
             <nav>
               <ul className="space-y-3 text-sm">
                 <li>
@@ -93,7 +93,7 @@ export default function Footer() {
 
           {/* Nos Lieux */}
           <div>
-            <h4 className="font-medium mb-4 text-foreground">Nos Lieux</h4>
+            <p className="font-semibold mb-4 text-foreground">Nos Lieux</p>
             <nav>
               <ul className="space-y-3 text-sm">
                 <li>
@@ -147,7 +147,7 @@ export default function Footer() {
 
           {/* Services et prestations */}
           <div>
-            <h4 className="font-medium mb-4 text-foreground">{t('services')}</h4>
+            <p className="font-semibold mb-4 text-foreground">{t('services')}</p>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
                 <span className="text-primary mr-2 mt-1 font-bold">•</span>
@@ -218,7 +218,7 @@ export default function Footer() {
 
           {/* Réseaux sociaux site-wide */}
           <div>
-            <h4 className="font-medium mb-4 text-foreground">Réseaux</h4>
+            <p className="font-semibold mb-4 text-foreground">Réseaux</p>
             <div className="space-y-2 text-sm">
               <a
                 href="https://www.instagram.com/lieuxdexception/"

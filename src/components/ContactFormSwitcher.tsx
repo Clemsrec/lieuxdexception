@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 /**
  * Types pour les différents formulaires de contact
@@ -67,7 +67,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="block text-sm font-medium mb-2">
                 Société *
               </label>
-              <motion.input
+              <m.input
                 type="text"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-all"
                 placeholder="Nom de votre entreprise"

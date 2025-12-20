@@ -17,7 +17,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion, useSpring } from 'framer-motion';
+import { m, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 
 interface TimelineEvent {
@@ -143,7 +143,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
   return (
     <>
       {/* Cursor custom - Desktop uniquement */}
-      <motion.div
+      <m.div
         className="fixed w-8 h-8 border-2 border-accent/50 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block"
         animate={{
           x: cursorPos.x - 16,
@@ -154,7 +154,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
 
       {/* Progress bar */}
       <div className="fixed top-0 left-0 w-full h-1 bg-white/10 z-40 hidden lg:block">
-        <motion.div
+        <m.div
           className="h-full bg-accent"
           style={{ width: `${scrollProgress * 100}%` }}
         />
@@ -163,7 +163,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
       {/* Navigation dots - Desktop uniquement */}
       <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-4 hidden lg:flex">
         {events.map((event, index) => (
-          <motion.button
+          <m.button
             key={index}
             onClick={() => scrollToEvent(index)}
             className="relative group"
@@ -180,7 +180,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
             <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-white text-charcoal-800 px-3 py-1 rounded text-sm hidden md:block shadow-lg">
               {event.month} {event.year}
             </div>
-          </motion.button>
+          </m.button>
         ))}
       </div>
 
@@ -243,7 +243,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
               const scale = isActive ? 1 : Math.max(0.85, 1 - distance * 0.1);
               
               return (
-                <motion.div
+                <m.div
                   key={index}
                   className="absolute"
                   style={{
@@ -265,7 +265,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                     <div className="absolute inset-0 pointer-events-none">
                       {/* Feu d'artifice pour événements majeurs */}
                       {event.isMajor && [...Array(20)].map((_, i) => (
-                        <motion.div
+                        <m.div
                           key={`circle-${i}`}
                           className="absolute w-2 h-2 bg-accent rounded-full"
                           initial={{
@@ -289,7 +289,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                       
                       {/* Étoiles scintillantes pour 2021 et 2023 */}
                       {!event.isMajor && (index === 1 || index === 2) && [...Array(8)].map((_, i) => (
-                        <motion.div
+                        <m.div
                           key={`star-${i}`}
                           className="absolute w-1 h-1 bg-accent"
                           style={{
@@ -316,7 +316,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                       
                       {/* Spirales pour Sept 2025 */}
                       {index === 3 && [...Array(6)].map((_, i) => (
-                        <motion.div
+                        <m.div
                           key={`spiral-${i}`}
                           className="absolute w-1.5 h-1.5 bg-accent rounded-full"
                           initial={{
@@ -342,7 +342,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                   )}
 
                   {/* Point sur la ligne */}
-                  <motion.div 
+                  <m.div 
                     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full z-10"
                     animate={{
                       scale: isActive ? 1.5 : 1,
@@ -352,10 +352,10 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                     }}
                   >
                     <div className="w-4 h-4 bg-accent border-4 border-neutral-700 rounded-full" />
-                  </motion.div>
+                  </m.div>
                   
                   {/* Contenu avec parallax */}
-                  <motion.div 
+                  <m.div 
                     className={`relative ${isBottom ? 'top-12' : 'bottom-12'}`}
                     style={{ width: '350px' }}
                     animate={{
@@ -364,7 +364,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                   >
                     {isBottom ? (
                       <>
-                        <motion.div 
+                        <m.div 
                           className="text-center mb-4"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -376,10 +376,10 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                           {event.subtitle && (
                             <p className="text-xs text-white/60">{event.subtitle}</p>
                           )}
-                        </motion.div>
+                        </m.div>
                         
                         {/* Image avec parallax et hover effect */}
-                        <motion.div 
+                        <m.div 
                           className="relative w-full h-64 mx-auto mb-4 cursor-pointer"
                           whileHover={{ scale: 1.05, rotate: 2 }}
                           animate={{
@@ -389,7 +389,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                           <div 
                             className="absolute inset-0 overflow-hidden shadow-2xl rounded-2xl"
                           >
-                            <motion.div
+                            <m.div
                               className="relative w-full h-full"
                               whileHover={{ scale: 1.1 }}
                               transition={{ duration: 0.6 }}
@@ -401,18 +401,18 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                                 className="object-cover"
                                 sizes="350px"
                               />
-                            </motion.div>
+                            </m.div>
                           </div>
                           
                           {/* Glow effect sur hover */}
-                          <motion.div
+                          <m.div
                             className="absolute inset-0 bg-accent/20 rounded-2xl blur-xl"
                             initial={{ opacity: 0 }}
                             whileHover={{ opacity: 1 }}
                           />
-                        </motion.div>
+                        </m.div>
                         
-                        <motion.div 
+                        <m.div 
                           className="text-center"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -424,11 +424,11 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                             {event.year}
                           </div>
                           <p className="text-sm text-white/80 max-w-xs mx-auto">{event.description}</p>
-                        </motion.div>
+                        </m.div>
                       </>
                     ) : (
                       <>
-                        <motion.div 
+                        <m.div 
                           className="text-center mb-4"
                           initial={{ opacity: 0, y: -20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -444,9 +444,9 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                           {event.subtitle && (
                             <p className="text-xs text-white/60">{event.subtitle}</p>
                           )}
-                        </motion.div>
+                        </m.div>
                         
-                        <motion.div 
+                        <m.div 
                           className="relative w-full h-64 mx-auto mb-4 cursor-pointer"
                           whileHover={{ scale: 1.05, rotate: -2 }}
                           animate={{
@@ -456,7 +456,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                           <div 
                             className="absolute inset-0 overflow-hidden shadow-2xl rounded-2xl"
                           >
-                            <motion.div
+                            <m.div
                               className="relative w-full h-full"
                               whileHover={{ scale: 1.1 }}
                               transition={{ duration: 0.6 }}
@@ -468,28 +468,28 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                                 className="object-cover"
                                 sizes="350px"
                               />
-                            </motion.div>
+                            </m.div>
                           </div>
                           
-                          <motion.div
+                          <m.div
                             className="absolute inset-0 bg-accent/20 rounded-2xl blur-xl"
                             initial={{ opacity: 0 }}
                             whileHover={{ opacity: 1 }}
                           />
-                        </motion.div>
+                        </m.div>
                         
-                        <motion.div 
+                        <m.div 
                           className="text-center"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: index * 0.1 + 0.2 }}
                         >
                           <p className="text-sm text-white/80 max-w-xs mx-auto">{event.description}</p>
-                        </motion.div>
+                        </m.div>
                       </>
                     )}
-                  </motion.div>
-                </motion.div>
+                  </m.div>
+                </m.div>
               );
             })}
           </div>
@@ -499,7 +499,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
         <div className="lg:hidden bg-neutral-900 py-16 px-4">
           <div className="max-w-4xl mx-auto space-y-16">
             {events.map((event, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 className="relative"
                 initial={{ opacity: 0, y: 50 }}
@@ -546,7 +546,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                   {event.isMajor && (
                     <div className="flex gap-2 mt-4">
                       {[...Array(5)].map((_, i) => (
-                        <motion.div
+                        <m.div
                           key={i}
                           className="w-2 h-2 bg-accent rounded-full"
                           animate={{
@@ -563,7 +563,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

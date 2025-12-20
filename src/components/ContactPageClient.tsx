@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ContactFormSwitcher from '@/components/ContactFormSwitcher';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 /**
  * Composant client pour la page Contact avec gestion du scroll et des search params
@@ -80,7 +80,7 @@ export default function ContactPageClient() {
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {/* Contact Pro */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -104,10 +104,10 @@ export default function ContactPageClient() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Contact Mariages */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -131,7 +131,7 @@ export default function ContactPageClient() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -139,7 +139,7 @@ export default function ContactPageClient() {
       {/* Section Formulaire */}
       <section className="section bg-stone/30">
         <div className="container">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -153,7 +153,7 @@ export default function ContactPageClient() {
             <p className="text-lg text-secondary mt-6 mx-auto">
               Remplissez le formulaire ci-dessous, nous vous répondrons dans les plus brefs délais.
             </p>
-          </motion.div>
+          </m.div>
 
           <Suspense fallback={<div className="text-center py-12">Chargement...</div>}>
             <ContactFormWrapper />

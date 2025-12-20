@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Users, Bed, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -65,7 +65,7 @@ export default function VenuesCarousel({
     >
       {/* Carrousel */}
       <div className="overflow-hidden">
-        <motion.div
+        <m.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
           key={currentIndex}
           initial={{ opacity: 0, x: 100 }}
@@ -80,7 +80,7 @@ export default function VenuesCarousel({
               index={startIndex + index}
             />
           ))}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Flèches de navigation */}
@@ -130,7 +130,7 @@ export default function VenuesCarousel({
  */
 function VenueCard({ venue, index }: { venue: Venue; index: number }) {
   return (
-    <motion.div
+    <m.div
       className="h-full"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -141,7 +141,7 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
         className="venue-card group overflow-hidden h-full flex flex-col bg-charcoal-800 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 border border-accent/20"
       >
         {/* Image avec overlay gradient et numéro */}
-        <motion.div
+        <m.div
           className="relative h-72 overflow-hidden shrink-0"
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.4 }}
@@ -162,7 +162,7 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
               {index + 1}
             </span>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Contenu avec fond sombre */}
         <div className="p-6 md:p-8 flex-1 flex flex-col text-center bg-charcoal-800">
@@ -217,6 +217,6 @@ function VenueCard({ venue, index }: { venue: Venue; index: number }) {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </m.div>
   );
 }

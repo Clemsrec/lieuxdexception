@@ -304,6 +304,31 @@ const b2bContent = {
 };
 
 /**
+ * Contenu par défaut pour la page Histoire
+ */
+const histoireContent = {
+  id: 'histoire',
+  pageName: 'Histoire',
+  locale: 'fr',
+  hero: {
+    title: 'Histoire',
+    subtitle: 'L\'aventure Lieux d\'Exception',
+    description: 'Il y a des lieux que l\'on visite. Et d\'autres que l\'on ressent. Depuis plus de cinq ans, Lieux d\'Exception écrit une histoire faite de rencontres, de paris audacieux et de passions partagées autour de l\'événementiel haut de gamme. Chaque acquisition est guidée par une même ambition : révéler l\'âme de lieux rares et les transformer en scènes d\'émotions inoubliables.',
+    backgroundImage: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-corbe%2Fb2b%2Fcorbe_vue_chateau_2.jpg?alt=media',
+    ctaText: '',
+    ctaLink: '',
+  },
+  sections: [],
+  blocks: [],
+  featureCards: [],
+  contactInfo: [],
+  finalCta: null,
+  updatedAt: new Date(),
+  updatedBy: 'system',
+  version: 1,
+};
+
+/**
  * Fonction principale
  */
 async function initPageContents() {
@@ -329,6 +354,11 @@ async function initPageContents() {
     console.log('📝 Création du contenu B2B (fr)...');
     await db.collection('pageContents').doc('b2b_fr').set(b2bContent);
     console.log('✅ B2B créée\n');
+
+    // Histoire
+    console.log('📝 Création du contenu Histoire (fr)...');
+    await db.collection('pageContents').doc('histoire_fr').set(histoireContent);
+    console.log('✅ Histoire créée\n');
 
     console.log('🎉 Tous les contenus de pages ont été initialisés avec succès !');
     console.log('\n📌 Vous pouvez maintenant les modifier depuis le dashboard admin :');

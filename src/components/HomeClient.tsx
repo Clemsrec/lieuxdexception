@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { m, useInView, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Users, Instagram, ExternalLink } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import dynamic from 'next/dynamic';
@@ -92,7 +92,7 @@ function SectionReveal({ children }: { children: React.ReactNode }) {
  */
 function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
   return (
-    <motion.div
+    <m.div
       className="h-full"
       variants={{
         hidden: { opacity: 0, y: 50 },
@@ -183,7 +183,7 @@ function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -215,7 +215,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
       <SectionReveal>
         <section className="section bg-white">
           <div className="container">
-            <motion.div
+            <m.div
               className="text-center max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -225,14 +225,14 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-primary mb-4 md:mb-6">
                 Une aventure née de <br></br><span className="text-cursive-underline">lieux</span> & de <span className="text-cursive-underline">passion</span>
               </h2>
-              <motion.div 
+              <m.div 
                 className="w-20 h-px bg-accent/40 mb-4 md:mb-5 mx-auto"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               />
-              <motion.div 
+              <m.div 
                 className="text-secondary space-y-3 md:space-y-4 text-base md:text-lg leading-relaxed"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -246,8 +246,8 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                 <p className="text-xl md:text-2xl font-medium text-primary mt-5 md:mt-6">
                   Ainsi est née Lieux d&apos;Exception — une signature plus qu&apos;un nom, un fil conducteur entre des domaines d&apos;âme et des équipes passionnées, où chaque événement devient une histoire.
                 </p>
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           </div>
         </section>
       </SectionReveal>
@@ -256,7 +256,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
       <SectionReveal>
         <section className="section bg-stone-50">
           <div className="container">
-            <motion.div 
+            <m.div 
               className="text-center mb-8 md:mb-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -270,9 +270,9 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               <p className="subtitle text-center">
                 Découvrez nos châteaux et domaines prestigieux en Pays de la Loire
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -518,7 +518,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                     );
                   })}
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </section>
       </SectionReveal>
@@ -527,7 +527,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
       <SectionReveal>
         <section className="section bg-white">
           <div className="container">
-            <motion.div 
+            <m.div 
               className="text-center mb-8 md:mb-10"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -538,9 +538,9 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                 Lieux d&apos;Exception, une <em>signature</em> d&apos;émotion
               </h2>
               <div className="accent-line" />
-            </motion.div>
+            </m.div>
 
-            <motion.div 
+            <m.div 
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
               initial="hidden"
               whileInView="show"
@@ -577,7 +577,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                   text: "Nos lieux vous sont proposés en exclusivité, pour garantir intimité, sérénité et une expérience unique, loin des lieux standardisés."
                 }
               ].map((item) => (
-                <motion.div 
+                <m.div 
                   key={item.number}
                   className="h-full"
                   variants={{
@@ -618,9 +618,9 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                       <div className="w-2 h-2 rounded-full bg-accent/60 mx-auto" />
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
         </section>
       </SectionReveal>
@@ -628,7 +628,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
       {/* CTA Émotion avec parallax */}
       <SectionReveal>
         <section ref={ctaRef} className="section relative overflow-hidden mb-0">
-        <motion.div style={{ y }} className="absolute inset-0">
+        <m.div style={{ y }} className="absolute inset-0">
           <Image
             src="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fdomaine-nantais%2Fmariages%2Fdomaine_cocktail_5.jpg?alt=media"
             alt=""
@@ -637,9 +637,9 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
             sizes="100vw"
             priority
           />
-        </motion.div>
+        </m.div>
         <div className="absolute inset-0 bg-primary/80" />
-        <motion.div 
+        <m.div 
           className="container relative z-10"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -657,7 +657,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               Contact & Devis
             </Link>
           </div>
-        </motion.div>
+        </m.div>
         </section>
       </SectionReveal>
 
@@ -665,7 +665,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
       <SectionReveal>
         <section className="section bg-alt mt-0">
           <div className="container">
-            <motion.div 
+            <m.div 
               className="text-center mb-8 md:mb-10"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -679,9 +679,9 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               <p className="subtitle text-center">
                 Découvrez la localisation de nos châteaux et domaines d&apos;exception
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -689,7 +689,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               className="rounded-xl overflow-hidden shadow-2xl border border-accent/20"
             >
               <VenuesMap venues={venues} />
-            </motion.div>
+            </m.div>
           </div>
         </section>
       </SectionReveal>

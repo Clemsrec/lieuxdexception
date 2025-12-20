@@ -9,6 +9,7 @@ import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/univer
 import HeroCarousel from '@/components/HeroCarousel';
 import HeroSection from '@/components/HeroSection';
 import HomeClient from '@/components/HomeClient';
+import PreloadHeroImages from '@/components/PreloadHeroImages';
 
 // ISR : Cache avec revalidation toutes les heures
 // Revalidation toutes les 60 secondes pour forcer le rafraîchissement
@@ -55,6 +56,9 @@ export default async function Home({
 
   return (
     <main className="min-h-screen">
+      
+      {/* Preload hero images pour améliorer LCP (-1 000 ms) */}
+      <PreloadHeroImages images={carouselImages} />
       
       {/* Structured Data JSON-LD */}
       {organizationSchema && (

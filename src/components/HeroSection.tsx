@@ -23,7 +23,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Navigation from './Navigation';
 
 interface HeroButton {
@@ -82,7 +82,7 @@ export default function HeroSection({
         <div className="flex flex-col items-center text-center w-full mx-auto space-y-6">
           
           {/* Titre principal */}
-          <motion.h1 
+          <m.h1 
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-semibold text-white leading-tight"
             style={{ textShadow: '0 4px 30px rgba(0, 0, 0, 0.7)' }}
             initial={{ opacity: 0, y: 30 }}
@@ -90,10 +90,10 @@ export default function HeroSection({
             transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
           >
             {title}
-          </motion.h1>
+          </m.h1>
 
           {/* Ligne décorative */}
-          <motion.div 
+          <m.div 
             className="w-20 h-px bg-white/40"
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
@@ -102,7 +102,7 @@ export default function HeroSection({
 
           {/* Sous-titre */}
           {subtitle && (
-            <motion.p 
+            <m.p 
               className="text-xl md:text-2xl lg:text-3xl font-display italic text-white"
               style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.7)' }}
               initial={{ opacity: 0, y: 20 }}
@@ -110,12 +110,12 @@ export default function HeroSection({
               transition={{ duration: 0.3, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             >
               {subtitle}
-            </motion.p>
+            </m.p>
           )}
           
           {/* Description */}
           {description && (
-            <motion.div 
+            <m.div 
               className="text-base md:text-lg lg:text-xl text-white/95 leading-relaxed"
               style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.6)' }}
               initial={{ opacity: 0, y: 20 }}
@@ -127,7 +127,7 @@ export default function HeroSection({
 
           {/* Boutons */}
           {buttons.length > 0 && (
-            <motion.div 
+            <m.div 
               className="flex flex-col sm:flex-row gap-4 pt-6 md:pt-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ export default function HeroSection({
                   {button.label}
                 </Link>
               ))}
-            </motion.div>
+            </m.div>
           )}
         </div>
       </div>
