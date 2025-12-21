@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { m } from 'framer-motion';
 
 /**
@@ -11,6 +11,12 @@ type FormType = 'b2b' | 'prive';
 interface ContactFormSwitcherProps {
   /** Type de formulaire par défaut */
   defaultForm?: FormType;
+}
+
+interface FormState {
+  loading: boolean;
+  success: boolean;
+  error: string | null;
 }
 
 /**
@@ -24,6 +30,143 @@ interface ContactFormSwitcherProps {
  */
 export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactFormSwitcherProps) {
   const [activeForm, setActiveForm] = useState<FormType>(defaultForm);
+  const [formState, setFormState] = useState<FormState>({
+    loading: false,
+    success: false,
+    error: null,
+  });
+
+  /**
+   * Soumission formulaire B2B
+   */
+  const handleB2BSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormState({ loading: true, success: false, error: null });
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Vérifier honeypot
+    if (formData.get('website')) {
+      setFormState({ loading: false, success: false, error: 'Erreur de validation' });
+      return;
+    }
+
+    // Collecter les besoins cochés
+    const needs: string[] = [];
+    if (formData.get('dejeuner')) needs.push('Déjeuner');
+    if (formData.get('diner')) needs.push('Dîner');
+    if (formData.get('cocktail')) needs.push('Cocktail');
+    if (formData.get('teambuilding')) needs.push('Team building');
+    const subCommission = formData.get('subcommission-qty');
+    if (formData.get('subcommission') && subCommission) {
+      needs.push(`Sous-commission (${subCommission})`);
+    }
+
+    const payload = {
+      type: 'b2b',
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      company: formData.get('company'),
+      position: formData.get('position'),
+      eventType: formData.get('eventType'),
+      eventDate: formData.get('eventDate') || undefined,
+      guestCount: parseInt(formData.get('guestCount') as string),
+      message: `${formData.get('message') || ''}\n\nBesoins: ${needs.join(', ')}`,
+      acceptPrivacy: true,
+    };
+
+    try {
+      const response = await fetch('/api/contact/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erreur lors de l\'envoi');
+      }
+
+      setFormState({ loading: false, success: true, error: null });
+      form.reset();
+    } catch (error: any) {
+      setFormState({
+        loading: false,
+        success: false,
+        error: error.message || 'Une erreur est survenue',
+      });
+    }
+  };
+
+  /**
+   * Soumission formulaire Privé/Mariage
+   */
+  const handlePriveSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormState({ loading: true, success: false, error: null });
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Vérifier honeypot
+    if (formData.get('website')) {
+      setFormState({ loading: false, success: false, error: 'Erreur de validation' });
+      return;
+    }
+
+    // Collecter les lieux cochés
+    const venues: string[] = [];
+    if (formData.get('venue-boulaie')) venues.push('Le Manoir de la Boulaie');
+    if (formData.get('venue-brulaire')) venues.push('Le Château de la Brûlaire');
+    if (formData.get('venue-corbe')) venues.push('Le Château de la Corbe');
+    if (formData.get('venue-nantais')) venues.push('Le Domaine Nantais');
+    if (formData.get('venue-dome')) venues.push('Le Dôme');
+
+    const payload = {
+      type: 'mariage',
+      bride: {
+        firstName: formData.get('brideFirstName'),
+        lastName: formData.get('brideLastName'),
+      },
+      groom: {
+        firstName: formData.get('groomFirstName'),
+        lastName: formData.get('groomLastName'),
+      },
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      weddingDate: formData.get('eventDate') || undefined,
+      guestCount: formData.get('guestCount'),
+      message: `${formData.get('message') || ''}\n\nLieux intéressants: ${venues.join(', ')}`,
+      acceptPrivacy: true,
+    };
+
+    try {
+      const response = await fetch('/api/contact/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erreur lors de l\'envoi');
+      }
+
+      setFormState({ loading: false, success: true, error: null });
+      form.reset();
+    } catch (error: any) {
+      setFormState({
+        loading: false,
+        success: false,
+        error: error.message || 'Une erreur est survenue',
+      });
+    }
+  };
 
   return (
     <div className="w-full max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,7 +197,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
 
       {/* Formulaire B2B - Événements professionnels */}
       {activeForm === 'b2b' && (
-        <form className="space-y-6">
+        <form onSubmit={handleB2BSubmit} className="space-y-6">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-semibold mb-2">Événements professionnels</h3>
             <p className="text-secondary">
@@ -62,18 +205,44 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
             </p>
           </div>
 
+          {formState.success && (
+            <div className="p-4 bg-green-50 border-2 border-green-500 rounded-lg text-green-800">
+              ✅ Votre demande a été envoyée avec succès ! Nous vous contacterons sous 24-48h.
+            </div>
+          )}
+
+          {formState.error && (
+            <div className="p-4 bg-red-50 border-2 border-red-500 rounded-lg text-red-800">
+              ❌ {formState.error}
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">
                 Société *
               </label>
-              <m.input
+              <input
                 type="text"
+                name="company"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-all"
                 placeholder="Nom de votre entreprise"
                 required
-                whileFocus={{ scale: 1.01, borderColor: 'var(--color-accent)' }}
-                transition={{ duration: 0.2 }}
+                disabled={formState.loading}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Prénom de l&apos;intervenant *
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                placeholder="Prénom"
+                required
+                disabled={formState.loading}
               />
             </div>
 
@@ -83,21 +252,24 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="text"
+                name="lastName"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
-                placeholder="Prénom Nom"
+                placeholder="Nom"
                 required
+                disabled={formState.loading}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2">
-                Poste de l&apos;intervenant *
+                Poste de l&apos;intervenant
               </label>
               <input
                 type="text"
+                name="position"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="Votre fonction"
-                required
+                disabled={formState.loading}
               />
             </div>
 
@@ -107,9 +279,11 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="tel"
+                name="phone"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="+33 1 XX XX XX XX"
                 required
+                disabled={formState.loading}
               />
             </div>
 
@@ -119,9 +293,11 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="email"
+                name="email"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="contact@entreprise.com"
                 required
+                disabled={formState.loading}
               />
             </div>
 
@@ -131,7 +307,9 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="date"
+                name="eventDate"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                disabled={formState.loading}
               />
             </div>
 
@@ -141,9 +319,13 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="number"
+                name="guestCount"
+                min="10"
+                max="500"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="Estimer le nombre de participants"
                 required
+                disabled={formState.loading}
               />
             </div>
 
@@ -151,60 +333,77 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="block text-sm font-medium mb-2">
                 Type d&apos;événement *
               </label>
-              <select className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent" required>
+              <select
+                name="eventType"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                required
+                disabled={formState.loading}
+              >
                 <option value="">Sélectionner...</option>
-                <option value="seminaire-journee">Séminaire journée</option>
-                <option value="seminaire-residentiel">Séminaire résidentiel</option>
-                <option value="soiree">Soirée d&apos;entreprise</option>
-                <option value="grands-evenements">Grands événements</option>
+                <option value="seminar">Séminaire</option>
+                <option value="conference">Conférence</option>
+                <option value="team_building">Team building</option>
+                <option value="corporate">Soirée d&apos;entreprise</option>
               </select>
             </div>
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-3">
-              Besoins *
+              Besoins
             </label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="dejeuner"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Déjeuner</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="diner"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Dîner</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="cocktail"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Cocktail</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="teambuilding"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Team building</span>
               </label>
               <label className="flex items-center col-span-2">
                 <input
                   type="checkbox"
+                  name="subcommission"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Sous-commission</span>
                 <input
                   type="number"
+                  name="subcommission-qty"
                   className="ml-2 w-20 px-2 py-1 bg-white border-2 border-stone rounded text-sm"
                   placeholder="Qté"
                   min="0"
+                  disabled={formState.loading}
                 />
               </label>
             </div>
@@ -215,9 +414,11 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               Commentaire / Message
             </label>
             <textarea
+              name="message"
               rows={5}
               className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
               placeholder="Décrivez votre projet, vos besoins spécifiques, vos contraintes..."
+              disabled={formState.loading}
             />
           </div>
 
@@ -235,16 +436,17 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
 
           <button
             type="submit"
-            className="btn btn-primary w-full text-lg"
+            disabled={formState.loading}
+            className="btn btn-primary w-full text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Demander un devis
+            {formState.loading ? 'Envoi en cours...' : 'Demander un devis'}
           </button>
         </form>
       )}
 
       {/* Formulaire Privé - Mariages et événements privés */}
       {activeForm === 'prive' && (
-        <form className="space-y-6">
+        <form onSubmit={handlePriveSubmit} className="space-y-6">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-semibold mb-2">Événements privés</h3>
             <p className="text-secondary">
@@ -252,28 +454,72 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
             </p>
           </div>
 
+          {formState.success && (
+            <div className="p-4 bg-green-50 border-2 border-green-500 rounded-lg text-green-800">
+              ✅ Votre demande a été envoyée avec succès ! Nous vous contacterons sous 24-48h.
+            </div>
+          )}
+
+          {formState.error && (
+            <div className="p-4 bg-red-50 border-2 border-red-500 rounded-lg text-red-800">
+              ❌ {formState.error}
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">
-                Nom *
+                Prénom (Mariée) *
               </label>
               <input
                 type="text"
+                name="brideFirstName"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
-                placeholder="Votre nom"
+                placeholder="Prénom"
                 required
+                disabled={formState.loading}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2">
-                Prénom *
+                Nom (Mariée) *
               </label>
               <input
                 type="text"
+                name="brideLastName"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
-                placeholder="Votre prénom"
+                placeholder="Nom"
                 required
+                disabled={formState.loading}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Prénom (Marié) *
+              </label>
+              <input
+                type="text"
+                name="groomFirstName"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                placeholder="Prénom"
+                required
+                disabled={formState.loading}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Nom (Marié) *
+              </label>
+              <input
+                type="text"
+                name="groomLastName"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                placeholder="Nom"
+                required
+                disabled={formState.loading}
               />
             </div>
 
@@ -283,9 +529,11 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="email"
+                name="email"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="votre@email.com"
                 required
+                disabled={formState.loading}
               />
             </div>
 
@@ -295,20 +543,23 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               </label>
               <input
                 type="tel"
+                name="phone"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
                 placeholder="+33 6 XX XX XX XX"
                 required
+                disabled={formState.loading}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2">
-                Date de l&apos;événement (Mois / Année) *
+                Date de l&apos;événement (Mois / Année)
               </label>
               <input
                 type="month"
+                name="eventDate"
                 className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
-                required
+                disabled={formState.loading}
               />
             </div>
 
@@ -316,12 +567,17 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="block text-sm font-medium mb-2">
                 Nombre d&apos;invités approximatif *
               </label>
-              <select className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent" required>
+              <select
+                name="guestCount"
+                className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                required
+                disabled={formState.loading}
+              >
                 <option value="">Sélectionner...</option>
-                <option value="0-70">0 - 70 personnes</option>
-                <option value="70-100">70 - 100 personnes</option>
-                <option value="100-130">100 - 130 personnes</option>
-                <option value="130+">130+ personnes</option>
+                <option value="50">0 - 70 personnes</option>
+                <option value="85">70 - 100 personnes</option>
+                <option value="115">100 - 130 personnes</option>
+                <option value="150">130+ personnes</option>
               </select>
             </div>
           </div>
@@ -334,35 +590,45 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="venue-boulaie"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Le Manoir de la Boulaie</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="venue-brulaire"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Le Château de la Brûlaire</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="venue-corbe"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Le Château de la Corbe</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="venue-nantais"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Le Domaine Nantais</span>
               </label>
               <label className="flex items-center">
                 <input
                   type="checkbox"
+                  name="venue-dome"
                   className="mr-2 rounded border-stone text-accent focus:ring-accent"
+                  disabled={formState.loading}
                 />
                 <span className="text-sm">Le Dôme</span>
               </label>
@@ -374,9 +640,11 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
               Commentaire / Message
             </label>
             <textarea
+              name="message"
               rows={5}
               className="w-full px-4 py-3 bg-white border-2 border-stone rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
               placeholder="Parlez-nous de votre projet, de vos envies, de vos besoins spécifiques..."
+              disabled={formState.loading}
             />
           </div>
 
@@ -394,9 +662,10 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
 
           <button
             type="submit"
-            className="btn btn-primary w-full text-lg"
+            disabled={formState.loading}
+            className="btn btn-primary w-full text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Demander un devis
+            {formState.loading ? 'Envoi en cours...' : 'Demander un devis'}
           </button>
         </form>
       )}

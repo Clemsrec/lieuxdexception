@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { collection, addDoc, getDocs, query, where, Timestamp } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, where, Timestamp, updateDoc, doc } from 'firebase/firestore';
 import { db } from '@/lib/firebase-client';
 import { validateData, b2bFormSchema, weddingFormSchema, sanitizeString } from '@/lib/validation';
 import { checkContactFormRateLimit, getClientIp } from '@/lib/rate-limit';
+import { createB2BLeadInOdoo, createWeddingLeadInOdoo, isOdooConfigured } from '@/lib/odoo';
 
 /**
  * API Route : Soumission formulaire de contact
@@ -15,7 +16,10 @@ import { checkContactFormRateLimit, getClientIp } from '@/lib/rate-limit';
  * - Protection doublon email (24h)
  * - Honeypot anti-bot
  * 
- * Sauvegarde le lead en Firestore + envoie notification FCM aux admins
+ * Workflow :
+ * 1. Sauvegarde lead en Firestore (rapide, toujours réussi)
+ * 2. Synchronisation Odoo CRM (asynchrone, avec gestion d'erreur)
+ * 3. Notification FCM aux admins
  */
 
 export async function POST(request: NextRequest) {
@@ -130,6 +134,7 @@ export async function POST(request: NextRequest) {
       ...validatedData,
       status: 'new',
       source: 'website_form',
+      syncedToOdoo: false, // Sera mis à true après sync Odoo
       createdAt: Timestamp.now(),
       updatedAt: Timestamp.now(),
     };
@@ -139,7 +144,13 @@ export async function POST(request: NextRequest) {
       const leadsCollection = collection(db, 'leads');
       const docRef = await addDoc(leadsCollection, leadData);
       leadId = docRef.id;
+      console.log('✅ Lead sauvegardé dans Firestore:', leadId);
     }
+
+    // Synchroniser avec Odoo CRM (ne bloque pas la réponse)
+    syncLeadToOdoo(leadId, type, validatedData).catch(error => {
+      console.error('❌ Erreur sync Odoo (non-bloquant):', error);
+    });
 
     // Envoyer notification FCM aux admins
     const leadNotifData = type === 'b2b' 
@@ -249,5 +260,81 @@ async function sendLeadNotificationToAdmins(leadInfo: {
   } catch (error) {
     console.error('❌ Erreur notification admins:', error);
     // Ne pas bloquer la création du lead si la notification échoue
+  }
+}
+
+/**
+ * Synchronise un lead Firestore avec Odoo CRM
+ * Fonction asynchrone qui ne bloque pas la réponse utilisateur
+ */
+async function syncLeadToOdoo(
+  leadId: string, 
+  type: string, 
+  validatedData: any
+): Promise<void> {
+  try {
+    // Vérifier si Odoo est configuré
+    if (!isOdooConfigured()) {
+      console.warn('⚠️ Odoo non configuré, lead non synchronisé');
+      return;
+    }
+
+    let odooResult;
+
+    if (type === 'b2b') {
+      // Mapper les données B2B pour Odoo
+      const odooLead = {
+        firstName: validatedData.firstName,
+        lastName: validatedData.lastName,
+        email: validatedData.email,
+        phone: validatedData.phone || '',
+        company: validatedData.company,
+        position: validatedData.position,
+        eventType: validatedData.eventType || 'Séminaire',
+        eventDate: validatedData.eventDate,
+        guestCount: validatedData.guestCount || 0,
+        budget: validatedData.budget,
+        message: validatedData.message || validatedData.requirements || '',
+        venues: validatedData.venues,
+      };
+
+      odooResult = await createB2BLeadInOdoo(odooLead);
+
+    } else if (type === 'mariage') {
+      // Mapper les données Mariage pour Odoo
+      const odooLead = {
+        bride: validatedData.bride,
+        groom: validatedData.groom,
+        email: validatedData.email,
+        phone: validatedData.phone || '',
+        weddingDate: validatedData.weddingDate,
+        guestCount: validatedData.guestCount || 0,
+        budget: validatedData.budget,
+        message: validatedData.message || '',
+        venues: validatedData.venues,
+      };
+
+      odooResult = await createWeddingLeadInOdoo(odooLead);
+    } else {
+      console.error('Type de lead inconnu pour Odoo:', type);
+      return;
+    }
+
+    // Mettre à jour Firestore avec l'ID Odoo
+    if (odooResult.success && odooResult.leadId && db) {
+      const leadRef = doc(db, 'leads', leadId);
+      await updateDoc(leadRef, {
+        odooId: odooResult.leadId,
+        syncedToOdoo: true,
+        lastSyncAt: Timestamp.now(),
+      });
+      console.log(`✅ Lead ${leadId} synchronisé avec Odoo (ID: ${odooResult.leadId})`);
+    } else {
+      console.error('❌ Échec synchronisation Odoo:', odooResult.error);
+    }
+
+  } catch (error) {
+    console.error('❌ Erreur syncLeadToOdoo:', error);
+    // Ne pas propager l'erreur (ne doit pas bloquer la création du lead)
   }
 }
