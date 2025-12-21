@@ -41,8 +41,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-secondary text-sm mb-4 leading-relaxed">
-              Des lieux événementiels d&apos;exception en France pour vos séminaires, 
-              mariages et événements corporate.
+              {t('description')}
             </p>
           </div>
 

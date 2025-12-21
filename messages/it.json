@@ -16,7 +16,16 @@
     "signature": "Perché l'emozione si vive pienamente quando trova il suo Luogo Eccezionale",
     "discoverButton": "Scopri i nostri luoghi",
     "contactButton": "Contattaci",
-    "exceptionalVenues": "Luoghi eccezionali"
+    "exceptionalVenues": "Luoghi eccezionali",
+    "venuesSection": {
+      "title": "Tenute Eccezionali",
+      "subtitle": "Scopri i nostri castelli e tenute prestigiose in Pays de la Loire"
+    },
+    "finalCta": {
+      "title": "Perché l'emozione si vive pienamente quando trova il suo Luogo Eccezionale.",
+      "subtitle": "Tenute dove si mescolano bellezza, sincerità e arte dell'accoglienza.",
+      "button": "Contatto"
+    }
   },
   "B2B": {
     "title": "Eventi Aziendali",
@@ -97,6 +106,7 @@
     }
   },
   "Footer": {
+    "description": "Luoghi eccezionali per eventi in Francia per i vostri seminari, matrimoni ed eventi aziendali.",
     "navigation": "Navigazione",
     "services": "Servizi",
     "gallery": "Storia",
@@ -124,7 +134,7 @@
     "cancel": "Annulla",
     "metadata": {
       "title": "Luoghi Eccezionali - Groupe Riou | Catalogo B2B",
-      "description": "Scopri la nostra collezione di 5 luoghi eccezionali per eventi in Francia. Seminari, conferenze, matrimoni e ricevimenti privati. Groupe Riou - Eccellenza negli eventi.",
+      "description": "Castelli e tenute eccezionali in Loire-Atlantique per seminari, eventi aziendali, matrimoni e ricevimenti privati. Groupe Riou.",
       "keywords": "luoghi per eventi, seminari, matrimoni, groupe riou, eventi aziendali, ricevimenti"
     }
   }

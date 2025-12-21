@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
 import { m, useInView, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Users, Instagram, ExternalLink } from 'lucide-react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import type { Venue, PageContent } from '@/types/firebase';
 import { STORAGE_IMAGES, STORAGE_LOGOS } from '@/lib/storage-assets';
@@ -193,6 +193,7 @@ interface HomeClientProps {
 export default function HomeClient({ venues, pageContent }: HomeClientProps) {
 
   const locale = useLocale();
+  const t = useTranslations('Home');
   const ctaRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ctaRef,
@@ -255,7 +256,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
             </h2>
             <div className="accent-line" />
             <p className="subtitle text-center">
-              Découvrez nos châteaux et domaines prestigieux en Pays de la Loire
+              {t('venuesSection.subtitle')}
             </p>
           </div>
 
@@ -602,13 +603,13 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
         <div className="container relative z-10">
           <div className="text-center mx-auto">
             <p className="text-2xl md:text-3xl lg:text-4xl font-display italic text-white mb-3 md:mb-4" style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.5)' }}>
-              {pageContent?.finalCta?.title || "Parce que l'émotion se vit pleinement lorsqu'elle trouve son Lieu d'Exception."}
+              {pageContent?.finalCta?.title || t('finalCta.title')}
             </p>
             <p className="text-lg md:text-xl text-white/90 mb-4 md:mb-6 font-light uppercase tracking-wider">
-              {pageContent?.finalCta?.subtitle || "Des domaines où se mêlent beauté, sincérité et art de recevoir."}
+              {pageContent?.finalCta?.subtitle || t('finalCta.subtitle')}
             </p>
             <Link href={pageContent?.finalCta?.ctaLink || `/${locale}/contact`} className="btn btn-primary">
-              {pageContent?.finalCta?.ctaText || "Contact & Devis"}
+              {pageContent?.finalCta?.ctaText || t('finalCta.button')}
             </Link>
           </div>
         </div>

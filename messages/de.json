@@ -16,7 +16,16 @@
     "signature": "Weil Emotionen voll erlebt werden, wenn sie ihren außergewöhnlichen Ort finden",
     "discoverButton": "Entdecken Sie unsere Locations",
     "contactButton": "Kontaktieren Sie uns",
-    "exceptionalVenues": "Außergewöhnliche Locations"
+    "exceptionalVenues": "Außergewöhnliche Locations",
+    "venuesSection": {
+      "title": "Außergewöhnliche Anwesen",
+      "subtitle": "Entdecken Sie unsere prestigeträchtigen Schlösser und Anwesen in Pays de la Loire"
+    },
+    "finalCta": {
+      "title": "Weil Emotionen voll erlebt werden, wenn sie ihre außergewöhnliche Location finden.",
+      "subtitle": "Anwesen, wo Schönheit, Aufrichtigkeit und Gastfreundschaft verschmelzen.",
+      "button": "Kontakt"
+    }
   },
   "B2B": {
     "title": "Firmenveranstaltungen",
@@ -59,8 +68,8 @@
     "service4": "Exklusive Verfügbarkeit",
     "viewVenues": "Unsere Locations ansehen",
     "gallery": {
-      "title": "Orte, die Ihre Geschichte erzählen",
-      "subtitle": "Entdecken Sie unsere außergewöhnlichen Anwesen, Bühnen für Ihre schönsten Erinnerungen"
+      "title": "Unsere Anwesen für Ihre außergewöhnlichen Hochzeiten",
+      "subtitle": "Entdecken Sie unsere prestigeträchtigen Anwesen, jedes mit seinem einzigartigen Charakter für Ihren wichtigsten Tag"
     }
   },
   "Venues": {
@@ -97,6 +106,7 @@
     }
   },
   "Footer": {
+    "description": "Außergewöhnliche Veranstaltungsorte in Frankreich für Ihre Seminare, Hochzeiten und Firmenveranstaltungen.",
     "navigation": "Navigation",
     "services": "Dienstleistungen",
     "gallery": "Geschichte",
@@ -123,9 +133,9 @@
     "submit": "Senden",
     "cancel": "Abbrechen",
     "metadata": {
-      "title": "Außergewöhnliche Locations - Groupe Riou | B2B-Katalog",
-      "description": "Entdecken Sie unsere Kollektion von 5 außergewöhnlichen Veranstaltungsorten in Frankreich. Seminare, Konferenzen, Hochzeiten und private Empfänge. Groupe Riou - Event-Exzellenz.",
-      "keywords": "Veranstaltungsorte, Seminare, Hochzeiten, Groupe Riou, Firmenveranstaltungen, Empfänge"
+      "title": "Außergewöhnliche Locations - Groupe Riou | Firmenevents & Hochzeiten",
+      "description": "Außergewöhnliche Schlösser und Anwesen in Loire-Atlantique für Seminare, Firmenveranstaltungen, Hochzeiten und private Empfänge. Groupe Riou.",
+      "keywords": "Veranstaltungsorte, Seminare, Hochzeiten, Groupe Riou, Firmenveranstaltungen, Empfänge, Loire-Atlantique, Schlösser"
     }
   }
 }

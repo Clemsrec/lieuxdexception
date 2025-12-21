@@ -10,19 +10,34 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/admin', '/api/admin/'],
-      },
-      {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/admin', '/api/admin/'],
+        disallow: ['/admin', '/api/admin/', '/api/analytics/', '/api/leads/'],
+        crawlDelay: 0,
+      },
+      {
+        userAgent: 'Googlebot-Image',
+        allow: '/',
+        disallow: ['/admin'],
       },
       {
         userAgent: 'Bingbot',
         allow: '/',
-        disallow: ['/admin', '/api/admin/'],
+        disallow: ['/admin', '/api/admin/', '/api/analytics/', '/api/leads/'],
+        crawlDelay: 1,
+      },
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: [
+          '/admin',
+          '/api/admin/',
+          '/api/analytics/',
+          '/api/leads/',
+          '/api/fcm/',
+          '/_next/static/',
+        ],
+        crawlDelay: 2,
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

@@ -16,7 +16,16 @@
     "signature": "Porque a emoção é vivida plenamente quando encontra o seu Lugar Excepcional",
     "discoverButton": "Descobrir nossos lugares",
     "contactButton": "Contacte-nos",
-    "exceptionalVenues": "Lugares excepcionais"
+    "exceptionalVenues": "Lugares excepcionais",
+    "venuesSection": {
+      "title": "Propriedades Excepcionais",
+      "subtitle": "Descubra nossos castelos e propriedades prestigiosas em Pays de la Loire"
+    },
+    "finalCta": {
+      "title": "Porque a emoção é vivida plenamente quando encontra seu Lugar Excepcional.",
+      "subtitle": "Propriedades onde se misturam beleza, sinceridade e arte de receber.",
+      "button": "Contato"
+    }
   },
   "B2B": {
     "title": "Eventos Corporativos",
@@ -97,6 +106,7 @@
     }
   },
   "Footer": {
+    "description": "Lugares excepcionais para eventos na França para seus seminários, casamentos e eventos corporativos.",
     "navigation": "Navegação",
     "services": "Serviços",
     "gallery": "História",
@@ -123,9 +133,9 @@
     "submit": "Enviar",
     "cancel": "Cancelar",
     "metadata": {
-      "title": "Lugares Excepcionais - Groupe Riou | Catálogo B2B",
-      "description": "Descubra nossa coleção de 5 lugares excepcionais para eventos na França. Seminários, conferências, casamentos e recepções privadas. Groupe Riou - Excelência em eventos.",
-      "keywords": "lugares para eventos, seminários, casamentos, groupe riou, eventos corporativos, recepções"
+      "title": "Lugares Excepcionais - Groupe Riou | Eventos Corporativos & Casamentos",
+      "description": "Castelos e propriedades excepcionais em Loire-Atlantique para seminários, eventos corporativos, casamentos e recepções privadas. Groupe Riou.",
+      "keywords": "lugares para eventos, seminários, casamentos, groupe riou, eventos corporativos, recepções, loire-atlantique, castelos"
     }
   }
 }

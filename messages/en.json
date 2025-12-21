@@ -16,7 +16,16 @@
     "signature": "Because emotion is fully experienced when it finds its Exceptional Venue",
     "discoverButton": "Discover our venues",
     "contactButton": "Contact us",
-    "exceptionalVenues": "Exceptional venues"
+    "exceptionalVenues": "Exceptional venues",
+    "venuesSection": {
+      "title": "Exceptional Estates",
+      "subtitle": "Discover our prestigious castles and estates in Pays de la Loire"
+    },
+    "finalCta": {
+      "title": "Because emotion is fully experienced when it finds its Exceptional Venue.",
+      "subtitle": "Estates where beauty, sincerity and the art of hospitality blend together.",
+      "button": "Contact us"
+    }
   },
   "B2B": {
     "title": "Corporate Events",
@@ -59,8 +68,8 @@
     "service4": "Exclusive availability",
     "viewVenues": "View our venues",
     "gallery": {
-      "title": "Places that tell your story",
-      "subtitle": "Discover our exceptional estates, stages for your most beautiful memories"
+      "title": "Our estates for your exceptional weddings",
+      "subtitle": "Discover our prestigious estates, each with its unique character to celebrate your most important day"
     }
   },
   "Venues": {
@@ -97,6 +106,7 @@
     }
   },
   "Footer": {
+    "description": "Exceptional event venues in France for your seminars, weddings and corporate events.",
     "navigation": "Navigation",
     "services": "Services",
     "gallery": "History",
@@ -123,9 +133,9 @@
     "submit": "Submit",
     "cancel": "Cancel",
     "metadata": {
-      "title": "Exceptional Venues - Groupe Riou | B2B Catalog",
-      "description": "Discover our collection of 5 exceptional event venues in France. Seminars, conferences, weddings and private receptions. Groupe Riou - Event Excellence.",
-      "keywords": "event venues, seminars, weddings, groupe riou, corporate events, receptions"
+      "title": "Exceptional Venues - Groupe Riou | Corporate Events & Weddings",
+      "description": "Exceptional castles and estates in Loire-Atlantique for seminars, corporate events, weddings and private receptions. Groupe Riou.",
+      "keywords": "event venues, seminars, weddings, groupe riou, corporate events, receptions, loire-atlantique, castles"
     }
   }
 }

@@ -33,7 +33,7 @@ export function generateSmartMetadata(params: SmartMetadataParams): Metadata {
     'business.name': 'Lieux d\'Exception',
     'business.venues': '5',
     'business.experience': config.business.expertise.experience,
-    'business.years': '25+',
+    'business.years': 'Depuis 2020',
     'region': config.business.localSEO.region,
     'venue.name': data?.venue?.name || '',
     'venue.type': data?.venue?.eventTypes?.[0] || 'Lieu',

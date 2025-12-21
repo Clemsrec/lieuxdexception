@@ -16,7 +16,16 @@
     "signature": "Parce que l'émotion se vit pleinement lorsqu'elle trouve son Lieu d'Exception",
     "discoverButton": "Découvrir nos lieux",
     "contactButton": "Contact & Devis",
-    "exceptionalVenues": "Des lieux d'exception"
+    "exceptionalVenues": "Des lieux d'exception",
+    "venuesSection": {
+      "title": "Domaines d'Exception",
+      "subtitle": "Découvrez nos châteaux et domaines prestigieux en Pays de la Loire"
+    },
+    "finalCta": {
+      "title": "Parce que l'émotion se vit pleinement lorsqu'elle trouve son Lieu d'Exception.",
+      "subtitle": "Des domaines où se mêlent beauté, sincérité et art de recevoir.",
+      "button": "Contact & Devis"
+    }
   },
   "B2B": {
     "title": "Événements Professionnels",
@@ -59,8 +68,8 @@
     "service3": "Réseau de partenaires",
     "service4": "Mise à disposition exclusive",
     "gallery": {
-      "title": "Des lieux qui racontent votre histoire",
-      "subtitle": "Découvrez nos domaines d'exception, théâtres de vos plus beaux souvenirs"
+      "title": "Nos domaines pour vos mariages d'exception",
+      "subtitle": "Découvrez nos domaines de prestige, chacun avec son caractère unique pour célébrer votre jour le plus important"
     }
   },
   "Venues": {
@@ -97,6 +106,7 @@
     }
   },
   "Footer": {
+    "description": "Des lieux événementiels d'exception en France pour vos séminaires, mariages et événements corporate.",
     "navigation": "Navigation",
     "services": "Services",
     "gallery": "Histoire",
@@ -123,9 +133,9 @@
     "submit": "Envoyer",
     "cancel": "Annuler",
     "metadata": {
-      "title": "Lieux d'Exception - Groupe Riou | Catalogue B2B",
-      "description": "Découvrez notre collection de lieux événementiels d'exception en France. Séminaires, conférences, mariages et réceptions privées. Groupe Riou - Excellence événementielle.",
-      "keywords": "lieux événementiels, séminaires, mariages, groupe riou, événements professionnels, réceptions"
+      "title": "Lieux d'Exception - Groupe Riou | Événements Professionnels & Mariages",
+      "description": "Châteaux et domaines d'exception en Loire-Atlantique pour séminaires, événements professionnels, mariages et réceptions privées. Groupe Riou.",
+      "keywords": "lieux événementiels, séminaires, mariages, groupe riou, événements professionnels, réceptions, loire-atlantique, châteaux"
     }
   }
 }

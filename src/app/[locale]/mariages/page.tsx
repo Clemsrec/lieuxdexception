@@ -100,12 +100,12 @@ export default async function MariagesPage({
         <div className="container px-4">
           <div className="mb-12">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
-              Nos domaines pour vos mariages d&apos;exception
+              {t('gallery.title')}
             </h2>
             <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
             <div className="max-w-3xl mx-auto">
               <p className="text-secondary text-lg text-center">
-                Découvrez nos domaines de prestige, chacun avec son caractère unique pour célébrer votre jour le plus important
+                {t('gallery.subtitle')}
               </p>
             </div>
           </div>

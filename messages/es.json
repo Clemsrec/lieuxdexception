@@ -16,7 +16,16 @@
     "signature": "Porque la emoción se vive plenamente cuando encuentra su Lugar Excepcional",
     "discoverButton": "Descubrir nuestros lugares",
     "contactButton": "Contáctenos",
-    "exceptionalVenues": "Lugares excepcionales"
+    "exceptionalVenues": "Lugares excepcionales",
+    "venuesSection": {
+      "title": "Fincas Excepcionales",
+      "subtitle": "Descubra nuestros castillos y fincas prestigiosas en Pays de la Loire"
+    },
+    "finalCta": {
+      "title": "Porque la emoción se vive plenamente cuando encuentra su Lugar Excepcional.",
+      "subtitle": "Fincas donde se mezclan belleza, sinceridad y arte de recibir.",
+      "button": "Contacto"
+    }
   },
   "B2B": {
     "title": "Eventos Corporativos",
@@ -59,8 +68,8 @@
     "service4": "Disponibilidad exclusiva",
     "viewVenues": "Ver nuestros lugares",
     "gallery": {
-      "title": "Lugares que cuentan tu historia",
-      "subtitle": "Descubre nuestros dominios de excepción, escenarios de tus más bellos recuerdos"
+      "title": "Nuestras fincas para sus bodas excepcionales",
+      "subtitle": "Descubra nuestras fincas de prestigio, cada una con su carácter único para celebrar su día más importante"
     }
   },
   "Venues": {
@@ -97,6 +106,7 @@
     }
   },
   "Footer": {
+    "description": "Lugares excepcionales para eventos en Francia para sus seminarios, bodas y eventos corporativos.",
     "navigation": "Navegación",
     "services": "Servicios",
     "gallery": "Historia",
@@ -124,7 +134,7 @@
     "cancel": "Cancelar",
     "metadata": {
       "title": "Lugares Excepcionales - Groupe Riou | Catálogo B2B",
-      "description": "Descubre nuestra colección de 5 lugares excepcionales para eventos en Francia. Seminarios, conferencias, bodas y recepciones privadas. Groupe Riou - Excelencia en eventos.",
+      "description": "Castillos y fincas excepcionales en Loire-Atlantique para seminarios, eventos empresariales, bodas y recepciones privadas. Groupe Riou.",
       "keywords": "lugares para eventos, seminarios, bodas, groupe riou, eventos corporativos, recepciones"
     }
   }

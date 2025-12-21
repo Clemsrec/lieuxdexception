@@ -29,7 +29,7 @@ export default function CGVPage() {
           Conditions contractuelles pour la réservation de nos lieux d&apos;exception
         </p>
         <p className="text-sm text-accent mt-2">
-          Version en vigueur depuis le 1er novembre 2024
+          Version en vigueur depuis le 21 décembre 2025
         </p>
       </div>
 

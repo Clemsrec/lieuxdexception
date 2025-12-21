@@ -39,8 +39,8 @@ export const universalSEOConfig = {
       primary: "Lieux événementiels d'exception et organisation d'événements corporate",
       sectors: ["Mariages haut de gamme", "Séminaires entreprise", "Événements corporate"],
       certifications: ["Collection de Domaines d'Exception"],
-      experience: "Expertise événementielle depuis plus de 25 ans",
-      clientsServed: "Des centaines d'événements réussis en Loire-Atlantique"
+      experience: "Expertise événementielle depuis 2020",
+      clientsServed: "Événements d'exception en Loire-Atlantique"
     },
 
     // SEO local - Zone géographique
@@ -191,7 +191,7 @@ export const universalSEOConfig = {
     expertise: {
       domain: "Organisation d'événements et gestion de lieux d'exception",
       credentials: [
-        "25+ ans d'expérience événementielle",
+        "Expertise événementielle depuis 2020",
         "Collection de domaines historiques classés",
         "Réseau partenaires Premium (traiteurs, décorateurs, photographes)"
       ],
@@ -204,10 +204,10 @@ export const universalSEOConfig = {
 
     // Experience (Expérience pratique démontrée)
     experience: {
-      years: "25+",
-      projects: "Des centaines d'événements organisés",
-      clientTypes: ["Entreprises CAC40", "PME régionales", "Particuliers exigeants"],
-      testimonials: "Avis clients 5 étoiles",
+      years: "Depuis 2020",
+      projects: "Événements d'exception en Loire-Atlantique",
+      clientTypes: ["Entreprises", "Mariages", "Événements privés"],
+      testimonials: "Satisfaction clients",
       portfolio: "Domaines d'Exception en Loire-Atlantique"
     },
 
@@ -244,7 +244,7 @@ export const universalSEOConfig = {
   metaTemplates: {
     homepage: {
       titlePattern: "{business.name} | Lieux événementiels d'exception en {region}",
-      descriptionPattern: "Découvrez {business.venues} lieux d'exception en {region} pour vos mariages et événements corporate. {business.experience}. Devis gratuit sous 24h.",
+      descriptionPattern: "Châteaux et domaines d'exception en Loire-Atlantique pour vos mariages et événements corporate. {business.experience}. Devis personnalisé.",
       keywordsFocus: ["primary", "local"]
     },
 
@@ -339,11 +339,11 @@ export const universalSEOConfig = {
     about: [
       {
         question: "Quelle est votre expérience dans l'événementiel ?",
-        answer: "Nous organisons des événements depuis plus de 25 ans. Nous avons accompagné des centaines d'entreprises et particuliers en Loire-Atlantique pour des événements d'exception."
+        answer: "Nous organisons des événements depuis 2020 avec une collection de domaines d'exception en Loire-Atlantique pour vos mariages et événements professionnels."
       },
       {
         question: "Pourquoi choisir Lieux d'Exception ?",
-        answer: "Expertise événementielle de 25+ ans, collection de domaines historiques classés, réseau partenaires Premium, accompagnement personnalisé et équipe locale dédiée en Loire-Atlantique."
+        answer: "Expertise événementielle depuis 2020, collection de domaines historiques en Loire-Atlantique, réseau partenaires Premium, accompagnement personnalisé et équipe locale dédiée."
       }
     ],
 

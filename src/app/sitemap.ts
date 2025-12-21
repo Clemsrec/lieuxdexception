@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://lieuxdexception.com';
   
   // Récupérer tous les lieux actifs pour URLs dynamiques
-  const venues = await getVenues({ featured: true });
+  const venues = await getVenues();
   
   // Pages statiques principales
   const staticPages: MetadataRoute.Sitemap = [
@@ -32,6 +32,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/catalogue`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/contact`,
@@ -65,6 +71,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Pages locales (i18n)
+  const locales = ['en', 'de', 'es', 'it', 'pt'];
+  const localePages: MetadataRoute.Sitemap = locales.flatMap(locale => [
+    {
+      url: `${baseUrl}/${locale}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/${locale}/mariages`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/${locale}/evenements-b2b`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/${locale}/catalogue`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
+    },
+  ]);
+
   // Pages dynamiques (lieux)
   const venuePages: MetadataRoute.Sitemap = venues.map((venue) => ({
     url: `${baseUrl}/lieux/${venue.slug}`,
@@ -76,5 +111,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Fusionner et retourner
-  return [...staticPages, ...venuePages];
+  return [...staticPages, ...localePages, ...venuePages];
 }

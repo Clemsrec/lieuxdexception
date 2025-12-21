@@ -283,7 +283,7 @@ export default async function EvenementsB2BPage({
               <div className="bg-white border border-stone/20 rounded-xl p-6 shadow-lg">
                 <h4 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-accent">Un savoir-faire qui sécurise votre projet</h4>
                 <p className="text-secondary leading-relaxed">
-                  <strong className="text-primary">Plus de 20 ans d'expertise événementielle, un coordinateur dédié et un réseau de partenaires premium.</strong> Vous bénéficiez d'un pilotage précis, fluide et maîtrisé, du premier échange au jour J.
+                  <strong className="text-primary">Expertise événementielle depuis 2020, un coordinateur dédié et un réseau de partenaires premium.</strong> Vous bénéficiez d'un pilotage précis, fluide et maîtrisé, du premier échange au jour J.
                 </p>
               </div>
             </div>
