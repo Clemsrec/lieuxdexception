@@ -118,7 +118,6 @@ export default function HeroSection({
                   key={index}
                   href={button.href}
                   className={button.primary ? 'btn btn-primary' : 'btn btn-secondary'}
-                  style={!button.primary ? { color: 'white', borderColor: 'white' } : undefined}
                 >
                   {button.label}
                 </Link>
