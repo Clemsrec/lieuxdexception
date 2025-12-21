@@ -15,7 +15,7 @@
 
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { m, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
@@ -114,15 +114,15 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
   const generateCurvePath = () => {
     const spacing = 600;
     const amplitude = 80;
-    let path = `M 100 300`;
+    let path = `M 100 400`;
     
     events.forEach((_, index) => {
       const x = 100 + (index + 1) * spacing;
-      const y = 300 + Math.sin(index * 0.8) * amplitude;
+      const y = 400 + Math.sin(index * 0.8) * amplitude;
       const controlX1 = 100 + (index + 0.5) * spacing;
-      const controlY1 = 300 + Math.sin((index - 0.5) * 0.8) * amplitude;
+      const controlY1 = 400 + Math.sin((index - 0.5) * 0.8) * amplitude;
       const controlX2 = 100 + (index + 0.7) * spacing;
-      const controlY2 = 300 + Math.sin((index + 0.3) * 0.8) * amplitude;
+      const controlY2 = 400 + Math.sin((index + 0.3) * 0.8) * amplitude;
       
       path += ` C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${x} ${y}`;
     });
@@ -186,7 +186,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
 
       <div 
         ref={containerRef}
-        className="relative w-full lg:h-[3000vh] lg:pb-32"
+        className="relative w-full lg:h-[3000vh] lg:pb-32 -mt-20 lg:-mt-32"
       >
         {/* Desktop: Scroll horizontal */}
         <div className="sticky top-0 h-screen overflow-hidden bg-neutral-900 hidden lg:block">
@@ -232,7 +232,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
             {/* Événements */}
             {events.map((event, index) => {
               const x = 100 + index * 600;
-              const y = 300 + Math.sin(index * 0.8) * 80;
+              const y = 200 + Math.sin(index * 0.8) * 80;
               const isBottom = event.imagePosition === 'bottom' || index % 2 === 1;
               const isActive = activeIndex === index;
               const distance = Math.abs(activeIndex - index);
@@ -243,23 +243,23 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
               const scale = isActive ? 1 : Math.max(0.85, 1 - distance * 0.1);
               
               return (
-                <m.div
-                  key={index}
-                  className="absolute"
-                  style={{
-                    left: `${x}px`,
-                    top: `${y}px`,
-                  }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{
-                    opacity,
-                    scale,
-                    filter: `blur(${blur}px)`,
-                    x: '-50%',
-                    y: isActive ? '-50%' : (isBottom ? '-45%' : '-55%'),
-                  }}
-                  transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-                >
+                <React.Fragment key={index}>
+                  {/* Carte de l'événement */}
+                  <m.div
+                    className="absolute"
+                    style={{
+                      left: `${x}px`,
+                      top: `${y}px`,
+                    }}
+                    animate={{
+                      opacity,
+                      scale,
+                      filter: `blur(${blur}px)`,
+                      x: '-50%',
+                      y: isActive ? '-50%' : (isBottom ? '-45%' : '-55%'),
+                    }}
+                    transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                  >
                   {/* Particules animées selon l'événement */}
                   {isActive && (
                     <div className="absolute inset-0 pointer-events-none">
@@ -268,11 +268,8 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                         <m.div
                           key={`circle-${i}`}
                           className="absolute w-2 h-2 bg-accent rounded-full"
-                          initial={{
-                            x: 0,
-                            y: 0,
-                            opacity: 1,
-                          }}
+                          style={{ left: '50%', top: '50%' }}
+                          initial={{ x: 0, y: 0, opacity: 1 }}
                           animate={{
                             x: Math.cos(i * 18 * Math.PI / 180) * 100,
                             y: Math.sin(i * 18 * Math.PI / 180) * 100,
@@ -294,13 +291,10 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                           className="absolute w-1 h-1 bg-accent"
                           style={{
                             clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
-                            left: `${Math.random() * 100 - 50}px`,
-                            top: `${Math.random() * 100 - 50}px`,
+                            left: '50%',
+                            top: '50%',
                           }}
-                          initial={{
-                            opacity: 0,
-                            scale: 0,
-                          }}
+                          initial={{ opacity: 1, scale: 0 }}
                           animate={{
                             opacity: [0, 1, 1, 0],
                             scale: [0, 1.5, 1.5, 0],
@@ -319,11 +313,8 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                         <m.div
                           key={`spiral-${i}`}
                           className="absolute w-1.5 h-1.5 bg-accent rounded-full"
-                          initial={{
-                            x: 0,
-                            y: 0,
-                            opacity: 1,
-                          }}
+                          style={{ left: '50%', top: '50%' }}
+                          initial={{ x: 0, y: 0, opacity: 1 }}
                           animate={{
                             x: Math.cos((i * 60) * Math.PI / 180) * 80,
                             y: Math.sin((i * 60) * Math.PI / 180) * 80,
@@ -340,19 +331,6 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                       ))}
                     </div>
                   )}
-
-                  {/* Point sur la ligne */}
-                  <m.div 
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full z-10"
-                    animate={{
-                      scale: isActive ? 1.5 : 1,
-                      boxShadow: isActive 
-                        ? '0 0 20px rgba(201,169,97,0.8)' 
-                        : '0 0 0px rgba(201,169,97,0)',
-                    }}
-                  >
-                    <div className="w-4 h-4 bg-accent border-4 border-neutral-700 rounded-full" />
-                  </m.div>
                   
                   {/* Contenu avec parallax */}
                   <m.div 
@@ -364,19 +342,14 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                   >
                     {isBottom ? (
                       <>
-                        <m.div 
-                          className="text-center mb-4"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
+                        <div className="text-center mb-4">
                           <h3 className="text-xs uppercase tracking-wider mb-1" style={{ color: '#C9A961' }}>
                             {event.title}
                           </h3>
                           {event.subtitle && (
                             <p className="text-xs text-white/60">{event.subtitle}</p>
                           )}
-                        </m.div>
+                        </div>
                         
                         {/* Image avec parallax et hover effect */}
                         <m.div 
@@ -407,33 +380,36 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                           {/* Glow effect sur hover */}
                           <m.div
                             className="absolute inset-0 bg-accent/20 rounded-2xl blur-xl"
-                            initial={{ opacity: 0 }}
                             whileHover={{ opacity: 1 }}
+                            style={{ opacity: 0 }}
                           />
+                          
+                          {/* Point au centre de l'image */}
+                          <m.div 
+                            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full z-20"
+                            animate={{
+                              scale: isActive ? 1.5 : 1,
+                              boxShadow: isActive 
+                                ? '0 0 20px rgba(201,169,97,0.8)' 
+                                : '0 0 0px rgba(201,169,97,0)',
+                            }}
+                          >
+                            <div className="w-4 h-4 bg-accent border-4 border-neutral-700 rounded-full" />
+                          </m.div>
                         </m.div>
                         
-                        <m.div 
-                          className="text-center"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: index * 0.1 + 0.2 }}
-                        >
+                        <div className="text-center">
                           {/* Année */}
                           <div className="text-5xl md:text-6xl font-bold mb-2" style={{ color: '#C9A961' }}>
                             {event.month && <span className="text-2xl md:text-3xl mr-2" style={{ color: '#C9A961' }}>{event.month}</span>}
                             {event.year}
                           </div>
                           <p className="text-sm text-white/80 max-w-xs mx-auto">{event.description}</p>
-                        </m.div>
+                        </div>
                       </>
                     ) : (
                       <>
-                        <m.div 
-                          className="text-center mb-4"
-                          initial={{ opacity: 0, y: -20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
+                        <div className="text-center mb-4">
                           <div className="text-5xl md:text-6xl font-bold mb-2" style={{ color: '#C9A961' }}>
                             {event.month && <span className="text-2xl md:text-3xl mr-2" style={{ color: '#C9A961' }}>{event.month}</span>}
                             {event.year}
@@ -444,7 +420,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                           {event.subtitle && (
                             <p className="text-xs text-white/60">{event.subtitle}</p>
                           )}
-                        </m.div>
+                        </div>
                         
                         <m.div 
                           className="relative w-full h-64 mx-auto mb-4 cursor-pointer"
@@ -473,36 +449,44 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
                           
                           <m.div
                             className="absolute inset-0 bg-accent/20 rounded-2xl blur-xl"
-                            initial={{ opacity: 0 }}
                             whileHover={{ opacity: 1 }}
+                            style={{ opacity: 0 }}
                           />
+                          
+                          {/* Point au centre de l'image */}
+                          <m.div 
+                            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full z-20"
+                            animate={{
+                              scale: isActive ? 1.5 : 1,
+                              boxShadow: isActive 
+                                ? '0 0 20px rgba(201,169,97,0.8)' 
+                                : '0 0 0px rgba(201,169,97,0)',
+                            }}
+                          >
+                            <div className="w-4 h-4 bg-accent border-4 border-neutral-700 rounded-full" />
+                          </m.div>
                         </m.div>
                         
-                        <m.div 
-                          className="text-center"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: index * 0.1 + 0.2 }}
-                        >
+                        <div className="text-center">
                           <p className="text-sm text-white/80 max-w-xs mx-auto">{event.description}</p>
-                        </m.div>
+                        </div>
                       </>
                     )}
                   </m.div>
                 </m.div>
+                </React.Fragment>
               );
             })}
           </div>
         </div>
         
         {/* Mobile/Tablet: Layout vertical simple */}
-        <div className="lg:hidden bg-neutral-900 py-16 px-4">
+        <div className="lg:hidden bg-neutral-900 pt-8 pb-16 px-4">
           <div className="max-w-4xl mx-auto space-y-16">
             {events.map((event, index) => (
               <m.div
                 key={index}
                 className="relative"
-                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}

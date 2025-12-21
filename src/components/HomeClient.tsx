@@ -81,13 +81,6 @@ const VenuesCarousel = dynamic(() => import('@/components/VenuesCarousel'), {
 });
 
 /**
- * Wrapper pour section reveal animations
- */
-function SectionReveal({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
-}
-
-/**
  * Venue Card avec animations
  */
 function VenueCardAnimated({ venue, index }: { venue: Venue; index: number }) {
@@ -211,34 +204,35 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
 
   return (
     <>
-      {/* Histoire et Philosophie */}
-      <SectionReveal>
+      {/* Section Histoire - Contenu dynamique depuis Firestore */}
+      {pageContent?.sections?.filter(s => s.visible !== false).sort((a, b) => (a.order || 0) - (b.order || 0)).map((section, sectionIndex) => (
+        <section key={`section-${sectionIndex}`} className="section bg-white">
+          <div className="container">
+            <div className="text-center max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-primary mb-4 md:mb-6">
+                {section.title}
+              </h2>
+              <div className="w-20 h-px bg-accent/40 mb-4 md:mb-5 mx-auto" />
+              <div className="text-secondary space-y-3 md:space-y-4 text-base md:text-lg leading-relaxed prose prose-lg max-w-none">
+                {section.items?.map((item, itemIndex) => (
+                  <p key={`item-${sectionIndex}-${itemIndex}`}>{item.content}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+      
+      {/* Fallback si pas de sections dans Firestore */}
+      {(!pageContent?.sections || pageContent.sections.length === 0) && (
         <section className="section bg-white">
           <div className="container">
-            <m.div
-              className="text-center max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-            >
+            <div className="text-center max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-primary mb-4 md:mb-6">
                 Une aventure née de <br></br><span className="text-cursive-underline">lieux</span> & de <span className="text-cursive-underline">passion</span>
               </h2>
-              <m.div 
-                className="w-20 h-px bg-accent/40 mb-4 md:mb-5 mx-auto"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-              />
-              <m.div 
-                className="text-secondary space-y-3 md:space-y-4 text-base md:text-lg leading-relaxed"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-              >
+              <div className="w-20 h-px bg-accent/40 mb-4 md:mb-5 mx-auto" />
+              <div className="text-secondary space-y-3 md:space-y-4 text-base md:text-lg leading-relaxed">
                 <p>Tout commence par un lieu.</p>
                 <p>Un domaine découvert, une émotion, l&apos;envie de partager sa beauté.</p>
                 <p>Puis un second, un troisième… à chaque fois la même flamme, <br></br>la même passion pour créer des souvenirs précieux.</p>
@@ -246,38 +240,26 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                 <p className="text-xl md:text-2xl font-medium text-primary mt-5 md:mt-6">
                   Ainsi est née Lieux d&apos;Exception — une signature plus qu&apos;un nom, un fil conducteur entre des domaines d&apos;âme et des équipes passionnées, où chaque événement devient une histoire.
                 </p>
-              </m.div>
-            </m.div>
+              </div>
+            </div>
           </div>
         </section>
-      </SectionReveal>
+      )}
 
       {/* Carrousel des Domaines (unique) */}
-      <SectionReveal>
-        <section className="section bg-stone-50">
-          <div className="container">
-            <m.div 
-              className="text-center mb-8 md:mb-12"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
-            >
-              <h2 className="title-xl text-center">
-                <em>Domaines d&apos;Exception</em>
-              </h2>
-              <div className="accent-line" />
-              <p className="subtitle text-center">
-                Découvrez nos châteaux et domaines prestigieux en Pays de la Loire
-              </p>
-            </m.div>
+      <section className="section bg-stone-50">
+        <div className="container">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="title-xl text-center">
+              <em>Domaines d&apos;Exception</em>
+            </h2>
+            <div className="accent-line" />
+            <p className="subtitle text-center">
+              Découvrez nos châteaux et domaines prestigieux en Pays de la Loire
+            </p>
+          </div>
 
-            <m.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+          <div>
               {/* Grille de lieux - Ligne 1: Brûlaire, Corbe, Boulaie */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
                 {venues
@@ -518,82 +500,63 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                     );
                   })}
               </div>
-            </m.div>
           </div>
-        </section>
-      </SectionReveal>
+        </div>
+      </section>
 
       {/* Nos Prestations */}
-      <SectionReveal>
-        <section className="section bg-white">
-          <div className="container">
-            <m.div 
-              className="text-center mb-8 md:mb-10"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <h2 className="title-xl text-center">
-                Lieux d&apos;Exception, une <em>signature</em> d&apos;émotion
-              </h2>
-              <div className="accent-line" />
-            </m.div>
+      <section className="section bg-white">
+        <div className="container">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="title-xl text-center">
+              Lieux d&apos;Exception, une <em>signature</em> d&apos;émotion
+            </h2>
+            <div className="accent-line" />
+          </div>
 
-            <m.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={{
-                hidden: { opacity: 0 },
-                show: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.15
-                  }
-                }
-              }}
-            >
-              {[
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {(pageContent?.featureCards?.filter(c => c.visible !== false).sort((a, b) => (a.order || 0) - (b.order || 0)) || [
                 {
+                  id: "card_01",
                   number: "01",
                   title: "Un accompagnement sur mesure",
-                  text: "Chaque projet débute par une immersion complète dans votre univers : comprendre votre histoire, vos envies et vos contraintes afin de concevoir un événement fidèle à votre image, sans compromis."
+                  content: "Chaque projet débute par une immersion complète dans votre univers : comprendre votre histoire, vos envies et vos contraintes afin de concevoir un événement fidèle à votre image, sans compromis.",
+                  order: 0,
+                  visible: true
                 },
                 {
+                  id: "card_02",
                   number: "02",
                   title: "Une orchestration fluide",
-                  text: "De la sélection du lieu à la mise en scène finale, nous pilotons l'ensemble de l'organisation avec rigueur et précision. Bénéficiez d'un interlocuteur unique qui coordonne chaque étape pour un déroulé parfaitement maîtrisé."
+                  content: "De la sélection du lieu à la mise en scène finale, nous pilotons l'ensemble de l'organisation avec rigueur et précision. Bénéficiez d'un interlocuteur unique qui coordonne chaque étape pour un déroulé parfaitement maîtrisé.",
+                  order: 1,
+                  visible: true
                 },
                 {
+                  id: "card_03",
                   number: "03",
                   title: "Un réseau de partenaires",
-                  text: "Nous collaborons exclusivement avec des professionnels reconnus pour leur exigence, leur sens du détail et la qualité irréprochable de leurs prestations."
+                  content: "Nous collaborons exclusivement avec des professionnels reconnus pour leur exigence, leur sens du détail et la qualité irréprochable de leurs prestations.",
+                  order: 2,
+                  visible: true
                 },
                 {
+                  id: "card_04",
                   number: "04",
                   title: "Des lieux d'exception, en exclusivité",
-                  text: "Nos lieux vous sont proposés en exclusivité, pour garantir intimité, sérénité et une expérience unique, loin des lieux standardisés."
+                  content: "Nos lieux vous sont proposés en exclusivité, pour garantir intimité, sérénité et une expérience unique, loin des lieux standardisés.",
+                  order: 3,
+                  visible: true
                 }
-              ].map((item) => (
-                <m.div 
-                  key={item.number}
-                  className="h-full"
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    show: { 
-                      opacity: 1, 
-                      y: 0,
-                      transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
-                    }
-                  }}
+              ]).map((item, cardIndex) => (
+                <div 
+                  key={item.id || `card-${cardIndex}`}
+                  className="h-full p-8 rounded-lg bg-charcoal-800 shadow-lg hover:shadow-2xl transition-all duration-500 border border-accent/20 flex flex-col text-center group"
                 >
-                  <div className="h-full p-8 rounded-lg bg-charcoal-800 shadow-lg hover:shadow-2xl transition-all duration-500 border border-accent/20 flex flex-col text-center group">
                     {/* Numéro dans un cercle doré */}
                     <div className="mb-6">
                       <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-linear-to-br from-accent to-accent-dark text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <span className="font-display font-bold text-3xl drop-shadow-md">{item.number}</span>
+                        <span className="font-display font-bold text-3xl drop-shadow-md">{String(cardIndex + 1).padStart(2, '0')}</span>
                       </div>
                     </div>
                     
@@ -610,24 +573,21 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                     
                     {/* Texte */}
                     <p className="text-white/90 leading-relaxed text-sm md:text-base flex-1">
-                      {item.text}
+                      {item.description || item.content}
                     </p>
                     
-                    {/* Point décoratif en bas */}
-                    <div className="mt-6 pt-6 border-t border-accent/20">
-                      <div className="w-2 h-2 rounded-full bg-accent/60 mx-auto" />
-                    </div>
+                  {/* Point décoratif en bas */}
+                  <div className="mt-6 pt-6 border-t border-accent/20">
+                    <div className="w-2 h-2 rounded-full bg-accent/60 mx-auto" />
                   </div>
-                </m.div>
+                </div>
               ))}
-            </m.div>
           </div>
-        </section>
-      </SectionReveal>
+        </div>
+      </section>
 
       {/* CTA Émotion avec parallax */}
-      <SectionReveal>
-        <section ref={ctaRef} className="section relative overflow-hidden mb-0">
+      <section ref={ctaRef} className="section relative overflow-hidden mb-0">
         <m.div style={{ y }} className="absolute inset-0">
           <Image
             src="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fdomaine-nantais%2Fmariages%2Fdomaine_cocktail_5.jpg?alt=media"
@@ -639,60 +599,39 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
           />
         </m.div>
         <div className="absolute inset-0 bg-primary/80" />
-        <m.div 
-          className="container relative z-10"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-        >
+        <div className="container relative z-10">
           <div className="text-center mx-auto">
             <p className="text-2xl md:text-3xl lg:text-4xl font-display italic text-white mb-3 md:mb-4" style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.5)' }}>
-              Parce que l&apos;<span className="text-cursive-circled">émotion</span> se vit pleinement lorsqu&apos;elle trouve son Lieu d&apos;Exception.
+              {pageContent?.finalCta?.title || "Parce que l'émotion se vit pleinement lorsqu'elle trouve son Lieu d'Exception."}
             </p>
             <p className="text-lg md:text-xl text-white/90 mb-4 md:mb-6 font-light uppercase tracking-wider">
-              Des domaines où se mêlent beauté, sincérité et art de recevoir.
+              {pageContent?.finalCta?.subtitle || "Des domaines où se mêlent beauté, sincérité et art de recevoir."}
             </p>
-            <Link href={`/${locale}/contact`} className="btn btn-primary">
-              Contact & Devis
+            <Link href={pageContent?.finalCta?.ctaLink || `/${locale}/contact`} className="btn btn-primary">
+              {pageContent?.finalCta?.ctaText || "Contact & Devis"}
             </Link>
           </div>
-        </m.div>
-        </section>
-      </SectionReveal>
+        </div>
+      </section>
 
       {/* Carte Interactive des Lieux */}
-      <SectionReveal>
-        <section className="section bg-alt mt-0">
-          <div className="container">
-            <m.div 
-              className="text-center mb-8 md:mb-10"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <h2 className="title-xl text-center">
-                Nos <em>Domaines</em> en Pays de la Loire
-              </h2>
-              <div className="accent-line" />
-              <p className="subtitle text-center">
-                Découvrez la localisation de nos châteaux et domaines d&apos;exception
-              </p>
-            </m.div>
-
-            <m.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="rounded-xl overflow-hidden shadow-2xl border border-accent/20"
-            >
-              <VenuesMap venues={venues} />
-            </m.div>
+      <section className="section bg-alt mt-0">
+        <div className="container">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="title-xl text-center">
+              Nos <em>Domaines</em> en Pays de la Loire
+            </h2>
+            <div className="accent-line" />
+            <p className="subtitle text-center">
+              Découvrez la localisation de nos châteaux et domaines d&apos;exception
+            </p>
           </div>
-        </section>
-      </SectionReveal>
+
+          <div className="rounded-xl overflow-hidden shadow-2xl border border-accent/20">
+            <VenuesMap venues={venues} />
+          </div>
+        </div>
+      </section>
 
       
     </>

@@ -7,7 +7,7 @@ import { generateServiceMetadata } from '@/lib/smartMetadata';
 import { generateUniversalStructuredData, generateFAQSchema } from '@/lib/universalStructuredData';
 import { getTranslations } from 'next-intl/server';
 import { getMariageImagesFromVenue, getRandomImages } from '@/lib/venueGalleryHelpers';
-import { getVenues } from '@/lib/firestore';
+import { getVenues, getPageContent } from '@/lib/firestore';
 
 /**
  * Métadonnées SEO optimisées via système universel
@@ -33,6 +33,9 @@ export default async function MariagesPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Weddings' });
+  
+  // Charger le contenu de la page depuis Firestore
+  const pageContent = await getPageContent('mariages', locale === 'fr' ? 'fr' : 'en');
   
   // Charger toutes les venues depuis Firestore
   const venues = await getVenues();
@@ -83,11 +86,11 @@ export default async function MariagesPage({
       
       {/* Hero Section */}
       <HeroSection
-        title={t('title')}
-        subtitle={t('hero')}
-        description={t('description')}
-        backgroundImage="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-brulaire%2Fmariages%2Fmise-en-scene.jpg?alt=media"
-        buttons={[
+        title={pageContent?.hero?.title || t('title')}
+        subtitle={pageContent?.hero?.subtitle || t('hero')}
+        description={pageContent?.hero?.description || t('description')}
+        backgroundImage={pageContent?.hero?.backgroundImage || "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-brulaire%2Fmariages%2Fmise-en-scene.jpg?alt=media"}
+        buttons={pageContent?.hero?.buttons || [
           { label: t('requestInfo'), href: `/${locale}/contact`, primary: true }
         ]}
       />
@@ -155,21 +158,66 @@ export default async function MariagesPage({
       </section>
 
       {/* Lieux d'Exception, la signature de votre mariage */}
-      <section className="section bg-stone">
-        <div className="container">
-          <div className="text-center max-w-4xl mx-auto mb-8">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
-              Lieux d&apos;Exception, la signature de votre mariage
-            </h2>
-            <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
-            <div className="space-y-4 text-secondary text-base md:text-lg leading-relaxed mt-8">
-              <p>Chaque histoire est unique.</p>
-              <p>Votre mariage mérite un lieu et un accompagnement à la hauteur de ce moment rare.</p>
-              <p>Chez Lieux d&apos;Exception, nous réunissons des domaines de caractère et un savoir-faire éprouvé pour créer des mariages élégants, sincères et profondément mémorables.</p>
+      {pageContent?.sections?.filter((s: any) => s.visible !== false).sort((a: any, b: any) => (a.order || 0) - (b.order || 0)).map((section: any, index: number) => (
+        <section key={index} className="section bg-stone">
+          <div className="container">
+            <div className="text-center max-w-4xl mx-auto mb-8">
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
+                {section.title}
+              </h2>
+              <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
+              {section.items?.map((item: any, itemIndex: number) => (
+                <div key={itemIndex} className="space-y-4 text-secondary text-base md:text-lg leading-relaxed mt-8">
+                  <p>{item.content}</p>
+                </div>
+              ))}
             </div>
           </div>
+        </section>
+      )) || (
+        <section className="section bg-stone">
+          <div className="container">
+            <div className="text-center max-w-4xl mx-auto mb-8">
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
+                Lieux d&apos;Exception, la signature de votre mariage
+              </h2>
+              <div className="w-20 h-px bg-accent/40 mx-auto my-6"></div>
+              <div className="space-y-4 text-secondary text-base md:text-lg leading-relaxed mt-8">
+                <p>Chaque histoire est unique.</p>
+                <p>Votre mariage mérite un lieu et un accompagnement à la hauteur de ce moment rare.</p>
+                <p>Chez Lieux d&apos;Exception, nous réunissons des domaines de caractère et un savoir-faire éprouvé pour créer des mariages élégants, sincères et profondément mémorables.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12">
+      {/* Feature Cards - Les 4 piliers */}
+      {pageContent?.featureCards?.filter((c: any) => c.visible !== false).sort((a: any, b: any) => (a.order || 0) - (b.order || 0)).length > 0 && (
+        <section className="section bg-stone pb-12">
+          <div className="container">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {pageContent.featureCards.filter((c: any) => c.visible !== false).sort((a: any, b: any) => (a.order || 0) - (b.order || 0)).map((card: any, index: number) => (
+                <div key={index} className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
+                  <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                    <div className="font-display text-4xl md:text-5xl font-light shrink-0" style={{ color: '#C9A961' }}>
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+                    <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#C9A961' }}>{card.title}</h3>
+                  </div>
+                  <p className="text-neutral-200 leading-relaxed">{card.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )} 
+      
+      {/* Fallback si pas de feature cards */}
+      {(!pageContent?.featureCards || pageContent.featureCards.filter((c: any) => c.visible !== false).length === 0) && (
+        <section className="section bg-stone">
+          <div className="container">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Card 01 */}
             <div className="bg-charcoal-800 rounded-xl p-6 md:p-8 border border-accent/20 shadow-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
@@ -217,9 +265,10 @@ export default async function MariagesPage({
                 Vous profitez de votre journée en toute intimité, dans un cadre élégant et apaisant, sans contraintes extérieures.
               </p>
             </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA Section avec image de fond */}
       <section className="section relative overflow-hidden">

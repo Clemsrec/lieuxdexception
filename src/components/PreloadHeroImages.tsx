@@ -34,8 +34,8 @@ export default function PreloadHeroImages({ images, priority = 1 }: PreloadHeroI
         rel="preload"
         as="image"
         href={preloadUrl}
-        // @ts-ignore - fetchpriority is valid but not in types yet
-        fetchpriority="high"
+        // @ts-ignore - fetchPriority is valid but not in types yet for <link>
+        fetchPriority="high"
         // Utiliser imagesrcset pour responsive si WebP
         {...(preloadUrl.endsWith('.webp') && {
           type: 'image/webp'

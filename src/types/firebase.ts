@@ -365,7 +365,8 @@ export interface Analytics {
 export interface ContentSection {
   id: string;
   title: string;
-  content: string; // HTML depuis éditeur riche
+  content?: string; // HTML depuis éditeur riche (optionnel, ancien format)
+  items?: Array<{ content: string }>; // Liste de paragraphes (nouveau format)
   order: number;
   visible: boolean;
 }
@@ -391,9 +392,10 @@ export interface ContentBlock {
  */
 export interface FeatureCard {
   id: string;
-  number: string; // "01", "02", etc.
+  number?: string; // "01", "02", etc. (optionnel)
   title: string;
-  content: string; // HTML depuis éditeur riche
+  content?: string; // HTML depuis éditeur riche (optionnel, ancien format)
+  description?: string; // Description (nouveau format, alias de content)
   order: number;
   visible: boolean;
 }

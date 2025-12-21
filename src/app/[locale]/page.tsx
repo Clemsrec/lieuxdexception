@@ -79,8 +79,8 @@ export default async function Home({
         title={pageContent?.hero?.title || t('title')}
         subtitle={pageContent?.hero?.subtitle || t('subtitle')}
         description={pageContent?.hero?.description || t('description')}
-        buttons={[
-          { label: pageContent?.hero?.ctaText || t('contactButton'), href: pageContent?.hero?.ctaLink || `/${locale}/contact`, primary: true }
+        buttons={pageContent?.hero?.buttons || [
+          { label: t('contactButton'), href: `/${locale}/contact`, primary: true }
         ]}
         carousel={
           <HeroCarousel 
