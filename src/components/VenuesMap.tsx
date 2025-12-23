@@ -8,7 +8,7 @@ import { displayVenueName } from '@/lib/formatVenueName';
 import { getMapThumbnail } from '@/lib/sharedVenueImages';
 import Link from 'next/link';
 import { Venue } from '@/types/firebase';
-import { MapPin, Users, Phone, Mail, Instagram, ExternalLink } from 'lucide-react';
+import { MapPin, Users, Instagram, ExternalLink } from 'lucide-react';
 import { STORAGE_LOGOS } from '@/lib/storage-assets';
 
 // Lazy load Leaflet CSS seulement quand composant est utilisé (économise ~5 KB)
@@ -227,32 +227,6 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
                       <span>
                         {venue.capacity.min}-{venue.capacity.max} personnes
                       </span>
-                    </div>
-                  )}
-
-                  {/* Email Mariages */}
-                  {venue.emailMariages && (
-                    <div className="flex items-center gap-2 text-sm text-black">
-                      <Mail className="w-4 h-4 text-accent shrink-0" />
-                      <a 
-                        href={`mailto:${venue.emailMariages}`}
-                        className="text-black hover:text-accent transition-colors truncate"
-                      >
-                        {venue.emailMariages}
-                      </a>
-                    </div>
-                  )}
-
-                  {/* Téléphone Mariages */}
-                  {venue.phoneMariages && (
-                    <div className="flex items-center gap-2 text-sm text-black">
-                      <Phone className="w-4 h-4 text-accent shrink-0" />
-                      <a 
-                        href={`tel:${venue.phoneMariages.replace(/\s/g, '')}`}
-                        className="hover:text-accent transition-colors"
-                      >
-                        {venue.phoneMariages}
-                      </a>
                     </div>
                   )}
 

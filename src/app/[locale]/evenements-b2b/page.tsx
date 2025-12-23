@@ -86,7 +86,7 @@ export default async function EvenementsB2BPage({
         description={pageContent?.hero?.description || t('description')}
         backgroundImage={pageContent?.hero?.backgroundImage || "https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-corbe%2Fb2b%2Fcorbe_seminaire_1.jpg?alt=media"}
         buttons={pageContent?.hero?.buttons || [
-          { label: t('requestQuote'), href: `/${locale}/contact`, primary: true }
+          { label: t('requestQuote'), href: `/${locale}/contact?form=b2b`, primary: true }
         ]}
       />
 
@@ -317,7 +317,7 @@ export default async function EvenementsB2BPage({
             </p>
             
             <div className="flex flex-col gap-6 items-center max-w-2xl mx-auto">
-              <Link href="/contact" className="btn btn-primary w-full sm:w-auto">
+              <Link href="/contact?form=b2b" className="btn btn-primary w-full sm:w-auto">
                 Contact & Devis
               </Link>
               <div className="text-sm md:text-base text-white/90 space-y-1">

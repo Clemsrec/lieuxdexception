@@ -9,16 +9,34 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getVenues } from '@/lib/firestore';
 import { displayVenueName } from '@/lib/formatVenueName';
-import { STORAGE_IMAGES } from '@/lib/storage-assets';
+import { STORAGE_IMAGES, STORAGE_LOGOS } from '@/lib/storage-assets';
 
-// Mapping des logos en dur
+// Mapping des logos depuis Firebase Storage
 const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
-  'chateau-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
-  'chateau-de-la-brulaire': { blanc: '/logos/brulaire-blanc.png', dore: '/logos/brulaire-dore.png' },
-  'manoir-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
-  'manoir-de-la-boulaie': { blanc: '/logos/boulaie-blanc.png', dore: '/logos/boulaie-dore.png' },
-  'domaine-nantais': { blanc: '/logos/domaine-blanc.png', dore: '/logos/domaine-dore.png' },
-  'le-dome': { blanc: '/logos/dome-blanc.png', dore: '/logos/dome-dore.png' },
+  'chateau-brulaire': { 
+    blanc: STORAGE_LOGOS.venues.brulaireBlanc, 
+    dore: STORAGE_LOGOS.venues.brulaireDore 
+  },
+  'chateau-de-la-brulaire': { 
+    blanc: STORAGE_LOGOS.venues.brulaireBlanc, 
+    dore: STORAGE_LOGOS.venues.brulaireDore 
+  },
+  'manoir-boulaie': { 
+    blanc: STORAGE_LOGOS.venues.boulaieBlanc, 
+    dore: STORAGE_LOGOS.venues.boulaieDore 
+  },
+  'manoir-de-la-boulaie': { 
+    blanc: STORAGE_LOGOS.venues.boulaieBlanc, 
+    dore: STORAGE_LOGOS.venues.boulaieDore 
+  },
+  'domaine-nantais': { 
+    blanc: STORAGE_LOGOS.venues.domaineBlanc, 
+    dore: STORAGE_LOGOS.venues.domaineDore 
+  },
+  'le-dome': { 
+    blanc: STORAGE_LOGOS.venues.domeBlanc, 
+    dore: STORAGE_LOGOS.venues.domeDore 
+  },
 };
 
 // ISR : Cache avec revalidation toutes les 2 heures
@@ -354,24 +372,52 @@ export default async function VenuePage({ params }: VenuePageProps) {
 
       {/* Espaces disponibles */}
       {venue.spaces && venue.spaces.length > 0 && (
-        <section id="espaces" className="section bg-alt">
+        <section id="espaces" className="section bg-linear-to-b from-stone-50 to-white">
           <div className="container">
-            <h2 className="text-3xl font-display font-semibold text-primary mb-8 text-center">
-              Espaces disponibles
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {venue.spaces.map((space: string, index: number) => (
-                <div key={index} className="bg-charcoal-800 border border-accent/20 p-6 rounded-lg">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center shrink-0">
+            {/* En-tête élégant */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-semibold text-primary mb-4">
+                Espaces disponibles
+              </h2>
+              <p className="text-secondary text-lg max-w-2xl mx-auto">
+                Des lieux d'exception pour donner vie à vos événements les plus mémorables
+              </p>
+            </div>
+
+            {/* Grid d'espaces avec design luxe */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {venue.spaces.map((space: string, index: number) => {
+                // Numéros romains pour les 10 premiers
+                const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+                const numeral = romanNumerals[index] || (index + 1).toString();
+                
+                return (
+                  <div 
+                    key={index} 
+                    className="group relative bg-white border-2 border-stone/20 hover:border-accent/40 p-8 rounded-xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                  >
+                    {/* Numéro romain élégant */}
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="relative shrink-0">
+                        <div className="w-12 h-12 bg-linear-to-br from-accent/10 to-accent/5 rounded-full flex items-center justify-center border border-accent/20 group-hover:border-accent/40 transition-colors">
+                          <span className="font-display text-accent text-lg font-bold">{numeral}</span>
+                        </div>
+                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
                       
+                      {/* Titre de l'espace */}
+                      <div className="flex-1 pt-2">
+                        <h3 className="font-heading font-semibold text-primary text-lg leading-tight group-hover:text-accent transition-colors">
+                          {space}
+                        </h3>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-heading font-semibold text-white mb-1">{space}</h3>
-                    </div>
+                    
+                    {/* Ligne décorative dorée */}
+                    <div className="w-full h-px bg-linear-to-r from-transparent via-accent/30 to-transparent mb-4" />
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
