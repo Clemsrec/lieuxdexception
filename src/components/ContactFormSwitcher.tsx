@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, FormEvent, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { m } from 'framer-motion';
 
 /**
@@ -12,6 +11,8 @@ type FormType = 'b2b' | 'prive';
 interface ContactFormSwitcherProps {
   /** Type de formulaire par défaut */
   defaultForm?: FormType;
+  /** Type de formulaire initial depuis URL (passé par le parent) */
+  initialForm?: FormType | null;
 }
 
 interface FormState {
@@ -29,9 +30,8 @@ interface FormState {
  * 
  * @param defaultForm - Type de formulaire affiché par défaut
  */
-export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactFormSwitcherProps) {
-  const searchParams = useSearchParams();
-  const [activeForm, setActiveForm] = useState<FormType>(defaultForm);
+export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }: ContactFormSwitcherProps) {
+  const [activeForm, setActiveForm] = useState<FormType>(initialForm || defaultForm);
   const [formState, setFormState] = useState<FormState>({
     loading: false,
     success: false,
@@ -39,15 +39,13 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b' }: ContactForm
   });
 
   /**
-   * Détecter le paramètre ?form= dans l'URL pour ouvrir le bon onglet
-   * Exemple: /contact?form=prive ouvre le formulaire privé
+   * Mettre à jour le formulaire actif si initialForm change
    */
   useEffect(() => {
-    const formParam = searchParams.get('form');
-    if (formParam === 'prive' || formParam === 'b2b') {
-      setActiveForm(formParam as FormType);
+    if (initialForm) {
+      setActiveForm(initialForm);
     }
-  }, [searchParams]);
+  }, [initialForm]);
 
   /**
    * Soumission formulaire B2B

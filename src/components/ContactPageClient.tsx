@@ -11,6 +11,8 @@ import { m } from 'framer-motion';
 function ContactFormWrapper() {
   const formRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
+  const formParam = searchParams.get('form');
+  const initialForm = (formParam === 'b2b' || formParam === 'prive') ? formParam : null;
 
   useEffect(() => {
     // Scroll automatique vers le formulaire après un court délai
@@ -25,7 +27,7 @@ function ContactFormWrapper() {
 
   return (
     <div ref={formRef}>
-      <ContactFormSwitcher defaultForm="b2b" />
+      <ContactFormSwitcher defaultForm="b2b" initialForm={initialForm} />
     </div>
   );
 }
