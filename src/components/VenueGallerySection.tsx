@@ -6,10 +6,10 @@
  * @example
  * ```tsx
  * <VenueGallerySection
- *   venueName="Le Château de la Brûlaire"
- *   venueSlug="chateau-brulaire"
- *   images={[...]}
- *   locale="fr"
+ *  venueName="Le Château de la Brûlaire"
+ *  venueSlug="chateau-brulaire"
+ *  images={[...]}
+ *  locale="fr"
  * />
  * ```
  */
@@ -22,92 +22,92 @@ import { STORAGE_LOGOS } from '@/lib/storage-assets';
 
 // Mapping des logos depuis Firebase Storage
 const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
-  'chateau-brulaire': { blanc: STORAGE_LOGOS.venues.brulaireBlanc, dore: STORAGE_LOGOS.venues.brulaireDore },
-  'chateau-de-la-brulaire': { blanc: STORAGE_LOGOS.venues.brulaireBlanc, dore: STORAGE_LOGOS.venues.brulaireDore },
-  'manoir-boulaie': { blanc: STORAGE_LOGOS.venues.boulaieBlanc, dore: STORAGE_LOGOS.venues.boulaieDore },
-  'manoir-de-la-boulaie': { blanc: STORAGE_LOGOS.venues.boulaieBlanc, dore: STORAGE_LOGOS.venues.boulaieDore },
-  'domaine-nantais': { blanc: STORAGE_LOGOS.venues.domaineBlanc, dore: STORAGE_LOGOS.venues.domaineDore },
-  'le-dome': { blanc: STORAGE_LOGOS.venues.domeBlanc, dore: STORAGE_LOGOS.venues.domeDore },
+ 'chateau-brulaire': { blanc: STORAGE_LOGOS.venues.brulaireBlanc, dore: STORAGE_LOGOS.venues.brulaireDore },
+ 'chateau-de-la-brulaire': { blanc: STORAGE_LOGOS.venues.brulaireBlanc, dore: STORAGE_LOGOS.venues.brulaireDore },
+ 'manoir-boulaie': { blanc: STORAGE_LOGOS.venues.boulaieBlanc, dore: STORAGE_LOGOS.venues.boulaieDore },
+ 'manoir-de-la-boulaie': { blanc: STORAGE_LOGOS.venues.boulaieBlanc, dore: STORAGE_LOGOS.venues.boulaieDore },
+ 'domaine-nantais': { blanc: STORAGE_LOGOS.venues.domaineBlanc, dore: STORAGE_LOGOS.venues.domaineDore },
+ 'le-dome': { blanc: STORAGE_LOGOS.venues.domeBlanc, dore: STORAGE_LOGOS.venues.domeDore },
 };
 
 interface VenueGallerySectionProps {
-  venueName: string;
-  venueSlug: string;
-  images: string[] | { src: string; alt: string }[];  // Accepter les deux formats
-  locale: string;
-  bgColor?: 'white' | 'neutral-800' | 'stone-50';
+ venueName: string;
+ venueSlug: string;
+ images: string[] | { src: string; alt: string }[]; // Accepter les deux formats
+ locale: string;
+ bgColor?: 'white' | 'neutral-800' | 'stone-50';
 }
 
 export default function VenueGallerySection({
-  venueName,
-  venueSlug,
-  images,
-  locale,
-  bgColor = 'neutral-800'
+ venueName,
+ venueSlug,
+ images,
+ locale,
+ bgColor = 'neutral-800'
 }: VenueGallerySectionProps) {
-  const bgClass = bgColor === 'white' ? 'bg-white' : bgColor === 'stone-50' ? 'bg-stone-50' : 'bg-neutral-800';
-  const textColor = bgColor === 'white' || bgColor === 'stone-50' ? 'text-charcoal-800' : 'text-white';
-  const linkColor = bgColor === 'white' || bgColor === 'stone-50' ? 'text-accent hover:text-accent/80' : 'text-accent hover:text-white';
-  const logoTheme = (bgColor === 'white' || bgColor === 'stone-50') ? 'dore' : 'blanc';
-  const logoShadow = (bgColor === 'white' || bgColor === 'stone-50') ? 'drop-shadow-md' : 'drop-shadow-lg';
-  const logoBg = (bgColor === 'white' || bgColor === 'stone-50') ? 'bg-neutral-800/10' : 'bg-white/10';
-  
-  // Utilisation du helper pour récupérer le logo
-  const logo = VENUE_LOGOS[venueSlug]?.[logoTheme as 'blanc' | 'dore'];
+ const bgClass = bgColor === 'white' ? 'bg-white' : bgColor === 'stone-50' ? 'bg-stone-50' : 'bg-neutral-800';
+ const textColor = bgColor === 'white' || bgColor === 'stone-50' ? 'text-charcoal-800' : 'text-white';
+ const linkColor = bgColor === 'white' || bgColor === 'stone-50' ? 'text-accent hover:text-accent/80' : 'text-accent hover:text-white';
+ const logoTheme = (bgColor === 'white' || bgColor === 'stone-50') ? 'dore' : 'blanc';
+ const logoShadow = (bgColor === 'white' || bgColor === 'stone-50') ? 'drop-shadow-md' : 'drop-shadow-lg';
+ const logoBg = (bgColor === 'white' || bgColor === 'stone-50') ? 'bg-neutral-800/10' : 'bg-white/10';
+ 
+ // Utilisation du helper pour récupérer le logo
+ const logo = VENUE_LOGOS[venueSlug]?.[logoTheme as 'blanc' | 'dore'];
 
-  return (
-    <div className={`${bgClass} py-12`}>
-      <div className="container px-4">
-        {/* Header avec titre, logo et lien */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
-          <div className="flex items-center gap-4">
-            {logo && (
-              <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center shrink-0">
-                <Image
-                  src={logo}
-                  alt={`Logo ${venueName}`}
-                  width={96}
-                  height={96}
-                  className={`object-contain ${logoShadow}`}
-                />
-              </div>
-            )}
-            <h3 className={`text-xl md:text-2xl font-display font-semibold ${textColor}`}>
-              {venueName}
-            </h3>
-          </div>
-          <Link 
-            href={`/${locale}/lieux/${venueSlug}`}
-            className={`btn btn-secondary text-sm w-full md:w-auto ${linkColor} border-current`}
-          >
-            Découvrir ce lieu →
-          </Link>
-        </div>
-
-        {/* Grille photos */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 md:gap-4">
-          {images.map((image, index) => {
-            // Support des deux formats: string ou {src, alt}
-            const imageSrc = typeof image === 'string' ? image : image.src;
-            const imageAlt = typeof image === 'string' ? `${venueName} - Photo ${index + 1}` : image.alt;
-            
-            return (
-              <div key={index} className="relative aspect-3/4 overflow-hidden rounded-lg group cursor-pointer">
-                <Image 
-                  src={imageSrc} 
-                  alt={imageAlt} 
-                  fill 
-                  className="object-cover group-hover:scale-110 transition-transform duration-500" 
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
-                  unoptimized
-                />
-                {/* Overlay au hover */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-              </div>
-            );
-          })}
-        </div>
-      </div>
+ return (
+  <div className={`${bgClass} py-12`}>
+   <div className="container px-4">
+    {/* Header avec titre, logo et lien */}
+    <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
+     <div className="flex items-center gap-4">
+      {logo && (
+       <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center shrink-0">
+        <Image
+         src={logo}
+         alt={`Logo ${venueName}`}
+         width={96}
+         height={96}
+         className={`object-contain ${logoShadow}`}
+        />
+       </div>
+      )}
+      <h3 className={`text-xl md:text-2xl font-display font-semibold ${textColor}`}>
+       {venueName}
+      </h3>
+     </div>
+     <Link 
+      href={`/${locale}/lieux/${venueSlug}`}
+      className={`btn btn-secondary text-sm w-full md:w-auto ${linkColor} border-current`}
+     >
+      Découvrir ce lieu →
+     </Link>
     </div>
-  );
+
+    {/* Grille photos */}
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 md:gap-4">
+     {images.map((image, index) => {
+      // Support des deux formats: string ou {src, alt}
+      const imageSrc = typeof image === 'string' ? image : image.src;
+      const imageAlt = typeof image === 'string' ? `${venueName} - Photo ${index + 1}` : image.alt;
+      
+      return (
+       <div key={index} className="relative aspect-3/4 overflow-hidden group cursor-pointer">
+        <Image 
+         src={imageSrc} 
+         alt={imageAlt} 
+         fill 
+         className="object-cover group-hover:scale-110 transition-transform duration-500" 
+         sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+         unoptimized
+        />
+        {/* Overlay au hover */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+       </div>
+      );
+     })}
+    </div>
+   </div>
+  </div>
+ );
 }

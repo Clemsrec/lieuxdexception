@@ -12,6 +12,21 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import CookieBanner from '@/components/CookieBanner';
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
+import { EB_Garamond } from 'next/font/google';
+
+/**
+ * Police EB Garamond - Police principale pour tout le site
+ * Poids: 400 (regular) uniquement
+ * Styles: normal et italic
+ * Taille max: 16px (1rem) pour cohérence élégante
+ */
+const ebGaramond = EB_Garamond({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-garamond',
+});
 
 /**
  * Génération statique pour toutes les locales supportées
@@ -102,20 +117,22 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      {/* Enregistrement Service Worker pour FCM */}
-      <ServiceWorkerRegistration />
+      <div className={ebGaramond.variable}>
+        {/* Enregistrement Service Worker pour FCM */}
+        <ServiceWorkerRegistration />
 
-      {/* Navigation globale */}
-      <Navigation />
+        {/* Navigation globale */}
+        <Navigation />
 
-      {/* Contenu principal */}
-      <main>{children}</main>
+        {/* Contenu principal */}
+        <main>{children}</main>
 
-      {/* Footer principal */}
-      <Footer />
+        {/* Footer principal */}
+        <Footer />
 
-      {/* Banner de consentement des cookies (RGPD) */}
-      <CookieBanner />
+        {/* Banner de consentement des cookies (RGPD) */}
+        <CookieBanner />
+      </div>
     </NextIntlClientProvider>
   );
 }
