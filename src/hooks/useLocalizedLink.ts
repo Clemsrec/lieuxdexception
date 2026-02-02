@@ -8,8 +8,8 @@
  * ```tsx
  * const { link, isActive } = useLocalizedLink();
  * 
- * <Link href={link('/catalogue')}>Catalogue</Link>
- * <Link className={isActive('/catalogue') ? 'active' : ''}>...</Link>
+ * <Link href={link('/mariages')}>Mariages</Link>
+ * <Link className={isActive('/contact') ? 'active' : ''}>...</Link>
  * ```
  */
 
@@ -22,8 +22,8 @@ export function useLocalizedLink() {
 
   /**
    * Génère un lien localisé
-   * @param href - Le chemin relatif (ex: '/catalogue', '/contact')
-   * @returns Le chemin complet avec locale (ex: '/fr/catalogue', '/en/contact')
+     * @param href - Le chemin relatif (ex: '/mariages', '/contact')
+     * @returns Le chemin complet avec locale (ex: '/fr/mariages', '/en/contact')
    */
   const link = (href: string): string => {
     // Si le lien commence déjà par une locale, le retourner tel quel

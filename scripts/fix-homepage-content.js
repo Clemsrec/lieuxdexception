@@ -23,7 +23,7 @@ async function fixHomepageContent() {
         buttons: [
           {
             label: 'Découvrir nos lieux',
-            href: '/fr/catalogue',
+            href: '#nos-lieux',
             primary: true
           },
           {

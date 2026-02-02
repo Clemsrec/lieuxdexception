@@ -34,7 +34,6 @@ FILES=(
   "src/app/[locale]/cgv/page.tsx"
   "src/app/[locale]/galerie-histoire/page.tsx"
   "src/app/[locale]/lieux/[slug]/page.tsx"
-  "src/app/[locale]/catalogue/page.tsx"
 )
 
 # Compteur

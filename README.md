@@ -25,7 +25,9 @@ src/
 │   ├── globals.css     # Styles globaux Tailwind CSS v4
 │   ├── layout.tsx      # Layout principal avec navigation
 │   ├── page.tsx        # Page d'accueil
-│   ├── catalogue/      # Catalogue des lieux
+│   ├── mariages/        # Page mariages
+│   ├── evenements-b2b/  # Page événements B2B
+│   ├── lieux/[slug]/    # Pages lieux individuelles
 │   ├── evenements-b2b/ # Page événements B2B
 │   ├── mariages/       # Page mariages
 │   ├── contact/        # Formulaires de contact adaptatifs
@@ -84,7 +86,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=votre_app_id_ici
 
 ### ✅ Pages Principales
 - [x] **Page d'accueil** : Présentation générale et héros
-- [x] **Catalogue** : Liste des lieux d'exception avec filtres
+- [x] **Pages dédiées** : Mariages et événements B2B avec galeries
 - [x] **Événements B2B** : Page dédiée aux événements professionnels
 - [x] **Mariages** : Page spécialisée mariages et réceptions
 - [x] **Contact** : Formulaires adaptatifs selon le type d'événement

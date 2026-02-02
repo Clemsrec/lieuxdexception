@@ -297,11 +297,11 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
             
             {/* Contenu */}
             <div className="p-6 flex-1 flex flex-col">
-             {/* Logo centré */}
-             {VENUE_LOGOS[venue.slug]?.blanc && (
+             {/* Logo centré - Logique spéciale pour Corbe (logo blanc sur fond sombre) */}
+             {VENUE_LOGOS[venue.slug] && (
               <div className="flex justify-center mb-4">
                <Image
-                src={VENUE_LOGOS[venue.slug]?.blanc!}
+                src={venue.slug.includes('corbe') ? VENUE_LOGOS[venue.slug]?.dore! : VENUE_LOGOS[venue.slug]?.blanc!}
                 alt={`Logo ${venue.name}`}
                 width={96}
                 height={96}

@@ -12,7 +12,6 @@ Le sitemap inclut automatiquement :
 
 **Pages statiques françaises** :
 - Homepage (priority 1.0)
-- `/catalogue` (priority 0.95)
 - `/mariages` (priority 0.9)
 - `/evenements-b2b` (priority 0.9)
 - `/contact` (priority 0.7)
@@ -22,7 +21,6 @@ Le sitemap inclut automatiquement :
 - `/{locale}` (priority 0.8)
 - `/{locale}/mariages` (priority 0.75)
 - `/{locale}/evenements-b2b` (priority 0.75)
-- `/{locale}/catalogue` (priority 0.8)
 
 **Pages dynamiques** :
 - `/lieux/{slug}` pour TOUS les lieux actifs (priority 0.85)
@@ -185,7 +183,6 @@ Vérifier dans Google Search Console :
 
 ### ✅ URLs publiques (indexées)
 - Homepage : `https://lieuxdexception.com/`
-- Catalogue : `https://lieuxdexception.com/catalogue`
 - Mariages : `https://lieuxdexception.com/mariages`
 - B2B : `https://lieuxdexception.com/evenements-b2b`
 - Contact : `https://lieuxdexception.com/contact`

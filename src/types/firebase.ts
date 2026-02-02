@@ -120,7 +120,7 @@ export interface Venue {
   images: {
     hero: string; // Image principale
     heroImage?: string; // Image hero paysage pour homepage carousel
-    cardImage?: string; // Image pour les cards du catalogue (thumbnail optimisé)
+    cardImage?: string; // Image pour les vignettes (thumbnail optimisé)
     gallery: string[]; // Galerie d'images complète
     virtual360?: string; // Visite virtuelle
   };

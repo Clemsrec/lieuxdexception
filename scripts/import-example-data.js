@@ -83,7 +83,6 @@ async function importData() {
 
     console.log('\n🎉 Import terminé avec succès !');
     console.log(`\n💡 Vous pouvez maintenant voir les lieux sur:`);
-    console.log(`   - http://localhost:3000/catalogue`);
     console.log(`   - http://localhost:3000/comparer`);
     
   } catch (error) {

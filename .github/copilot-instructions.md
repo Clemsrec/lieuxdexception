@@ -23,7 +23,7 @@
 - **Navigation admin** : Sidebar ou top nav spécifique au dashboard (liens admin uniquement)
 
 ### Emojis - Règle Stricte 🚫
-- **INTERDICTION TOTALE** : Ne JAMAIS utiliser d'emojis dans les pages publiques (home, catalogue, lieux, mariages, etc.)
+- **INTERDICTION TOTALE** : Ne JAMAIS utiliser d'émojis dans les pages publiques (home, lieux, mariages, etc.)
 - **INTERDICTION DASHBOARD** : Ne JAMAIS utiliser d'emojis dans l'interface admin/dashboard
 - **EXCEPTION UNIQUE** : Emojis autorisés UNIQUEMENT pour les notifications/alertes système (⚠️ ❌ ✅ 🚫)
   - Messages d'erreur : `❌ Erreur de connexion`
@@ -82,7 +82,8 @@ src/
 │   ├── layout.tsx           # Layout racine (Footer, CookieBanner, ServiceWorker)
 │   ├── page.tsx             # Homepage (Server Component)
 │   ├── admin/               # Dashboard admin (layout dédié, pas de Nav/Footer public)
-│   ├── catalogue/           # Listing lieux filtrable
+│   ├── mariages/            # Page dédiée mariages
+│   ├── evenements-b2b/      # Page dédiée B2B
 │   ├── evenements-b2b/      # Page dédiée B2B
 │   ├── mariages/            # Page dédiée mariages
 │   ├── lieux/[slug]/        # Pages dynamiques par lieu

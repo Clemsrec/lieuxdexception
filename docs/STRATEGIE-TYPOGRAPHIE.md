@@ -171,7 +171,6 @@
 - ✅ Homepage (`/`)
 - ✅ Mariages (`/mariages`)
 - ✅ Événements B2B (`/evenements-b2b`)
-- ✅ Catalogue (`/catalogue`)
 - ✅ Pages lieux individuelles (`/lieux/[slug]`)
 - ✅ Contact (`/contact`)
 - ✅ Footer (toutes pages)
@@ -206,4 +205,4 @@
 2. HomeClient (sections principales)
 3. Navigation (si titres)
 4. Footer (si titres)
-5. Pages mariages/b2b/catalogue
+5. Pages mariages/b2b
