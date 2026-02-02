@@ -390,59 +390,6 @@ export default async function VenuePage({ params }: VenuePageProps) {
     </div>
    </section>
 
-   {/* Espaces disponibles */}
-   {venue.spaces && venue.spaces.length > 0 && (
-    <section id="espaces" className="section bg-linear-to-b from-stone-50 to-white">
-     <div className="container">
-      {/* En-tête élégant */}
-      <div className="text-center mb-12">
-       <h2 className="text-3xl md:text-4xl font-display font-semibold text-primary mb-4">
-        Espaces disponibles
-       </h2>
-       <p className="text-secondary text-lg max-w-2xl mx-auto">
-        Des lieux d'exception pour donner vie à vos événements les plus mémorables
-       </p>
-      </div>
-
-      {/* Grid d'espaces avec design luxe */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-       {venue.spaces.map((space: string, index: number) => {
-        // Numéros romains pour les 10 premiers
-        const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
-        const numeral = romanNumerals[index] || (index + 1).toString();
-        
-        return (
-         <div 
-          key={index} 
-          className="group relative bg-white border-2 border-stone/20 hover:border-accent/40 p-8 transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
-         >
-          {/* Numéro romain élégant */}
-          <div className="flex items-start gap-4 mb-4">
-           <div className="relative shrink-0">
-            <div className="w-12 h-12 bg-linear-to-br from-accent/10 to-accent/5 flex items-center justify-center border border-accent/20 group-hover:border-accent/40 transition-colors">
-             <span className="font-display text-accent text-lg font-bold">{numeral}</span>
-            </div>
-            <div className="absolute -top-1 -right-1 w-2 h-2 bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-           </div>
-           
-           {/* Titre de l'espace */}
-           <div className="flex-1 pt-2">
-            <h3 className="font-heading font-semibold text-primary text-lg leading-tight group-hover:text-accent transition-colors">
-             {space}
-            </h3>
-           </div>
-          </div>
-          
-          {/* Ligne décorative dorée */}
-          <div className="w-full h-px bg-linear-to-r from-transparent via-accent/30 to-transparent mb-4" />
-         </div>
-        );
-       })}
-      </div>
-     </div>
-    </section>
-   )}
-
    {/* Salles détaillées */}
    {venue.detailedSpaces && venue.detailedSpaces.length > 0 && (
     <section className="section bg-neutral-50">
