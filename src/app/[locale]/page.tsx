@@ -79,7 +79,11 @@ export default async function Home({
     title={pageContent?.hero?.title || t('title')}
     subtitle={pageContent?.hero?.subtitle || t('subtitle')}
     description={pageContent?.hero?.description || t('description')}
-    buttons={pageContent?.hero?.buttons || [
+    buttons={pageContent?.hero?.buttons?.map((btn: any) => ({
+     ...btn,
+     // Fix automatique: remplacer les liens catalogue par l'ancre #nos-lieux
+     href: btn.href?.includes('/catalogue') ? '#nos-lieux' : btn.href
+    })) || [
      { label: t('discoverButton'), href: '#nos-lieux', primary: false },
      { label: t('contactButton'), href: `/${locale}/contact`, primary: true }
     ]}
