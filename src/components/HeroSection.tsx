@@ -80,9 +80,9 @@ export default function HeroSection({
       <div className="hero-content">
         <div className="flex flex-col items-center text-center w-full mx-auto space-y-6">
           
-          {/* Titre principal */}
+          {/* Titre principal - Utilise .title-hero (32px mobile / 48px desktop) */}
           <h1 
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-semibold text-white leading-tight"
+            className="title-hero text-white leading-tight"
             style={{ textShadow: '0 4px 30px rgba(0, 0, 0, 0.7)' }}
           >
             {title}
@@ -91,20 +91,20 @@ export default function HeroSection({
           {/* Ligne décorative */}
           <div className="w-20 h-px bg-white/40" />
 
-          {/* Sous-titre */}
+          {/* Sous-titre - Plus grand que description (20px mobile / 24px desktop) */}
           {subtitle && (
             <p 
-              className="text-xl md:text-2xl lg:text-3xl font-display italic text-white"
+              className="text-xl md:text-2xl font-display italic text-white"
               style={{ textShadow: '0 2px 20px rgba(0, 0, 0, 0.7)' }}
             >
               {subtitle}
             </p>
           )}
           
-          {/* Description */}
+          {/* Description - Taille body standard (14px mobile / 18px desktop) */}
           {description && (
             <div 
-              className="text-base md:text-lg lg:text-xl text-white/95 leading-relaxed"
+              className="text-white/95 leading-relaxed"
               style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.6)' }}
               dangerouslySetInnerHTML={{ __html: description }}
             />

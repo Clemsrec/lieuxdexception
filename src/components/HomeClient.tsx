@@ -210,11 +210,11 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
     <section key={`section-${sectionIndex}`} className="section bg-white">
      <div className="container">
       <div className="text-center max-w-4xl mx-auto">
-       <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-primary mb-4 md:mb-6">
+       <h2 className="title-xl text-primary mb-4 md:mb-6">
         {section.title}
        </h2>
        <div className="w-20 h-px bg-accent/40 mb-4 md:mb-5 mx-auto" />
-       <div className="text-secondary space-y-3 md:space-y-4 text-base md:text-lg leading-relaxed prose prose-lg max-w-none">
+       <div className="text-secondary space-y-3 md:space-y-4 leading-relaxed prose prose-lg max-w-none">
         {section.items?.map((item, itemIndex) => (
          <p key={`item-${sectionIndex}-${itemIndex}`}>{item.content}</p>
         ))}
@@ -229,11 +229,11 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
     <section className="section bg-white">
      <div className="container">
       <div className="text-center max-w-4xl mx-auto">
-       <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-primary mb-4 md:mb-6">
+       <h2 className="title-xl text-primary mb-4 md:mb-6">
         Une aventure née de <br></br><span className="text-cursive-underline">lieux</span> & de <span className="text-cursive-underline">passion</span>
        </h2>
        <div className="w-20 h-px bg-accent/40 mb-4 md:mb-5 mx-auto" />
-       <div className="text-secondary space-y-3 md:space-y-4 text-base md:text-lg leading-relaxed">
+       <div className="text-secondary space-y-3 md:space-y-4 leading-relaxed">
         <p>Tout commence par un lieu.</p>
         <p>Un domaine découvert, une émotion, l&apos;envie de partager sa beauté.</p>
         <p>Puis un second, un troisième… à chaque fois la même flamme, <br></br>la même passion pour créer des souvenirs précieux.</p>
@@ -255,7 +255,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
        <em>Domaines d&apos;Exception</em>
       </h2>
       <div className="accent-line" />
-      <p className="subtitle text-center">
+      <p className="text-center text-secondary leading-relaxed max-w-2xl mx-auto">
        {t('venuesSection.subtitle')}
       </p>
      </div>
@@ -303,17 +303,17 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               </div>
              )}
              <Link href={`/${locale}/lieux/${venue.slug}`}>
-              <h3 className="text-xl md:text-2xl font-display font-semibold mb-3 transition-colors text-center" style={{ color: '#C9A961' }}>
+              <h3 className="title-lg font-semibold mb-3 transition-colors text-center" style={{ color: '#C9A961' }}>
                {venue.name}
               </h3>
              </Link>
              
-             <div className="flex items-center gap-2 text-white/90 text-sm md:text-base mb-2">
+             <div className="flex items-center gap-2 text-white/90 mb-2">
               <MapPin className="w-4 h-4 shrink-0" />
               <span>{venue.location}</span>
              </div>
              
-             <div className="flex items-center gap-2 text-white/90 text-sm md:text-base mb-4">
+             <div className="flex items-center gap-2 text-white/90 mb-4">
               <Users className="w-4 h-4 shrink-0" />
               <span>Jusqu&apos;à {venue.capacitySeated} personnes</span>
              </div>
@@ -323,7 +323,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               {venue.emailMariages && (
                <a
                 href={`mailto:${venue.emailMariages}`}
-                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors"
                >
                 <span>✉</span>
                 <span>{venue.emailMariages}</span>
@@ -332,7 +332,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               {venue.phoneMariages && (
                <a
                 href={`tel:${venue.phoneMariages.replace(/\s/g, '')}`}
-                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors"
                >
                 <span>☎</span>
                 <span>{venue.phoneMariages}</span>
@@ -347,7 +347,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                 href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors"
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Instagram ${displayVenueName(venue.name)}`}
                >
@@ -358,7 +358,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                 href={socialLinks.mariagesNet}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors"
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Mariages.net ${displayVenueName(venue.name)}`}
                >
@@ -370,7 +370,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
 
              <Link 
               href={`/${locale}/lieux/${venue.slug}`}
-              className="mt-4 inline-flex items-center gap-2 font-medium group-hover:gap-3 transition-all"
+              className="mt-4 inline-flex items-center gap-2 group-hover:gap-3 transition-all"
               style={{ color: '#C9A961' }}
              >
               Découvrir →
@@ -424,17 +424,17 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               </div>
              )}
              <Link href={`/${locale}/lieux/${venue.slug}`}>
-              <h3 className="text-xl md:text-2xl font-display font-semibold mb-3 transition-colors text-center" style={{ color: '#C9A961' }}>
+              <h3 className="title-lg font-semibold mb-3 transition-colors text-center" style={{ color: '#C9A961' }}>
                {venue.name}
               </h3>
              </Link>
              
-             <div className="flex items-center gap-2 text-white/90 text-sm md:text-base mb-2">
+             <div className="flex items-center gap-2 text-white/90 mb-2">
               <MapPin className="w-4 h-4 shrink-0" />
               <span>{venue.location}</span>
              </div>
              
-             <div className="flex items-center gap-2 text-white/90 text-sm md:text-base mb-4">
+             <div className="flex items-center gap-2 text-white/90 mb-4">
               <Users className="w-4 h-4 shrink-0" />
               <span>Jusqu&apos;à {venue.capacitySeated} personnes</span>
              </div>
@@ -444,7 +444,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               {venue.emailMariages && (
                <a
                 href={`mailto:${venue.emailMariages}`}
-                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors"
                >
                 <span>✉</span>
                 <span>{venue.emailMariages}</span>
@@ -453,7 +453,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
               {venue.phoneMariages && (
                <a
                 href={`tel:${venue.phoneMariages.replace(/\s/g, '')}`}
-                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors"
                >
                 <span>☎</span>
                 <span>{venue.phoneMariages}</span>
@@ -468,7 +468,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                 href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors"
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Instagram ${displayVenueName(venue.name)}`}
                >
@@ -479,7 +479,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
                 href={socialLinks.mariagesNet}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-sm"
+                className="flex items-center gap-2 text-white/70 hover:text-accent transition-colors"
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Mariages.net ${displayVenueName(venue.name)}`}
                >
@@ -491,7 +491,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
 
              <Link 
               href={`/${locale}/lieux/${venue.slug}`}
-              className="mt-4 inline-flex items-center gap-2 font-medium group-hover:gap-3 transition-all"
+              className="mt-4 inline-flex items-center gap-2 group-hover:gap-3 transition-all"
               style={{ color: '#C9A961' }}
              >
               Découvrir →
@@ -563,7 +563,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
           
           {/* Titre */}
           <h3 
-           className="text-lg md:text-xl font-heading font-semibold mb-4 uppercase tracking-wider group-hover:opacity-80 transition-all duration-300 min-h-18 md:min-h-20 flex items-center justify-center"
+           className="title-md font-semibold mb-4 uppercase tracking-wider group-hover:opacity-80 transition-all duration-300 min-h-18 md:min-h-20 flex items-center justify-center"
            style={{ color: '#C9A961' }}
           >
            {item.title}
@@ -573,7 +573,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
           <div className="w-16 h-0.5 bg-accent/60 mx-auto mb-6" />
           
           {/* Texte */}
-          <p className="text-white/90 leading-relaxed text-sm md:text-base flex-1">
+          <p className="text-white/90 leading-relaxed flex-1">
            {item.description || item.content}
           </p>
           

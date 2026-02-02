@@ -40,16 +40,16 @@ export default function Footer() {
         style={{ maxWidth: '140px', maxHeight: '40px', width: 'auto', height: 'auto', objectFit: 'contain' }}
        />
       </Link>
-      <p className="text-secondary text-sm mb-4 leading-relaxed">
+      <p className="text-secondary mb-4 leading-relaxed">
        {t('description')}
       </p>
      </div>
 
      {/* Navigation principale */}
      <div>
-      <p className="font-semibold mb-4 text-foreground">{t('navigation')}</p>
+      <p className="title-md mb-4">{t('navigation')}</p>
       <nav>
-       <ul className="space-y-3 text-sm">
+       <ul className="space-y-3">
         <li>
          <Link 
           href={`/${locale}/evenements-b2b`}
@@ -92,9 +92,9 @@ export default function Footer() {
 
      {/* Nos Lieux */}
      <div>
-      <p className="font-semibold mb-4 text-foreground">Nos Lieux</p>
+      <p className="title-md mb-4">Nos Lieux</p>
       <nav>
-       <ul className="space-y-3 text-sm">
+       <ul className="space-y-3">
         <li>
          <Link 
           href={`/${locale}/lieux/chateau-brulaire`}
@@ -146,8 +146,8 @@ export default function Footer() {
 
      {/* Services et prestations */}
      <div>
-      <p className="font-semibold mb-4 text-foreground">{t('services')}</p>
-      <ul className="space-y-3 text-sm">
+      <p className="title-md mb-4">{t('services')}</p>
+      <ul className="space-y-3">
        <li className="flex items-start">
         <span className="text-primary mr-2 mt-1 font-bold">•</span>
         <span className="text-secondary">Séminaires & Conférences</span>
@@ -169,8 +169,8 @@ export default function Footer() {
 
      {/* Contact et coordonnées */}
      <div>
-      <h4 className="font-medium mb-4 text-foreground">Contact</h4>
-      <div className="space-y-4 text-sm">
+      <h4 className="title-md mb-4">Contact</h4>
+      <div className="space-y-4">
        
        {/* Téléphone Pro */}
        <div className="flex items-start">
@@ -217,8 +217,8 @@ export default function Footer() {
 
      {/* Réseaux sociaux site-wide */}
      <div>
-      <p className="font-semibold mb-4 text-foreground">Réseaux</p>
-      <div className="space-y-2 text-sm">
+      <p className="title-md mb-4">Réseaux</p>
+      <div className="space-y-2">
        <a
         href="https://www.instagram.com/lieuxdexception/"
         target="_blank"
@@ -245,10 +245,10 @@ export default function Footer() {
       
       {/* Copyright et mentions légales */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-       <p className="text-secondary text-sm">
+       <p className="text-secondary">
         © {new Date().getFullYear()} Lieux d&apos;Exception. {t('allRightsReserved')}
        </p>
-       <div className="flex flex-wrap gap-4 text-xs">
+       <div className="flex flex-wrap gap-4">
         <Link 
          href={`/${locale}/mentions-legales`}
          className="text-secondary hover:text-primary transition-colors"
