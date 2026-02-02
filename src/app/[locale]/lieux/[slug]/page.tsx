@@ -65,6 +65,26 @@ export async function generateMetadata({ params }: VenuePageProps): Promise<Meta
   title: `${displayVenueName(venue.name)} | Lieux d'Exception`,
   description: venue.description,
   keywords: [venue.name, venue.location, 'mariage', 'événement', 'réception', 'château', 'domaine'],
+  openGraph: {
+   title: `${displayVenueName(venue.name)} | Lieux d'Exception`,
+   description: venue.description,
+   type: 'website',
+   siteName: 'Lieux d\'Exception',
+   images: [
+    {
+     url: venue.images?.hero || venue.heroImage || venue.image || STORAGE_IMAGES.vueChateauGeneric,
+     width: 1200,
+     height: 630,
+     alt: displayVenueName(venue.name),
+    },
+   ],
+  },
+  twitter: {
+   card: 'summary_large_image',
+   title: `${displayVenueName(venue.name)} | Lieux d'Exception`,
+   description: venue.description,
+   images: [venue.images?.hero || venue.heroImage || venue.image || STORAGE_IMAGES.vueChateauGeneric],
+  },
  };
 }
 

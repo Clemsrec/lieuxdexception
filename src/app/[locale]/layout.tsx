@@ -50,11 +50,20 @@ export async function generateMetadata({
       type: 'website',
       locale: locale,
       siteName: 'Lieux d\'Exception',
+      images: [
+        {
+          url: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/images%2FVue-chateau.jpg?alt=media',
+          width: 1200,
+          height: 630,
+          alt: 'Lieux d\'Exception - Domaines prestigieux en Loire-Atlantique',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
+      images: ['https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/images%2FVue-chateau.jpg?alt=media'],
     },
     robots: {
       index: true,

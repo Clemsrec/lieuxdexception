@@ -7,6 +7,7 @@
 
 import type { Metadata } from 'next';
 import { universalSEOConfig, type PageType } from '@/config/seo.config';
+import { STORAGE_IMAGES } from '@/lib/storage-assets';
 
 interface SmartMetadataParams {
   pageType: PageType;
@@ -72,7 +73,7 @@ export function generateSmartMetadata(params: SmartMetadataParams): Metadata {
   const finalTitle = customMeta?.title || title;
   const finalDescription = customMeta?.description || description;
   const finalKeywords = customMeta?.keywords || keywords;
-  const finalImage = customMeta?.image || 'https://lieuxdexception.com/images/Vue-chateau.jpg';
+  const finalImage = customMeta?.image || STORAGE_IMAGES.vueChateauGeneric;
 
   return {
     title: finalTitle,
