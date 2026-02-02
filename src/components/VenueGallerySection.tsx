@@ -24,6 +24,8 @@ import { STORAGE_LOGOS } from '@/lib/storage-assets';
 const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
  'chateau-brulaire': { blanc: STORAGE_LOGOS.venues.brulaireBlanc, dore: STORAGE_LOGOS.venues.brulaireDore },
  'chateau-de-la-brulaire': { blanc: STORAGE_LOGOS.venues.brulaireBlanc, dore: STORAGE_LOGOS.venues.brulaireDore },
+ 'chateau-corbe': { blanc: STORAGE_LOGOS.venues.corbeBlanc, dore: STORAGE_LOGOS.venues.corbeDore },
+ 'chateau-de-la-corbe': { blanc: STORAGE_LOGOS.venues.corbeBlanc, dore: STORAGE_LOGOS.venues.corbeDore },
  'manoir-boulaie': { blanc: STORAGE_LOGOS.venues.boulaieBlanc, dore: STORAGE_LOGOS.venues.boulaieDore },
  'manoir-de-la-boulaie': { blanc: STORAGE_LOGOS.venues.boulaieBlanc, dore: STORAGE_LOGOS.venues.boulaieDore },
  'domaine-nantais': { blanc: STORAGE_LOGOS.venues.domaineBlanc, dore: STORAGE_LOGOS.venues.domaineDore },

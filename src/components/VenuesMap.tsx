@@ -26,6 +26,14 @@ const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
   blanc: STORAGE_LOGOS.venues.brulaireBlanc, 
   dore: STORAGE_LOGOS.venues.brulaireDore 
  },
+ 'chateau-corbe': { 
+  blanc: STORAGE_LOGOS.venues.corbeBlanc, 
+  dore: STORAGE_LOGOS.venues.corbeDore 
+ },
+ 'chateau-de-la-corbe': { 
+  blanc: STORAGE_LOGOS.venues.corbeBlanc, 
+  dore: STORAGE_LOGOS.venues.corbeDore 
+ },
  'manoir-boulaie': { 
   blanc: STORAGE_LOGOS.venues.boulaieBlanc, 
   dore: STORAGE_LOGOS.venues.boulaieDore 
@@ -186,7 +194,7 @@ export default function VenuesMap({ venues }: VenuesMapProps) {
           className="object-cover"
           sizes="480px"
          />         {/* Logo doré sur fond clair */}
-         {venue.slug !== 'chateau-de-la-corbe' && VENUE_LOGOS[venue.slug]?.dore && (
+         {VENUE_LOGOS[venue.slug]?.dore && (
           <div className="absolute top-3 right-3 w-16 h-16 flex items-center justify-center">
            <Image
             src={VENUE_LOGOS[venue.slug]?.dore!}

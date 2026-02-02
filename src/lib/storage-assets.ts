@@ -32,6 +32,8 @@ export const STORAGE_LOGOS = {
     domeDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdome-dore.png?alt=media&v=20251220',
     brulaireBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fbrulaire-blanc.png?alt=media&v=20251220',
     brulaireDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fbrulaire-dore.png?alt=media&v=20251220',
+    corbeBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fcorbe-blanc.png?alt=media',
+    corbeDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fcorbe-blanc.png?alt=media',
     domaineBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdomaine-blanc.webp?alt=media&v=20251220',
     domaineDore: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fdomaine-dore.png?alt=media&v=20251220',
     boulaieBlanc: 'https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/logos%2Fvenues%2Fboulaie-blanc.png?alt=media&v=20251220',

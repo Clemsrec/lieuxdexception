@@ -21,6 +21,14 @@ const VENUE_LOGOS: Record<string, { blanc: string; dore: string }> = {
   blanc: STORAGE_LOGOS.venues.brulaireBlanc, 
   dore: STORAGE_LOGOS.venues.brulaireDore 
  },
+ 'chateau-corbe': { 
+  blanc: STORAGE_LOGOS.venues.corbeBlanc, 
+  dore: STORAGE_LOGOS.venues.corbeDore 
+ },
+ 'chateau-de-la-corbe': { 
+  blanc: STORAGE_LOGOS.venues.corbeBlanc, 
+  dore: STORAGE_LOGOS.venues.corbeDore 
+ },
  'manoir-boulaie': { 
   blanc: STORAGE_LOGOS.venues.boulaieBlanc, 
   dore: STORAGE_LOGOS.venues.boulaieDore 
@@ -233,7 +241,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
       <div className="lg:col-span-1">
        <div className="bg-charcoal-800 border border-accent/20 p-6 sticky top-32">
         {/* Logo centré */}
-        {slug !== 'chateau-de-la-corbe' && VENUE_LOGOS[slug]?.blanc && (
+        {VENUE_LOGOS[slug]?.blanc && (
          <div className="flex justify-center mb-6">
           <Image
            src={VENUE_LOGOS[slug]?.blanc!}
@@ -690,7 +698,7 @@ export default async function VenuePage({ params }: VenuePageProps) {
          {/* Contenu */}
          <div className="p-6 flex-1 flex flex-col">
           {/* Logo centré */}
-          {otherVenue.slug !== 'chateau-de-la-corbe' && VENUE_LOGOS[otherVenue.slug]?.blanc && (
+          {VENUE_LOGOS[otherVenue.slug]?.blanc && (
            <div className="flex justify-center mb-4">
             <Image
              src={VENUE_LOGOS[otherVenue.slug]?.blanc!}
