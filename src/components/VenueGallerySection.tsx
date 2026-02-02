@@ -50,7 +50,14 @@ export default function VenueGallerySection({
  const bgClass = bgColor === 'white' ? 'bg-white' : bgColor === 'stone-50' ? 'bg-stone-50' : 'bg-neutral-800';
  const textColor = bgColor === 'white' || bgColor === 'stone-50' ? 'text-charcoal-800' : 'text-white';
  const linkColor = bgColor === 'white' || bgColor === 'stone-50' ? 'text-accent hover:text-accent/80' : 'text-accent hover:text-white';
- const logoTheme = (bgColor === 'white' || bgColor === 'stone-50') ? 'dore' : 'blanc';
+ 
+ // Logique spéciale pour Corbe (logo noir sur fond clair, logo blanc sur fond sombre)
+ // Pour les autres châteaux : logo blanc/clair sur fond clair, logo doré sur fond sombre
+ const isCorbe = venueSlug.includes('corbe');
+ const logoTheme = (bgColor === 'white' || bgColor === 'stone-50') 
+  ? (isCorbe ? 'blanc' : 'dore')  // Fond clair: Corbe utilise 'blanc' (noir), autres utilisent 'dore' (clair)
+  : (isCorbe ? 'dore' : 'blanc');  // Fond sombre: Corbe utilise 'dore' (blanc), autres utilisent 'blanc' (blanc)
+  
  const logoShadow = (bgColor === 'white' || bgColor === 'stone-50') ? 'drop-shadow-md' : 'drop-shadow-lg';
  const logoBg = (bgColor === 'white' || bgColor === 'stone-50') ? 'bg-neutral-800/10' : 'bg-white/10';
  
