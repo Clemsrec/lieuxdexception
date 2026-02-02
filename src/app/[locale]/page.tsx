@@ -80,6 +80,7 @@ export default async function Home({
     subtitle={pageContent?.hero?.subtitle || t('subtitle')}
     description={pageContent?.hero?.description || t('description')}
     buttons={pageContent?.hero?.buttons || [
+     { label: t('discoverButton'), href: '#nos-lieux', primary: false },
      { label: t('contactButton'), href: `/${locale}/contact`, primary: true }
     ]}
     carousel={

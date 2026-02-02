@@ -1,7 +1,6 @@
 {
   "Navigation": {
     "home": "Home",
-    "catalogue": "Catalogue",
     "b2b": "SEMINARS & PRO",
     "weddings": "WEDDINGS & PRIVATE",
     "gallery": "History",
@@ -32,7 +31,6 @@
     "hero": "What if your professional events became… simply exceptional?",
     "description": "Based in Loire-Atlantique, we transform every corporate moment into a rare, memorable and profoundly impactful experience.",
     "requestQuote": "Request a quote",
-    "viewCatalog": "View catalog",
     "gallery": {
       "title": "Spaces designed for your events",
       "subtitle": "Flexible rooms, relaxation spaces, inspiring environment",

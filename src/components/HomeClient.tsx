@@ -248,7 +248,7 @@ export default function HomeClient({ venues, pageContent }: HomeClientProps) {
    )}
 
    {/* Carrousel des Domaines (unique) */}
-   <section className="section bg-stone-50">
+   <section id="nos-lieux" className="section bg-stone-50">
     <div className="container">
      <div className="text-center mb-8 md:mb-12">
       <h2 className="title-xl text-center">

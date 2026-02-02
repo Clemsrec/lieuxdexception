@@ -1,7 +1,6 @@
 {
   "Navigation": {
     "home": "Accueil",
-    "catalogue": "Catalogue",
     "b2b": "SÉMINAIRES & PRO",
     "weddings": "MARIAGES & PRIVÉS",
     "gallery": "Histoire",
@@ -32,7 +31,6 @@
     "hero": "Et si vos événements professionnels devenaient… tout simplement exceptionnels ?",
     "description": "Implantés en Loire-Atlantique, nous transformons chaque moment d'entreprise en une expérience rare, mémorable et profondément marquante.",
     "requestQuote": "Demander un devis",
-    "viewCatalog": "Voir le catalogue",
     "gallery": {
       "title": "Des espaces pensés pour vos événements",
       "subtitle": "Salles modulables, espaces de détente, environnement inspirant",
