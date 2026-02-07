@@ -84,7 +84,7 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
    position: formData.get('position'),
    eventType: formData.get('eventType'),
    eventDate: formData.get('eventDate') || undefined,
-   guestCount: parseInt(formData.get('guestCount') as string),
+   guestCount: formData.get('guestCount') || undefined, // String depuis input
    message: `${formData.get('message') || ''}\n\nBesoins: ${needs.join(', ')}`,
    acceptPrivacy: true,
   };
@@ -137,23 +137,35 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
   if (formData.get('venue-nantais')) venues.push('Le Domaine Nantais');
   if (formData.get('venue-dome')) venues.push('Le Dôme');
 
-  const payload = {
+  // Construire bride/groom seulement si prénoms fournis
+  const brideFirstName = formData.get('brideFirstName');
+  const groomFirstName = formData.get('groomFirstName');
+
+  const payload: any = {
    type: 'mariage',
-   bride: {
-    firstName: formData.get('brideFirstName'),
-    lastName: formData.get('brideLastName'),
-   },
-   groom: {
-    firstName: formData.get('groomFirstName'),
-    lastName: formData.get('groomLastName'),
-   },
+   firstName: formData.get('firstName'),
+   lastName: formData.get('lastName'),
    email: formData.get('email'),
    phone: formData.get('phone'),
    weddingDate: formData.get('eventDate') || undefined,
-   guestCount: formData.get('guestCount'),
+   guestCount: formData.get('guestCount') || undefined,
    message: `${formData.get('message') || ''}\n\nLieux intéressants: ${venues.join(', ')}`,
    acceptPrivacy: true,
   };
+
+  // Ajouter bride/groom si fournis (optionnels)
+  if (brideFirstName) {
+   payload.bride = {
+    firstName: brideFirstName,
+    lastName: formData.get('brideLastName') || undefined,
+   };
+  }
+  if (groomFirstName) {
+   payload.groom = {
+    firstName: groomFirstName,
+    lastName: formData.get('groomLastName') || undefined,
+   };
+  }
 
   try {
    const response = await fetch('/api/contact/submit', {
@@ -480,56 +492,54 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
        <label className="block text-sm font-medium mb-2">
-        Prénom (Mariée) *
+        Prénom *
+       </label>
+       <input
+        type="text"
+        name="firstName"
+        className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
+        placeholder="Votre prénom"
+        required
+        disabled={formState.loading}
+       />
+      </div>
+
+      <div>
+       <label className="block text-sm font-medium mb-2">
+        Nom *
+       </label>
+       <input
+        type="text"
+        name="lastName"
+        className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
+        placeholder="Votre nom"
+        required
+        disabled={formState.loading}
+       />
+      </div>
+
+      <div>
+       <label className="block text-sm font-medium mb-2">
+        Prénom (Mariée)
        </label>
        <input
         type="text"
         name="brideFirstName"
         className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
-        placeholder="Prénom"
-        required
+        placeholder="Prénom (optionnel)"
         disabled={formState.loading}
        />
       </div>
 
       <div>
        <label className="block text-sm font-medium mb-2">
-        Nom (Mariée) *
-       </label>
-       <input
-        type="text"
-        name="brideLastName"
-        className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
-        placeholder="Nom"
-        required
-        disabled={formState.loading}
-       />
-      </div>
-
-      <div>
-       <label className="block text-sm font-medium mb-2">
-        Prénom (Marié) *
+        Prénom (Marié)
        </label>
        <input
         type="text"
         name="groomFirstName"
         className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
-        placeholder="Prénom"
-        required
-        disabled={formState.loading}
-       />
-      </div>
-
-      <div>
-       <label className="block text-sm font-medium mb-2">
-        Nom (Marié) *
-       </label>
-       <input
-        type="text"
-        name="groomLastName"
-        className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
-        placeholder="Nom"
-        required
+        placeholder="Prénom (optionnel)"
         disabled={formState.loading}
        />
       </div>
@@ -576,15 +586,14 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
 
       <div>
        <label className="block text-sm font-medium mb-2">
-        Nombre d&apos;invités approximatif *
+        Nombre d&apos;invités approximatif
        </label>
        <select
         name="guestCount"
         className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
-        required
         disabled={formState.loading}
        >
-        <option value="">Sélectionner...</option>
+        <option value="">Sélectionner (optionnel)...</option>
         <option value="50">0 - 70 personnes</option>
         <option value="85">70 - 100 personnes</option>
         <option value="115">100 - 130 personnes</option>

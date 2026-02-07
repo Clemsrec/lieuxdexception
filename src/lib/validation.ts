@@ -155,6 +155,7 @@ export const quickContactSchema = z.object({
 
 /**
  * Formulaire B2B
+ * Seuls obligatoires : nom, prénom, email, téléphone, société, type événement, nb personnes
  */
 export const b2bFormSchema = z.object({
   // Informations de contact
@@ -167,10 +168,11 @@ export const b2bFormSchema = z.object({
   
   // Détails de l'événement
   eventType: z.enum(['seminar', 'conference', 'team_building', 'corporate']),
-  eventDate: futureDateSchema.optional(),
-  guestCount: z.number().int().min(10).max(500),
+  eventDate: z.string().optional(), // String simple au lieu de futureDateSchema
+  guestCount: z.string().optional(), // String depuis input number HTML
   budget: z.number().min(0).optional(),
   requirements: messageSchema.optional(),
+  message: messageSchema.optional(), // Ajout du champ message
   
   // Lieu souhaité
   venueId: z.string().optional(),
@@ -181,27 +183,31 @@ export const b2bFormSchema = z.object({
 
 /**
  * Formulaire Mariage
+ * Seuls obligatoires : nom, prénom, email, téléphone
  */
 export const weddingFormSchema = z.object({
-  // Couple
-  bride: z.object({
-    firstName: nameSchema,
-    lastName: nameSchema,
-  }),
-  groom: z.object({
-    firstName: nameSchema,
-    lastName: nameSchema,
-  }),
-  
-  // Contact
+  // Contact (OBLIGATOIRES SEULEMENT)
+  firstName: nameSchema,
+  lastName: nameSchema,
   email: emailSchema,
   phone: phoneSchema,
   
-  // Événement
-  weddingDate: futureDateSchema.optional(),
-  guestCount: z.number().int().min(20).max(500),
+  // Couple (OPTIONNELS)
+  bride: z.object({
+    firstName: nameSchema.optional(),
+    lastName: nameSchema.optional(),
+  }).optional(),
+  groom: z.object({
+    firstName: nameSchema.optional(),
+    lastName: nameSchema.optional(),
+  }).optional(),
+  
+  // Événement (TOUS OPTIONNELS)
+  weddingDate: z.string().optional(), // Chaîne au lieu de futureDateSchema
+  guestCount: z.string().optional(), // String depuis le select HTML
   budget: z.number().min(0).optional(),
   requirements: messageSchema.optional(),
+  message: messageSchema.optional(), // Ajout du champ message
   
   // Lieu souhaité
   venueId: z.string().optional(),

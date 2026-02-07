@@ -165,7 +165,10 @@ export async function POST(request: NextRequest) {
       : {
           leadId,
           type,
-          contactName: `${(validatedData as any).bride.firstName} ${(validatedData as any).bride.lastName} & ${(validatedData as any).groom.firstName} ${(validatedData as any).groom.lastName}`,
+          // Nouveau schéma : firstName/lastName sont les champs principaux
+          contactName: (validatedData as any).bride?.firstName && (validatedData as any).groom?.firstName
+            ? `${(validatedData as any).bride.firstName} ${(validatedData as any).bride.lastName || ''} & ${(validatedData as any).groom.firstName} ${(validatedData as any).groom.lastName || ''}`
+            : `${(validatedData as any).firstName} ${(validatedData as any).lastName}`,
           email: validatedData.email,
           company: undefined,
           eventDate: (validatedData as any).weddingDate,
@@ -292,7 +295,7 @@ async function syncLeadToOdoo(
         position: validatedData.position,
         eventType: validatedData.eventType || 'Séminaire',
         eventDate: validatedData.eventDate,
-        guestCount: validatedData.guestCount || 0,
+        guestCount: validatedData.guestCount ? parseInt(validatedData.guestCount) : 0,
         budget: validatedData.budget,
         message: validatedData.message || validatedData.requirements || '',
         venues: validatedData.venues,
@@ -303,12 +306,21 @@ async function syncLeadToOdoo(
     } else if (type === 'mariage') {
       // Mapper les données Mariage pour Odoo
       const odooLead = {
-        bride: validatedData.bride,
-        groom: validatedData.groom,
+        // Nouveau schéma : firstName/lastName sont maintenant les champs principaux
+        firstName: validatedData.firstName || validatedData.bride?.firstName || '',
+        lastName: validatedData.lastName || validatedData.bride?.lastName || '',
+        bride: validatedData.bride || {
+          firstName: validatedData.firstName || '',
+          lastName: validatedData.lastName || '',
+        },
+        groom: validatedData.groom || {
+          firstName: '',
+          lastName: '',
+        },
         email: validatedData.email,
         phone: validatedData.phone || '',
         weddingDate: validatedData.weddingDate,
-        guestCount: validatedData.guestCount || 0,
+        guestCount: validatedData.guestCount ? parseInt(validatedData.guestCount) : 0,
         budget: validatedData.budget,
         message: validatedData.message || '',
         venues: validatedData.venues,
