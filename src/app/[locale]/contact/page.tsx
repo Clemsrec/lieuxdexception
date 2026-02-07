@@ -35,11 +35,15 @@ export const metadata: Metadata = {
 /**
  * Page Contact - Server Component avec contenu dynamique Firestore
  */
-export default async function ContactPage({ params }: { params: { locale?: string } }) {
-  const locale = params?.locale || 'fr';
+export default async function ContactPage({ params }: { params: Promise<{ locale?: string }> }) {
+  const { locale: localeParam } = await params;
+  const locale = localeParam || 'fr';
   
   // Charger le contenu dynamique depuis Firestore
   const pageContent = await getPageContent('contact', locale === 'fr' ? 'fr' : 'en');
+  
+  // Log pour diagnostiquer
+  console.log('🔍 [ContactPage] pageContent:', pageContent?.contactInfo ? `${pageContent.contactInfo.length} contacts` : 'pas de contactInfo');
   
   // Données par défaut si le contenu n'existe pas encore
   const defaultContactInfo = [
@@ -58,6 +62,7 @@ export default async function ContactPage({ params }: { params: { locale?: strin
   ];
   
   const contactInfo = pageContent?.contactInfo || defaultContactInfo;
+  console.log('🔍 [ContactPage] contactInfo final:', contactInfo.length, 'contacts');
   const heroData = pageContent?.hero || {
     title: 'Contactez-Nous',
     subtitle: 'Notre équipe est à votre écoute pour concrétiser votre projet',

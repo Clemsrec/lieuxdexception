@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ContactFormSwitcher from '@/components/ContactFormSwitcher';
-import { m } from 'framer-motion';
 
 interface ContactInfo {
   type: 'b2b' | 'wedding';
@@ -40,11 +39,15 @@ function ContactFormWrapper() {
 }
 
 /**
- * Composant principal avec Suspense boundary et contenu dynamique
+ * Composant principal avec contenu dynamique - VERSION CORRIGÉE
  */
 export default function ContactPageClient({ contactInfo }: { contactInfo: ContactInfo[] }) {
  const [structuredData, setStructuredData] = useState<any>(null);
  const [faqSchema, setFaqSchema] = useState<any>(null);
+
+ // Log pour diagnostiquer
+ console.log('🔍 [ContactPageClient] Reçu contactInfo:', contactInfo);
+ console.log('🔍 [ContactPageClient] Type:', typeof contactInfo, 'Length:', contactInfo?.length);
 
  useEffect(() => {
   // Import dynamique pour éviter les problèmes SSR
@@ -77,12 +80,12 @@ export default function ContactPageClient({ contactInfo }: { contactInfo: Contac
     />
    )}
 
-   {/* Section Coordonnées - Contenu Dynamique */}
+   {/* Section Coordonnées - VERSION SANS FRAMER MOTION */}
    {contactInfo && contactInfo.length > 0 && (
-    <section className="section bg-white">
+    <section className="section bg-charcoal-900 text-white">
      <div className="container">
       <div className="text-center mb-12">
-       <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
+       <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-golden">
         Nos Coordonnées
        </h2>
        <div className="accent-line" />
@@ -90,35 +93,32 @@ export default function ContactPageClient({ contactInfo }: { contactInfo: Contac
 
       <div className="grid md:grid-cols-2 gap-6 md:gap-8">
        {contactInfo.map((info, index) => {
-        const phoneLink = `tel:+33${info.phone.replace(/\s/g, '').replace(/^0/, '')}`;
+        const cleanPhone = info.phone.replace(/\s+/g, '').replace(/^0/, '');
+        const phoneLink = `tel:+33${cleanPhone}`;
         
         return (
-         <m.div
+         <div
           key={info.type}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: index * 0.2 }}
-          className="bg-charcoal-800 p-6 md:p-8 border border-accent/20 shadow-lg"
+          className="bg-charcoal-800 p-6 md:p-8 border border-accent/20 shadow-lg hover:border-accent/40 transition-all duration-300"
          >
-          <h3 className="text-xl md:text-2xl font-semibold mb-6 text-[#C9A961]!">
+          <h3 className="text-xl md:text-2xl font-semibold mb-6 text-golden">
            {info.description}
           </h3>
           <div className="space-y-4">
            <div>
-            <p className="text-sm text-neutral-200 mb-1">Téléphone</p>
-            <a href={phoneLink} className="text-lg text-white hover:text-accent transition-colors">
+            <p className="text-sm text-neutral-300 mb-1 font-medium">Téléphone</p>
+            <a href={phoneLink} className="text-lg text-white hover:text-accent transition-colors font-medium">
              {info.phone}
             </a>
            </div>
            <div>
-            <p className="text-sm text-neutral-200 mb-1">Email</p>
+            <p className="text-sm text-neutral-300 mb-1 font-medium">Email</p>
             <a href={`mailto:${info.email}`} className="text-white hover:text-accent transition-colors">
              {info.email}
             </a>
            </div>
           </div>
-         </m.div>
+         </div>
         );
        })}
       </div>
@@ -129,13 +129,7 @@ export default function ContactPageClient({ contactInfo }: { contactInfo: Contac
    {/* Section Formulaire */}
    <section className="section bg-stone/30">
     <div className="container">
-     <m.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="text-center mb-12"
-     >
+     <div className="text-center mb-12">
       <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
        Votre Demande
       </h2>
@@ -143,7 +137,7 @@ export default function ContactPageClient({ contactInfo }: { contactInfo: Contac
       <p className="text-lg text-secondary mt-6 mx-auto">
        Remplissez le formulaire ci-dessous, nous vous répondrons dans les plus brefs délais.
       </p>
-     </m.div>
+     </div>
 
      <Suspense fallback={<div className="text-center py-12">Chargement...</div>}>
       <ContactFormWrapper />
