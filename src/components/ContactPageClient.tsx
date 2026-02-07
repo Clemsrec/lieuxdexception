@@ -5,6 +5,13 @@ import { useSearchParams } from 'next/navigation';
 import ContactFormSwitcher from '@/components/ContactFormSwitcher';
 import { m } from 'framer-motion';
 
+interface ContactInfo {
+  type: 'b2b' | 'wedding';
+  phone: string;
+  email: string;
+  description: string;
+}
+
 /**
  * Composant client pour la page Contact avec gestion du scroll et des search params
  */
@@ -33,9 +40,9 @@ function ContactFormWrapper() {
 }
 
 /**
- * Composant principal avec Suspense boundary
+ * Composant principal avec Suspense boundary et contenu dynamique
  */
-export default function ContactPageClient() {
+export default function ContactPageClient({ contactInfo }: { contactInfo: ContactInfo[] }) {
  const [structuredData, setStructuredData] = useState<any>(null);
  const [faqSchema, setFaqSchema] = useState<any>(null);
 
@@ -70,73 +77,54 @@ export default function ContactPageClient() {
     />
    )}
 
-   {/* Section Coordonnées */}
-   <section className="section bg-white">
-    <div className="container">
-     <div className="text-center mb-12">
-      <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
-       Nos Coordonnées
-      </h2>
-      <div className="accent-line" />
-     </div>
+   {/* Section Coordonnées - Contenu Dynamique */}
+   {contactInfo && contactInfo.length > 0 && (
+    <section className="section bg-white">
+     <div className="container">
+      <div className="text-center mb-12">
+       <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-accent">
+        Nos Coordonnées
+       </h2>
+       <div className="accent-line" />
+      </div>
 
-     <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-      {/* Contact Pro */}
-      <m.div
-       initial={{ opacity: 0, y: 20 }}
-       whileInView={{ opacity: 1, y: 0 }}
-       viewport={{ once: true }}
-       transition={{ duration: 0.6 }}
-       className="bg-charcoal-800 p-6 md:p-8 border border-accent/20 shadow-lg"
-      >
-       <h3 className="text-xl md:text-2xl font-semibold mb-6 text-[#C9A961]!">
-        Événements Professionnels
-       </h3>
-       <div className="space-y-4">
-        <div>
-         <p className="text-sm text-neutral-200 mb-1">Téléphone</p>
-         <a href="tel:+33670562879" className="text-lg text-white hover:text-accent transition-colors">
-          06 70 56 28 79
-         </a>
-        </div>
-        <div>
-         <p className="text-sm text-neutral-200 mb-1">Email</p>
-         <a href="mailto:contact@lieuxdexception.com" className="text-white hover:text-accent transition-colors">
-          contact@lieuxdexception.com
-         </a>
-        </div>
-       </div>
-      </m.div>
-
-      {/* Contact Mariages */}
-      <m.div
-       initial={{ opacity: 0, y: 20 }}
-       whileInView={{ opacity: 1, y: 0 }}
-       viewport={{ once: true }}
-       transition={{ duration: 0.6, delay: 0.2 }}
-       className="bg-charcoal-800 p-6 md:p-8 border border-accent/20 shadow-lg"
-      >
-       <h3 className="text-xl md:text-2xl font-semibold mb-6 text-[#C9A961]!">
-        Mariages & Événements Privés
-       </h3>
-       <div className="space-y-4">
-        <div>
-         <p className="text-sm text-neutral-200 mb-1">Téléphone</p>
-         <a href="tel:+33602037011" className="text-lg text-white hover:text-accent transition-colors">
-          06 02 03 70 11
-         </a>
-        </div>
-        <div>
-         <p className="text-sm text-neutral-200 mb-1">Email</p>
-         <a href="mailto:contact@lieuxdexception.com" className="text-white hover:text-accent transition-colors">
-          contact@lieuxdexception.com
-         </a>
-        </div>
-       </div>
-      </m.div>
+      <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+       {contactInfo.map((info, index) => {
+        const phoneLink = `tel:+33${info.phone.replace(/\s/g, '').replace(/^0/, '')}`;
+        
+        return (
+         <m.div
+          key={info.type}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.2 }}
+          className="bg-charcoal-800 p-6 md:p-8 border border-accent/20 shadow-lg"
+         >
+          <h3 className="text-xl md:text-2xl font-semibold mb-6 text-[#C9A961]!">
+           {info.description}
+          </h3>
+          <div className="space-y-4">
+           <div>
+            <p className="text-sm text-neutral-200 mb-1">Téléphone</p>
+            <a href={phoneLink} className="text-lg text-white hover:text-accent transition-colors">
+             {info.phone}
+            </a>
+           </div>
+           <div>
+            <p className="text-sm text-neutral-200 mb-1">Email</p>
+            <a href={`mailto:${info.email}`} className="text-white hover:text-accent transition-colors">
+             {info.email}
+            </a>
+           </div>
+          </div>
+         </m.div>
+        );
+       })}
+      </div>
      </div>
-    </div>
-   </section>
+    </section>
+   )}
 
    {/* Section Formulaire */}
    <section className="section bg-stone/30">

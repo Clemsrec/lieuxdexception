@@ -53,15 +53,18 @@ export interface OdooB2BLead {
 
 /**
  * Structure d'un lead Mariage pour Odoo
+ * bride/groom optionnels depuis simplification formulaire 2026-02
  */
 export interface OdooWeddingLead {
-  bride: {
-    firstName: string;
-    lastName: string;
+  firstName?: string; // Contact principal (nouveau depuis simplification)
+  lastName?: string;  // Contact principal (nouveau depuis simplification)
+  bride?: {
+    firstName?: string;
+    lastName?: string;
   };
-  groom: {
-    firstName: string;
-    lastName: string;
+  groom?: {
+    firstName?: string;
+    lastName?: string;
   };
   email: string;
   phone: string;
@@ -221,9 +224,17 @@ Date: ${new Date().toLocaleString('fr-FR')}
       phone: lead.phone || '',
       partner_name: lead.company || '',
       function: lead.position || '',
-      description: description,
+      description: description, // Notes internes (onglet Description)
+      priority: '1', // Marqueur haute priorité
+      
+      // 🎯 TRAÇABILITÉ SOURCE (visible dans Odoo CRM)
+      source_id: 1, // ID de la source "Site Web" (à créer dans Odoo)
+      medium_id: 2, // ID du medium "Organique" (à créer dans Odoo)
+      campaign_id: 3, // ID campagne "Lieux Exception 2026" (optionnel)
+      referred: 'Site Web Lieux d\'Exception', // Champ référent visible
+      
       type: 'opportunity', // 'opportunity' ou 'lead' selon config Odoo
-      tag_ids: [[6, 0, []]], // Tags à définir dans Odoo (B2B, Site Web, etc.)
+      tag_ids: [[6, 0, [1, 2, 3]]], // Tags: [Site Web, B2B, Loire-Atlantique] - IDs à adapter
       // team_id: 1, // ID de l'équipe CRM à affecter (optionnel)
     };
 
@@ -264,40 +275,66 @@ export async function createWeddingLeadInOdoo(lead: OdooWeddingLead): Promise<Od
     // Authentification
     const uid = await authenticateOdoo();
 
-    // Préparer les données du lead
-    const contactName = `${lead.bride.firstName} ${lead.bride.lastName} & ${lead.groom.firstName} ${lead.groom.lastName}`;
+    // Construire le nom du contact (avec fallback sur firstName/lastName si bride/groom absents)
+    const brideInfo = lead.bride?.firstName 
+      ? `${lead.bride.firstName} ${lead.bride.lastName || ''}`
+      : lead.firstName || '';
+    const groomInfo = lead.groom?.firstName 
+      ? `${lead.groom.firstName} ${lead.groom.lastName || ''}`
+      : lead.lastName || '';
+    
+    const contactName = brideInfo && groomInfo 
+      ? `${brideInfo} & ${groomInfo}`.trim()
+      : (brideInfo || groomInfo || `${lead.firstName || ''} ${lead.lastName || ''}`.trim() || 'Contact anonyme');
+    
     const leadName = `Demande Mariage - ${contactName}`;
 
-    const description = `
-=== Demande de Mariage ===
+    // Description adaptée au nouveau format
+    let description = '=== Demande de Mariage ===\n\n';
+    
+    if (lead.bride?.firstName || lead.groom?.firstName) {
+      if (lead.bride?.firstName) {
+        description += `Mariée: ${lead.bride.firstName} ${lead.bride.lastName || ''}\n`;
+      }
+      if (lead.groom?.firstName) {
+        description += `Marié: ${lead.groom.firstName} ${lead.groom.lastName || ''}\n`;
+      }
+    } else if (lead.firstName || lead.lastName) {
+      description += `Contact: ${lead.firstName || ''} ${lead.lastName || ''}\n`;
+    }
+    
+    description += `Email: ${lead.email}\n`;
+    description += `Téléphone: ${lead.phone}\n\n`;
+    description += `${lead.weddingDate ? `Date du mariage: ${lead.weddingDate}` : 'Date à définir'}\n`;
+    description += `Nombre d'invités: ${lead.guestCount || 'Non spécifié'}\n`;
+    
+    if (lead.budget) {
+      description += `Budget: ${lead.budget}\n`;
+    }
 
-Mariée: ${lead.bride.firstName} ${lead.bride.lastName}
-Marié: ${lead.groom.firstName} ${lead.groom.lastName}
-Email: ${lead.email}
-Téléphone: ${lead.phone}
+    if (lead.venues && lead.venues.length > 0) {
+      description += `\nLieux sélectionnés:\n${lead.venues.map(v => `- ${v}`).join('\n')}\n`;
+    }
 
-${lead.weddingDate ? `Date du mariage: ${lead.weddingDate}` : 'Date à définir'}
-Nombre d'invités: ${lead.guestCount}
-${lead.budget ? `Budget: ${lead.budget}` : ''}
-
-${lead.venues && lead.venues.length > 0 ? `Lieux sélectionnés:\n${lead.venues.map(v => `- ${v}`).join('\n')}` : ''}
-
-Message:
-${lead.message}
-
----
-Source: Site Web Lieux d'Exception
-Date: ${new Date().toLocaleString('fr-FR')}
-    `.trim();
+    description += `\nMessage:\n${lead.message}\n\n`;
+    description += `---\nSource: Site Web Lieux d'Exception\nDate: ${new Date().toLocaleString('fr-FR')}`;
 
     const leadData = {
       name: leadName,
       contact_name: contactName,
       email_from: lead.email,
       phone: lead.phone || '',
-      description: description,
+      description: description.trim(), // Notes internes (onglet Description)
+      priority: '2', // Priorité normale pour mariages
+      
+      // 🎯 TRAÇABILITÉ SOURCE (visible dans Odoo CRM)
+      source_id: 1, // ID de la source "Site Web" (à créer dans Odoo)
+      medium_id: 2, // ID du medium "Organique" (à créer dans Odoo)
+      campaign_id: 4, // ID campagne "Mariages 2026" (optionnel)
+      referred: 'Site Web Lieux d\'Exception - Formulaire Mariages', // Champ référent visible
+      
       type: 'opportunity', // 'opportunity' ou 'lead' selon config Odoo
-      tag_ids: [[6, 0, []]], // Tags à définir dans Odoo (Mariage, Site Web, etc.)
+      tag_ids: [[6, 0, [1, 5, 6]]], // Tags: [Site Web, Mariage, Loire-Atlantique] - IDs à adapter
       // team_id: 2, // ID de l'équipe CRM Mariages (optionnel)
     };
 

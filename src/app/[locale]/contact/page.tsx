@@ -2,6 +2,7 @@ import HeroSection from '@/components/HeroSection';
 import ContactPageClient from '@/components/ContactPageClient';
 import type { Metadata } from 'next';
 import { STORAGE_IMAGES } from '@/lib/storage-assets';
+import { getPageContent } from '@/lib/firestore';
 
 /**
  * Métadonnées pour la page Contact
@@ -32,18 +33,45 @@ export const metadata: Metadata = {
 };
 
 /**
- * Page Contact - Server Component
+ * Page Contact - Server Component avec contenu dynamique Firestore
  */
-export default function ContactPage() {
+export default async function ContactPage({ params }: { params: { locale?: string } }) {
+  const locale = params?.locale || 'fr';
+  
+  // Charger le contenu dynamique depuis Firestore
+  const pageContent = await getPageContent('contact', locale === 'fr' ? 'fr' : 'en');
+  
+  // Données par défaut si le contenu n'existe pas encore
+  const defaultContactInfo = [
+    {
+      type: 'b2b',
+      phone: '06 70 56 28 79',
+      email: 'contact@lieuxdexception.com',
+      description: 'Événements Professionnels',
+    },
+    {
+      type: 'wedding',
+      phone: '06 02 03 70 11',
+      email: 'contact@lieuxdexception.com',
+      description: 'Mariages & Événements Privés',
+    },
+  ];
+  
+  const contactInfo = pageContent?.contactInfo || defaultContactInfo;
+  const heroData = pageContent?.hero || {
+    title: 'Contactez-Nous',
+    subtitle: 'Notre équipe est à votre écoute pour concrétiser votre projet',
+  };
+
   return (
     <main className="min-h-screen">
       <HeroSection
-        title="Contactez-Nous"
-        subtitle="Notre équipe est à votre écoute pour concrétiser votre projet"
+        title={heroData.title}
+        subtitle={heroData.subtitle}
         backgroundImage="https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/images%2Fcontact-hero.jpg?alt=media"
       />
 
-      <ContactPageClient />
+      <ContactPageClient contactInfo={contactInfo} />
     </main>
   );
 }
