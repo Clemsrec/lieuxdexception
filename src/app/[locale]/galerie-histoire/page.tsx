@@ -15,6 +15,12 @@ export const metadata: Metadata = generateServiceMetadata(
 );
 
 /**
+ * Revalidation : 60 secondes
+ * Les données Firestore sont rafraîchies toutes les minutes
+ */
+export const revalidate = 60;
+
+/**
  * Page Histoire
  * 
  * Timeline interactive horizontale avec scroll fluide présentant

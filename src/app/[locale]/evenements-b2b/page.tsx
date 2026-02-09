@@ -18,6 +18,12 @@ export const metadata: Metadata = generateServiceMetadata(
 );
 
 /**
+ * Revalidation : 60 secondes
+ * Les données Firestore sont rafraîchies toutes les minutes
+ */
+export const revalidate = 60;
+
+/**
  * Page Événements B2B
  * 
  * Cette page présente les services et solutions pour les événements

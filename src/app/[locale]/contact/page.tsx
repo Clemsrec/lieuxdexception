@@ -33,6 +33,12 @@ export const metadata: Metadata = {
 };
 
 /**
+ * Revalidation : 60 secondes
+ * Les données Firestore sont rafraîchies toutes les minutes
+ */
+export const revalidate = 60;
+
+/**
  * Page Contact - Server Component avec contenu dynamique Firestore
  */
 export default async function ContactPage({ params }: { params: Promise<{ locale?: string }> }) {
