@@ -383,19 +383,6 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
               whileHover={{ opacity: 1 }}
               style={{ opacity: 0 }}
              />
-             
-             {/* Point au centre de l'image */}
-             <m.div 
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-              animate={{
-               scale: isActive ? 1.5 : 1,
-               boxShadow: isActive 
-                ? '0 0 20px rgba(201,169,97,0.8)' 
-                : '0 0 0px rgba(201,169,97,0)',
-              }}
-             >
-              <div className="w-4 h-4 bg-accent border-4 border-neutral-700" />
-             </m.div>
             </m.div>
             
             <div className="text-center">
@@ -453,18 +440,7 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
               style={{ opacity: 0 }}
              />
              
-             {/* Point au centre de l'image */}
-             <m.div 
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-              animate={{
-               scale: isActive ? 1.5 : 1,
-               boxShadow: isActive 
-                ? '0 0 20px rgba(201,169,97,0.8)' 
-                : '0 0 0px rgba(201,169,97,0)',
-              }}
-             >
-              <div className="w-4 h-4 bg-accent border-4 border-neutral-700" />
-             </m.div>
+             {/* Point au centre de l'image supprimé pour améliorer la visibilité */}
             </m.div>
             
             <div className="text-center">
@@ -491,9 +467,8 @@ export default function ScrollTimeline({ events }: { events: TimelineEvent[] }) 
         viewport={{ once: true, margin:"-100px" }}
         transition={{ duration: 0.6, delay: index * 0.1 }}
        >
-        {/* Ligne verticale avec point */}
+        {/* Ligne verticale sans point décoratif pour améliorer la lisibilité */}
         <div className="absolute left-0 top-0 bottom-0 w-px bg-accent/30">
-         <div className="absolute top-8 left-1/2 -translate-x-1/2 w-4 h-4 bg-accent border-4 border-neutral-700" />
         </div>
         
         {/* Contenu */}
