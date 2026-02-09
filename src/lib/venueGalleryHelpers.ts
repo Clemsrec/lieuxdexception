@@ -7,13 +7,15 @@ import type { Venue } from '@/types/firebase';
 
 /**
  * Extrait les images mariages depuis venue.images.gallery
- * Filtre les images du dossier /mariages/
+ * Retourne toutes les images de galerie car les lieux reçoivent mariages ET B2B
+ * Note: Historiquement, seul Le Dôme avait des images dans /mariages/,
+ * les autres lieux utilisent /b2b/ pour leurs deux types d'événements
  */
 export function getMariageImagesFromVenue(venue: Venue): string[] {
   if (!venue.images?.gallery) return [];
   
-  // Filtrer les images contenant '/mariages/' dans l'URL
-  return venue.images.gallery.filter(url => url.includes('/mariages/'));
+  // Retourner toutes les images de galerie (utilisables pour mariages et B2B)
+  return venue.images.gallery;
 }
 
 /**

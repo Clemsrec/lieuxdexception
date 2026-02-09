@@ -15,6 +15,7 @@ import {
   CheckboxGroup,
   Grid
 } from '@/components/admin/VenueFormSections';
+import VenueGalleryManager from '@/components/admin/VenueGalleryManager';
 
 /**
  * Interface complète pour les données du formulaire Venue
@@ -1066,10 +1067,10 @@ export default function VenueEditPage() {
         {/* ONGLET MÉDIAS */}
         {/* ========================================= */}
         {activeTab === 'media' && (
+        <>
         <FormSection 
           title="V · Images & Médias" 
           description="Images principales et galerie"
-          badge="TODO Upload"
         >
           <TextInput
             label="Image Hero (URL)"
@@ -1090,21 +1091,25 @@ export default function VenueEditPage() {
             help="Image miniature affichée dans les listes et cartes"
             required
           />
-          
-          <TagInput
-            label="Galerie (URLs)"
-            tags={formData.gallery}
-            onChange={(tags) => updateField('gallery', tags)}
-            placeholder="Ajouter une URL d'image..."
-            help="Images de la galerie du lieu (une URL par image)"
+        </FormSection>
+
+        <FormSection 
+          title="Galerie Photos" 
+          description="Gérez les images de la galerie du lieu (drag & drop, réorganisation)"
+        >
+          <VenueGalleryManager
+            venueSlug={formData.slug}
+            images={formData.gallery}
+            onChange={(images) => updateField('gallery', images)}
           />
           
-          <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-sm text-yellow-800">
-              <strong>TODO :</strong> Implémenter upload d'images via Firebase Storage avec prévisualisation.
+          <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-sm text-blue-800">
+              <strong>💡 Astuce :</strong> Les images sont automatiquement uploadées dans Firebase Storage sous <code className="bg-blue-100 px-1 rounded">venues/{formData.slug}/gallery/</code>
             </p>
           </div>
         </FormSection>
+        </>
         )}
         
         {/* ========================================= */}
