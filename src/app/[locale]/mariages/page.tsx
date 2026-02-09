@@ -97,7 +97,7 @@ export default async function MariagesPage({
     description={pageContent?.hero?.description || t('description')}
     backgroundImage={pageContent?.hero?.backgroundImage ||"https://firebasestorage.googleapis.com/v0/b/lieux-d-exceptions.firebasestorage.app/o/venues%2Fchateau-brulaire%2Fmariages%2Fmise-en-scene.jpg?alt=media"}
     buttons={pageContent?.hero?.buttons || [
-     { label: t('requestInfo'), href: `/${locale}/contact?form=prive`, primary: true }
+     { label: t('requestInfo'), href: `/${locale}/contact?form=mariage`, primary: true }
     ]}
    />
 
@@ -302,7 +302,7 @@ export default async function MariagesPage({
       </p>
       
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-       <Link href="/contact?form=prive" className="btn btn-primary">
+       <Link href="/contact?form=mariage" className="btn btn-primary">
         Contact & Devis
        </Link>
        <div className="text-sm md:text-base text-white">

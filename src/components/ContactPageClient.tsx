@@ -18,7 +18,8 @@ function ContactFormWrapper() {
  const formRef = useRef<HTMLDivElement>(null);
  const searchParams = useSearchParams();
  const formParam = searchParams.get('form');
- const initialForm = (formParam === 'b2b' || formParam === 'prive') ? formParam : null;
+ const initialForm = (formParam === 'b2b') ? 'b2b' : 
+                    (formParam === 'prive' || formParam === 'mariage') ? 'prive' : null;
 
  useEffect(() => {
   // Scroll automatique vers le formulaire après un court délai
