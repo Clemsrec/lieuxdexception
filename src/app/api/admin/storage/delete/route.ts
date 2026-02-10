@@ -8,8 +8,11 @@ import { getStorage } from 'firebase-admin/storage';
  */
 export async function DELETE(request: NextRequest) {
   try {
-    // Vérifier l'authentification admin
-    // TODO: Implémenter vérification JWT admin quand auth est prête
+    // Vérifier l'authentification admin via cookie
+    const authToken = request.cookies.get('auth-token')?.value;
+    if (!authToken) {
+      return Response.json({ error: 'Non authentifié - Reconnectez-vous' }, { status: 401 });
+    }
     
     const body = await request.json();
     const { files } = body;

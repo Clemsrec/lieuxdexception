@@ -143,7 +143,7 @@ export default function GalerieAdminPage() {
     
     try {
       // Pour l'instant, on upload dans le dossier courant
-      // TODO: Adapter l'upload API pour supporter les paths si nécessaire
+      // L'API /api/admin/upload supporte déjà les paths via formData.get('path')
       for (const file of acceptedFiles) {
         const formData = new FormData();
         formData.append('file', file);

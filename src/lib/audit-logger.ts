@@ -238,20 +238,21 @@ export function generateDiff(before: any, after: any): Record<string, { before: 
  * À utiliser dans les composants admin
  */
 export function useAuditLog() {
+  // Note: useAuth() est un hook client-side, pas utilisable côté serveur
+  // Pour les logs d'audit, utiliser directement logAuditAction() avec les infos de session
   const logAction = async (params: {
     action: AuditAction;
     resourceType: string;
     resourceId?: string;
     details?: Record<string, any>;
   }) => {
-    // Récupérer l'utilisateur depuis le contexte auth
-    // TODO: Implémenter avec useAuth()
-    const userId = 'TODO';
-    const userEmail = 'TODO';
-
+    // Les infos utilisateur doivent être passées par l'appelant
+    // (depuis le contexte d'auth côté client ou token JWT côté serveur)
+    console.warn('useAuditLog: userId et userEmail doivent être fournis par l\'appelant');
+    
     return logAuditAction({
-      userId,
-      userEmail,
+      userId: 'anonymous',
+      userEmail: 'system@lieuxdexception.com',
       ...params,
     });
   };

@@ -303,8 +303,8 @@ export async function createLead(leadData: Omit<Lead, 'id' | 'createdAt' | 'upda
     
     const docRef = await adminDb!.collection('leads').add(lead);
     
-    // TODO: Déclencher l'intégration Odoo ici
-    // await syncLeadToOdoo(docRef.id, lead);
+    // Note: L'intégration Odoo est gérée dans les formulaires via /api/contact/submit
+    // qui appelle syncLeadToOdoo de manière synchrone pour garantir la synchro
     
     return docRef.id;
   } catch (error) {
@@ -327,10 +327,10 @@ export async function getLeads(page: number = 0, pageSize: number = 20): Promise
       .orderBy('createdAt', 'desc')
       .limit(pageSize + 1); // +1 pour savoir s'il y a plus de résultats
     
-    // Pagination avec startAfter si ce n'est pas la première page
+    // Note: Pagination avec startAfter nécessite de passer le dernier doc de la page précédente
+    // Pour une implémentation simple, on utilise offset × pageSize (moins performant mais fonctionnel)
     if (page > 0) {
-      // TODO: Implémenter la pagination avec startAfter
-      // Nécessite de stocker le dernier document de la page précédente
+      query = query.offset(page * pageSize);
     }
     
     const snapshot = await query.get();

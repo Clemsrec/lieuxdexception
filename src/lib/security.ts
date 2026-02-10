@@ -250,7 +250,7 @@ export function logSecurityEvent(log: SecurityLog): void {
     console.warn('[SECURITY]', JSON.stringify(log, null, 2));
   }
   
-  // TODO: En production, envoyer vers Sentry ou service de logs
+  // TODO Future: En production, intégrer Sentry ou Google Cloud Logging pour monitoring
   // await sendToSentry(log);
 }
 

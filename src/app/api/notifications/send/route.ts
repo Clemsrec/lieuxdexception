@@ -119,8 +119,20 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    // TODO: Supprimer les tokens invalides de Firestore
-    // if (failedTokens.length > 0) { ... }
+    // Supprimer les tokens invalides de Firestore (asynchrone, ne bloque pas la réponse)
+    if (failedTokens.length > 0) {
+      import('@/lib/firebase-admin').then(async ({ adminDb }) => {
+        if (!adminDb) return;
+        for (const token of failedTokens) {
+          try {
+            await adminDb.collection('fcm_tokens').doc(token).delete();
+            console.log(`🗑️ Token invalide supprimé: ${token.substring(0, 20)}...`);
+          } catch (err) {
+            console.error(`⚠️ Erreur suppression token ${token.substring(0, 20)}:`, err);
+          }
+        }
+      });
+    }
 
     return NextResponse.json({
       success: true,

@@ -7,8 +7,8 @@ import * as fs from 'fs';
 /**
  * API Route pour gérer Firebase Storage
  * GET: Lister les fichiers/dossiers
- * POST: Upload fichier (TODO)
- * DELETE: Supprimer fichier (TODO)
+ * POST: Upload fichier → voir /api/admin/upload
+ * DELETE: Supprimer fichier → voir /api/admin/storage/delete
  */
 
 // Initialiser Firebase Admin si pas déjà fait
@@ -169,7 +169,7 @@ export async function GET(request: NextRequest) {
     const storageFolders: StorageFolder[] = Array.from(folderSet).map(folderName => ({
       name: folderName,
       path: prefix ? `${prefix}/${folderName}` : folderName,
-      itemCount: 0, // TODO: Compter les items dans le dossier
+      itemCount: 0, // Compte non implémenté pour performances (nécessiterait une requête par dossier)
     }));
 
     // Trier : dossiers d'abord, puis fichiers par nom
@@ -203,24 +203,22 @@ export async function GET(request: NextRequest) {
 
 /**
  * POST /api/admin/storage
- * Upload un fichier dans Storage
- * TODO: À implémenter
+ * Rediriger vers /api/admin/upload pour l'upload de fichiers
  */
 export async function POST(request: NextRequest) {
   return NextResponse.json(
-    { success: false, error: 'Upload non implémenté' },
+    { success: false, error: 'Utilisez /api/admin/upload pour uploader des fichiers' },
     { status: 501 }
   );
 }
 
 /**
  * DELETE /api/admin/storage
- * Supprimer un fichier de Storage
- * TODO: À implémenter avec confirmation
+ * Rediriger vers /api/admin/storage/delete pour la suppression
  */
 export async function DELETE(request: NextRequest) {
   return NextResponse.json(
-    { success: false, error: 'Suppression non implémentée' },
+    { success: false, error: 'Utilisez /api/admin/storage/delete pour supprimer des fichiers' },
     { status: 501 }
   );
 }

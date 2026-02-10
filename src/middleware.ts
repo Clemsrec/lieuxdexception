@@ -109,7 +109,7 @@ function applySecurityHeaders(response: NextResponse) {
    * Content Security Policy (CSP)
    * Protège contre XSS, injections de scripts, etc.
    * 
-   * TODO: Remplacer 'unsafe-inline' par nonces pour renforcer sécurité XSS
+   * TODO Future: Remplacer 'unsafe-inline' par nonces dynamiques (Next.js 15+) pour renforcer sécurité XSS
    * Nécessite architecture Next.js 15 avec:
    * 1. Générer nonce aléatoire par requête (crypto.randomBytes)
    * 2. Passer nonce via headers → page props
@@ -134,7 +134,7 @@ function applySecurityHeaders(response: NextResponse) {
       "upgrade-insecure-requests"
       // NOTE: "require-trusted-types-for 'script'" temporairement désactivé
       // car incompatible avec Next.js 15 (bloque webpack runtime)
-      // TODO: Réactiver après migration vers nonces CSP
+      // TODO Future: Réactiver script-src 'self' après migration vers nonces CSP dynamiques
     ].join('; ')
   );
   

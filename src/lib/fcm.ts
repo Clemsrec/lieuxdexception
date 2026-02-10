@@ -69,7 +69,7 @@ export async function requestNotificationPermission(): Promise<string | null> {
     
     if (token) {
       console.log('✅ Token FCM obtenu:', token.substring(0, 20) + '...');
-      // TODO: Sauvegarder le token en base Firestore (collection fcm_tokens)
+      // Sauvegarder le token en Firestore pour envoi de notifications
       await saveFCMToken(token);
       return token;
     } else {
@@ -88,10 +88,29 @@ export async function requestNotificationPermission(): Promise<string | null> {
  */
 async function saveFCMToken(token: string): Promise<void> {
   try {
-    // TODO: Implémenter sauvegarde en Firestore
-    // Collection: fcm_tokens
-    // Document: { token, userId, deviceInfo, createdAt, lastUsed }
-    console.log('💾 Token FCM à sauvegarder:', token.substring(0, 20) + '...');
+    const { db } = await import('./firebase-client');
+    if (!db) {
+      console.warn('⚠️ Firestore non disponible pour sauvegarde token FCM');
+      return;
+    }
+
+    const { doc, setDoc, serverTimestamp } = await import('firebase/firestore');
+    
+    // Utiliser le token comme ID de document (évite les doublons)
+    const tokenDoc = doc(db, 'fcm_tokens', token);
+    
+    await setDoc(tokenDoc, {
+      token,
+      deviceInfo: {
+        userAgent: navigator.userAgent,
+        platform: navigator.platform,
+        language: navigator.language,
+      },
+      createdAt: serverTimestamp(),
+      lastUsed: serverTimestamp(),
+    }, { merge: true }); // merge: true pour mettre à jour lastUsed si existe
+    
+    console.log('💾 Token FCM sauvegardé dans Firestore');
   } catch (error) {
     console.error('❌ Erreur sauvegarde token FCM:', error);
   }
@@ -151,19 +170,31 @@ export interface NotificationPayload {
 }
 
 /**
- * Envoie une notification à un token spécifique (côté serveur)
- * À utiliser dans les API routes avec Firebase Admin SDK
+ * Envoie une notification à un token spécifique
+ * Cette fonction appelle l'API route qui utilise Firebase Admin SDK
  */
 export async function sendNotificationToToken(
   token: string,
   payload: NotificationPayload
 ): Promise<boolean> {
   try {
-    // TODO: Implémenter avec Firebase Admin SDK dans une API route
-    // POST /api/notifications/send
-    console.log('📤 Envoi notification au token:', token.substring(0, 20) + '...');
-    console.log('📦 Payload:', payload);
-    return true;
+    const response = await fetch('/api/notifications/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tokens: [token],
+        notification: {
+          title: payload.title,
+          body: payload.body,
+          icon: payload.icon,
+        },
+        data: payload.data,
+      }),
+    });
+
+    const result = await response.json();
+    console.log('📤 Notification envoyée:', result);
+    return result.success;
   } catch (error) {
     console.error('❌ Erreur envoi notification:', error);
     return false;
