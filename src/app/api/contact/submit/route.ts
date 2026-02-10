@@ -147,10 +147,20 @@ export async function POST(request: NextRequest) {
       console.log('✅ Lead sauvegardé dans Firestore:', leadId);
     }
 
-    // Synchroniser avec Odoo CRM (ne bloque pas la réponse)
-    syncLeadToOdoo(leadId, type, validatedData).catch(error => {
-      console.error('❌ Erreur sync Odoo (non-bloquant):', error);
-    });
+    // Synchroniser avec Odoo CRM (mode synchrone avec timeout)
+    try {
+      console.log('🔄 Synchronisation Odoo en cours...');
+      await Promise.race([
+        syncLeadToOdoo(leadId, type, validatedData),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Timeout sync Odoo')), 8000)
+        )
+      ]);
+      console.log('✅ Synchronisation Odoo réussie');
+    } catch (error) {
+      console.error('❌ Erreur sync Odoo:', error);
+      // Continuer même si Odoo échoue - le lead est sauvé dans Firestore
+    }
 
     // Envoyer notification FCM aux admins
     const leadNotifData = type === 'b2b' 
@@ -276,15 +286,20 @@ async function syncLeadToOdoo(
   validatedData: any
 ): Promise<void> {
   try {
+    console.log(`🔄 Début syncLeadToOdoo pour ${type} (leadId: ${leadId})`);
+    
     // Vérifier si Odoo est configuré
     if (!isOdooConfigured()) {
       console.warn('⚠️ Odoo non configuré, lead non synchronisé');
-      return;
+      throw new Error('Configuration Odoo manquante');
     }
+
+    console.log('✅ Configuration Odoo validée');
 
     let odooResult;
 
     if (type === 'b2b') {
+      console.log('🎯 Création lead B2B dans Odoo...');
       // Mapper les données B2B pour Odoo
       const odooLead = {
         firstName: validatedData.firstName,
@@ -301,9 +316,12 @@ async function syncLeadToOdoo(
         venues: validatedData.venues,
       };
 
+      console.log('📋 Données B2B préparées:', JSON.stringify(odooLead, null, 2));
       odooResult = await createB2BLeadInOdoo(odooLead);
+      console.log('📤 Résultat création B2B:', odooResult);
 
     } else if (type === 'mariage') {
+      console.log('💒 Création lead Mariage dans Odoo...');
       // Mapper les données Mariage pour Odoo
       const odooLead = {
         // Nouveau schéma : firstName/lastName sont maintenant les champs principaux
@@ -326,7 +344,9 @@ async function syncLeadToOdoo(
         venues: validatedData.venues,
       };
 
+      console.log('📋 Données Mariage préparées:', JSON.stringify(odooLead, null, 2));
       odooResult = await createWeddingLeadInOdoo(odooLead);
+      console.log('📤 Résultat création Mariage:', odooResult);
     } else {
       console.error('Type de lead inconnu pour Odoo:', type);
       return;

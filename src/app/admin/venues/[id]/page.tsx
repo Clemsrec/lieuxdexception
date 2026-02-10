@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, Save, Loader2, FileText, MapPin, Users, Image as ImageIcon } from 'lucide-react';
 import Link from 'next/link';
+import ImagePicker from '@/components/admin/ImagePicker';
 
 /**
  * Page d'édition des lieux ULTRA-SIMPLIFIÉE 
@@ -103,7 +104,7 @@ export default function VenueEditPage() {
     setSaving(true);
     try {
       const response = await fetch(`/api/venues/${venueId}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
@@ -365,7 +366,7 @@ export default function VenueEditPage() {
           {activeTab === 'capacity' && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-semibold text-primary mb-4">Capacités d'accueil</h2>
+                <h2 className="text-xl font-semibold text-primary mb-4">Capacités d&apos;accueil</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -406,39 +407,63 @@ export default function VenueEditPage() {
               <div>
                 <h2 className="text-xl font-semibold text-primary mb-4">Images</h2>
                 
-                <div className="space-y-4">
+                <div className="space-y-6">
+                  {/* Image Hero */}
                   <div>
                     <label className="block text-sm font-medium text-primary mb-2">
                       Image Hero (principale) *
                     </label>
-                    <input
-                      type="url"
-                      value={formData.heroImage}
-                      onChange={(e) => updateField('heroImage', e.target.value)}
-                      className="form-input w-full"
-                      placeholder="https://firebasestorage.googleapis.com/..."
-                      required
-                    />
-                    <p className="text-xs text-secondary mt-1">
-                      Image principale affichée en haut de la page du lieu
-                    </p>
+                    <div className="space-y-3">
+                      {/* Input URL manuel */}
+                      <input
+                        type="url"
+                        value={formData.heroImage}
+                        onChange={(e) => updateField('heroImage', e.target.value)}
+                        className="form-input w-full"
+                        placeholder="https://firebasestorage.googleapis.com/..."
+                        required
+                      />
+                      
+                      {/* Bouton ImagePicker */}
+                      <ImagePicker
+                        currentValue={formData.heroImage}
+                        onSelect={(url, path) => updateField('heroImage', url)}
+                        initialPath="venues"
+                      />
+                      
+                      <p className="text-xs text-secondary">
+                        Image principale affichée en haut de la page du lieu (minimum 1920x1080px recommandé)
+                      </p>
+                    </div>
                   </div>
                   
+                  {/* Image Carte */}
                   <div>
                     <label className="block text-sm font-medium text-primary mb-2">
                       Image Carte *
                     </label>
-                    <input
-                      type="url"
-                      value={formData.cardImage}
-                      onChange={(e) => updateField('cardImage', e.target.value)}
-                      className="form-input w-full"
-                      placeholder="https://firebasestorage.googleapis.com/..."
-                      required
-                    />
-                    <p className="text-xs text-secondary mt-1">
-                      Image miniature affichée dans les listes et cartes
-                    </p>
+                    <div className="space-y-3">
+                      {/* Input URL manuel */}
+                      <input
+                        type="url"
+                        value={formData.cardImage}
+                        onChange={(e) => updateField('cardImage', e.target.value)}
+                        className="form-input w-full"
+                        placeholder="https://firebasestorage.googleapis.com/..."
+                        required
+                      />
+                      
+                      {/* Bouton ImagePicker */}
+                      <ImagePicker
+                        currentValue={formData.cardImage}
+                        onSelect={(url, path) => updateField('cardImage', url)}
+                        initialPath="venues"
+                      />
+                      
+                      <p className="text-xs text-secondary">
+                        Image miniature affichée dans les listes et cartes (minimum 800x600px recommandé)
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

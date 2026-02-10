@@ -1,100 +1,215 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Upload, Trash2, Grid3x3, RefreshCw, X } from 'lucide-react';
-import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
-import {
-  listFiles,
-  uploadFile,
-  deleteFile,
-  formatFileSize,
-  type StorageFile,
-} from '@/lib/storage';
+import { useDropzone } from 'react-dropzone';
+import { Upload, RefreshCw, Trash2, X, Grid3x3, FolderOpen, ArrowLeft, Folder } from 'lucide-react';
+
+interface StorageFile {
+  name: string;
+  fullPath: string;
+  url?: string;
+  size?: number;
+  timeCreated?: string;
+  contentType?: string;
+  isFolder?: boolean;
+}
+
+interface FileItem {
+  name: string;
+  fullPath: string;
+  url: string;
+  size: number;
+  timeCreated: string;
+  contentType: string;
+}
 
 /**
- * Page Galerie simplifiée - Garde uniquement l'essentiel
+ * Page Galerie avec navigation dans Firebase Storage
+ * - Navigation par dossiers 
  * - Upload d'images par drag & drop
- * - Visualisation grid des images
- * - Suppression simple
- * - Actualisation
+ * - Visualisation grid des images  
+ * - Suppression multiple
+ * - Utilise la nouvelle API /api/admin/storage avec Admin SDK
  */
-
 export default function GalerieAdminPage() {
-  const [files, setFiles] = useState<StorageFile[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [allItems, setAllItems] = useState<StorageFile[]>([]);
+  const [files, setFiles] = useState<FileItem[]>([]);
+  const [currentPath, setCurrentPath] = useState('');
   const [selectedFiles, setSelectedFiles] = useState<Set<string>>(new Set());
+  const [loading, setLoading] = useState(true);
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
-  useEffect(() => {
-    loadContent();
-  }, []);
-
-  // Charger les fichiers
+  // Charger le contenu du dossier actuel
   const loadContent = useCallback(async () => {
-    setLoading(true);
     try {
-      const allFiles = await listFiles('');
-      setFiles(allFiles.sort((a, b) => new Date(b.timeCreated).getTime() - new Date(a.timeCreated).getTime()));
+      setLoading(true);
+      const response = await fetch(`/api/admin/storage?path=${encodeURIComponent(currentPath)}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('Storage API response:', data);
+      
+      // Combiner les dossiers et fichiers de l'API
+      let allStorageItems: StorageFile[] = [];
+      
+      // Ajouter les dossiers (avec isFolder: true)
+      if (data.data?.folders) {
+        const folders = data.data.folders.map((folder: any, index: number) => ({
+          name: folder.name,
+          fullPath: folder.path || `folder-${index}`,
+          isFolder: true
+        }));
+        allStorageItems = allStorageItems.concat(folders);
+      }
+      
+      // Ajouter les fichiers (avec isFolder: false)  
+      if (data.data?.files) {
+        const files = data.data.files.map((file: any, index: number) => ({
+          ...file,
+          fullPath: file.fullPath || file.name || `file-${index}`,
+          isFolder: false
+        }));
+        allStorageItems = allStorageItems.concat(files);
+      }
+      
+      setAllItems(allStorageItems);
+      
+      // Filtrer seulement les fichiers images avec URL pour la grille
+      const imageFiles = allStorageItems.filter((item: StorageFile) => 
+        !item.isFolder && 
+        item.url && 
+        item.contentType?.startsWith('image/')
+      ) as FileItem[];
+      
+      setFiles(imageFiles);
+      
     } catch (error) {
-      console.error('Erreur chargement fichiers:', error);
+      console.error('Erreur lors du chargement:', error);
+      setAllItems([]);
+      setFiles([]);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [currentPath]);
 
-  // Upload des fichiers
+  useEffect(() => {
+    loadContent();
+  }, [loadContent]);
+
+  // Formatage taille fichier
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+  };
+
+  // Navigation dans les dossiers
+  const navigateToFolder = (folderPath: string) => {
+    setCurrentPath(folderPath);
+    setSelectedFiles(new Set()); // Reset sélection
+  };
+
+  const navigateBack = () => {
+    if (currentPath === '') return;
+    
+    // Remonter d'un niveau
+    const pathParts = currentPath.split('/').filter(Boolean);
+    pathParts.pop();
+    const parentPath = pathParts.join('/');
+    setCurrentPath(parentPath);
+    setSelectedFiles(new Set());
+  };
+
+  // Breadcrumb pour navigation
+  const getBreadcrumbs = () => {
+    if (currentPath === '') return ['Racine'];
+    
+    const parts = currentPath.split('/').filter(Boolean);
+    return ['Racine', ...parts];
+  };
+
+  // Upload de fichiers avec notre API existante (à adapter si nécessaire)
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    if (uploading) return;
+    
     setUploading(true);
     
     try {
-      // Upload tous les fichiers en parallèle
-      await Promise.all(
-        acceptedFiles.map((file) => {
-          const path = `uploads/${Date.now()}-${file.name}`;
-          return uploadFile(file, path);
-        })
-      );
+      // Pour l'instant, on upload dans le dossier courant
+      // TODO: Adapter l'upload API pour supporter les paths si nécessaire
+      for (const file of acceptedFiles) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('path', currentPath); // Ajout du path courant
+        
+        const response = await fetch('/api/admin/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Upload failed: ${response.statusText}`);
+        }
+      }
       
+      // Recharger après upload
       await loadContent();
       setShowUploadModal(false);
-      alert(`${acceptedFiles.length} fichier(s) uploadé(s)`);
+      
     } catch (error) {
       console.error('Erreur upload:', error);
       alert('Erreur lors de l\'upload');
     } finally {
       setUploading(false);
     }
-  }, [loadContent]);
+  }, [uploading, currentPath, loadContent]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp'],
+      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp']
     },
+    disabled: uploading
   });
 
-  // Supprimer fichiers sélectionnés
+  // Suppression des fichiers sélectionnés
   const handleDeleteSelected = async () => {
     if (selectedFiles.size === 0) return;
     
-    if (!confirm(`Supprimer ${selectedFiles.size} fichier(s) ?`)) return;
+    if (!confirm(`Supprimer ${selectedFiles.size} fichier(s) ?`)) {
+      return;
+    }
     
     try {
-      await Promise.all(
-        Array.from(selectedFiles).map((fullPath) => deleteFile(fullPath))
-      );
+      const filesToDelete = Array.from(selectedFiles);
+      
+      // Appeler API de suppression (à créer si nécessaire)
+      const response = await fetch('/api/admin/storage/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ files: filesToDelete }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Échec de la suppression');
+      }
+      
       setSelectedFiles(new Set());
       await loadContent();
-      alert('Fichiers supprimés');
+      
     } catch (error) {
       console.error('Erreur suppression:', error);
       alert('Erreur lors de la suppression');
     }
   };
 
-  // Sélection
   const toggleFileSelection = (fullPath: string) => {
     const newSelected = new Set(selectedFiles);
     if (newSelected.has(fullPath)) {
@@ -146,44 +261,100 @@ export default function GalerieAdminPage() {
           </div>
         </div>
 
-        {/* Barre d'outils */}
+        {/* Navigation Breadcrumb */}
         <div className="bg-white rounded-lg border border-neutral-200 shadow-sm p-4 mb-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-secondary">
-                {files.length} fichier(s) • {selectedFiles.size} sélectionné(s)
-              </span>
-              
-              {selectedFiles.size > 0 && (
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={clearSelection}
-                    className="btn-ghost btn-sm"
-                  >
-                    Désélectionner
-                  </button>
-                  <button
-                    onClick={handleDeleteSelected}
-                    className="btn-ghost btn-sm text-red-600 hover:bg-red-50 flex items-center gap-1"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                    Supprimer
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={selectAll}
-              className="btn-ghost btn-sm flex items-center gap-2"
-            >
-              <Grid3x3 className="w-4 h-4" />
-              Tout sélectionner
-            </button>
+          <div className="flex items-center gap-2">
+            {currentPath !== '' && (
+              <button
+                onClick={navigateBack}
+                className="btn-ghost btn-sm flex items-center gap-1 mr-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Retour
+              </button>
+            )}
+            
+            <nav className="flex items-center gap-1 text-sm">
+              {getBreadcrumbs().map((crumb, index) => (
+                <span key={index} className="flex items-center gap-1">
+                  {index > 0 && <span className="text-neutral-400">/</span>}
+                  <span className={index === getBreadcrumbs().length - 1 ? 'font-medium text-primary' : 'text-secondary'}>
+                    {crumb}
+                  </span>
+                </span>
+              ))}
+            </nav>
           </div>
         </div>
 
-        {/* Grid des fichiers */}
+        {/* Dossiers du niveau actuel */}
+        {allItems.some(item => item.isFolder) && (
+          <div className="bg-white rounded-lg border border-neutral-200 shadow-sm p-6 mb-6">
+            <h3 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+              <FolderOpen className="w-5 h-5" />
+              Dossiers
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {allItems
+                .filter(item => item.isFolder)
+                .map((folder, index) => (
+                  <button
+                    key={`folder-${folder.fullPath || folder.name || index}`}
+                    onClick={() => navigateToFolder(folder.fullPath)}
+                    className="p-4 border border-neutral-200 rounded-lg hover:border-accent hover:bg-accent/5 transition-colors text-left"
+                  >
+                    <div className="flex flex-col items-center gap-2">
+                      <Folder className="w-8 h-8 text-accent" />
+                      <span className="text-sm font-medium text-primary truncate w-full text-center">
+                        {folder.name}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+            </div>
+          </div>
+        )}
+
+        {/* Barre d'outils pour les fichiers */}
+        {files.length > 0 && (
+          <div className="bg-white rounded-lg border border-neutral-200 shadow-sm p-4 mb-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-secondary">
+                  {files.length} fichier(s) • {selectedFiles.size} sélectionné(s)
+                </span>
+                
+                {selectedFiles.size > 0 && (
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={clearSelection}
+                      className="btn-ghost btn-sm"
+                    >
+                      Désélectionner
+                    </button>
+                    <button
+                      onClick={handleDeleteSelected}
+                      className="btn-ghost btn-sm text-red-600 hover:bg-red-50 flex items-center gap-1"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Supprimer
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <button
+                onClick={selectAll}
+                className="btn-ghost btn-sm flex items-center gap-2"
+              >
+                <Grid3x3 className="w-4 h-4" />
+                Tout sélectionner
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Grid des fichiers images */}
         <div className="bg-white rounded-lg border border-neutral-200 shadow-sm">
           {loading ? (
             <div className="p-8 text-center text-secondary">
@@ -193,14 +364,14 @@ export default function GalerieAdminPage() {
           ) : files.length === 0 ? (
             <div className="p-8 text-center text-secondary">
               <Upload className="w-12 h-12 mx-auto mb-4 text-neutral-300" />
-              <p className="text-lg mb-2">Aucun fichier</p>
-              <p>Uploadez des images pour commencer</p>
+              <p className="text-lg mb-2">Aucun fichier image</p>
+              <p>Uploadez des images ou naviguez dans un dossier contenant des images</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 p-6">
-              {files.map((file) => (
+              {files.map((file, index) => (
                 <div
-                  key={file.fullPath}
+                  key={`file-${file.fullPath || file.name || index}`}
                   className={`relative group cursor-pointer rounded-lg border-2 transition-all ${
                     selectedFiles.has(file.fullPath)
                       ? 'border-accent bg-accent/10'
@@ -252,6 +423,11 @@ export default function GalerieAdminPage() {
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-primary">
                   Upload Images
+                  {currentPath && (
+                    <span className="text-sm text-secondary block">
+                      dans /{currentPath}
+                    </span>
+                  )}
                 </h3>
                 <button
                   onClick={() => setShowUploadModal(false)}

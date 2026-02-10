@@ -226,16 +226,8 @@ Date: ${new Date().toLocaleString('fr-FR')}
       function: lead.position || '',
       description: description, // Notes internes (onglet Description)
       priority: '1', // Marqueur haute priorité
-      
-      // 🎯 TRAÇABILITÉ SOURCE (visible dans Odoo CRM)
-      source_id: 1, // ID de la source "Site Web" (à créer dans Odoo)
-      medium_id: 2, // ID du medium "Organique" (à créer dans Odoo)
-      campaign_id: 3, // ID campagne "Lieux Exception 2026" (optionnel)
       referred: 'Site Web Lieux d\'Exception', // Champ référent visible
-      
       type: 'opportunity', // 'opportunity' ou 'lead' selon config Odoo
-      tag_ids: [[6, 0, [1, 2, 3]]], // Tags: [Site Web, B2B, Loire-Atlantique] - IDs à adapter
-      // team_id: 1, // ID de l'équipe CRM à affecter (optionnel)
     };
 
     // Créer le lead
@@ -326,16 +318,8 @@ export async function createWeddingLeadInOdoo(lead: OdooWeddingLead): Promise<Od
       phone: lead.phone || '',
       description: description.trim(), // Notes internes (onglet Description)
       priority: '2', // Priorité normale pour mariages
-      
-      // 🎯 TRAÇABILITÉ SOURCE (visible dans Odoo CRM)
-      source_id: 1, // ID de la source "Site Web" (à créer dans Odoo)
-      medium_id: 2, // ID du medium "Organique" (à créer dans Odoo)
-      campaign_id: 4, // ID campagne "Mariages 2026" (optionnel)
       referred: 'Site Web Lieux d\'Exception - Formulaire Mariages', // Champ référent visible
-      
       type: 'opportunity', // 'opportunity' ou 'lead' selon config Odoo
-      tag_ids: [[6, 0, [1, 5, 6]]], // Tags: [Site Web, Mariage, Loire-Atlantique] - IDs à adapter
-      // team_id: 2, // ID de l'équipe CRM Mariages (optionnel)
     };
 
     // Créer le lead

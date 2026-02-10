@@ -13,8 +13,7 @@
 import { useState } from 'react';
 import { Image as ImageIcon, Folder, X, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
-import StorageImagePicker from './StorageImagePicker';
-import type { StorageFile } from '@/lib/storage';
+import StorageImagePicker, { type StorageFile } from './StorageImagePicker';
 
 interface ImageInputFieldProps {
   /** Label du champ */

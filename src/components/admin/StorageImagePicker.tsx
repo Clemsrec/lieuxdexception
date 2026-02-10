@@ -3,6 +3,8 @@
  * 
  * Modal de sélection d'images depuis Firebase Storage
  * Permet de parcourir les dossiers, prévisualiser les images et sélectionner une URL
+ * 
+ * Utilise l'API route /api/admin/storage pour un accès sécurisé via Admin SDK
  */
 
 'use client';
@@ -10,7 +12,24 @@
 import { useState, useEffect } from 'react';
 import { X, Folder, Image as ImageIcon, ChevronRight, Search, Check } from 'lucide-react';
 import Image from 'next/image';
-import { listFiles, listFolders, formatFileSize, type StorageFile, type StorageFolder } from '@/lib/storage';
+
+// Types locaux (correspondent à l'API)
+export interface StorageFile {
+  name: string;
+  path: string;
+  url: string;
+  size: number;
+  contentType: string;
+  updated: string;
+  isImage: boolean;
+  thumbnail?: string;
+}
+
+export interface StorageFolder {
+  name: string;
+  path: string;
+  itemCount: number;
+}
 
 interface StorageImagePickerProps {
   /** Callback appelé lors de la sélection d'une image */
@@ -23,6 +42,15 @@ interface StorageImagePickerProps {
   title?: string;
   /** Dossier initial à afficher */
   initialPath?: string;
+}
+
+/**
+ * Formater la taille de fichier
+ */
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 /**
@@ -51,27 +79,31 @@ export default function StorageImagePicker({
   }, [currentPath]);
 
   /**
-   * Charger le contenu du dossier
+   * Charger le contenu du dossier via l'API
    */
   const loadContent = async () => {
     setLoading(true);
     setError(null);
     try {
-      const [filesData, foldersData] = await Promise.all([
-        listFiles(currentPath),
-        listFolders(currentPath),
-      ]);
-
-      // Filtrer uniquement les images
-      const imageFiles = filesData.filter(file => 
-        file.contentType?.startsWith('image/')
+      const response = await fetch(
+        `/api/admin/storage?path=${encodeURIComponent(currentPath)}&recursive=false`
       );
 
-      setFiles(imageFiles);
-      setFolders(foldersData);
-    } catch (err) {
+      if (!response.ok) {
+        throw new Error(`Erreur ${response.status}`);
+      }
+
+      const result = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.error || 'Erreur inconnue');
+      }
+
+      setFiles(result.data.files);
+      setFolders(result.data.folders);
+    } catch (err: any) {
       console.error('Erreur chargement Storage:', err);
-      setError('Impossible de charger les images');
+      setError(err.message || 'Impossible de charger les images');
     } finally {
       setLoading(false);
     }
@@ -81,7 +113,7 @@ export default function StorageImagePicker({
    * Naviguer vers un dossier
    */
   const navigateToFolder = (folder: StorageFolder) => {
-    setCurrentPath(folder.fullPath);
+    setCurrentPath(folder.path);
     setSearchQuery('');
   };
 
@@ -212,7 +244,7 @@ export default function StorageImagePicker({
                   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
                     {folders.map((folder) => (
                       <button
-                        key={folder.fullPath}
+                        key={folder.path}
                         onClick={() => navigateToFolder(folder)}
                         className="flex flex-col items-center gap-2 p-4 border-2 border-neutral-200 rounded-lg hover:border-accent hover:bg-accent/5 transition-all group"
                       >
@@ -235,10 +267,10 @@ export default function StorageImagePicker({
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {filteredFiles.map((file) => (
                       <button
-                        key={file.fullPath}
+                        key={file.path}
                         onClick={() => handleSelectImage(file)}
                         className={`relative group border-2 rounded-lg overflow-hidden transition-all ${
-                          selectedFile?.fullPath === file.fullPath
+                          selectedFile?.path === file.path
                             ? 'border-accent ring-2 ring-accent'
                             : 'border-neutral-200 hover:border-accent'
                         }`}
@@ -247,7 +279,7 @@ export default function StorageImagePicker({
                         <div className="aspect-square relative bg-neutral-100">
                           <Image
                             src={file.url}
-                            alt={file.customMetadata?.alt || file.name}
+                            alt={file.name}
                             fill
                             className="object-cover"
                             sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -262,7 +294,7 @@ export default function StorageImagePicker({
                           </div>
 
                           {/* Icône de sélection */}
-                          {selectedFile?.fullPath === file.fullPath && (
+                          {selectedFile?.path === file.path && (
                             <div className="absolute top-2 right-2 bg-accent text-white rounded-full p-1">
                               <Check className="w-5 h-5" />
                             </div>
