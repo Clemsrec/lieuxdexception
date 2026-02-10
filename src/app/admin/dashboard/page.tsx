@@ -135,7 +135,7 @@ export default function AdminDashboardPage() {
             </div>
           </Link>
           <Link
-            href="/admin/leads"
+            href="/admin/analytics"
             className="flex items-center gap-3 p-4 border-2 border-neutral-200 rounded-lg hover:border-accent hover:bg-accent/5 transition-colors"
           >
             <Mail className="w-8 h-8 text-accent" />
@@ -164,7 +164,7 @@ export default function AdminDashboardPage() {
             Leads récents
           </h2>
           <Link
-            href="/admin/leads"
+            href="/admin/analytics"
             className="text-sm text-accent hover:text-accent-dark transition-colors"
           >
             Voir tout →

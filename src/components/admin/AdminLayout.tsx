@@ -57,9 +57,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       icon: ImageIcon,
     },
     {
-      label: 'Leads & Contacts',
-      href: '/admin/leads',
-      icon: Mail,
+      label: 'Assets',
+      href: '/admin/assets',
+      icon: Settings,
     },
     {
       label: 'Utilisateurs',
@@ -70,11 +70,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       label: 'Statistiques',
       href: '/admin/analytics',
       icon: BarChart3,
-    },
-    {
-      label: 'Paramètres',
-      href: '/admin/settings',
-      icon: Settings,
     },
   ];
 

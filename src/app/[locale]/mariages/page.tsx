@@ -122,7 +122,7 @@ export default async function MariagesPage({
      venueName="Le Château de la Brûlaire"
      venueSlug="chateau-brulaire"
      locale={locale}
-     bgColor="white"
+     bgColor="neutral-800"
      images={brulaire_images}
     />
 
@@ -131,7 +131,7 @@ export default async function MariagesPage({
      venueName="Le Château de la Corbe"
      venueSlug="chateau-corbe"
      locale={locale}
-     bgColor="stone-50"
+     bgColor="neutral-800"
      images={corbe_images}
     />
 
@@ -140,7 +140,7 @@ export default async function MariagesPage({
      venueName="Le Domaine Nantais"
      venueSlug="domaine-nantais"
      locale={locale}
-     bgColor="white"
+     bgColor="neutral-800"
      images={nantais_images}
     />
 
@@ -149,7 +149,7 @@ export default async function MariagesPage({
      venueName="Le Manoir de la Boulaie"
      venueSlug="manoir-boulaie"
      locale={locale}
-     bgColor="stone-50"
+     bgColor="neutral-800"
      images={boulaie_images}
     />
 
@@ -158,7 +158,7 @@ export default async function MariagesPage({
      venueName="Le Dôme"
      venueSlug="le-dome"
      locale={locale}
-     bgColor="white"
+     bgColor="neutral-800"
      images={dome_images}
     />
    </section>

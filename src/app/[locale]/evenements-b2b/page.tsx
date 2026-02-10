@@ -197,7 +197,7 @@ export default async function EvenementsB2BPage({
      venueName="Le Château de la Corbe"
      venueSlug="chateau-corbe"
      locale={locale}
-     bgColor="white"
+     bgColor="neutral-800"
      images={corbe_images}
     />
 
@@ -215,7 +215,7 @@ export default async function EvenementsB2BPage({
      venueName="Le Manoir de la Boulaie"
      venueSlug="manoir-boulaie"
      locale={locale}
-     bgColor="white"
+     bgColor="neutral-800"
      images={boulaie_images}
     />
    </section>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, Eye, MapPin, Users, Euro, Search, Filter, X } from 'lucide-react';
+import { Edit2, Trash2, Eye, MapPin, Users, Euro, Search, Filter, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -127,14 +127,6 @@ export default function VenuesAdminPage() {
             {venues.length} lieu{venues.length > 1 ? 'x' : ''} au total • {filteredVenues.length} affiché{filteredVenues.length > 1 ? 's' : ''}
           </p>
         </div>
-
-        <Link
-          href="/admin/venues/nouveau"
-          className="btn btn-primary flex items-center gap-2"
-        >
-          <Plus className="w-5 h-5" />
-          Nouveau lieu
-        </Link>
       </div>
 
       {/* Barre de recherche et filtres */}
