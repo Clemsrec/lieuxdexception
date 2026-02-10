@@ -2,36 +2,31 @@
 
 import { useEffect, useState } from 'react';
 import { NotificationPrompt } from '@/components/admin/Notifications';
-import { collection, query, orderBy, limit, getDocs, where, Timestamp } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase-client';
 import Link from 'next/link';
 import { Castle, Mail, TrendingUp, Bell, BarChart3, Eye, Users } from 'lucide-react';
 
 /**
  * Dashboard admin principal
- * - Stats globales (lieux, leads)
- * - Leads récents
- * - Graphiques GA4 (à intégrer)
+ * - Stats globales des lieux
+ * - Actions rapides de gestion
+ * - Lien vers Odoo pour les leads
+ * 
+ * Note: Les leads sont maintenant gérés exclusivement dans Odoo CRM
  */
 
 interface DashboardStats {
   totalVenues: number;
-  totalLeads: number;
-  leadsThisMonth: number;
-  recentLeads: Array<{
-    id: string;
-    type: string;
-    contactInfo: { firstName: string; lastName: string; email: string };
-    createdAt: Date;
-  }>;
+  activeVenues: number;
+  lastUpdated: Date;
 }
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState<DashboardStats>({
     totalVenues: 0,
-    totalLeads: 0,
-    leadsThisMonth: 0,
-    recentLeads: [],
+    activeVenues: 0,
+    lastUpdated: new Date(),
   });
   const [loading, setLoading] = useState(true);
 
@@ -43,43 +38,24 @@ export default function AdminDashboardPage() {
     if (!db) return;
 
     try {
-      // 1. Compter les lieux
+      // Charger les statistiques des lieux
       const venuesSnapshot = await getDocs(collection(db, 'venues'));
-      const totalVenues = venuesSnapshot.size;
-
-      // 2. Compter les leads
-      const leadsSnapshot = await getDocs(collection(db, 'leads'));
-      const totalLeads = leadsSnapshot.size;
-
-      // 3. Leads du mois en cours
-      const startOfMonth = new Date();
-      startOfMonth.setDate(1);
-      startOfMonth.setHours(0, 0, 0, 0);
-
-      const leadsThisMonthSnapshot = await getDocs(
-        query(
-          collection(db, 'leads'),
-          where('createdAt', '>=', Timestamp.fromDate(startOfMonth))
-        )
-      );
-      const leadsThisMonth = leadsThisMonthSnapshot.size;
-
-      // 4. Leads récents (5 derniers)
-      const recentLeadsSnapshot = await getDocs(
-        query(collection(db, 'leads'), orderBy('createdAt', 'desc'), limit(5))
-      );
-
-      const recentLeads = recentLeadsSnapshot.docs.map((doc) => ({
+      const venuesData = venuesSnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
-        createdAt: doc.data().createdAt?.toDate() || new Date(),
-      })) as any[];
+      })) as Array<{
+        id: string;
+        isActive?: boolean;
+        [key: string]: any;
+      }>;
+
+      const totalVenues = venuesData.length;
+      const activeVenues = venuesData.filter(venue => venue.isActive === true).length;
 
       setStats({
         totalVenues,
-        totalLeads,
-        leadsThisMonth,
-        recentLeads,
+        activeVenues,
+        lastUpdated: new Date(),
       });
     } catch (error) {
       console.error('Erreur chargement dashboard:', error);
@@ -94,27 +70,28 @@ export default function AdminDashboardPage() {
       <NotificationPrompt />
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <StatCard
-          title="Lieux actifs"
+          title="Total Lieux"
           value={stats.totalVenues}
           icon={<Castle className="w-6 h-6" />}
           color="bg-charcoal-800"
           loading={loading}
         />
         <StatCard
-          title="Leads totaux"
-          value={stats.totalLeads}
-          icon={<Mail className="w-6 h-6" />}
+          title="Lieux Actifs"
+          value={stats.activeVenues}
+          icon={<Eye className="w-6 h-6" />}
           color="bg-accent"
           loading={loading}
         />
         <StatCard
-          title="Leads ce mois"
-          value={stats.leadsThisMonth}
+          title="Dernière MAJ"
+          value={stats.lastUpdated.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
           icon={<TrendingUp className="w-6 h-6" />}
           color="bg-success"
           loading={loading}
+          isString={true}
         />
       </div>
 
@@ -134,16 +111,18 @@ export default function AdminDashboardPage() {
               <p className="text-xs text-secondary">Ajouter, modifier, supprimer</p>
             </div>
           </Link>
-          <Link
-            href="/admin/analytics"
+          <a
+            href="https://groupe-lr.odoo.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-3 p-4 border-2 border-neutral-200 rounded-lg hover:border-accent hover:bg-accent/5 transition-colors"
           >
             <Mail className="w-8 h-8 text-accent" />
             <div>
-              <p className="font-medium text-charcoal-900">Voir les leads</p>
-              <p className="text-xs text-secondary">Contacts et demandes</p>
+              <p className="font-medium text-charcoal-900">CRM Odoo</p>
+              <p className="text-xs text-secondary">Leads et contacts</p>
             </div>
-          </Link>
+          </a>
           <Link
             href="/admin/analytics"
             className="flex items-center gap-3 p-4 border-2 border-neutral-200 rounded-lg hover:border-accent hover:bg-accent/5 transition-colors"
@@ -151,59 +130,53 @@ export default function AdminDashboardPage() {
             <BarChart3 className="w-8 h-8 text-accent" />
             <div>
               <p className="font-medium text-charcoal-900">Statistiques</p>
-              <p className="text-xs text-secondary">Google Analytics 4</p>
+              <p className="text-xs text-secondary">Analytics des lieux</p>
             </div>
           </Link>
         </div>
       </div>
 
-      {/* Leads récents */}
+      {/* Gestion des Leads - Odoo CRM */}
       <div className="bg-white rounded-xl shadow-md border border-neutral-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-heading font-semibold text-charcoal-900">
-            Leads récents
+            Gestion des Demandes de Contact
           </h2>
-          <Link
-            href="/admin/analytics"
+          <a
+            href="https://groupe-lr.odoo.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm text-accent hover:text-accent-dark transition-colors"
           >
-            Voir tout →
-          </Link>
+            Ouvrir Odoo CRM →
+          </a>
         </div>
 
-        {loading ? (
-          <div className="text-center py-8 text-secondary">Chargement...</div>
-        ) : stats.recentLeads.length === 0 ? (
-          <div className="text-center py-8 text-secondary">Aucun lead pour le moment</div>
-        ) : (
-          <div className="space-y-3">
-            {stats.recentLeads.map((lead) => (
-              <div
-                key={lead.id}
-                className="flex items-center justify-between p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+              <Mail className="w-6 h-6 text-blue-600" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-medium text-blue-900 mb-2">
+                Toutes les demandes sont dans Odoo CRM
+              </h3>
+              <p className="text-sm text-blue-700 mb-4">
+                Les formulaires de contact (B2B et Mariages) synchronisent automatiquement 
+                tous les leads vers le CRM Odoo du Groupe LR.
+              </p>
+              <a
+                href="https://groupe-lr.odoo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
               >
-                <div className="flex-1">
-                  <p className="font-medium text-charcoal-900">
-                    {lead.contactInfo.firstName} {lead.contactInfo.lastName}
-                  </p>
-                  <p className="text-sm text-secondary">{lead.contactInfo.email}</p>
-                  <p className="text-xs text-secondary mt-1">
-                    Type: {lead.type === 'b2b' ? 'B2B' : 'Mariage'}
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-xs text-secondary">
-                    {new Date(lead.createdAt).toLocaleDateString('fr-FR', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric',
-                    })}
-                  </p>
-                </div>
-              </div>
-            ))}
+                <Mail className="w-4 h-4" />
+                Accéder à Odoo CRM
+              </a>
+            </div>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Placeholder Google Analytics */}
@@ -281,13 +254,14 @@ export default function AdminDashboardPage() {
 // Composant carte statistique
 interface StatCardProps {
   title: string;
-  value: number;
+  value: number | string;
   icon: React.ReactNode;
   color: string;
   loading: boolean;
+  isString?: boolean;
 }
 
-function StatCard({ title, value, icon, color, loading }: StatCardProps) {
+function StatCard({ title, value, icon, color, loading, isString = false }: StatCardProps) {
   return (
     <div className="bg-white rounded-xl shadow-md border border-neutral-200 p-6">
       <div className="flex items-start justify-between">
@@ -296,7 +270,9 @@ function StatCard({ title, value, icon, color, loading }: StatCardProps) {
           {loading ? (
             <div className="w-16 h-8 bg-neutral-200 animate-pulse rounded" />
           ) : (
-            <p className="text-3xl font-bold text-charcoal-900">{value}</p>
+            <p className={`${isString ? 'text-xl' : 'text-3xl'} font-bold text-charcoal-900`}>
+              {value}
+            </p>
           )}
         </div>
         <div className={`${color} text-white w-12 h-12 rounded-lg flex items-center justify-center`}>
