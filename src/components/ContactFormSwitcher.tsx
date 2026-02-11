@@ -212,18 +212,6 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
       </p>
      </div>
 
-     {formState.success && (
-      <div className="p-4 bg-green-50 border-2 border-green-500 text-green-800">
-       ✅ Votre demande a été envoyée avec succès ! Nous vous contacterons sous 24-48h.
-      </div>
-     )}
-
-     {formState.error && (
-      <div className="p-4 bg-red-50 border-2 border-red-500 text-red-800">
-       ❌ {formState.error}
-      </div>
-     )}
-
      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
        <label className="block text-sm font-medium mb-2">
@@ -441,6 +429,18 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
       placeholder="Laissez ce champ vide"
      />
 
+     {formState.success && (
+      <div className="p-4 bg-green-50 border-2 border-green-500 text-green-800">
+       ✅ Votre demande a été envoyée avec succès ! Nous vous contacterons sous 24-48h.
+      </div>
+     )}
+
+     {formState.error && (
+      <div className="p-4 bg-red-50 border-2 border-red-500 text-red-800">
+       ❌ {formState.error}
+      </div>
+     )}
+
      <button
       type="submit"
       disabled={formState.loading}
@@ -460,18 +460,6 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
        Mariages, anniversaires, célébrations familiales
       </p>
      </div>
-
-     {formState.success && (
-      <div className="p-4 bg-green-50 border-2 border-green-500 text-green-800">
-       ✅ Votre demande a été envoyée avec succès ! Nous vous contacterons sous 24-48h.
-      </div>
-     )}
-
-     {formState.error && (
-      <div className="p-4 bg-red-50 border-2 border-red-500 text-red-800">
-       ❌ {formState.error}
-      </div>
-     )}
 
      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
@@ -637,6 +625,18 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
       className="absolute -left-[9999px] w-1 h-1 opacity-0 pointer-events-none"
       placeholder="Laissez ce champ vide"
      />
+
+     {formState.success && (
+      <div className="p-4 bg-green-50 border-2 border-green-500 text-green-800">
+       ✅ Votre demande a été envoyée avec succès ! Nous vous contacterons sous 24-48h.
+      </div>
+     )}
+
+     {formState.error && (
+      <div className="p-4 bg-red-50 border-2 border-red-500 text-red-800">
+       ❌ {formState.error}
+      </div>
+     )}
 
      <button
       type="submit"
