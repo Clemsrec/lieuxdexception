@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { type, website, ...formData } = body;
+    const { type, website, ...rawFormData } = body;
 
     // 2. Honeypot anti-bot (champ caché 'website')
     if (website) {
@@ -63,7 +63,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validation selon le type de formulaire
+    // 2.5. Nettoyer les chaînes vides AVANT validation (les convertir en undefined)
+    const formData: any = { ...rawFormData };
+    Object.keys(formData).forEach(key => {
+      if (formData[key] === '' || formData[key] === null) {
+        delete formData[key];
+      }
+      // Nettoyer aussi dans les sous-objets (bride, groom)
+      if (typeof formData[key] === 'object' && formData[key] !== null && !Array.isArray(formData[key])) {
+        Object.keys(formData[key]).forEach(subKey => {
+          if (formData[key][subKey] === '' || formData[key][subKey] === null) {
+            delete formData[key][subKey];
+          }
+        });
+        // Supprimer l'objet parent s'il est vide
+        if (Object.keys(formData[key]).length === 0) {
+          delete formData[key];
+        }
+      }
+    });
+
+    // 3. Validation selon le type de formulaire
     let validationResult;
     if (type === 'b2b') {
       validationResult = validateData(b2bFormSchema, formData);
@@ -80,7 +100,9 @@ export async function POST(request: NextRequest) {
     if (!validationResult.success) {
       console.warn('[Security] Validation Zod échouée:', {
         ip: clientIp,
+        type,
         errors: validationResult.errors,
+        receivedData: Object.keys(formData), // Log des clés reçues pour debug
       });
       return NextResponse.json(
         { error: 'Données invalides', details: validationResult.errors },
@@ -106,9 +128,7 @@ export async function POST(request: NextRequest) {
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
 
-      const email = type === 'b2b' 
-        ? validatedData.email 
-        : validatedData.email;
+      const email = validatedData.email;
 
       const duplicateQuery = query(
         collection(db, 'leads'),
@@ -175,7 +195,7 @@ export async function POST(request: NextRequest) {
       : {
           leadId,
           type,
-          // Nouveau schéma : firstName/lastName sont les champs principaux
+          // Contact principal (firstName/lastName toujours présents)
           contactName: (validatedData as any).bride?.firstName && (validatedData as any).groom?.firstName
             ? `${(validatedData as any).bride.firstName} ${(validatedData as any).bride.lastName || ''} & ${(validatedData as any).groom.firstName} ${(validatedData as any).groom.lastName || ''}`
             : `${(validatedData as any).firstName} ${(validatedData as any).lastName}`,

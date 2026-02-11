@@ -155,44 +155,49 @@ export const quickContactSchema = z.object({
 
 /**
  * Formulaire B2B
- * Seuls obligatoires : nom, prénom, email, téléphone, société, type événement, nb personnes
+ * Seuls obligatoires : nom, prénom, email, téléphone, société, type événement
  */
 export const b2bFormSchema = z.object({
-  // Informations de contact
+  // Informations de contact (OBLIGATOIRES)
   firstName: nameSchema,
   lastName: nameSchema,
   email: emailSchema,
   phone: phoneSchema,
-  company: z.string().min(2).max(100),
+  company: z.string().min(2, 'Société requise').max(100, 'Société trop longue'),
   position: z.string().max(100).optional(),
   
   // Détails de l'événement
-  eventType: z.enum(['seminar', 'conference', 'team_building', 'corporate']),
-  eventDate: z.string().optional(), // String simple au lieu de futureDateSchema
-  guestCount: z.string().optional(), // String depuis input number HTML
+  eventType: z.enum(['seminar', 'conference', 'team_building', 'corporate'], {
+    errorMap: () => ({ message: 'Type d\'événement invalide' }),
+  }),
+  eventDate: z.string().min(1).optional().or(z.literal('')), // Accepte chaîne vide ou date
+  guestCount: z.string().optional().or(z.literal('')), // Accepte chaîne vide ou nombre
   budget: z.number().min(0).optional(),
   requirements: messageSchema.optional(),
-  message: messageSchema.optional(), // Ajout du champ message
+  message: messageSchema.optional(),
   
   // Lieu souhaité
   venueId: z.string().optional(),
   
-  // Consentement
-  acceptPrivacy: z.literal(true),
+  // Consentement (OBLIGATOIRE)
+  acceptPrivacy: z.literal(true, {
+    errorMap: () => ({ message: 'Vous devez accepter la politique de confidentialité' }),
+  }),
 });
 
 /**
  * Formulaire Mariage
- * Seuls obligatoires : nom, prénom, email, téléphone
+ * Obligatoires : nom, prénom, email, téléphone du contact principal
+ * Optionnels : détails bride/groom, date, nombre invités, budget
  */
 export const weddingFormSchema = z.object({
-  // Contact (OBLIGATOIRES SEULEMENT)
+  // Contact principal (OBLIGATOIRES)
   firstName: nameSchema,
   lastName: nameSchema,
   email: emailSchema,
   phone: phoneSchema,
   
-  // Couple (OPTIONNELS)
+  // Détails du couple (OPTIONNELS)
   bride: z.object({
     firstName: nameSchema.optional(),
     lastName: nameSchema.optional(),
@@ -202,18 +207,20 @@ export const weddingFormSchema = z.object({
     lastName: nameSchema.optional(),
   }).optional(),
   
-  // Événement (TOUS OPTIONNELS)
-  weddingDate: z.string().optional(), // Chaîne au lieu de futureDateSchema
-  guestCount: z.string().optional(), // String depuis le select HTML
+  // Détails événement (TOUS OPTIONNELS)
+  weddingDate: z.string().optional().or(z.literal('')), // Accepte chaîne vide ou date
+  guestCount: z.string().optional().or(z.literal('')), // Accepte chaîne vide ou nombre
   budget: z.number().min(0).optional(),
   requirements: messageSchema.optional(),
-  message: messageSchema.optional(), // Ajout du champ message
+  message: messageSchema.optional(),
   
-  // Lieu souhaité
+  // Lieu souhaité (OPTIONNEL)
   venueId: z.string().optional(),
   
-  // Consentement
-  acceptPrivacy: z.literal(true),
+  // Consentement (OBLIGATOIRE)
+  acceptPrivacy: z.literal(true, {
+    errorMap: () => ({ message: 'Vous devez accepter la politique de confidentialité' }),
+  }),
 });
 
 // ===========================================

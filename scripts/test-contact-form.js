@@ -36,7 +36,7 @@ const testB2BData = {
   position: 'Directeur Événementiel',
   eventType: 'seminar',
   eventDate: eventDateStr,
-  guestCount: 80,
+  guestCount: '80', // STRING pour correspondre au schéma
   message: 'Ceci est un test du formulaire B2B depuis le script terminal.\n\nBesoins: Déjeuner, Cocktail',
   acceptPrivacy: true,
 };
@@ -49,6 +49,12 @@ const weddingDateStr = futureDateWedding.toISOString().split('T')[0];
 
 const testMariageData = {
   type: 'mariage',
+  // Contact principal (OBLIGATOIRE selon schéma)
+  firstName: 'Marie',
+  lastName: 'Martin',
+  email: 'marie.pierre@test-mariage.fr',
+  phone: '+33 6 98 76 54 32',
+  // Détails du couple (OPTIONNELS)
   bride: {
     firstName: 'Marie',
     lastName: 'Martin',
@@ -57,10 +63,9 @@ const testMariageData = {
     firstName: 'Pierre',
     lastName: 'Durand',
   },
-  email: 'marie.pierre@test-mariage.fr',
-  phone: '+33 6 98 76 54 32',
+  // Détails événement (OPTIONNELS)
   weddingDate: weddingDateStr,
-  guestCount: 120,
+  guestCount: '120', // STRING pour correspondre au schéma
   message: 'Ceci est un test du formulaire Mariage depuis le script terminal.\n\nLieux intéressants: Le Château de la Corbe, Le Manoir de la Boulaie',
   acceptPrivacy: true,
 };

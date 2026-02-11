@@ -81,10 +81,11 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
    email: formData.get('email'),
    phone: formData.get('phone'),
    company: formData.get('company'),
-   position: formData.get('position'),
+   position: formData.get('position')?.toString().trim() || undefined,
    eventType: formData.get('eventType'),
-   eventDate: formData.get('eventDate') || undefined,
-   guestCount: formData.get('guestCount') || undefined, // String depuis input
+   // N'envoyer que si non-vide (undefined > chaîne vide)
+   eventDate: formData.get('eventDate')?.toString().trim() || undefined,
+   guestCount: formData.get('guestCount')?.toString().trim() || undefined,
    message: `${formData.get('message') || ''}\n\nBesoins: ${needs.join(', ')}`,
    acceptPrivacy: true,
   };
@@ -138,8 +139,8 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
   if (formData.get('venue-dome')) venues.push('Le Dôme');
 
   // Construire bride/groom seulement si prénoms fournis
-  const brideFirstName = formData.get('brideFirstName');
-  const groomFirstName = formData.get('groomFirstName');
+  const brideFirstName = formData.get('brideFirstName')?.toString().trim();
+  const groomFirstName = formData.get('groomFirstName')?.toString().trim();
 
   const payload: any = {
    type: 'mariage',
@@ -147,8 +148,9 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
    lastName: formData.get('lastName'),
    email: formData.get('email'),
    phone: formData.get('phone'),
-   weddingDate: formData.get('eventDate') || undefined,
-   guestCount: formData.get('guestCount') || undefined,
+   // N'envoyer que si non-vide (undefined > chaîne vide)
+   weddingDate: formData.get('eventDate')?.toString().trim() || undefined,
+   guestCount: formData.get('guestCount')?.toString().trim() || undefined,
    message: `${formData.get('message') || ''}\n\nLieux intéressants: ${venues.join(', ')}`,
    acceptPrivacy: true,
   };
@@ -157,13 +159,13 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
   if (brideFirstName) {
    payload.bride = {
     firstName: brideFirstName,
-    lastName: formData.get('brideLastName') || undefined,
+    lastName: formData.get('brideLastName')?.toString().trim() || undefined,
    };
   }
   if (groomFirstName) {
    payload.groom = {
     firstName: groomFirstName,
-    lastName: formData.get('groomLastName') || undefined,
+    lastName: formData.get('groomLastName')?.toString().trim() || undefined,
    };
   }
 
