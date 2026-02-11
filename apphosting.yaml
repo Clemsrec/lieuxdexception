@@ -112,12 +112,13 @@ env:
   # ============================================================================
   # UPSTASH REDIS - Rate Limiting (Production)
   # ============================================================================
-  - variable: UPSTASH_REDIS_REST_URL
-    secret: UPSTASH_REDIS_REST_URL
-    availability:
-      - RUNTIME
-  
-  - variable: UPSTASH_REDIS_REST_TOKEN
-    secret: UPSTASH_REDIS_REST_TOKEN
-    availability:
-      - RUNTIME
+  # TODO: Créer compte Upstash Redis et configurer ces secrets
+  # - variable: UPSTASH_REDIS_REST_URL
+  #   secret: UPSTASH_REDIS_REST_URL
+  #   availability:
+  #     - RUNTIME
+  # 
+  # - variable: UPSTASH_REDIS_REST_TOKEN
+  #   secret: UPSTASH_REDIS_REST_TOKEN
+  #   availability:
+  #     - RUNTIME
