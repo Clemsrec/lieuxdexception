@@ -138,10 +138,6 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
   if (formData.get('venue-nantais')) venues.push('Le Domaine Nantais');
   if (formData.get('venue-dome')) venues.push('Le Dôme');
 
-  // Construire bride/groom seulement si prénoms fournis
-  const brideFirstName = formData.get('brideFirstName')?.toString().trim();
-  const groomFirstName = formData.get('groomFirstName')?.toString().trim();
-
   const payload: any = {
    type: 'mariage',
    firstName: formData.get('firstName'),
@@ -154,20 +150,6 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
    message: `${formData.get('message') || ''}\n\nLieux intéressants: ${venues.join(', ')}`,
    acceptPrivacy: true,
   };
-
-  // Ajouter bride/groom si fournis (optionnels)
-  if (brideFirstName) {
-   payload.bride = {
-    firstName: brideFirstName,
-    lastName: formData.get('brideLastName')?.toString().trim() || undefined,
-   };
-  }
-  if (groomFirstName) {
-   payload.groom = {
-    firstName: groomFirstName,
-    lastName: formData.get('groomLastName')?.toString().trim() || undefined,
-   };
-  }
 
   try {
    const response = await fetch('/api/contact/submit', {
@@ -516,32 +498,6 @@ export default function ContactFormSwitcher({ defaultForm = 'b2b', initialForm }
         className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
         placeholder="Votre nom"
         required
-        disabled={formState.loading}
-       />
-      </div>
-
-      <div>
-       <label className="block text-sm font-medium mb-2">
-        Prénom (Mariée)
-       </label>
-       <input
-        type="text"
-        name="brideFirstName"
-        className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
-        placeholder="Prénom (optionnel)"
-        disabled={formState.loading}
-       />
-      </div>
-
-      <div>
-       <label className="block text-sm font-medium mb-2">
-        Prénom (Marié)
-       </label>
-       <input
-        type="text"
-        name="groomFirstName"
-        className="w-full px-4 py-3 bg-white border-2 border-stone focus:ring-2 focus:ring-accent focus:border-accent"
-        placeholder="Prénom (optionnel)"
         disabled={formState.loading}
        />
       </div>

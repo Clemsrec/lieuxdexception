@@ -85,3 +85,39 @@ env:
     availability:
       - BUILD
       - RUNTIME
+
+  # ============================================================================
+  # ODOO CRM - API Integration
+  # ============================================================================
+  - variable: ODOO_URL
+    value: https://groupe-lr.odoo.com
+    availability:
+      - RUNTIME
+  
+  - variable: ODOO_DB
+    value: groupe-lr
+    availability:
+      - RUNTIME
+  
+  - variable: ODOO_USERNAME
+    value: domainenantais@gmail.com
+    availability:
+      - RUNTIME
+  
+  - variable: ODOO_API_KEY
+    secret: ODOO_API_KEY  # Stocké dans Google Secret Manager
+    availability:
+      - RUNTIME
+
+  # ============================================================================
+  # UPSTASH REDIS - Rate Limiting (Production)
+  # ============================================================================
+  - variable: UPSTASH_REDIS_REST_URL
+    secret: UPSTASH_REDIS_REST_URL
+    availability:
+      - RUNTIME
+  
+  - variable: UPSTASH_REDIS_REST_TOKEN
+    secret: UPSTASH_REDIS_REST_TOKEN
+    availability:
+      - RUNTIME
