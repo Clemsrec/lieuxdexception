@@ -37,9 +37,11 @@ export async function generateMetadata({
     keywords: t('keywords'),
     icons: {
       icon: [
+        { url: '/favicon.ico', sizes: 'any' },
         { url: '/logos/Logo-CLE-seule-04-11-01.svg', type: 'image/svg+xml' },
       ],
       apple: '/logos/Logo-CLE-seule-04-11-01.svg',
+      shortcut: '/favicon.ico',
     },
     authors: [{ name: 'Groupe Riou' }],
     creator: 'Groupe Riou',
