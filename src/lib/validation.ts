@@ -179,6 +179,9 @@ export const b2bFormSchema = z.object({
   // Lieu souhaité
   venueId: z.string().optional(),
   
+  // Lieux sélectionnés (array pour checkboxes multiples)
+  venues: z.array(z.string()).optional(),
+  
   // Consentement (OBLIGATOIRE)
   acceptPrivacy: z.literal(true, {
     errorMap: () => ({ message: 'Vous devez accepter la politique de confidentialité' }),
@@ -216,6 +219,9 @@ export const weddingFormSchema = z.object({
   
   // Lieu souhaité (OPTIONNEL)
   venueId: z.string().optional(),
+  
+  // Lieux sélectionnés (array pour checkboxes multiples)
+  venues: z.array(z.string()).optional(),
   
   // Consentement (OBLIGATOIRE)
   acceptPrivacy: z.literal(true, {

@@ -217,17 +217,31 @@ Source: Site Web Lieux d'Exception
 Date: ${new Date().toLocaleString('fr-FR')}
     `.trim();
 
-    const leadData = {
+    // Préparer les tags pour les lieux sélectionnés
+    const tagIds: any[] = [];
+    if (lead.venues && lead.venues.length > 0) {
+      // Créer un tag pour chaque lieu sélectionné
+      lead.venues.forEach(venue => {
+        tagIds.push([0, 0, { name: venue }]);
+      });
+    }
+    // Ajouter tag "Site Web" pour tous les leads
+    tagIds.push([0, 0, { name: 'Site Web' }]);
+    // Ajouter tag "B2B"
+    tagIds.push([0, 0, { name: 'B2B' }]);
+
+    const leadData: any = {
       name: leadName,
       contact_name: contactName,
       email_from: lead.email,
-      phone: lead.phone || '',
+      mobile: lead.phone || '', // Utiliser mobile au lieu de phone
       partner_name: lead.company || '',
       function: lead.position || '',
       description: description, // Notes internes (onglet Description)
       priority: '1', // Marqueur haute priorité
       referred: 'Site Web Lieux d\'Exception', // Champ référent visible
       type: 'opportunity', // 'opportunity' ou 'lead' selon config Odoo
+      tag_ids: tagIds, // Tags automatiques : lieux + "Site Web" + "B2B"
     };
 
     // Créer le lead
@@ -311,15 +325,29 @@ export async function createWeddingLeadInOdoo(lead: OdooWeddingLead): Promise<Od
     description += `\nMessage:\n${lead.message}\n\n`;
     description += `---\nSource: Site Web Lieux d'Exception\nDate: ${new Date().toLocaleString('fr-FR')}`;
 
-    const leadData = {
+    // Préparer les tags pour les lieux sélectionnés
+    const tagIds: any[] = [];
+    if (lead.venues && lead.venues.length > 0) {
+      // Créer un tag pour chaque lieu sélectionné
+      lead.venues.forEach(venue => {
+        tagIds.push([0, 0, { name: venue }]);
+      });
+    }
+    // Ajouter tag "Site Web" pour tous les leads
+    tagIds.push([0, 0, { name: 'Site Web' }]);
+    // Ajouter tag "Mariage"
+    tagIds.push([0, 0, { name: 'Mariage' }]);
+
+    const leadData: any = {
       name: leadName,
       contact_name: contactName,
       email_from: lead.email,
-      phone: lead.phone || '',
+      mobile: lead.phone || '', // Utiliser mobile au lieu de phone
       description: description.trim(), // Notes internes (onglet Description)
       priority: '2', // Priorité normale pour mariages
       referred: 'Site Web Lieux d\'Exception - Formulaire Mariages', // Champ référent visible
       type: 'opportunity', // 'opportunity' ou 'lead' selon config Odoo
+      tag_ids: tagIds, // Tags automatiques : lieux + "Site Web" + "Mariage"
     };
 
     // Créer le lead
