@@ -302,7 +302,7 @@ export default async function MariagesPage({
       </p>
       
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-       <Link href="/contact?form=mariage" className="btn btn-primary">
+       <Link href={`/${locale}/contact?form=mariage`} className="btn btn-primary">
         Contact & Devis
        </Link>
        <div className="text-sm md:text-base text-white">

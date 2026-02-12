@@ -18,8 +18,13 @@ function ContactFormWrapper() {
  const formRef = useRef<HTMLDivElement>(null);
  const searchParams = useSearchParams();
  const formParam = searchParams.get('form');
+ 
+ // Déterminer le formulaire initial et par défaut basé sur l'URL
  const initialForm = (formParam === 'b2b') ? 'b2b' : 
                     (formParam === 'prive' || formParam === 'mariage') ? 'prive' : null;
+ 
+ // Si on a un paramètre d'URL, l'utiliser comme defaultForm aussi
+ const defaultForm = initialForm || 'b2b';
 
  useEffect(() => {
   // Scroll automatique vers le formulaire après un court délai
@@ -34,7 +39,7 @@ function ContactFormWrapper() {
 
  return (
   <div ref={formRef}>
-   <ContactFormSwitcher defaultForm="b2b" initialForm={initialForm} />
+   <ContactFormSwitcher defaultForm={defaultForm} initialForm={initialForm} />
   </div>
  );
 }
